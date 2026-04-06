@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/guide",
+      "dest": "/guide.html"
+    },
+    {
+      "src": "/visual-guide",
+      "dest": "/visual-guide.html"
+    },
+    {
+      "src": "/ad-strategy",
+      "dest": "/ad-strategy.html"
+    }
+  ]
+}
