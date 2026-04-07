@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact â Fast Grad Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --silver: #c0c0c0;
+            --muted: #a8a8a8;
+            --glass: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.6;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        .fga-unified-nav {
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        h1 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .intro {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        /* Contact Sections */
+        .contact-section {
+            background-color: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .contact-section h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-method {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-method:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-label {
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            color: var(--white);
+        }
+
+        .email-button {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .email-button:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--silver);
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--white);
+            border-color: var(--silver);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Support Info */
+        .support-info {
+            background-color: rgba(192, 192, 192, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .support-info h3 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .support-info p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0.75rem;
+        }
+
+        .support-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: var(--silver);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            border-bottom: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .contact-section {
+                padding: 1.5rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+            }
+
+            .social-link {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="fga-unified-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">Fast Grad Academy</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/guide" class="nav-link">The Guide</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Get in Touch</h1>
+        <p class="intro">We're here to help. Whether you need access support, have a question about the guide, or just want to say hello, reach out.</p>
+
+        <div class="contact-section">
+            <h2>Email</h2>
+            <div class="contact-method">
+                <span class="contact-label">Primary Contact</span>
+                <div class="contact-value">johnzhengmn@gmail.com</div>
+                <a href="mailto:johnzhengmn@gmail.com" class="email-button">Send Email</a>
+            </div>
+            <p style="color: var(--muted); font-size: 0.9rem; margin-top: 1rem;">We typically respond within <strong>48 hours</strong>.</p>
+        </div>
+
+        <div class="contact-section">
+            <h2>Social</h2>
+            <p style="color: rgba(255, 255, 255, 0.85); margin-bottom: 1rem;">Follow along for updates, tips, and behind-the-scenes content.</p>
+            <div class="social-links">
+                <a href="https://x.com/thejohnzheng" target="_blank" class="social-link">Twitter/X @thejohnzheng</a>
+                <a href="https://youtube.com/@thejohnzheng" target="_blank" class="social-link">YouTube @thejohnzheng</a>
+            </div>
+        </div>
+
+        <div class="support-info">
+            <h3>Having Access Issues?</h3>
+            <p>If you're unable to access your Fast Grad Academy guide, please include:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.75rem;">
+                <li>Your email address associated with the purchase</li>
+                <li>Your purchase confirmation email (if you have it)</li>
+                <li>A description of the issue you're experiencing</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>We'll prioritize access issues and get you resolved as quickly as possible.</strong></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/refund.html">Refund & Terms</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <p>&copy; 2026 Fast Grad Academy. All rights reserved.</p>
+    </footer>
+</body>
+</html>
