@@ -34,14 +34,68 @@
 
     ::selection { background: var(--black); color: var(--white); }
 
-    /* ─── OLD NAV REMOVED — using .fga-unified-nav instead ─── */
-
     /* ─── SHARED ─── */
     .eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted-silver); margin-bottom: 24px; }
-    .btn-primary { display: inline-block; background: var(--black); color: var(--white); padding: 16px 40px; border-radius: 999px; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.15s; }
-    .btn-primary:hover { background: var(--charcoal); transform: translateY(-1px); }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      padding: 16px 40px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary:hover {
+      background: var(--charcoal);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      animation: shimmer 0.6s infinite;
+    }
+    .btn-primary:hover::after {
+      animation: shimmer 0.6s infinite;
+    }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
     .btn-ghost { display: inline-block; color: var(--charcoal); padding: 16px 24px; font-size: 14px; font-weight: 500; text-decoration: none; transition: color 0.2s; }
     .btn-ghost:hover { color: var(--black); }
+
+    /* ─── REVEAL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal.revealed.reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal.revealed.reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal.revealed.reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal.revealed.reveal-d4 { transition-delay: 0.4s; }
 
     /* ─── HERO ─── */
     .hero {
@@ -87,7 +141,7 @@
     .stat-label { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-silver); }
 
     /* ─── LETTER ─── */
-    .letter-section { max-width: 680px; margin: 0 auto; padding: 120px 24px; }
+    .letter-section { max-width: 680px; margin: 0 auto; padding: 80px 24px; }
     .letter-section h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 42px); font-weight: 400; color: var(--black); margin-bottom: 32px; line-height: 1.2; }
     .letter-section p { font-size: 16px; color: var(--charcoal); font-weight: 300; line-height: 1.85; margin-bottom: 24px; }
     .letter-section p strong { font-weight: 600; color: var(--black); }
@@ -96,8 +150,25 @@
     .letter-sig .title { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-silver); margin-top: 8px; }
     .divider { width: 40px; height: 1px; background: var(--silver); margin: 56px 0; }
 
+    /* ─── TRANSITION GRADIENT ─── */
+    .pain-section::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--white), var(--black));
+      pointer-events: none;
+    }
+
     /* ─── PAIN SECTION ─── */
-    .pain-section { background: var(--black); color: var(--white); padding: 100px 24px; }
+    .pain-section {
+      background: var(--black);
+      color: var(--white);
+      padding: 100px 24px;
+      position: relative;
+    }
     .pain-inner { max-width: 780px; margin: 0 auto; text-align: center; }
     .pain-inner h2 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 56px); font-weight: 400; line-height: 1.1; margin-bottom: 40px; letter-spacing: -0.02em; }
     .pain-inner h2 em { font-style: italic; color: var(--silver); }
@@ -108,7 +179,7 @@
     .pain-inner p { font-size: 16px; color: var(--muted-silver); font-weight: 300; line-height: 1.8; max-width: 580px; margin: 0 auto; }
 
     /* ─── BENTO GRID — WHAT'S INSIDE ─── */
-    .inside { padding: 120px 24px; max-width: 1100px; margin: 0 auto; }
+    .inside { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
     .inside-header { text-align: center; margin-bottom: 64px; }
     .inside-header h2 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 400; color: var(--black); margin-bottom: 16px; line-height: 1.1; }
     .inside-header p { font-size: 16px; font-weight: 300; color: var(--charcoal); max-width: 560px; margin: 0 auto; }
@@ -136,7 +207,7 @@
     .bento-card.dark .card-tag { background: rgba(255,255,255,0.12); color: var(--silver); }
 
     /* ─── CLEP SECTION ─── */
-    .clep-section { padding: 120px 24px; max-width: 1100px; margin: 0 auto; }
+    .clep-section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
     .clep-header { margin-bottom: 56px; }
     .clep-header h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 400; color: var(--black); margin-bottom: 12px; }
     .clep-header p { font-size: 16px; color: var(--charcoal); font-weight: 300; max-width: 520px; }
@@ -163,7 +234,7 @@
     .quote-section cite { font-family: var(--font-body); font-style: normal; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted-silver); }
 
     /* ─── THE MATH ─── */
-    .math-section { padding: 120px 24px; max-width: 900px; margin: 0 auto; }
+    .math-section { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
     .math-section h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 400; color: var(--black); margin-bottom: 48px; text-align: center; }
     .math-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .math-box { padding: 48px 40px; border-radius: 20px; }
@@ -189,20 +260,31 @@
     .math-box.you .math-total-val { color: var(--white); }
 
     /* ─── REVIEWS ─── */
-    .reviews { padding: 120px 24px; max-width: 1100px; margin: 0 auto; }
+    .reviews { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
     .reviews-header { text-align: center; margin-bottom: 56px; }
     .reviews-header h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: var(--black); margin-bottom: 12px; }
     .reviews-header p { font-size: 14px; color: var(--muted-silver); }
     .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .review-card { background: var(--off-white); border-radius: 20px; padding: 36px 32px; border: 1px solid transparent; }
-    .review-stars { font-size: 14px; color: var(--black); margin-bottom: 20px; letter-spacing: 2px; }
+    .review-card {
+      background: var(--off-white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      border: 1px solid transparent;
+      border-left: 3px solid var(--black);
+    }
+    .review-stars {
+      font-size: 14px;
+      color: #d4a534;
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+    }
     .review-text { font-size: 15px; color: var(--charcoal); line-height: 1.75; font-weight: 300; margin-bottom: 28px; font-style: italic; }
     .review-name { font-size: 13px; font-weight: 600; color: var(--black); }
     .review-title { font-size: 12px; color: var(--muted-silver); margin-top: 4px; }
     .review-disclaimer { text-align: center; margin-top: 28px; font-size: 11px; color: var(--muted-silver); max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
     /* ─── PRICING ─── */
-    .pricing { padding: 120px 24px; max-width: 600px; margin: 0 auto; text-align: center; }
+    .pricing { padding: 80px 24px; max-width: 600px; margin: 0 auto; text-align: center; }
     .pricing h2 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 400; color: var(--black); margin-bottom: 16px; }
     .pricing-sub { font-size: 16px; color: var(--charcoal); font-weight: 300; margin-bottom: 56px; }
     .price-card { background: var(--black); border-radius: 24px; padding: 56px 48px; margin-bottom: 24px; }
@@ -214,24 +296,98 @@
     .price-includes { text-align: left; margin-bottom: 40px; display: flex; flex-direction: column; gap: 12px; }
     .price-line { display: flex; align-items: flex-start; gap: 14px; font-size: 14px; color: var(--muted-silver); }
     .price-line::before { content: '✓'; color: var(--silver); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-    .price-cta { display: block; background: var(--white); color: var(--black); padding: 18px 40px; border-radius: 999px; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
-    .price-cta:hover { background: var(--silver); }
+    .price-cta {
+      display: block;
+      background: var(--white);
+      color: var(--black);
+      padding: 18px 40px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .price-cta:hover {
+      background: var(--silver);
+      transform: scale(1.02);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
     .guarantee { font-size: 13px; color: var(--muted-silver); margin-top: 20px; }
 
     /* ─── FAQ ─── */
-    .faq { padding: 120px 24px; max-width: 720px; margin: 0 auto; }
+    .faq { padding: 80px 24px; max-width: 720px; margin: 0 auto; }
     .faq h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: var(--black); margin-bottom: 56px; }
     .faq-item { border-top: 1px solid var(--off-white); padding: 28px 0; }
-    .faq-q { font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 12px; }
-    .faq-a { font-size: 15px; color: var(--charcoal); font-weight: 300; line-height: 1.75; }
+    .faq-q {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .faq-q::after {
+      content: '+';
+      font-size: 20px;
+      font-weight: 300;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+    .faq-q.open::after {
+      content: '−';
+    }
+    .faq-a {
+      font-size: 15px;
+      color: var(--charcoal);
+      font-weight: 300;
+      line-height: 1.75;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-a.open {
+      max-height: 500px;
+    }
 
     /* ─── FINAL CTA ─── */
-    .final-cta { background: var(--black); padding: 120px 24px; text-align: center; }
+    .final-cta {
+      background: radial-gradient(ellipse at center top, #1a1a1a 0%, var(--black) 60%);
+      padding: 120px 24px;
+      text-align: center;
+      position: relative;
+    }
     .final-cta h2 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 400; color: var(--white); line-height: 1.05; margin-bottom: 24px; letter-spacing: -0.02em; }
     .final-cta h2 em { font-style: italic; color: var(--silver); }
     .final-cta p { font-size: 17px; color: var(--muted-silver); font-weight: 300; max-width: 480px; margin: 0 auto 48px; line-height: 1.7; }
-    .final-cta .btn-white { display: inline-block; background: var(--white); color: var(--black); padding: 18px 48px; border-radius: 999px; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
-    .final-cta .btn-white:hover { background: var(--silver); }
+    .final-cta .btn-white {
+      display: inline-block;
+      background: var(--white);
+      color: var(--black);
+      padding: 18px 48px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.3s;
+      position: relative;
+      animation: pulse-glow 2s infinite;
+    }
+    .final-cta .btn-white:hover {
+      background: var(--silver);
+      box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
+      50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+    }
     .final-cta-note { font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 20px; }
 
     /* ─── FOOTER ─── */
@@ -241,117 +397,206 @@
     .footer-links a { font-size: 13px; color: var(--muted-silver); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--black); }
     .footer-legal { font-size: 11px; color: var(--muted-silver); max-width: 480px; line-height: 1.6; }
-  
-/* ═══════════════════════ UNIFIED FGA NAV ═══════════════════════ */
-.fga-unified-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.85) 100%);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(192,192,192,0.1);
-}
 
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    /* ═══════════════════════ UNIFIED FGA NAV ═══════════════════════ */
+    .fga-unified-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(192,192,192,0.1);
+    }
 
-.nav-brand {
-  font-family: var(--font-display, 'Instrument Serif', Georgia, serif);
-  font-size: 18px;
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  flex-shrink: 0;
-  transition: color 0.2s;
-}
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-.nav-brand:hover {
-  color: #c0c0c0;
-}
+    .nav-brand {
+      font-family: var(--font-display, 'Instrument Serif', Georgia, serif);
+      font-size: 18px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
 
-.nav-links {
-  display: flex;
-  gap: 36px;
-  align-items: center;
-  margin: 0 auto;
-}
+    .nav-brand:hover {
+      color: #c0c0c0;
+    }
 
-.nav-link {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #a8a8a8;
-  text-decoration: none;
-  transition: color 0.2s;
-}
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+      margin: 0 auto;
+    }
 
-.nav-link:hover,
-.nav-link.active {
-  color: #ffffff;
-}
+    .nav-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #a8a8a8;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
 
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  margin-left: auto;
-}
+    .nav-link:hover,
+    .nav-link.active {
+      color: #ffffff;
+    }
 
-.nav-hamburger span {
-  width: 24px;
-  height: 2px;
-  background: #c0c0c0;
-  border-radius: 1px;
-  transition: all 0.3s;
-}
+    .nav-cta {
+      background: white;
+      color: #0a0a0a;
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      display: none;
+    }
 
-.nav-mobile {
-  display: none;
-  flex-direction: column;
-  gap: 0;
-  background: rgba(10,10,10,0.98);
-  border-top: 1px solid rgba(192,192,192,0.1);
-}
+    .nav-cta:hover {
+      background: #c0c0c0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
 
-.nav-mobile.open {
-  display: flex;
-}
+    @media (min-width: 769px) {
+      .nav-cta {
+        display: inline-block;
+      }
+    }
 
-.mobile-link {
-  padding: 16px 24px !important;
-  display: block !important;
-  border-bottom: 1px solid rgba(192,192,192,0.05);
-  font-size: 14px !important;
-}
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      margin-left: auto;
+    }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  
-  .nav-hamburger {
-    display: flex;
-  }
-  
-  .nav-brand {
-    font-size: 16px;
-  }
-}
-</style>
+    .nav-hamburger span {
+      width: 24px;
+      height: 2px;
+      background: #c0c0c0;
+      border-radius: 1px;
+      transition: all 0.3s;
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(10,10,10,0.98);
+      border-top: 1px solid rgba(192,192,192,0.1);
+    }
+
+    .nav-mobile.open {
+      display: flex;
+    }
+
+    .mobile-link {
+      padding: 16px 24px !important;
+      display: block !important;
+      border-bottom: 1px solid rgba(192,192,192,0.05);
+      font-size: 14px !important;
+    }
+
+    /* ─── MOBILE RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .nav-brand {
+        font-size: 16px;
+      }
+
+      .stats {
+        flex-wrap: wrap;
+      }
+
+      .stat {
+        flex: 1 1 50%;
+        padding: 28px 20px;
+        border-right: 1px solid var(--off-white);
+      }
+
+      .stat:nth-child(odd) {
+        border-right: 1px solid var(--off-white);
+      }
+
+      .stat:nth-child(even) {
+        border-right: none;
+      }
+
+      .stat:nth-child(3),
+      .stat:nth-child(4) {
+        border-right: 1px solid var(--off-white);
+      }
+
+      .stat:last-child {
+        border-right: none;
+      }
+
+      .bento {
+        grid-template-columns: 1fr;
+      }
+
+      .bento-card.wide {
+        grid-column: span 1;
+      }
+
+      .clep-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 480px) {
+        .clep-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .math-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
 <!-- ═══════════════════════ UNIFIED NAV ═══════════════════════ -->
@@ -362,6 +607,7 @@
       <a href="/" class="nav-link" data-page="home">Home</a>
       <a href="/guide.html" class="nav-link" data-page="guide">The Guide</a>
       <a href="/visual-guide.html" class="nav-link" data-page="visual">Visual Guide</a>
+      <a href="#pricing" class="nav-cta">Get the Guide</a>
     </div>
     <button class="nav-hamburger" id="navHamburger">
       <span></span>
@@ -381,7 +627,7 @@
   const hamburger = document.getElementById('navHamburger');
   const mobileMenu = document.getElementById('navMobile');
   const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-  
+
   // Set active page based on current file
   const pageMap = {
     'index.html': 'home',
@@ -389,20 +635,20 @@
     'guide.html': 'guide',
     'visual-guide.html': 'visual',
   };
-  
+
   const currentPage = pageMap[currentFile];
   document.querySelectorAll('[data-page]').forEach(link => {
     if(link.getAttribute('data-page') === currentPage) {
       link.classList.add('active');
     }
   });
-  
+
   // Mobile menu toggle
   if(hamburger) {
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.toggle('open');
     });
-    
+
     document.querySelectorAll('.mobile-link').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
@@ -412,23 +658,20 @@
 })();
 </script>
 
-
-<!-- OLD PILL NAV REMOVED — unified nav above handles navigation -->
-
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">
+  <div class="hero-badge reveal reveal-d1">
     <span></span>
     1,952 students enrolled
   </div>
-  <h1>
+  <h1 class="reveal reveal-d2">
     Graduate in<br/>
     <em>1 Year, Not 4.</em>
   </h1>
-  <p class="hero-sub">
+  <p class="hero-sub reveal reveal-d3">
     The exact system I used to finish my bachelor's in 12 months, save $85,000+ in tuition, and graduate Harvard at 21. Every exam, every strategy, every shortcut — step by step.
   </p>
-  <div class="hero-actions">
+  <div class="hero-actions reveal reveal-d4">
     <a href="#pricing" class="btn-primary">Get the Guide — $97</a>
     <a href="#inside" class="btn-ghost">See what's inside →</a>
   </div>
@@ -437,19 +680,19 @@
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat">
+  <div class="stat reveal reveal-d1">
     <div class="stat-value">$85K+</div>
     <div class="stat-label">Tuition John saved</div>
   </div>
-  <div class="stat">
+  <div class="stat reveal reveal-d2">
     <div class="stat-value">41</div>
     <div class="stat-label">Credits via CLEP alone</div>
   </div>
-  <div class="stat">
+  <div class="stat reveal reveal-d3">
     <div class="stat-value">1,952</div>
     <div class="stat-label">Students enrolled</div>
   </div>
-  <div class="stat">
+  <div class="stat reveal reveal-d4">
     <div class="stat-value">3 yrs</div>
     <div class="stat-label">Freed up (class of '23, done in '20)</div>
   </div>
@@ -457,26 +700,26 @@
 
 <!-- LETTER FROM JOHN -->
 <section class="letter-section">
-  <div class="eyebrow">A letter from John</div>
-  <h2>I was terrified of student debt.<br/><em style="font-style:italic; color: var(--charcoal);">So I engineered a way out.</em></h2>
+  <div class="eyebrow reveal reveal-d1">A letter from John</div>
+  <h2 class="reveal reveal-d2">I was terrified of student debt.<br/><em style="font-style:italic; color: var(--charcoal);">So I engineered a way out.</em></h2>
 
-  <p>As a freshman in high school, I knew college was going to be my path. But there was one thing I was terrified of: <strong>student debt.</strong> The average private university student borrows $35,000+ after they graduate — and those numbers keep climbing.</p>
+  <p class="reveal reveal-d3">As a freshman in high school, I knew college was going to be my path. But there was one thing I was terrified of: <strong>student debt.</strong> The average private university student borrows $35,000+ after they graduate — and those numbers keep climbing.</p>
 
-  <p>So I asked a different question. Not <em>"which college should I go to?"</em> — but <em>"how do I get this credential as fast, as cheaply, and as strategically as possible?"</em></p>
+  <p class="reveal reveal-d4">So I asked a different question. Not <em>"which college should I go to?"</em> — but <em>"how do I get this credential as fast, as cheaply, and as strategically as possible?"</em></p>
 
-  <p>While registering for sophomore classes, I found out you could earn college credits in high school through AP exams. Then I fell down the rabbit hole: CLEP exams, DSST exams, self-study options — and PSEO, where the state of Minnesota literally pays for you to take college courses while you're still in high school. <strong>For free.</strong></p>
+  <p class="reveal reveal-d1">While registering for sophomore classes, I found out you could earn college credits in high school through AP exams. Then I fell down the rabbit hole: CLEP exams, DSST exams, self-study options — and PSEO, where the state of Minnesota literally pays for you to take college courses while you're still in high school. <strong>For free.</strong></p>
 
-  <p>I stacked every one of these. I used a tool called Transferology to make sure every single credit would transfer. I made a spreadsheet — one column with my degree requirements, one column with the exam or course that could satisfy each one. I double-checked, triple-checked, quadruple-checked everything.</p>
+  <p class="reveal reveal-d2">I stacked every one of these. I used a tool called Transferology to make sure every single credit would transfer. I made a spreadsheet — one column with my degree requirements, one column with the exam or course that could satisfy each one. I double-checked, triple-checked, quadruple-checked everything.</p>
 
-  <p>My graduating class was supposed to be 2023. <strong>I finished in 2020.</strong> I entered my freshman year as a college senior. I graduated with my BBA in Organizational Management from the University of Minnesota system in ONE YEAR. I was 19. Then I graduated Harvard with my Master's at 21. Bought my first house at 20. Traveled to 18+ countries by 23.</p>
+  <p class="reveal reveal-d3">My graduating class was supposed to be 2023. <strong>I finished in 2020.</strong> I entered my freshman year as a college senior. I graduated with my BBA in Organizational Management from the University of Minnesota system in ONE YEAR. I was 19. Then I graduated Harvard with my Master's at 21. Bought my first house at 20. Traveled to 18+ countries by 23.</p>
 
-  <p>Nobody handed me this. I had to fight my school counselor for PSEO enrollment. I had to personally request AP exams my school didn't even offer. I studied for most exams in 2–3 weeks each. I had to figure out every piece of this puzzle myself — with wrong information pointing me in circles.</p>
+  <p class="reveal reveal-d4">Nobody handed me this. I had to fight my school counselor for PSEO enrollment. I had to personally request AP exams my school didn't even offer. I studied for most exams in 2–3 weeks each. I had to figure out every piece of this puzzle myself — with wrong information pointing me in circles.</p>
 
-  <p>That ends with you. This guide is the map I didn't have.</p>
+  <p class="reveal reveal-d1">That ends with you. This guide is the map I didn't have.</p>
 
-  <p><strong>Now you have it.</strong></p>
+  <p class="reveal reveal-d2"><strong>Now you have it.</strong></p>
 
-  <div class="letter-sig">
+  <div class="letter-sig reveal reveal-d3">
     <div class="name">— John Zheng</div>
     <div class="title">Youngest BBA Graduate in UMD History · Harvard Master's, Age 21 · Founder, Fast Grad Academy</div>
   </div>
@@ -485,35 +728,35 @@
 <!-- PAIN SECTION -->
 <div class="pain-section">
   <div class="pain-inner">
-    <h2>The system was never<br/><em>designed for your benefit.</em></h2>
+    <h2 class="reveal reveal-d1">The system was never<br/><em>designed for your benefit.</em></h2>
     <div class="pain-stats">
-      <div class="pain-stat">
+      <div class="pain-stat reveal reveal-d2">
         <div class="pain-stat-num">$39,633</div>
         <div class="pain-stat-label">Average student debt per borrower</div>
       </div>
-      <div class="pain-stat">
+      <div class="pain-stat reveal reveal-d3">
         <div class="pain-stat-num">10 yrs</div>
         <div class="pain-stat-label">Average time to pay it back at $400/month</div>
       </div>
-      <div class="pain-stat">
+      <div class="pain-stat reveal reveal-d4">
         <div class="pain-stat-num">84%</div>
         <div class="pain-stat-label">Who delay buying a home or starting a family because of student loans</div>
       </div>
     </div>
-    <p>Every extra semester on campus is tuition revenue. Every required class — whether relevant to your degree or not — is a credit hour they charge you for. Your high school counselor gets funding incentives to keep you on the traditional path. The incentives don't align with yours. When incentives don't align — you engineer your own path.</p>
+    <p class="reveal reveal-d1">Every extra semester on campus is tuition revenue. Every required class — whether relevant to your degree or not — is a credit hour they charge you for. Your high school counselor gets funding incentives to keep you on the traditional path. The incentives don't align with yours. When incentives don't align — you engineer your own path.</p>
   </div>
 </div>
 
 <!-- WHAT'S INSIDE — BENTO GRID -->
 <section class="inside" id="inside">
   <div class="inside-header">
-    <div class="eyebrow">What's inside</div>
-    <h2>The Complete Acceleration System</h2>
-    <p>12 chapters covering every strategy, tool, and shortcut — from CLEP exams to PSEO to AI-powered study methods.</p>
+    <div class="eyebrow reveal reveal-d1">What's inside</div>
+    <h2 class="reveal reveal-d2">The Complete Acceleration System</h2>
+    <p class="reveal reveal-d3">12 chapters covering every strategy, tool, and shortcut — from CLEP exams to PSEO to AI-powered study methods.</p>
   </div>
 
   <div class="bento">
-    <div class="bento-card wide dark">
+    <div class="bento-card wide dark reveal reveal-d1">
       <div>
         <div class="card-num">Chapter 01–02</div>
         <div class="card-title">The CLEP Master Strategy</div>
@@ -521,7 +764,7 @@
       </div>
       <span class="card-tag">Up to 41 credits</span>
     </div>
-    <div class="bento-card">
+    <div class="bento-card reveal reveal-d2">
       <div>
         <div class="card-num">Chapter 03</div>
         <div class="card-title">DSST & AP Exam Stacking</div>
@@ -529,7 +772,7 @@
       </div>
       <span class="card-tag">+ 30 more credits</span>
     </div>
-    <div class="bento-card">
+    <div class="bento-card reveal reveal-d3">
       <div>
         <div class="card-num">Chapter 04</div>
         <div class="card-title">PSEO — Free College in High School</div>
@@ -537,7 +780,7 @@
       </div>
       <span class="card-tag">Free credits</span>
     </div>
-    <div class="bento-card">
+    <div class="bento-card reveal reveal-d4">
       <div>
         <div class="card-num">Chapter 05</div>
         <div class="card-title">Degree Map & Transfer Planning</div>
@@ -545,7 +788,7 @@
       </div>
       <span class="card-tag">Zero wasted credits</span>
     </div>
-    <div class="bento-card">
+    <div class="bento-card reveal reveal-d1">
       <div>
         <div class="card-num">Chapter 06</div>
         <div class="card-title">Credit for Prior Learning & Portfolio</div>
@@ -553,7 +796,7 @@
       </div>
       <span class="card-tag">Unconventional</span>
     </div>
-    <div class="bento-card wide">
+    <div class="bento-card wide reveal reveal-d2">
       <div>
         <div class="card-num">Chapter 07–08</div>
         <div class="card-title">The Neuroscience Study System</div>
@@ -561,7 +804,7 @@
       </div>
       <span class="card-tag">Science-backed</span>
     </div>
-    <div class="bento-card dark">
+    <div class="bento-card dark reveal reveal-d3">
       <div>
         <div class="card-num">Chapter 09</div>
         <div class="card-title">The AI Study Stack</div>
@@ -569,7 +812,7 @@
       </div>
       <span class="card-tag">Exact prompts</span>
     </div>
-    <div class="bento-card">
+    <div class="bento-card reveal reveal-d4">
       <div>
         <div class="card-num">Chapter 10–12</div>
         <div class="card-title">Financial Strategy & ROI Optimization</div>
@@ -583,40 +826,40 @@
 <!-- 5 CLEP EXAMS -->
 <section class="clep-section">
   <div class="clep-header">
-    <div class="eyebrow">The Fast Grad Starter Stack</div>
-    <h2>5 CLEP Exams to Take First</h2>
-    <p>High pass rates, wide university acceptance, minimal study time. Start here.</p>
+    <div class="eyebrow reveal reveal-d1">The Fast Grad Starter Stack</div>
+    <h2 class="reveal reveal-d2">5 CLEP Exams to Take First</h2>
+    <p class="reveal reveal-d3">High pass rates, wide university acceptance, minimal study time. Start here.</p>
   </div>
   <div class="clep-grid">
-    <div class="clep-card">
+    <div class="clep-card reveal reveal-d1">
       <div class="clep-exam">CLEP Exam #1</div>
       <div class="clep-subject">College Composition</div>
       <div class="clep-credits">Credits earned</div>
       <div class="clep-credit-val">6</div>
       <div class="clep-hours">~40 hrs prep</div>
     </div>
-    <div class="clep-card">
+    <div class="clep-card reveal reveal-d2">
       <div class="clep-exam">CLEP Exam #2</div>
       <div class="clep-subject">U.S. History I</div>
       <div class="clep-credits">Credits earned</div>
       <div class="clep-credit-val">3</div>
       <div class="clep-hours">~30 hrs prep</div>
     </div>
-    <div class="clep-card">
+    <div class="clep-card reveal reveal-d3">
       <div class="clep-exam">CLEP Exam #3</div>
       <div class="clep-subject">Principles of Marketing</div>
       <div class="clep-credits">Credits earned</div>
       <div class="clep-credit-val">3</div>
       <div class="clep-hours">~25 hrs prep</div>
     </div>
-    <div class="clep-card">
+    <div class="clep-card reveal reveal-d4">
       <div class="clep-exam">CLEP Exam #4</div>
       <div class="clep-subject">College Algebra</div>
       <div class="clep-credits">Credits earned</div>
       <div class="clep-credit-val">3</div>
       <div class="clep-hours">~35 hrs prep</div>
     </div>
-    <div class="clep-card">
+    <div class="clep-card reveal reveal-d1">
       <div class="clep-exam">CLEP Exam #5</div>
       <div class="clep-subject">Information Systems</div>
       <div class="clep-credits">Credits earned</div>
@@ -628,17 +871,17 @@
 
 <!-- QUOTE -->
 <div class="quote-section">
-  <blockquote>
+  <blockquote class="reveal reveal-d1">
     "It takes the same amount of effort to build something worth $100,000 and something worth $10,000,000. The difference is the sequence of people, strategies, and decisions."
   </blockquote>
-  <cite>— John Zheng · Fast Grad Academy Founder</cite>
+  <cite class="reveal reveal-d2">— John Zheng · Fast Grad Academy Founder</cite>
 </div>
 
 <!-- THE MATH -->
 <section class="math-section" id="math">
-  <h2>The Math Doesn't Lie</h2>
+  <h2 class="reveal reveal-d1">The Math Doesn't Lie</h2>
   <div class="math-compare">
-    <div class="math-box them">
+    <div class="math-box them reveal reveal-d2">
       <div class="math-label">Traditional Path</div>
       <div class="math-row">
         <span class="math-item">4 years tuition (avg in-state)</span>
@@ -661,7 +904,7 @@
         <div class="math-total-val" style="color: #8b5e3c;">$268K+</div>
       </div>
     </div>
-    <div class="math-box you">
+    <div class="math-box you reveal reveal-d3">
       <div class="math-label">Fast Grad Path</div>
       <div class="math-row">
         <span class="math-item">CLEP exam fees</span>
@@ -690,40 +933,40 @@
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="reviews-header">
-    <div class="eyebrow">Student results</div>
-    <h2>1,952 Students Can't Be Wrong</h2>
-    <p>Results vary. These are representative experiences from students who implemented the full system.</p>
+    <div class="eyebrow reveal reveal-d1">Student results</div>
+    <h2 class="reveal reveal-d2">1,952 Students Can't Be Wrong</h2>
+    <p class="reveal reveal-d3">Results vary. These are representative experiences from students who implemented the full system.</p>
   </div>
   <div class="review-grid">
-    <div class="review-card">
+    <div class="review-card reveal reveal-d1">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"I used the CLEP strategy in chapter 2 and knocked out 18 credits before my sophomore year even started. This guide is the most actionable thing I've ever bought."</p>
       <div class="review-name">Marcus T.</div>
       <div class="review-title">University of Minnesota sophomore</div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal reveal-d2">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"I'm a parent who bought this for my daughter. She passed 3 CLEP exams in 8 weeks. We're on track to save at least $24,000 in tuition. Worth every penny at $97."</p>
       <div class="review-name">Patricia W.</div>
       <div class="review-title">Parent of a current freshman</div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal reveal-d3">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"The neuroscience study chapter alone changed how I prepare for everything. I went from a 60% on my first practice CLEP test to passing at 68+ in under 6 weeks."</p>
       <div class="review-name">Aaliya M.</div>
       <div class="review-title">Pre-med student, Ohio State</div>
     </div>
   </div>
-  <p class="review-disclaimer">*Results vary. Individual results depend on effort, exam selection, university policies, and prior knowledge. Testimonials represent student experiences and are not guarantees of specific outcomes.</p>
+  <p class="review-disclaimer reveal reveal-d4">*Results vary. Individual results depend on effort, exam selection, university policies, and prior knowledge. Testimonials represent student experiences and are not guarantees of specific outcomes.</p>
 </section>
 
 <!-- PRICING -->
 <section class="pricing" id="pricing">
-  <div class="eyebrow">Simple pricing</div>
-  <h2>One guide.<br/>Decades of impact.</h2>
-  <p class="pricing-sub">Everything you need to compress your timeline, cut your debt, and start your real life years ahead of schedule.</p>
+  <div class="eyebrow reveal reveal-d1">Simple pricing</div>
+  <h2 class="reveal reveal-d2">One guide.<br/>Decades of impact.</h2>
+  <p class="pricing-sub reveal reveal-d3">Everything you need to compress your timeline, cut your debt, and start your real life years ahead of schedule.</p>
 
-  <div class="price-card">
+  <div class="price-card reveal reveal-d4">
     <div class="price-eyebrow">Fast Grad Academy — Complete Guide</div>
     <div class="price-amount"><span>$</span>97</div>
     <p class="price-compare">One-time · Instant access · Compare to <s>$108,000+ in tuition</s></p>
@@ -741,40 +984,40 @@
 
     <a href="mailto:john@executivestrategy.consulting?subject=Fast%20Grad%20Academy%20Guide%20Purchase&body=I%27d%20like%20to%20purchase%20the%20Fast%20Grad%20Academy%20guide." class="price-cta">Get Instant Access — $97</a>
   </div>
-  <p class="guarantee">30-day money-back guarantee. If you don't find a single credit-saving strategy you can use, I'll refund you. No questions.</p>
+  <p class="guarantee reveal reveal-d1">30-day money-back guarantee. If you don't find a single credit-saving strategy you can use, I'll refund you. No questions.</p>
 </section>
 
 <!-- FAQ -->
 <section class="faq">
-  <h2>Common questions</h2>
+  <h2 class="reveal reveal-d1">Common questions</h2>
   <div class="faq-item">
-    <div class="faq-q">Does CLEP actually work at my university?</div>
+    <div class="faq-q reveal reveal-d2">Does CLEP actually work at my university?</div>
     <div class="faq-a">CLEP is accepted at 2,900+ accredited institutions. The guide includes a process for verifying acceptance at your specific school before you spend a dollar on exam fees — and alternative pathways if CLEP isn't accepted for your degree program.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q">I'm already in college. Is it too late?</div>
+    <div class="faq-q reveal reveal-d3">I'm already in college. Is it too late?</div>
     <div class="faq-a">No. Many students use this guide in their sophomore or junior year to cut one to two full semesters off the end of their degree. The guide covers strategies for students at every stage.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q">I'm a parent buying this for my kid. Is it written for students?</div>
+    <div class="faq-q reveal reveal-d4">I'm a parent buying this for my kid. Is it written for students?</div>
     <div class="faq-a">Yes — it's written for high school students, current college students, and their parents. Parents consistently say the financial strategy chapters alone are worth the price.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q">How long does it take to read and implement?</div>
+    <div class="faq-q reveal reveal-d1">How long does it take to read and implement?</div>
     <div class="faq-a">Most students finish the guide in a weekend. Implementation — taking your first CLEP exam — can begin within 4–6 weeks with 30–40 hours of focused study using the methods in the guide.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q">What's the refund policy?</div>
+    <div class="faq-q reveal reveal-d2">What's the refund policy?</div>
     <div class="faq-a">30-day money-back guarantee. If you go through the guide and don't find a single actionable credit-saving strategy, email john@executivestrategy.consulting and I'll refund you in full.</div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
 <div class="final-cta">
-  <h2>Stop paying for<br/><em>time you don't need.</em></h2>
-  <p>1,952 students have already used this system. The only question is whether you're next.</p>
-  <a href="#pricing" class="btn-white">Get the Guide — $97</a>
-  <p class="final-cta-note">30-day guarantee · Instant access · One-time payment</p>
+  <h2 class="reveal reveal-d1">Stop paying for<br/><em>time you don't need.</em></h2>
+  <p class="reveal reveal-d2">1,952 students have already used this system. The only question is whether you're next.</p>
+  <a href="#pricing" class="btn-white reveal reveal-d3">Get the Guide — $97</a>
+  <p class="final-cta-note reveal reveal-d4">30-day guarantee · Instant access · One-time payment</p>
 </div>
 
 <!-- FOOTER -->
@@ -790,6 +1033,107 @@
     Results vary. Individual outcomes depend on effort, exam selection, university credit policies, and prior knowledge. This guide is for informational and educational purposes. All exam and credit data reflects policies as of 2026. © 2026 Fast Grad Academy. All rights reserved.
   </p>
 </footer>
+
+<script>
+// ═══════════════════════ SCROLL-TRIGGERED REVEALS ═══════════════════════
+function initializeReveals() {
+  const reveals = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  reveals.forEach(reveal => observer.observe(reveal));
+}
+
+// ═══════════════════════ STAT COUNTERS ═══════════════════════
+function initializeStatCounters() {
+  const stats = document.querySelectorAll('.stat-value');
+  const statCounterConfig = [
+    { element: stats[0], value: 85, prefix: '$', suffix: 'K+', duration: 1500 },
+    { element: stats[1], value: 41, prefix: '', suffix: '', duration: 1500 },
+    { element: stats[2], value: 1952, prefix: '', suffix: '', duration: 1500, format: true },
+    { element: stats[3], value: 3, prefix: '', suffix: ' yrs', duration: 1500 }
+  ];
+
+  function easeOutExpo(t) {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  function animateCounter(config) {
+    const startTime = Date.now();
+    const { element, value, prefix, suffix, duration, format } = config;
+    let hasAnimated = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !hasAnimated) {
+        hasAnimated = true;
+
+        const animate = () => {
+          const now = Date.now();
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = easeOutExpo(progress);
+          const current = Math.floor(eased * value);
+
+          let displayValue = current.toString();
+          if (format && current > 0) {
+            displayValue = current.toLocaleString();
+          }
+
+          element.textContent = prefix + displayValue + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        };
+
+        animate();
+        observer.unobserve(element);
+      }
+    }, { threshold: 0.5 });
+
+    observer.observe(element);
+  }
+
+  statCounterConfig.forEach(config => animateCounter(config));
+}
+
+// ═══════════════════════ FAQ ACCORDION ═══════════════════════
+function initializeFAQ() {
+  const faqQuestions = document.querySelectorAll('.faq-q');
+
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const answer = question.nextElementSibling;
+      const isOpen = question.classList.contains('open');
+
+      if (isOpen) {
+        question.classList.remove('open');
+        answer.classList.remove('open');
+      } else {
+        question.classList.add('open');
+        answer.classList.add('open');
+      }
+    });
+  });
+}
+
+// ═══════════════════════ INITIALIZATION ═══════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  initializeReveals();
+  initializeStatCounters();
+  initializeFAQ();
+});
+</script>
 
 </body>
 </html>
