@@ -974,7 +974,38 @@ function unlockAccess(){
         <li><strong>Gap-fillers last:</strong> Use DSST for subjects that CLEP doesn't cover (Public Speaking, Business Ethics, Personal Finance)</li>
       </ol>
 
-      <h3>Step 6: Build Your Attack Sequence</h3>
+      <!-- Transfer Eligibility Examples -->
+      <div class="callout" style="margin-top:32px">
+        <div class="callout-label">📋 Transfer Eligibility — Real Examples</div>
+        <div class="callout-text">
+          <p style="color:var(--white);font-weight:600;margin-bottom:12px">Credits that typically TRANSFER at 2,900+ schools:</p>
+          <ul style="margin-left:1.2rem;margin-bottom:20px;line-height:2">
+            <li><strong>CLEP Principles of Macroeconomics</strong> → counts as ECON 101 / Intro to Economics (3 credits)</li>
+            <li><strong>CLEP Introductory Psychology</strong> → counts as PSYC 101 / General Psychology (3 credits)</li>
+            <li><strong>CLEP American Government</strong> → counts as POLS 101 / American Politics (3 credits)</li>
+            <li><strong>CLEP College Algebra</strong> → counts as MATH 110 / College Algebra (3 credits)</li>
+            <li><strong>CLEP Spanish Level 2</strong> → counts as SPAN 201 + 202 (12 credits at many schools)</li>
+            <li><strong>CLEP Western Civilization I & II</strong> → satisfies History gen-ed (6 credits total)</li>
+            <li><strong>AP Calculus AB (score 3+)</strong> → counts as CALC 1 (4 credits)</li>
+            <li><strong>AP Statistics (score 3+)</strong> → counts as STAT 201 (3 credits)</li>
+            <li><strong>DSST Personal Finance</strong> → counts as FIN 101 / Personal Finance elective (3 credits)</li>
+            <li><strong>DSST Principles of Statistics</strong> → counts as STAT 200 at many schools (3 credits)</li>
+          </ul>
+          <p style="color:#e88080;font-weight:600;margin-bottom:12px">Credits that often DON'T transfer (school-specific or major-restricted):</p>
+          <ul style="margin-left:1.2rem;line-height:2">
+            <li><strong>Upper-division major requirements</strong> — e.g., a nursing clinical or engineering lab course cannot be replaced by a CLEP exam</li>
+            <li><strong>Capstone / thesis courses</strong> — schools require these to be completed in-residence; no exam equivalent exists</li>
+            <li><strong>Writing-intensive requirements at selective schools</strong> — some schools (Boston University, Northeastern) require in-house composition courses</li>
+            <li><strong>CLEP scores below 50</strong> — the passing threshold; anything below doesn't count for credit anywhere</li>
+            <li><strong>Exams at schools with no CLEP policy</strong> — always verify. A small number of schools don't accept any CLEP. Check before you prep.</li>
+            <li><strong>Duplicate credit</strong> — if you already took Psych 101 at your current school, CLEP Introductory Psychology won't give you additional credit</li>
+            <li><strong>Health/PE requirements</strong> — most schools require these to be fulfilled in-person; no CLEP or DSST covers them</li>
+          </ul>
+          <p style="margin-top:16px;font-size:13px;color:var(--muted)">Rule of thumb: <strong>gen-ed requirements transfer almost everywhere.</strong> Major-specific upper-division courses rarely do. Use Transferology to verify every single credit before you study for the exam.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:32px">Step 6: Build Your Attack Sequence</h3>
       <p>Now schedule your exams. One per month is sustainable. One every 2-3 weeks is aggressive but doable with the study system in Chapter 8. Map it out:</p>
     </div>
 
@@ -1152,7 +1183,7 @@ if(mcBtn){
   try{
     var s2 = JSON.parse(localStorage.getItem('fga_course')||'{}');
     if((s2.completed||[]).indexOf(7) !== -1){
-      mcBtn.textContent = '✓  Chapter 7 Complete';
+      mcBtn.textContent = '✓  Chapter 7 Complete — click to unmark';
       mcBtn.classList.add('done');
     }
   }catch(e){}
@@ -1161,24 +1192,35 @@ if(mcBtn){
     try{
       var s = JSON.parse(localStorage.getItem('fga_course')||'{}');
       if(!s.completed) s.completed=[];
-      if(s.completed.indexOf(7) === -1){
+      var idx = s.completed.indexOf(7);
+      if(idx === -1){
+        // Mark complete
         s.completed.push(7);
         localStorage.setItem('fga_course', JSON.stringify(s));
-        mcBtn.textContent = '✓  Chapter 7 Complete';
+        mcBtn.textContent = '✓  Chapter 7 Complete — click to unmark';
         mcBtn.classList.add('done');
-        // Update sidebar dot
         var item = document.querySelector('.sb-item[data-ch="7"]');
         var dot  = document.getElementById('sbdot-7');
         if(item) item.classList.add('done');
         if(dot){ dot.textContent=''; dot.classList.add('checkmark'); }
-        // Update progress
-        var completed = s.completed||[];
-        var pct = Math.round(completed.length/12*100);
-        var fillEl = document.getElementById('sbProgFill');
-        var pctEl  = document.getElementById('sb-pct');
-        if(fillEl) fillEl.style.width = pct+'%';
-        if(pctEl)  pctEl.textContent  = completed.length+' / 12';
+      } else {
+        // Unmark
+        s.completed.splice(idx, 1);
+        localStorage.setItem('fga_course', JSON.stringify(s));
+        mcBtn.textContent = 'Mark Chapter 7 Complete';
+        mcBtn.classList.remove('done');
+        var item = document.querySelector('.sb-item[data-ch="7"]');
+        var dot  = document.getElementById('sbdot-7');
+        if(item) item.classList.remove('done');
+        if(dot){ dot.textContent='7'; dot.classList.remove('checkmark'); }
       }
+      // Update progress bar either way
+      var completed = s.completed||[];
+      var pct = Math.round(completed.length/12*100);
+      var fillEl = document.getElementById('sbProgFill');
+      var pctEl  = document.getElementById('sb-pct');
+      if(fillEl) fillEl.style.width = pct+'%';
+      if(pctEl)  pctEl.textContent  = completed.length+' / 12';
     }catch(e){}
   });
 }
