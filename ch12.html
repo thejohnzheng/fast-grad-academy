@@ -863,7 +863,7 @@ function unlockAccess(){
         </tr>
       </thead>
       <tbody>
-        <tr><td class="highlight-cell">Harvard University</td><td>UMD (1-Year Track)</td><td>Master's in Real Estate</td></tr>
+        <tr><td class="highlight-cell">Harvard University</td><td>UMD (1-Year Track)</td><td>Graduate Degree</td></tr>
         <tr><td class="highlight-cell">Georgia Tech</td><td>WGU</td><td>Online MS in Computer Science</td></tr>
         <tr><td class="highlight-cell">LSU</td><td>UMPI</td><td>Law / Graduate Programs</td></tr>
         <tr><td class="highlight-cell">Penn State</td><td>WGU</td><td>Business School</td></tr>
@@ -986,7 +986,7 @@ if(mcBtn){
   try{
     var s2 = JSON.parse(localStorage.getItem('fga_course')||'{}');
     if((s2.completed||[]).indexOf(12) !== -1){
-      mcBtn.textContent = '✓  Chapter 12 Complete';
+      mcBtn.textContent = '✓  Chapter 12 Complete — click to unmark';
       mcBtn.classList.add('done');
     }
   }catch(e){}
@@ -995,24 +995,35 @@ if(mcBtn){
     try{
       var s = JSON.parse(localStorage.getItem('fga_course')||'{}');
       if(!s.completed) s.completed=[];
-      if(s.completed.indexOf(12) === -1){
+      var idx = s.completed.indexOf(12);
+      if(idx === -1){
+        // Mark complete
         s.completed.push(12);
         localStorage.setItem('fga_course', JSON.stringify(s));
-        mcBtn.textContent = '✓  Chapter 12 Complete';
+        mcBtn.textContent = '✓  Chapter 12 Complete — click to unmark';
         mcBtn.classList.add('done');
-        // Update sidebar dot
         var item = document.querySelector('.sb-item[data-ch="12"]');
         var dot  = document.getElementById('sbdot-12');
         if(item) item.classList.add('done');
         if(dot){ dot.textContent=''; dot.classList.add('checkmark'); }
-        // Update progress
-        var completed = s.completed||[];
-        var pct = Math.round(completed.length/12*100);
-        var fillEl = document.getElementById('sbProgFill');
-        var pctEl  = document.getElementById('sb-pct');
-        if(fillEl) fillEl.style.width = pct+'%';
-        if(pctEl)  pctEl.textContent  = completed.length+' / 12';
+      } else {
+        // Unmark
+        s.completed.splice(idx, 1);
+        localStorage.setItem('fga_course', JSON.stringify(s));
+        mcBtn.textContent = 'Mark Chapter 12 Complete';
+        mcBtn.classList.remove('done');
+        var item = document.querySelector('.sb-item[data-ch="12"]');
+        var dot  = document.getElementById('sbdot-12');
+        if(item) item.classList.remove('done');
+        if(dot){ dot.textContent='12'; dot.classList.remove('checkmark'); }
       }
+      // Update progress bar either way
+      var completed = s.completed||[];
+      var pct = Math.round(completed.length/12*100);
+      var fillEl = document.getElementById('sbProgFill');
+      var pctEl  = document.getElementById('sb-pct');
+      if(fillEl) fillEl.style.width = pct+'%';
+      if(pctEl)  pctEl.textContent  = completed.length+' / 12';
     }catch(e){}
   });
 }
