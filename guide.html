@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Fast Grad Academy — The Complete Guide to Graduating College in One Year</title>
+<title>Fast Grad Academy — Course Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
+
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --white:#ffffff;--off-white:#f5f5f5;--silver-light:#e8e8e8;
@@ -356,2048 +357,667 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
     font-size: 16px;
   }
 }
+
+
+/* ═══════════════════════════════════════
+   COURSE LAYOUT — SIDEBAR + MAIN
+═══════════════════════════════════════ */
+.sidebar{
+  width:268px;min-width:268px;background:#0d0d0d;
+  border-right:1px solid rgba(255,255,255,0.06);
+  position:fixed;top:0;left:0;height:100vh;
+  overflow-y:auto;z-index:100;
+  display:flex;flex-direction:column;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.08) transparent;
+}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px}
+.main-content{margin-left:268px;min-height:100vh}
+.reading-progress{
+  position:fixed;top:0;left:268px;right:0;height:2px;
+  background:rgba(255,255,255,0.06);z-index:200;
+}
+.reading-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--silver),var(--white));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.1s linear;
+}
+
+/* ─ Sidebar brand ─ */
+.sb-brand{
+  padding:22px 20px 18px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  flex-shrink:0;
+}
+.sb-brand-name{
+  font-family:var(--font-d);font-size:15px;
+  color:var(--white);font-weight:400;
+  text-decoration:none;display:block;
+}
+.sb-brand-name:hover{color:var(--silver)}
+.sb-tagline{
+  font-size:9px;color:var(--muted);
+  letter-spacing:0.18em;text-transform:uppercase;margin-top:4px;
+}
+
+/* ─ Sidebar overall progress ─ */
+.sb-prog-wrap{
+  padding:14px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  flex-shrink:0;
+}
+.sb-prog-row{
+  display:flex;justify-content:space-between;
+  font-size:10px;color:var(--muted);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px;
+}
+.sb-prog-track{
+  height:3px;background:rgba(255,255,255,0.08);
+  border-radius:999px;overflow:hidden;
+}
+.sb-prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--silver),var(--white));
+  border-radius:999px;transition:width 0.4s ease;
+}
+
+/* ─ Sidebar nav ─ */
+.sb-nav{flex:1;padding:12px 0 24px;overflow-y:auto}
+.sb-group{
+  font-size:9px;font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:rgba(255,255,255,0.25);
+  padding:14px 20px 5px;
+}
+.sb-item{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 16px 7px 20px;cursor:pointer;
+  transition:background 0.15s;text-decoration:none;
+  border-left:2px solid transparent;
+}
+.sb-item:hover{background:rgba(255,255,255,0.04)}
+.sb-item.active{
+  background:rgba(192,192,192,0.07);
+  border-left-color:var(--silver);
+}
+.sb-dot{
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--muted);flex-shrink:0;
+  transition:all 0.2s;font-family:var(--font-m);
+}
+.sb-item.done .sb-dot{
+  background:var(--white);border-color:var(--white);
+  color:var(--black);font-size:11px;
+}
+.sb-item.done .sb-dot::after{content:'✓'}
+.sb-title{
+  font-size:12.5px;color:rgba(255,255,255,0.45);
+  line-height:1.3;transition:color 0.15s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.sb-item.active .sb-title,.sb-item:hover .sb-title{color:var(--white)}
+.sb-item.done .sb-title{color:rgba(255,255,255,0.6)}
+
+/* ─ Mark-complete ─ */
+.mc-wrap{
+  max-width:var(--max-w);margin:0 auto;
+  padding:0 24px 40px;
+}
+.mc-btn{
+  width:100%;padding:15px 24px;
+  background:rgba(192,192,192,0.08);
+  border:1px solid rgba(192,192,192,0.18);
+  border-radius:12px;color:var(--silver);
+  font-family:var(--font-b);font-size:13px;
+  font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.2s;
+}
+.mc-btn:hover{background:rgba(192,192,192,0.15);border-color:var(--silver);color:var(--white)}
+.mc-btn.done{
+  background:rgba(255,255,255,0.08);
+  border-color:var(--white);color:var(--white);
+}
+
+/* ─ Chapter nav ─ */
+.ch-nav-row{
+  display:flex;justify-content:space-between;align-items:stretch;
+  max-width:var(--max-w);margin:0 auto;
+  padding:32px 24px 80px;
+  border-top:1px solid rgba(255,255,255,0.04);
+  gap:16px;
+}
+.ch-nav-btn{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;padding:14px 18px;
+  border:1px solid rgba(255,255,255,0.07);border-radius:12px;
+  transition:all 0.2s;background:rgba(255,255,255,0.02);
+  max-width:48%;min-width:0;
+}
+.ch-nav-btn:hover{background:rgba(255,255,255,0.05);border-color:rgba(192,192,192,0.2)}
+.ch-nav-btn.ch-next{margin-left:auto;flex-direction:row-reverse;text-align:right}
+.ch-nav-label{font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:3px}
+.ch-nav-title{font-size:13px;color:var(--white);font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.ch-nav-arrow{font-size:16px;color:var(--silver);flex-shrink:0}
+
+/* ─ Mobile ─ */
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%);transition:transform 0.3s ease;z-index:300}
+  .sidebar.open{transform:translateX(0)}
+  .main-content{margin-left:0}
+  .reading-progress{left:0}
+  .sb-toggle{display:flex!important}
+  .sb-overlay{display:block!important}
+}
+.sb-toggle{
+  display:none;position:fixed;top:14px;left:14px;z-index:400;
+  width:40px;height:40px;background:rgba(13,13,13,0.95);
+  border:1px solid rgba(255,255,255,0.1);border-radius:8px;
+  align-items:center;justify-content:center;
+  cursor:pointer;flex-direction:column;gap:5px;
+}
+.sb-toggle span{width:18px;height:1.5px;background:var(--white);border-radius:999px}
+.sb-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.6);z-index:200;
+}
+
+/* ═══════════════════════════════════════
+   DASHBOARD
+═══════════════════════════════════════ */
+.dash-hero{
+  padding:80px 24px 48px;max-width:840px;
+  margin:0 auto;text-align:center;
+}
+.dash-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--muted);
+  padding:7px 18px;border:1px solid var(--glass-border);
+  border-radius:999px;margin-bottom:32px;background:var(--glass);
+}
+.dash-title{
+  font-family:var(--font-d);font-size:clamp(36px,5vw,60px);
+  font-weight:400;line-height:1.08;letter-spacing:-0.025em;
+  margin-bottom:20px;
+}
+.dash-title em{font-style:italic;color:var(--silver)}
+.dash-sub{
+  font-size:16px;font-weight:300;color:var(--muted);
+  max-width:520px;margin:0 auto 40px;line-height:1.8;
+}
+.dash-stats{
+  display:flex;gap:32px;justify-content:center;
+  font-size:13px;color:var(--muted);
+  margin-bottom:40px;flex-wrap:wrap;
+}
+.dash-stats span{display:flex;align-items:center;gap:6px}
+.resume-btn{
+  display:inline-block;padding:14px 36px;
+  background:var(--white);color:var(--black);
+  font-family:var(--font-b);font-size:13px;
+  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;border-radius:8px;
+  transition:opacity 0.2s;cursor:pointer;border:none;
+}
+.resume-btn:hover{opacity:0.88}
+
+/* ─ Overall progress ring area ─ */
+.dash-prog-area{
+  display:flex;align-items:center;gap:20px;
+  max-width:480px;margin:0 auto 56px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:16px;padding:20px 24px;
+}
+.dash-ring{position:relative;width:72px;height:72px;flex-shrink:0}
+.dash-ring svg{transform:rotate(-90deg)}
+.dash-ring-text{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--font-d);font-size:20px;color:var(--white);
+}
+.dash-prog-info{text-align:left}
+.dash-prog-info strong{font-size:16px;color:var(--white);display:block;margin-bottom:4px}
+.dash-prog-info span{font-size:13px;color:var(--muted)}
+
+/* ─ Chapter cards ─ */
+.ch-cards-section{
+  max-width:1100px;margin:0 auto;
+  padding:0 24px 100px;
+}
+.ch-cards-group-label{
+  font-size:10px;font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--muted);
+  padding:8px 0 14px;
+  display:flex;align-items:center;gap:12px;
+}
+.ch-cards-group-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.04)}
+.ch-cards-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;margin-bottom:40px;
+}
+.ch-card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:16px;padding:22px;
+  text-decoration:none;display:block;
+  transition:all 0.22s;position:relative;overflow:hidden;
+}
+.ch-card:hover{
+  background:rgba(255,255,255,0.05);
+  border-color:rgba(192,192,192,0.18);
+  transform:translateY(-2px);
+}
+.ch-card.done{border-color:rgba(255,255,255,0.12)}
+.ch-card-check{
+  position:absolute;top:14px;right:14px;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:var(--silver);
+  opacity:0;transition:opacity 0.2s;
+}
+.ch-card.done .ch-card-check{opacity:1}
+.ch-card-num{
+  font-family:var(--font-m);font-size:10px;
+  color:var(--muted);margin-bottom:8px;letter-spacing:0.08em;
+}
+.ch-card-title{
+  font-family:var(--font-d);font-size:18px;
+  color:var(--white);margin-bottom:8px;line-height:1.25;
+}
+.ch-card-desc{
+  font-size:13px;color:var(--muted);
+  line-height:1.65;margin-bottom:14px;
+}
+.ch-card-meta{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;color:rgba(255,255,255,0.3);
+}
+.ch-card-meta .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.2)}
+
+
+.fga-unified-nav{position:fixed;top:0;left:268px;right:0;z-index:150;padding:0 24px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);height:56px;display:flex;align-items:center}
+.nav-container{display:flex;align-items:center;gap:32px;width:100%}
+.nav-brand{font-family:var(--font-d);font-size:17px;color:var(--white);text-decoration:none;font-weight:400;margin-right:auto}
+.nav-brand:hover{color:var(--silver)}
+.nav-links{display:flex;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s;font-weight:400}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-hamburger span{width:20px;height:1.5px;background:var(--white);border-radius:999px;display:block}
+.nav-mobile{display:none;position:fixed;top:56px;left:268px;right:0;background:rgba(10,10,10,0.98);padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);z-index:149}
+.nav-mobile.open{display:flex;flex-direction:column;gap:12px}
+@media(max-width:900px){
+  .fga-unified-nav{left:0}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .nav-mobile{left:0}
+  .main-content{padding-top:56px}
+}
+@media(min-width:901px){.main-content{padding-top:56px}}
+
 </style>
 </head>
 <body>
-<!-- ═══════════════════════ ACCESS GATE ═══════════════════════ -->
-<div id="coming-soon-wall" style="
-  position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;
-  background:var(--black);
-  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-  padding:40px 24px;
-">
-  <div style="max-width:600px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);padding:8px 20px;border:1px solid var(--glass-border);border-radius:999px;display:inline-flex;margin-bottom:40px;background:var(--glass);">Members Only</div>
-    <h1 style="font-family:var(--font-d);font-size:clamp(40px,6vw,72px);font-weight:400;line-height:1.1;letter-spacing:-0.03em;color:var(--white);margin-bottom:24px;">Enter Your <em style="font-style:italic;color:var(--silver);">Access Code</em></h1>
-    <p style="font-size:18px;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:40px;">This guide is available to Fast Grad Academy members. Enter the access code from your purchase confirmation email.</p>
-    <div style="margin-bottom:32px;">
-      <input id="pw-input" type="text" placeholder="FGA-XXXX-XXXX" autocomplete="off" spellcheck="false" style="
-        font-family:var(--font-m);font-size:18px;padding:16px 24px;border-radius:999px;
-        border:1px solid var(--glass-border);background:var(--glass);color:var(--white);
-        width:280px;text-align:center;outline:none;transition:border-color 0.3s;
-        letter-spacing:0.08em;text-transform:uppercase;
-      " onkeydown="if(event.key==='Enter')document.getElementById('pw-btn').click()"
-      oninput="this.value=this.value.toUpperCase()"/>
-      <button id="pw-btn" onclick="verifyAccess()" style="
-        font-family:var(--font-b);font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
-        color:var(--black);background:var(--white);padding:16px 36px;border-radius:999px;
-        border:none;cursor:pointer;margin-left:8px;transition:all 0.2s;
-      ">Unlock</button>
-      <p id="pw-err" style="display:none;color:#e55;font-size:13px;margin-top:12px;">Invalid access code. Check your email for your unique code.</p>
-      <p id="pw-loading" style="display:none;color:var(--muted);font-size:13px;margin-top:12px;">Verifying...</p>
-    </div>
-    <div style="height:1px;background:rgba(255,255,255,0.06);margin:24px 0;"></div>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Don't have an access code yet?</p>
-    <a href="/#guide-cta" style="
-      display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;
-      letter-spacing:0.08em;text-transform:uppercase;color:var(--black);background:var(--white);
-      text-decoration:none;padding:14px 32px;border-radius:999px;transition:all 0.2s;
-    ">Get The Guide — $97</a>
-    <div style="margin-top:24px;">
-      <a href="/" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;">← Back to Home</a>
+
+<div id="access-gate" style="position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="max-width:420px;width:100%;text-align:center">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:#fff;margin-bottom:8px">Fast Grad Academy</div>
+    <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#a8a8a8;margin-bottom:48px">Student Access Required</div>
+    <input id="ag-input" type="password" placeholder="Enter your access code"
+      style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.2s"
+      onkeydown="if(event.key==='Enter')unlockAccess()"
+    />
+    <div id="ag-err" style="font-size:13px;color:#e55;margin-bottom:12px;display:none">Incorrect code. Please try again.</div>
+    <button onclick="unlockAccess()"
+      style="width:100%;padding:14px;background:#fff;color:#0a0a0a;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;border-radius:10px;cursor:pointer;transition:opacity 0.2s"
+      onmouseover="this.style.opacity=0.88" onmouseout="this.style.opacity=1">
+      Unlock Course
+    </button>
+    <div style="margin-top:24px;font-size:12px;color:rgba(255,255,255,0.25)">
+      Purchased the guide? Check your email for your code.
     </div>
   </div>
 </div>
 <script>
-// Check if user has a cached valid session
-(function() {
-  const cached = localStorage.getItem('fga_access');
-  if (cached) {
-    try {
-      const { code, ts } = JSON.parse(cached);
-      // Cache valid for 30 days
-      if (Date.now() - ts < 30 * 24 * 60 * 60 * 1000) {
-        document.getElementById('coming-soon-wall').style.display = 'none';
-        return;
-      }
-    } catch(e) {}
-    localStorage.removeItem('fga_access');
-  }
-  // Also check URL param (for direct links from email)
-  const params = new URLSearchParams(window.location.search);
-  const codeParam = params.get('code');
-  if (codeParam) {
-    document.getElementById('pw-input').value = codeParam;
-    setTimeout(() => verifyAccess(), 300);
-  }
+(function(){
+  try{
+    var s=JSON.parse(localStorage.getItem('fga_course')||'{}');
+    if(s.access){document.getElementById('access-gate').style.display='none';return;}
+  }catch(e){}
+  document.body.style.overflow='hidden';
 })();
-
-async function verifyAccess() {
-  const input = document.getElementById('pw-input');
-  const err = document.getElementById('pw-err');
-  const loading = document.getElementById('pw-loading');
-  const btn = document.getElementById('pw-btn');
-  const code = input.value.trim().toUpperCase();
-
-  if (!code) { input.focus(); return; }
-
-  // Dev/preview bypass (keeps your P@ssw0rd! working for testing)
-  if (code === 'P@SSW0RD!' || code === 'P@SSW0RD') {
-    document.getElementById('coming-soon-wall').style.display = 'none';
-    document.body.style.overflow = '';
-    return;
-  }
-
-  err.style.display = 'none';
-  loading.style.display = 'block';
-  btn.disabled = true;
-  btn.textContent = '...';
-
-  try {
-    const res = await fetch('/api/verify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code }),
-    });
-    const data = await res.json();
-
-    if (data.valid) {
-      // Cache the session
-      localStorage.setItem('fga_access', JSON.stringify({ code, ts: Date.now() }));
-      // Smooth unlock
-      const wall = document.getElementById('coming-soon-wall');
-      wall.style.transition = 'opacity 0.5s ease';
-      wall.style.opacity = '0';
-      setTimeout(() => {
-        wall.style.display = 'none';
-        document.body.style.overflow = '';
-      }, 500);
-    } else {
-      input.style.borderColor = '#e55';
-      err.style.display = 'block';
-    }
-  } catch (e) {
-    // If API is down, fall back to dev password
-    console.error('Verify failed:', e);
-    err.textContent = 'Connection error. Please try again.';
-    err.style.display = 'block';
-  } finally {
-    loading.style.display = 'none';
-    btn.disabled = false;
-    btn.textContent = 'UNLOCK';
+function unlockAccess(){
+  var v=document.getElementById('ag-input').value.trim();
+  var e=document.getElementById('ag-err');
+  if(v.toUpperCase()==='P@SSW0RD!'||v==='P@ssw0rd!'){
+    var s=JSON.parse(localStorage.getItem('fga_course')||'{}');
+    s.access=true;
+    if(!s.completed)s.completed=[];
+    localStorage.setItem('fga_course',JSON.stringify(s));
+    var g=document.getElementById('access-gate');
+    g.style.transition='opacity 0.4s';g.style.opacity='0';
+    setTimeout(function(){g.style.display='none';document.body.style.overflow='';},400);
+  } else {
+    e.style.display='block';
+    document.getElementById('ag-input').style.borderColor='#e55';
   }
 }
 </script>
-<!-- ═══════════════════════ UNIFIED NAV ═══════════════════════ -->
-<nav class="fga-unified-nav">
+
+
+<!-- Reading progress (decorative on dashboard) -->
+<div class="reading-progress"><div class="reading-progress-fill"></div></div>
+
+<!-- Top nav -->
+<nav class="fga-unified-nav" style="left:0">
   <div class="nav-container">
     <a href="/" class="nav-brand">Fast Grad Academy</a>
     <div class="nav-links">
-      <a href="/" class="nav-link" data-page="home">Home</a>
-      <a href="/guide.html" class="nav-link" data-page="guide">The Guide</a>
-      <a href="/visual-guide.html" class="nav-link" data-page="visual">Visual Guide</a>
+      <a href="/" class="nav-link">Home</a>
+      <a href="/visual-guide" class="nav-link">Visual Guide</a>
     </div>
-    <button class="nav-hamburger" id="navHamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
   </div>
   <div class="nav-mobile" id="navMobile">
-    <a href="/" class="nav-link mobile-link" data-page="home">Home</a>
-    <a href="/guide.html" class="nav-link mobile-link" data-page="guide">The Guide</a>
-    <a href="/visual-guide.html" class="nav-link mobile-link" data-page="visual">Visual Guide</a>
+    <a href="/" class="nav-link mobile-link">Home</a>
+    <a href="/visual-guide" class="nav-link mobile-link">Visual Guide</a>
   </div>
 </nav>
 
-<script>
-(function() {
-  const hamburger = document.getElementById('navHamburger');
-  const mobileMenu = document.getElementById('navMobile');
-  const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-  
-  // Set active page based on current file
-  const pageMap = {
-    'index.html': 'home',
-    '': 'home',
-    'guide.html': 'guide',
-    'visual-guide.html': 'visual',
-  };
-  
-  const currentPage = pageMap[currentFile];
-  document.querySelectorAll('[data-page]').forEach(link => {
-    if(link.getAttribute('data-page') === currentPage) {
-      link.classList.add('active');
-    }
-  });
-  
-  // Mobile menu toggle
-  if(hamburger) {
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-    });
-    
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-      });
-    });
-  }
-})();
-</script>
+<div style="padding-top:56px">
 
+  <!-- Dashboard hero -->
+  <div class="dash-hero">
+    <div class="dash-badge">The Complete Guide — Student Edition</div>
+    <h1 class="dash-title">Your Course <em>Dashboard</em></h1>
+    <p class="dash-sub">12 chapters. Everything you need to graduate early, save $85K+, and get years ahead of your peers.</p>
 
-<!-- PROGRESS BAR -->
-<div class="progress-bar" id="progressBar"></div>
+    <!-- Progress ring area -->
+    <div class="dash-prog-area" id="dashProgArea" style="display:none">
+      <div class="dash-ring">
+        <svg width="72" height="72" viewBox="0 0 72 72">
+          <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="5"/>
+          <circle id="dashRingFill" cx="36" cy="36" r="30" fill="none" stroke="#c0c0c0" stroke-width="5"
+            stroke-dasharray="188.5" stroke-dashoffset="188.5" stroke-linecap="round"/>
+        </svg>
+        <div class="dash-ring-text" id="dashRingPct">0%</div>
+      </div>
+      <div class="dash-prog-info">
+        <strong id="dashProgLabel">Getting started</strong>
+        <span id="dashProgSub">Complete chapters to track progress</span>
+      </div>
+    </div>
 
-<!-- OLD PILL NAV REMOVED — unified nav above handles navigation -->
+    <button class="resume-btn" id="resumeBtn" onclick="resumeCourse()">Start Chapter 1</button>
+  </div>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- HERO -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-badge reveal">The Complete Guide</div>
-  <h1 class="reveal reveal-d1">How to Graduate<br/>College in <em>One Year</em></h1>
-  <p class="hero-sub reveal reveal-d2">The exact system, strategies, and tools I used to finish my Bachelor's in 12 months, save $85,000+, and earn a Harvard Master's by 21.</p>
-  <div class="hero-author reveal reveal-d3">
-    <div class="avatar">J</div>
-    <div><strong>John Zheng</strong> &middot; Founder, Fast Grad Academy</div>
+  <!-- Chapter cards -->
+  <div class="ch-cards-section">
+    <div class="ch-cards-group-label">FOUNDATIONS</div>
+<div class="ch-cards-grid">
+<a href="/ch1" class="ch-card" data-ch="1">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 01</div>
+  <div class="ch-card-title">Breaking the Education System</div>
+  <div class="ch-card-desc">The traditional path is broken. Discover the system's own rules — and how to use them to graduate years ahead.</div>
+  <div class="ch-card-meta">
+    <span>📖 8 min</span>
+    <span class="dot"></span>
+    <span>FOUNDATIONS</span>
   </div>
-  <div class="scroll-hint">
-    <span>Scroll to begin</span>
-    <div class="arrow"></div>
+</a>
+<a href="/ch2" class="ch-card" data-ch="2">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 02</div>
+  <div class="ch-card-title">Vision & Mental Fortitude</div>
+  <div class="ch-card-desc">Before you touch a single exam, get your mind right. The Emotional Cycle of Change and how to engineer motivation.</div>
+  <div class="ch-card-meta">
+    <span>📖 10 min</span>
+    <span class="dot"></span>
+    <span>FOUNDATIONS</span>
   </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- STATS -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<div class="stats-bar">
-  <div class="stat-cell reveal">
-    <div class="stat-num counter" data-count="85">0</div>
-    <div class="stat-label">Thousand Saved</div>
+</a>
+<a href="/ch3" class="ch-card" data-ch="3">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 03</div>
+  <div class="ch-card-title">The Credit Stacking System</div>
+  <div class="ch-card-desc">Credit stacking is the core strategy. Earn the same college credits for a fraction of the cost and time.</div>
+  <div class="ch-card-meta">
+    <span>📖 9 min</span>
+    <span class="dot"></span>
+    <span>FOUNDATIONS</span>
   </div>
-  <div class="stat-cell reveal reveal-d1">
-    <div class="stat-num counter" data-count="12">0</div>
-    <div class="stat-label">Months to Graduate</div>
+</a>
+</div>
+<div class="ch-cards-group-label">CREDIT PATHWAYS</div>
+<div class="ch-cards-grid">
+<a href="/ch4" class="ch-card" data-ch="4">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 04</div>
+  <div class="ch-card-title">Mastering CLEP Exams</div>
+  <div class="ch-card-desc">34 exams, ~$97 each, accepted at 2,900+ schools. The highest-ROI credit pathway available — free with Modern States.</div>
+  <div class="ch-card-meta">
+    <span>📖 10 min</span>
+    <span class="dot"></span>
+    <span>CREDIT PATHWAYS</span>
   </div>
-  <div class="stat-cell reveal reveal-d2">
-    <div class="stat-num counter" data-count="34">0</div>
-    <div class="stat-label">CLEP Exams Available</div>
+</a>
+<a href="/ch5" class="ch-card" data-ch="5">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 05</div>
+  <div class="ch-card-title">DSST, AP & Other Credit Paths</div>
+  <div class="ch-card-desc">Fill the gaps CLEP can't cover. DSST, self-study AP, and the ACE providers that pre-load 60+ credits.</div>
+  <div class="ch-card-meta">
+    <span>📖 11 min</span>
+    <span class="dot"></span>
+    <span>CREDIT PATHWAYS</span>
   </div>
-  <div class="stat-cell reveal reveal-d3">
-    <div class="stat-num counter" data-count="2900">0</div>
-    <div class="stat-label">Schools Accept CLEP</div>
+</a>
+<a href="/ch6" class="ch-card" data-ch="6">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 06</div>
+  <div class="ch-card-title">PSEO & Dual Enrollment</div>
+  <div class="ch-card-desc">John's secret weapon. Take real college courses in high school — often completely free.</div>
+  <div class="ch-card-meta">
+    <span>📖 8 min</span>
+    <span class="dot"></span>
+    <span>CREDIT PATHWAYS</span>
   </div>
+</a>
+<a href="/ch7" class="ch-card" data-ch="7">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 07</div>
+  <div class="ch-card-title">Dissecting Your Degree</div>
+  <div class="ch-card-desc">The operational backbone. Map every degree requirement to its exam equivalent and verify every credit.</div>
+  <div class="ch-card-meta">
+    <span>📖 14 min</span>
+    <span class="dot"></span>
+    <span>CREDIT PATHWAYS</span>
+  </div>
+</a>
+</div>
+<div class="ch-cards-group-label">EXECUTION</div>
+<div class="ch-cards-grid">
+<a href="/ch8" class="ch-card" data-ch="8">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 08</div>
+  <div class="ch-card-title">Study Techniques That Work</div>
+  <div class="ch-card-desc">Forget highlighting. Evidence-based techniques that let you pass college exams in 2–3 weeks of focused study.</div>
+  <div class="ch-card-meta">
+    <span>📖 8 min</span>
+    <span class="dot"></span>
+    <span>EXECUTION</span>
+  </div>
+</a>
+<a href="/ch9" class="ch-card" data-ch="9">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 09</div>
+  <div class="ch-card-title">The AI Study Stack</div>
+  <div class="ch-card-desc">7 copy-ready AI prompts, 10 best tools, and the communities that will keep you accountable and on track.</div>
+  <div class="ch-card-meta">
+    <span>📖 12 min</span>
+    <span class="dot"></span>
+    <span>EXECUTION</span>
+  </div>
+</a>
+<a href="/ch10" class="ch-card" data-ch="10">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 10</div>
+  <div class="ch-card-title">Your Personalized Roadmap</div>
+  <div class="ch-card-desc">Find your starting point. The 52-week bachelor's degree timeline — and the two universities that make it possible.</div>
+  <div class="ch-card-meta">
+    <span>📖 11 min</span>
+    <span class="dot"></span>
+    <span>EXECUTION</span>
+  </div>
+</a>
+</div>
+<div class="ch-cards-group-label">STRATEGY</div>
+<div class="ch-cards-grid">
+<a href="/ch11" class="ch-card" data-ch="11">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 11</div>
+  <div class="ch-card-title">The Financial Strategy</div>
+  <div class="ch-card-desc">Credit stacking is a financial strategy. The math that reveals $208,000+ in total lifetime financial advantage.</div>
+  <div class="ch-card-meta">
+    <span>📖 9 min</span>
+    <span class="dot"></span>
+    <span>STRATEGY</span>
+  </div>
+</a>
+<a href="/ch12" class="ch-card" data-ch="12">
+  <div class="ch-card-check">✓</div>
+  <div class="ch-card-num">Chapter 12</div>
+  <div class="ch-card-title">Getting the Most Out of College</div>
+  <div class="ch-card-desc">What to do once you're there. Why employers and grad schools respect accelerated degrees — with data.</div>
+  <div class="ch-card-meta">
+    <span>📖 8 min</span>
+    <span class="dot"></span>
+    <span>STRATEGY</span>
+  </div>
+</a>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- ANIMATED TIMELINE VISUALIZATION -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter-wide" style="padding-bottom:0">
-  <div class="ch-label reveal">See the Difference</div>
-  <h2 class="ch-title reveal">4 Years Compressed to <em>12 Months</em></h2>
-  <p class="ch-desc reveal">Watch the traditional college timeline shrink in real time. Same degree. Same accreditation. A fraction of the time and cost.</p>
-
-  <div class="timeline-shrink reveal" id="timelineShrink">
-    <div class="ts-track">
-      <div class="ts-bar traditional" style="flex:4">
-        <div class="ts-label">Traditional Path</div>
-        <div class="ts-value">4 Years</div>
-        <div class="ts-sub">$216,000+ total cost</div>
-      </div>
-      <div class="ts-arrow">→</div>
-      <div class="ts-bar accelerated" style="flex:2">
-        <div class="ts-label">Fast Grad Path</div>
-        <div class="ts-value">1–2 Years</div>
-        <div class="ts-sub">$5,500 – $25,000</div>
-      </div>
-      <div class="ts-arrow">→</div>
-      <div class="ts-bar fga" style="flex:1">
-        <div class="ts-label">FGA Maximum</div>
-        <div class="ts-value">12 Months</div>
-        <div class="ts-sub">$4,000 – $8,000</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- JOHN'S GRADUATION TIMELINE -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter-wide" id="john-story">
-  <div class="ch-label reveal">My Story</div>
-  <h2 class="ch-title reveal">From High School to <em>Harvard Master's</em> in 5 Years</h2>
-  <p class="ch-desc reveal">Here's the timeline of how I compressed decades of education into a fraction of the time. Every milestone was intentional.</p>
-
-  <!-- GRADUATION PHOTOS — IMAGE PLACEHOLDERS (Replace src when ready) -->
-  <div class="grad-photos reveal">
-    <div class="grad-photo">
-      <!-- Replace with: <img src="YOUR_HS_GRAD_URL" alt="John Zheng high school graduation"/> -->
-      <div class="gp-icon">🎓</div>
-      <div class="gp-label">High School Graduation</div>
-      <div class="gp-sub">Class of 2020</div>
-    </div>
-    <div class="grad-photo">
-      <!-- Replace with: <img src="YOUR_COLLEGE_GRAD_URL" alt="John Zheng UMD graduation"/> -->
-      <div class="gp-icon">🏛️</div>
-      <div class="gp-label">Bachelor's from UMD</div>
-      <div class="gp-sub">Youngest BBA graduate</div>
-    </div>
-    <div class="grad-photo">
-      <!-- Replace with: <img src="YOUR_HARVARD_GRAD_URL" alt="John Zheng Harvard graduation"/> -->
-      <div class="gp-icon">🏆</div>
-      <div class="gp-label">Harvard Master's</div>
-      <div class="gp-sub">Age 21</div>
-    </div>
   </div>
 
-  <!-- FULL TIMELINE -->
-  <div class="timeline reveal">
-    <div class="tl-item">
-      <div class="tl-year">Freshman Year of High School</div>
-      <div class="tl-title">The Idea Took Root</div>
-      <div class="tl-desc">Realized college was the path, but student debt terrified me. The average private non-profit university student borrows $35,000+. I started researching alternatives and discovered CLEP, DSST, and PSEO.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">Sophomore &mdash; Junior Year</div>
-      <div class="tl-title">The Spreadsheet That Changed Everything</div>
-      <div class="tl-desc">Created an Excel spreadsheet to map every degree requirement to a credit-by-exam opportunity. Columns for Course Name, Credit Type (AP, CLEP, PSEO), Credit Hours, and Transfer Status. This became my operational blueprint.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">Junior &mdash; Senior Year</div>
-      <div class="tl-title">Enrolled in PSEO</div>
-      <div class="tl-desc">My guidance counselor initially pushed back, but I enrolled in PSEO through a local community college. Free tuition. Free textbooks. Credits counted for both high school and college simultaneously. Studied 2-3 weeks per exam using the 80/20 Pareto Principle — focusing on the 20% of material that covered 80% of exam content.</div>
-    </div>
-    <div class="tl-item highlight">
-      <div class="tl-year">2020 — One Year After HS Graduation</div>
-      <div class="tl-title">Bachelor's Degree Earned</div>
-      <div class="tl-desc">BBA from University of Minnesota Duluth. Class of 2023 — finished in 2020, three years early. Youngest BBA graduate in UMD history. $85,000+ saved in tuition, room, and board.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">Age 20</div>
-      <div class="tl-title">Bought a House</div>
-      <div class="tl-desc">Because I graduated debt-free and entered the workforce early, I was able to purchase my first home at 20 while peers were still paying tuition.</div>
-    </div>
-    <div class="tl-item highlight">
-      <div class="tl-year">Age 21</div>
-      <div class="tl-title">Harvard Master's Completed</div>
-      <div class="tl-desc">Earned my Master's from Harvard University at 21. Visited 18+ countries by 23. Built The Automated Founder — a portfolio of AI-powered businesses that run without employees.</div>
-    </div>
-  </div>
-</section>
+</div>
 
-<div class="divider"></div>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- TABLE OF CONTENTS -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="chapters">
-  <div class="toc reveal">
-    <div class="toc-title">What's Inside This Guide</div>
-    <ol class="toc-list">
-      <li><a href="#ch1"><span class="toc-num">01</span> Breaking the Education System</a></li>
-      <li><a href="#ch2"><span class="toc-num">02</span> Vision &amp; Mental Fortitude</a></li>
-      <li><a href="#ch3"><span class="toc-num">03</span> The Credit Stacking System</a></li>
-      <li><a href="#ch4"><span class="toc-num">04</span> Mastering CLEP Exams</a></li>
-      <li><a href="#ch5"><span class="toc-num">05</span> DSST, AP &amp; Other Credit Paths</a></li>
-      <li><a href="#ch6"><span class="toc-num">06</span> PSEO &amp; Dual Enrollment</a></li>
-      <li><a href="#ch7"><span class="toc-num">07</span> Dissecting Your Degree &amp; Credit Stacking</a></li>
-      <li><a href="#ch8"><span class="toc-num">08</span> Study Techniques That Actually Work</a></li>
-      <li><a href="#ch9"><span class="toc-num">09</span> The AI Study Stack</a></li>
-      <li><a href="#ch10"><span class="toc-num">10</span> Your Personalized Roadmap</a></li>
-      <li><a href="#ch11"><span class="toc-num">11</span> The Financial Strategy</a></li>
-      <li><a href="#ch12"><span class="toc-num">12</span> Getting the Most Out of College</a></li>
-    </ol>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 1: BREAKING THE EDUCATION SYSTEM -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="ch1">
-  <div class="ch-label reveal">Chapter 01</div>
-  <h2 class="ch-title reveal">Breaking the <em>Education System</em></h2>
-  <div class="ch-body reveal">
-    <p>The traditional college path is broken. You pay $35,000+ per year to sit in lecture halls, take courses that pad the university's bottom line, and graduate four years later with a mountain of debt and a piece of paper that took three times longer than it should have.</p>
-
-    <p>I graduated college in one year. Not because I'm a genius. Not because I took 17 classes a semester (just kidding). Because I found the system's own rules and used them strategically.</p>
-
-    <blockquote>"Hope is not a strategy. Too often, I hear people say 'Hopefully, it will transfer.' Do. Not. Follow. This. Mindset."</blockquote>
-
-    <p>The system has built-in mechanisms — CLEP, DSST, AP, PSEO, dual enrollment — that allow you to earn college credits at a fraction of the cost and time. Most students don't know these exist. The ones who do save tens of thousands of dollars and graduate years ahead of their peers.</p>
-
-    <h3>The Numbers Don't Lie</h3>
-    <p>Average cost of a college credit at a public university: <strong>$350-600</strong>. Cost of a CLEP exam: <strong>$97</strong>. Each CLEP exam can earn you 3-6 credits. That's potentially $2,100+ in credit value for $97. And with Modern States, the exam fee is reimbursed — making it <strong>completely free</strong>.</p>
-
-    <p>A single summer of CLEP exams (taking one per month from June through August) could save you over <strong>$12,000</strong> in tuition. An entire high school career of strategic credit stacking? That's how you get to $85,000+ saved, like I did.</p>
-
-    <h3>What This Guide Will Give You</h3>
-    <p>This isn't theory. This is the exact operational playbook I used — expanded, refined, and enhanced with AI tools that didn't exist when I did it. You'll learn the credit stacking system, the study techniques that let me pass exams in 2-3 weeks, the degree-mapping strategy, the financial engineering behind it all, and how to use AI as your personal study partner.</p>
-
-    <p>Every chapter is designed to be actionable. Read it, apply it, stack credits, save money, compress your timeline.</p>
-  </div>
-
-  <a class="video-card" href="https://www.youtube.com/@John_Zheng" target="_blank" rel="noopener">
-    <div class="vc-play">▶</div>
-    <div class="vc-info">
-      <div class="vc-label">Watch on YouTube</div>
-      <div class="vc-title">How I Broke the College System — Full Story</div>
-      <div class="vc-channel">@John_Zheng — The Automated Founder</div>
-    </div>
-  </a>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 2: VISION & MENTAL FORTITUDE -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="ch2">
-  <div class="ch-label reveal">Chapter 02</div>
-  <h2 class="ch-title reveal">Vision &amp; <em>Mental Fortitude</em></h2>
-  <div class="ch-body reveal">
-    <p>Before you touch a single exam, you need to get your mind right. Credit stacking is a marathon disguised as a sprint. You'll face skepticism from counselors, resistance from the system, and moments where you question if it's worth it. It is. But only if your vision is locked in.</p>
-
-    <h3>The Emotional Cycle of Change</h3>
-    <p>Every student who attempts to accelerate their education goes through this cycle. Knowing it in advance is your first advantage.</p>
-
-    <div class="glass-grid" style="grid-template-columns:repeat(2,1fr)">
-      <div class="glass-card">
-        <div class="gc-icon">🌅</div>
-        <div class="gc-title">Uninformed Optimism</div>
-        <div class="gc-body">You see someone's results — a student who graduated early, this guide, a YouTube video — and think "I can absolutely do this." You're excited. You believe it's possible because of what you've seen others achieve. This energy is good, but it's not enough on its own.</div>
-      </div>
-      <div class="glass-card">
-        <div class="gc-icon">🌧️</div>
-        <div class="gc-title">Informed Pessimism</div>
-        <div class="gc-body">Reality sets in. You realize the effort required — studying for exams, navigating transfer credits, dealing with bureaucracy. Anxiety increases. Momentum decreases. This is where most people stop. You won't.</div>
-      </div>
-      <div class="glass-card">
-        <div class="gc-icon">🕳️</div>
-        <div class="gc-title">Valley of Despair</div>
-        <div class="gc-body">The low point. Maybe you failed an exam. Maybe a credit didn't transfer the way you expected. The obstacles feel insurmountable. This is the filter — the moment that separates those who graduate early from those who don't.</div>
-      </div>
-      <div class="glass-card">
-        <div class="gc-icon">🚀</div>
-        <div class="gc-title">Pushing Through</div>
-        <div class="gc-body">You take decisive action. You retake the exam. You call the admissions office. You adjust your plan. Results start compounding. Confidence builds. The system starts working for you.</div>
-      </div>
-    </div>
-
-    <h3>Define Your Vision</h3>
-    <p>Before moving to the next chapter, answer these questions honestly. Write them down. Revisit them when you hit the Valley of Despair.</p>
-    <ul>
-      <li><strong>Current Situation:</strong> Where am I right now? What grade am I in? How many credits do I have?</li>
-      <li><strong>Future Goals:</strong> Where do I want to be in 1 month? 1 year? 5 years?</li>
-      <li><strong>Intention:</strong> Why is graduating early important to me? (Be specific — debt avoidance, career acceleration, personal challenge)</li>
-      <li><strong>Elimination:</strong> What activities do NOT contribute to this vision? What distractions am I willing to cut?</li>
-      <li><strong>Commitment Level:</strong> On a scale of 1-10, how committed am I? If it's below 8, go back and clarify your "why."</li>
-    </ul>
-
-    <h3>Growth vs. Fixed Mindset</h3>
-    <p>A fixed mindset says: "I'm not smart enough to pass a college exam in high school." A growth mindset says: "I haven't learned the material yet, but with the right study strategy, I can pass any exam in 2-3 weeks."</p>
-    <p>Every challenge in this journey is a growth opportunity. Every failed exam is data. Every bureaucratic roadblock is a problem to solve. Reframe everything.</p>
-
-    <h3>Engineering Motivation</h3>
-    <p><strong>Parkinson's Law:</strong> Work expands to fill the time available. If you give yourself 6 months to study for one exam, it'll take 6 months. If you schedule the exam for 3 weeks from now, you'll be ready in 3 weeks. Schedule the exam first, then study. The deadline creates the urgency.</p>
-
-    <blockquote>"Schedule your exams to create a sense of urgency. The deadline is the engine."</blockquote>
-
-    <h3>Psychological Resilience — The Honest Truth</h3>
-    <p>Accelerating your degree is a sprint pace over a marathon distance. You need to anticipate the psychological challenges so they don't blindside you:</p>
-    <ul>
-      <li><strong>Burnout is real.</strong> Studying for multiple exams back-to-back without breaks will crush your motivation. Build in recovery days. One rest day per week minimum.</li>
-      <li><strong>Isolation hits hard.</strong> Your friends are at football games while you're studying for your 8th CLEP. Find a community — online forums, Discord groups, or the FGA community — where people understand what you're doing.</li>
-      <li><strong>Document everything.</strong> Keep a paper trail of every credit, every transcript request, every transfer evaluation. Use Obsidian, Notion, or even a Google Doc. When (not if) an admin loses a record, you'll have the backup.</li>
-      <li><strong>Self-regulation is your superpower.</strong> In competency-based programs, nobody is checking on you. Set personal deadlines. Use scheduled exam dates as accountability anchors. The structure won't come from the institution — it comes from you.</li>
-    </ul>
-
-    <h3>What About the "College Experience"?</h3>
-    <p>Let me address this head-on because I know you're thinking it. "But what about the parties? The friendships? The campus life?" Here's the truth: the "college experience" is a $200,000 marketing campaign. The late nights, the football games, the dorm life — those memories cost you four years and potentially decades of debt repayment.</p>
-    <p>I'm not saying community doesn't matter. It does. But community isn't locked behind a tuition paywall. I built stronger friendships through entrepreneurship, through travel, through building things that mattered — than most people build in a dorm room. And I did it debt-free, with a house at 20 and a Harvard Master's at 21.</p>
-    <p>The real "experience" is freedom. The experience of waking up at 25 with zero debt, investments growing, a career years ahead of your peers, and the ability to travel the world because you aren't chained to loan payments. That's the experience I chose. And I'd choose it every single time.</p>
-
-    <div class="callout" style="border-color:rgba(192,192,192,0.2);background:rgba(192,192,192,0.04)">
-      <div class="callout-icon">✉️</div>
-      <div class="callout-body">
-        <div class="callout-title" style="font-family:var(--font-d);font-size:22px;font-weight:400">A Letter to You</div>
-        <div class="callout-text" style="font-size:15px;line-height:1.9;color:rgba(255,255,255,0.8)">
-          I know what it feels like to look at the system and think, <em>"There has to be a better way."</em> That instinct is right. Trust it.<br/><br/>
-          In 1,000 parallel universes, I want to be successful 999 times. I rule out luck. Then I engineer my own. That's what this guide is — engineering. Not hope. Not wishing. A system.<br/><br/>
-          You're going to have people tell you this won't work. Counselors who haven't heard of CLEP. Parents who think the only path is the traditional one. Friends who think you're crazy for not wanting the "normal" college experience. Let them doubt. Your results will speak louder than their opinions ever could.<br/><br/>
-          The same effort it takes to spend $200,000 on a four-year degree is the same effort it takes to get the same degree for $4,000 in twelve months. It's just a different sequence. A different system. And now you have the system.<br/><br/>
-          Decades into days. Let's go.<br/><br/>
-          <strong>To your freedom,<br/>John</strong>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <a class="video-card" href="https://www.youtube.com/watch?v=_t-_80tCVLI" target="_blank" rel="noopener">
-    <div class="vc-play">▶</div>
-    <div class="vc-info">
-      <div class="vc-label">Recommended Watch</div>
-      <div class="vc-title">The Growth Mindset — Carol Dweck at Stanford</div>
-      <div class="vc-channel">Stanford Alumni</div>
-    </div>
-  </a>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 3: THE CREDIT STACKING SYSTEM -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="ch3">
-  <div class="ch-label reveal">Chapter 03</div>
-  <h2 class="ch-title reveal">The Credit <em>Stacking System</em></h2>
-  <div class="ch-body reveal">
-    <p>Credit stacking is the core strategy. Instead of paying thousands of dollars per course, you earn college credits through alternative pathways — exams, dual enrollment programs, and prior learning assessments — then transfer them to your degree program.</p>
-
-    <p>Think of it like arbitrage. The same college credit that costs $1,500+ at a university can be earned for $97 (or free) through a CLEP exam. Same credit. Same transcript entry. Fraction of the cost and time.</p>
-
-    <h3>The Five Credit Pathways</h3>
-  </div>
-
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
-    <div class="glass-card">
-      <div class="gc-icon">📝</div>
-      <div class="gc-title">CLEP Exams</div>
-      <div class="gc-body">34 exams available. ~$97 each (+ test center fee) (free with Modern States). Score 50+ out of 80 to pass. Earn 3-6 credits per exam. Accepted at 2,900+ schools. Can be taken year-round at 1,800+ test centers.</div>
-      <div class="gc-tag">Highest ROI</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">📋</div>
-      <div class="gc-title">DSST Exams</div>
-      <div class="gc-body">33+ exams from Prometric. Similar to CLEP but covers different subjects. Can retake after 30 days (vs. 3 months for CLEP). Covers areas like ethics, cybersecurity, and technical writing that CLEP doesn't.</div>
-      <div class="gc-tag">Faster Retake</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🎯</div>
-      <div class="gc-title">AP Exams</div>
-      <div class="gc-body">You don't need to take the AP class to take the AP exam. Self-study is allowed. Score 3-5 to earn credit (varies by school). Covers advanced subjects that CLEP and DSST don't reach.</div>
-      <div class="gc-tag">Self-Study Option</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🏫</div>
-      <div class="gc-title">PSEO / Dual Enrollment</div>
-      <div class="gc-body">Take college courses while in high school. Often completely free — state covers tuition, fees, and textbooks. Credits count for both HS and college simultaneously. This was my secret weapon.</div>
-      <div class="gc-tag">John's Pick</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">💼</div>
-      <div class="gc-title">Prior Learning Assessment</div>
-      <div class="gc-body">Some schools award credit for work experience, military service, or professional certifications. Great for adult learners and career-changers looking to accelerate their degree.</div>
-      <div class="gc-tag">Adult Learners</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">💻</div>
-      <div class="gc-title">ACE Credit Providers</div>
-      <div class="gc-body">Online platforms like Sophia Learning, Study.com, and Saylor Academy offer ACE-recommended courses that transfer as college credit. Sophia costs ~$99/month with unlimited courses. Study.com is ~$200/month. Saylor is free with a $5 exam fee. Many students earn 60+ credits through these before ever enrolling.</div>
-      <div class="gc-tag">The Secret Weapon</div>
-    </div>
-  </div>
-
-  <div class="chapter" style="padding-top:48px;padding-bottom:0">
-    <div class="ch-body reveal">
-      <h3>The Stacking Strategy</h3>
-      <p>The key insight is that these pathways <strong>stack</strong>. You're not limited to one. A strategic combination might look like:</p>
-      <ul>
-        <li><strong>Summer before 10th grade:</strong> Take 3 CLEP exams (9 credits, $0 with Modern States)</li>
-        <li><strong>10th grade:</strong> Enroll in 2 AP courses + self-study 2 more AP exams (12-16 credits)</li>
-        <li><strong>11th grade:</strong> Start PSEO/Dual Enrollment + take 4 more CLEP exams (24-30 credits)</li>
-        <li><strong>12th grade:</strong> Continue PSEO + fill remaining gaps with DSST exams</li>
-        <li><strong>Result:</strong> Enter college with 60-90+ credits already done. That's 2-3 years of college, completed for almost nothing.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="callout reveal">
-    <div class="callout-icon">💡</div>
-    <div class="callout-body">
-      <div class="callout-title">Pro Tip: Track Everything</div>
-      <div class="callout-text">Create a spreadsheet with columns for: Exam Name, Credit Type, Credits Earned, Score, Date Taken, Transfer Status, Target School Policy. "Hope is not a strategy" — you need a system to ensure every credit counts.</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 4: MASTERING CLEP EXAMS -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="ch4">
-  <div class="ch-label reveal">Chapter 04</div>
-  <h2 class="ch-title reveal">Mastering <em>CLEP Exams</em></h2>
-  <div class="ch-body reveal">
-    <p>CLEP (College-Level Examination Program) is the single highest-ROI credit pathway available. 34 exams, ~$97 each (+ test center fee), accepted at 2,900+ schools. With Modern States, every course you complete earns you a free exam voucher — that's potentially 30-60+ credits at zero cost.</p>
-
-    <h3>How CLEP Scoring Works</h3>
-    <p>CLEP exams are scored on a scale of 20 to 80. A score of <strong>50</strong> is generally considered passing, equivalent to earning a C or better in the corresponding college course. Each institution sets its own credit-granting policies, so verify your target school's requirements before testing.</p>
-    <p>Most exams are <strong>90 minutes</strong>, primarily multiple-choice, and you receive your score <strong>immediately</strong> (except for essay-based exams like College Composition). The first-attempt pass rate is approximately <strong>70%</strong>, and the second-attempt success rate jumps to <strong>80%</strong>.</p>
-
-    <h3>The Top 5 Starter CLEP Exams</h3>
-    <p>These exams have the highest pass rates, broadest acceptance, and cover common general education requirements:</p>
-  </div>
-
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
-    <div class="glass-card">
-      <div class="gc-icon">📖</div>
-      <div class="gc-title">College Composition</div>
-      <div class="gc-body">Covers first-year writing skills — argumentative essays, critical analysis, effective communication. Includes multiple-choice questions and an essay. Fulfills general education English composition requirements at most schools.</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🏛️</div>
-      <div class="gc-title">American Government</div>
-      <div class="gc-body">Covers structure and function of American government and politics. Multiple-choice only. One of the easiest CLEP exams — if you paid attention in civics class, you're already halfway there.</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🧠</div>
-      <div class="gc-title">Introductory Psychology</div>
-      <div class="gc-body">Tests fundamental concepts — biological, cognitive, developmental, and social psychology. Multiple-choice only. Widely transferable as a gen-ed requirement.</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">📊</div>
-      <div class="gc-title">Principles of Macroeconomics</div>
-      <div class="gc-body">Covers economic principles at the system level — GDP, inflation, monetary policy. Multiple-choice only. Fulfills introductory economics requirements.</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🗣️</div>
-      <div class="gc-title">Spanish Language</div>
-      <div class="gc-body">Evaluates Spanish proficiency — listening, reading, speaking, writing. Includes multiple-choice and a speaking component. Can fulfill 6-12 credits of foreign language requirements in one sitting.</div>
-    </div>
-  </div>
-
-  <div class="chapter" style="padding-top:48px;padding-bottom:0">
-    <div class="ch-body reveal">
-      <h3>The 2-3 Week Study Method</h3>
-      <p>I passed most CLEP exams in 2-3 weeks of focused study. Here's the process:</p>
-      <ol>
-        <li><strong>Schedule the exam first.</strong> Pick a date 2-3 weeks out. Pay the fee (or get your Modern States voucher). The deadline creates the urgency.</li>
-        <li><strong>Study the exam breakdown.</strong> Know exactly which topics carry the most weight. If 40% of questions come from one topic area, spend 40% of your study time there. The 80/20 Pareto Principle — focus on the 20% of material that covers 80% of the exam.</li>
-        <li><strong>Use Modern States.</strong> Complete the free online course for your exam. Professor-taught video lectures + practice questions + exam voucher.</li>
-        <li><strong>Active Recall + Spaced Repetition.</strong> Don't just re-read notes. Test yourself constantly. Use Anki flashcards. This is covered in depth in Chapter 8.</li>
-        <li><strong>Take practice exams.</strong> The College Board offers official practice questions. Simulate test conditions. Time yourself.</li>
-        <li><strong>On exam day:</strong> Arrive early. Bring valid ID and exam confirmation. Stay calm — you've done the work.</li>
-      </ol>
-
-      <h3>If You Don't Pass</h3>
-      <p>You must wait <strong>3 months</strong> to retake a CLEP exam. Use that time productively — review your score report to identify weak areas, study those topics specifically, and take practice tests until you're scoring consistently above 50. The second-attempt pass rate is 80%. Persistence wins.</p>
-    </div>
-
-    <div class="callout reveal">
-      <div class="callout-icon">🆓</div>
-      <div class="callout-body">
-        <div class="callout-title">Modern States: Your Free Exam Pass</div>
-        <div class="callout-text">Register at modernstates.org, complete a free course (score 75%+ on quizzes and the final), and receive a voucher covering your CLEP exam fee. You can earn a voucher for every course you complete — that's 30+ credits of potential college savings, completely free. This is non-negotiable. Every student should be using Modern States.</div>
-      </div>
-    </div>
-
-    <a class="video-card" href="https://modernstates.org/" target="_blank" rel="noopener">
-      <div class="vc-play">▶</div>
-      <div class="vc-info">
-        <div class="vc-label">Free Resource</div>
-        <div class="vc-title">Modern States — Freshman Year for Free</div>
-        <div class="vc-channel">modernstates.org — Free CLEP prep + exam vouchers</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 5: DSST, AP & OTHER PATHS -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="ch5">
-  <div class="ch-label reveal">Chapter 05</div>
-  <h2 class="ch-title reveal">DSST, AP &amp; <em>Other Credit Paths</em></h2>
-  <div class="ch-body reveal">
-    <h3>DSST (DANTES Subject Standardized Tests)</h3>
-    <p>DSST offers 33+ exams covering subjects that CLEP doesn't — like Ethics in America, Cybersecurity, Technical Writing, Introduction to Business, and Personal Finance. Key differences from CLEP:</p>
-    <ul>
-      <li><strong>Retake policy:</strong> Wait only 30 days (vs. 3 months for CLEP)</li>
-      <li><strong>Originally military-focused,</strong> but available to all students</li>
-      <li><strong>Some unique subjects</strong> not covered by any other exam program</li>
-    </ul>
-
-    <h4>Top 5 DSST Exams to Consider</h4>
-    <ol>
-      <li><strong>Principles of Public Speaking</strong> — fulfills oral communication requirements</li>
-      <li><strong>Introduction to Business</strong> — broad business fundamentals</li>
-      <li><strong>Personal Finance</strong> — practical knowledge + college credit</li>
-      <li><strong>Computing and Information Technology</strong> — IT/computer science credit</li>
-      <li><strong>Introduction to World Religions</strong> — humanities elective</li>
-    </ol>
-
-    <h3>AP Exams (Advanced Placement)</h3>
-    <p>Most students think you need to take an AP class to take an AP exam. <strong>You don't.</strong> Self-study is allowed for every AP exam. You register through the College Board website, pay ~$98 per exam, and take the test in May.</p>
-    <p>AP scores range from 1-5. Most colleges accept scores of 3+ for credit, though more selective schools may require 4 or 5. Key exams to consider for self-study:</p>
-
-    <ul>
-      <li><strong>AP Human Geography</strong> — accessible content, high pass rate</li>
-      <li><strong>AP Environmental Science</strong> — lab component is minimal for the exam</li>
-      <li><strong>AP Psychology</strong> — significant overlap with CLEP Introductory Psychology</li>
-      <li><strong>AP Microeconomics / Macroeconomics</strong> — complements CLEP economics exams</li>
-      <li><strong>AP US History</strong> — if you have strong reading comprehension skills</li>
-    </ul>
-
-    <h3>When to Use Each Pathway</h3>
-  </div>
-
-  <div class="reveal" style="max-width:var(--max-w);margin:0 auto;padding:0 24px">
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th>Factor</th>
-          <th>CLEP</th>
-          <th>DSST</th>
-          <th>AP</th>
-          <th>PSEO</th>
-          <th>ACE Providers</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Cost per exam</td>
-          <td class="highlight-cell">$97 (free w/ Modern States)</td>
-          <td>$100-110</td>
-          <td>$98</td>
-          <td class="highlight-cell">Free</td>
-          <td class="highlight-cell">$5-99/mo (unlimited)</td>
-        </tr>
-        <tr>
-          <td>When to take</td>
-          <td>Year-round</td>
-          <td>Year-round</td>
-          <td>May only</td>
-          <td>Fall/Spring semesters</td>
-          <td>Year-round, self-paced</td>
-        </tr>
-        <tr>
-          <td>Retake wait</td>
-          <td>3 months</td>
-          <td class="highlight-cell">30 days</td>
-          <td>1 year</td>
-          <td>N/A (course-based)</td>
-          <td class="highlight-cell">Immediate</td>
-        </tr>
-        <tr>
-          <td>Credits per exam</td>
-          <td>3-6</td>
-          <td>3</td>
-          <td>3-6</td>
-          <td>3-4 per course</td>
-          <td>3 per course</td>
-        </tr>
-        <tr>
-          <td>School acceptance</td>
-          <td>2,900+</td>
-          <td>1,900+</td>
-          <td>Most</td>
-          <td>State-specific</td>
-          <td>ACE-recommended (WGU, UMPI, many others)</td>
-        </tr>
-        <tr>
-          <td>Best for</td>
-          <td>Gen-ed bulk</td>
-          <td>Gap-filling</td>
-          <td>Advanced subjects</td>
-          <td>HS students</td>
-          <td class="highlight-cell">Pre-loading 60-90 credits fast</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="chapter" style="padding-top:48px;padding-bottom:0">
-    <div class="ch-body reveal">
-      <h3>ACE Credit Providers — The Accelerator Most Students Miss</h3>
-      <p>ACE (American Council on Education) evaluates non-traditional courses and recommends them for college credit. These online platforms let you earn credits at a fraction of the cost and speed of traditional college — and they're accepted at hundreds of schools including WGU, UMPI, and many state universities.</p>
-    </div>
-
-    <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));max-width:1100px;margin:24px auto 0;padding:0 24px">
-      <div class="glass-card">
-        <div class="gc-icon">📘</div>
-        <div class="gc-title">Sophia Learning</div>
-        <div class="gc-body"><strong>~$99/month, unlimited courses.</strong> Open-book quizzes, micro-learning modules. Best for general education. Many students complete 3 credits in 3-5 days. A single month can yield 15-20 credits. Transfers to WGU, SNHU, UMPI, Purdue Global, and dozens more.</div>
-        <div class="gc-tag">Fastest ROI</div>
-      </div>
-      <div class="glass-card">
-        <div class="gc-icon">📗</div>
-        <div class="gc-title">Study.com</div>
-        <div class="gc-body"><strong>~$200/month, unlimited courses.</strong> 200+ ACE-recommended courses with video lessons and proctored exams. Covers both lower and upper-division courses. Higher cost but broader catalog — can replace courses that CLEP and Sophia don't cover.</div>
-        <div class="gc-tag">Broadest Catalog</div>
-      </div>
-      <div class="glass-card">
-        <div class="gc-icon">📙</div>
-        <div class="gc-title">Saylor Academy</div>
-        <div class="gc-body"><strong>Free courses, $5 exam fee.</strong> Fully open-source curriculum. Fewer courses than Sophia or Study.com, but the price is unbeatable. Great supplemental option. ACE-recommended credits transfer to partner schools.</div>
-        <div class="gc-tag">Virtually Free</div>
-      </div>
-    </div>
-
-    <div class="chapter" style="padding-top:24px;padding-bottom:0">
-      <div class="callout reveal">
-        <div class="callout-icon">🔥</div>
-        <div class="callout-body">
-          <div class="callout-title">The Pre-Loading Strategy</div>
-          <div class="callout-text">The most aggressive degree hackers earn 60-90 credits through Sophia + Study.com + CLEP <strong>before ever enrolling</strong> at a university. Then they enter a school like WGU or UMPI, transfer everything in, and finish their remaining 30 credits in one term. Total out-of-pocket: as low as <strong>$4,000-$6,000</strong> for an entire bachelor's degree. This is the strategy detailed in Chapter 10.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 6: PSEO & DUAL ENROLLMENT -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="ch6">
-  <div class="ch-label reveal">Chapter 06</div>
-  <h2 class="ch-title reveal">PSEO &amp; <em>Dual Enrollment</em></h2>
-  <div class="ch-body reveal">
-    <p>This was my secret weapon. PSEO (Post-Secondary Enrollment Options) is a specific type of dual enrollment program that lets high school students take college courses — often <strong>completely free</strong>. Tuition, fees, and sometimes even textbooks are covered by the state or school district.</p>
-
-    <p>Dual enrollment programs come in three main flavors:</p>
-
-    <h3>Types of Programs</h3>
-    <ol>
-      <li><strong>PSEO (Post-Secondary Enrollment Options):</strong> Available in select states. Take courses at local colleges or universities with full state funding. This is the gold standard.</li>
-      <li><strong>Concurrent Enrollment:</strong> Similar to PSEO but may have different funding structures. College-level courses taught at your high school by qualified instructors.</li>
-      <li><strong>Early College Programs:</strong> Structured pathways where you earn both a high school diploma and an associate degree (or substantial college credit) by graduation.</li>
-    </ol>
-
-    <h3>Eligibility</h3>
-    <p>Requirements vary by state and institution, but typically include:</p>
-    <ul>
-      <li>Minimum GPA of 2.5 or higher</li>
-      <li>Usually available to juniors and seniors (some states allow sophomores)</li>
-      <li>Placement test scores (SAT, ACT, or college-specific exams)</li>
-      <li>Demonstrated readiness for college-level coursework</li>
-    </ul>
-
-    <h3>Top 5 Dual Enrollment Courses to Take</h3>
-  </div>
-
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
-    <div class="glass-card">
-      <div class="gc-icon">🧠</div>
-      <div class="gc-title">Introduction to Psychology</div>
-      <div class="gc-body">Foundational psychology principles. Transfers as intro psych or social science elective credit. Ideal for anyone interested in healthcare, business, or behavioral sciences.</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">📐</div>
-      <div class="gc-title">College Algebra</div>
-      <div class="gc-body">Fundamental algebraic concepts. Transfers as college-level math or quantitative reasoning. Essential if your degree requires math coursework.</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">✍️</div>
-      <div class="gc-title">English Composition</div>
-      <div class="gc-body">Writing skills, argumentative essays, critical analysis. Transfers as English comp or general education. Every degree requires this — knock it out early.</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">👥</div>
-      <div class="gc-title">Introduction to Sociology</div>
-      <div class="gc-body">Sociological concepts, research methods, cultural diversity. Transfers as sociology or social science elective. Complements psychology for broader gen-ed coverage.</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🌍</div>
-      <div class="gc-title">Environmental Science</div>
-      <div class="gc-body">Environmental systems, ecological principles, resource management. Transfers as natural science elective. Often satisfies a lab science requirement.</div>
-    </div>
-  </div>
-
-  <div class="chapter" style="padding-top:48px;padding-bottom:0">
-    <div class="ch-body reveal">
-      <h3>How to Get Started</h3>
-      <ol>
-        <li><strong>Research programs</strong> in your state. Google "[your state] PSEO program" or "[your state] dual enrollment high school."</li>
-        <li><strong>Meet eligibility requirements.</strong> Get your GPA and test scores ready.</li>
-        <li><strong>Talk to your counselor.</strong> Yes, some will push back. I dealt with this. Be persistent. Come prepared with research. Know the specific program rules and your eligibility.</li>
-        <li><strong>Apply to the program.</strong> Follow deadlines carefully. Provide transcripts, letters of recommendation, and test scores as required.</li>
-        <li><strong>Choose courses strategically.</strong> Work with a college advisor to ensure your courses align with your target degree and will transfer to your intended university.</li>
-      </ol>
-
-      <div class="callout">
-        <div class="callout-icon">⚠️</div>
-        <div class="callout-body">
-          <div class="callout-title">Counselor Resistance Is Normal</div>
-          <div class="callout-text">My guidance counselor initially pushed back on PSEO enrollment. This is common. Many counselors are unfamiliar with credit stacking or may be concerned about students leaving traditional coursework. Come prepared with program documentation, eligibility proof, and your academic plan. Be respectful but firm. This is your education and your financial future.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 7: DISSECTING YOUR DEGREE + CREDIT STACKING MAP -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter-wide" id="ch7">
-  <div class="ch-label reveal">Chapter 07</div>
-  <h2 class="ch-title reveal">Dissecting Your Degree &amp; <em>Credit Stacking</em></h2>
-  <p class="ch-desc reveal">This is the operational backbone of the entire system. We've front-loaded the work for you — a pre-built spreadsheet, direct account links, and a complete cross-reference of every common college course to its exam equivalent.</p>
-
-  <div class="ch-body reveal">
-    <blockquote>"Without careful planning, you could waste countless hours on exams that don't help you, struggle to figure out what can transfer into college, and possibly forget a test you took."</blockquote>
-
-    <h3>Step 1: Set Up Your Accounts (Do This Right Now)</h3>
-    <p>Before you touch anything else, create accounts at these three services. This takes 10 minutes and front-loads 90% of the administrative work.</p>
-  </div>
-
-  <!-- STEP 1: ACCOUNT SETUP CARDS -->
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(3,1fr)">
-    <div class="glass-card" style="border-color:rgba(192,192,192,0.25)">
-      <div class="gc-icon">1️⃣</div>
-      <div class="gc-title">Transferology</div>
-      <div class="gc-body">
-        <strong style="color:var(--white)">Action:</strong> Go to <a href="https://www.transferology.com" target="_blank">transferology.com</a> → Click "Get Started" → Create a free account → Add your target school(s).<br/><br/>
-        <strong style="color:var(--white)">Why first:</strong> This tool tells you which exams your school actually accepts. Without it, you're guessing.
-      </div>
-      <div class="gc-tag">Do this now — 3 min</div>
-    </div>
-    <div class="glass-card" style="border-color:rgba(192,192,192,0.25)">
-      <div class="gc-icon">2️⃣</div>
-      <div class="gc-title">Modern States</div>
-      <div class="gc-body">
-        <strong style="color:var(--white)">Action:</strong> Go to <a href="https://modernstates.org" target="_blank">modernstates.org</a> → Click "Register" → Create account → Enroll in your first CLEP prep course.<br/><br/>
-        <strong style="color:var(--white)">Why:</strong> Free exam prep + free exam vouchers. Score 75%+ on the course → get a voucher → take the CLEP for $0.
-      </div>
-      <div class="gc-tag">Do this now — 3 min</div>
-    </div>
-    <div class="glass-card" style="border-color:rgba(192,192,192,0.25)">
-      <div class="gc-icon">3️⃣</div>
-      <div class="gc-title">College Board CLEP</div>
-      <div class="gc-body">
-        <strong style="color:var(--white)">Action:</strong> Go to <a href="https://clep.collegeboard.org" target="_blank">clep.collegeboard.org</a> → Create a College Board account → Browse the 34 exams → Find a test center near you.<br/><br/>
-        <strong style="color:var(--white)">Why:</strong> This is where you register for and schedule your actual CLEP exams.
-      </div>
-      <div class="gc-tag">Do this now — 4 min</div>
-    </div>
-  </div>
-
-  <div class="chapter" style="padding-top:48px;padding-bottom:0">
-    <div class="ch-body reveal">
-      <h3>Step 2: Download Your Credit Tracker</h3>
-      <p>We've built the spreadsheet for you. It's pre-loaded with 30 common degree requirements, each one already cross-referenced to its CLEP, AP, DSST, and PSEO equivalent. Just open it, enter your target school, and start checking off what you can earn by exam instead of paying tuition.</p>
-    </div>
-
-    <!-- SPREADSHEET CTA -->
-    <div class="callout reveal" style="border-color:rgba(192,192,192,0.3);background:rgba(192,192,192,0.08)">
-      <div class="callout-icon">📊</div>
-      <div class="callout-body">
-        <div class="callout-title" style="font-size:18px">FastGrad Credit Tracker — Pre-Built Spreadsheet</div>
-        <div class="callout-text">
-          <strong>5 sheets included:</strong><br/>
-          <strong style="color:var(--white)">Degree Map</strong> — 30 pre-loaded course requirements mapped to CLEP/AP/DSST/PSEO equivalents. Dropdown menus for method and status. Auto-calculates credits earned and money saved.<br/>
-          <strong style="color:var(--white)">CLEP Master List</strong> — All 34 CLEP exams with difficulty, study time, and Modern States availability.<br/>
-          <strong style="color:var(--white)">Study Planner</strong> — 3-week sprint template that maps to the AI prompts in Chapter 9.<br/>
-          <strong style="color:var(--white)">Savings Calculator</strong> — Enter your school's cost-per-credit and number of exams to see total savings.<br/>
-          <strong style="color:var(--white)">Quick Links</strong> — Every account URL and action step in one place.
-        </div>
-      </div>
-    </div>
-
-    <div class="ch-body reveal">
-      <h3>Step 3: Dissect Your Degree</h3>
-      <p>This is the core process. You're going to take your degree requirements apart, course by course, and find the cheapest and fastest way to earn each credit. Here's exactly how to do it:</p>
-
-      <h4>3A. Pull Your Degree Requirements</h4>
-      <p>Go to your target university's website. Search for "[your major] degree requirements" or "[your major] degree plan." You're looking for the official course catalog listing that shows every course you need to graduate. It typically breaks down into three buckets:</p>
-      <ul>
-        <li><strong>General Education (Gen-Ed):</strong> 30-45 credits. English, math, science, humanities, social sciences. <em>This is where credit stacking has the highest impact.</em> Nearly every gen-ed course has a CLEP, AP, or DSST equivalent.</li>
-        <li><strong>Major Requirements:</strong> 30-60 credits. Courses specific to your major. Some lower-level ones have exam equivalents; upper-level ones usually must be taken at the university.</li>
-        <li><strong>Electives:</strong> 15-30 credits. Free choice. Almost all of these can be satisfied by exams.</li>
-      </ul>
-
-      <h4>3B. Cross-Reference Each Course</h4>
-      <p>For each course requirement, ask: <strong>"Can I earn this credit by exam instead of paying tuition?"</strong> Use the reference table below to find the match. Then verify it on Transferology.</p>
-    </div>
-  </div>
-
-  <!-- ── MASTER CROSS-REFERENCE TABLE ── -->
-  <div class="reveal" style="max-width:1100px;margin:32px auto;padding:0 24px;overflow-x:auto">
-    <div style="font-family:var(--font-d);font-size:24px;color:var(--white);margin-bottom:16px">The Master Cross-Reference</div>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:24px">Every common college course → its exam equivalent. Use this to fill in your Degree Map spreadsheet. Dash (—) means no equivalent exists for that pathway.</p>
-
-    <table class="compare-table" style="font-size:13px">
-      <thead>
-        <tr>
-          <th>College Course</th>
-          <th>CLEP Exam</th>
-          <th>AP Exam</th>
-          <th>DSST Exam</th>
-          <th style="min-width:80px">Credits</th>
-          <th>Difficulty</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td colspan="6" style="font-weight:800;color:var(--white);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;padding:16px 16px 8px;border-bottom:1px solid rgba(192,192,192,0.15)">ENGLISH &amp; WRITING</td></tr>
-        <tr><td>English Composition I</td><td class="highlight-cell">College Composition</td><td>AP English Language</td><td>—</td><td>3</td><td>Medium</td></tr>
-        <tr><td>English Composition II</td><td>College Comp Modular</td><td>AP English Literature</td><td class="highlight-cell">Technical Writing</td><td>3</td><td>Easy-Med</td></tr>
-        <tr><td>American Literature</td><td class="highlight-cell">American Literature</td><td>—</td><td>—</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Intro to Literature</td><td class="highlight-cell">Analyzing & Interp. Lit</td><td>—</td><td>—</td><td>3</td><td>Easy</td></tr>
-
-        <tr><td colspan="6" style="font-weight:800;color:var(--white);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;padding:16px 16px 8px;border-bottom:1px solid rgba(192,192,192,0.15)">MATH &amp; SCIENCE</td></tr>
-        <tr><td>College Algebra</td><td class="highlight-cell">College Algebra</td><td>—</td><td>—</td><td>3</td><td>Easy-Med</td></tr>
-        <tr><td>College Math / Quant. Reasoning</td><td class="highlight-cell">College Mathematics</td><td>—</td><td>—</td><td>3</td><td>Easy</td></tr>
-        <tr><td>Statistics</td><td>—</td><td class="highlight-cell">AP Statistics</td><td>Principles of Statistics</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Precalculus</td><td>Precalculus</td><td>—</td><td>—</td><td>3</td><td>Med-Hard</td></tr>
-        <tr><td>Calculus I</td><td>Calculus</td><td class="highlight-cell">AP Calculus AB</td><td>—</td><td>3-4</td><td>Hard</td></tr>
-        <tr><td>Intro to Biology</td><td>Biology</td><td class="highlight-cell">AP Biology</td><td>—</td><td>3</td><td>Med-Hard</td></tr>
-        <tr><td>General Chemistry</td><td>Chemistry</td><td class="highlight-cell">AP Chemistry</td><td>—</td><td>3</td><td>Hard</td></tr>
-        <tr><td>Natural Science Gen-Ed</td><td class="highlight-cell">Natural Sciences</td><td>AP Environ. Science</td><td>Environment & Humanity</td><td>6</td><td>Medium</td></tr>
-
-        <tr><td colspan="6" style="font-weight:800;color:var(--white);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;padding:16px 16px 8px;border-bottom:1px solid rgba(192,192,192,0.15)">SOCIAL SCIENCES</td></tr>
-        <tr><td>Intro to Psychology</td><td class="highlight-cell">Introductory Psychology</td><td>AP Psychology</td><td>—</td><td>3</td><td>Easy</td></tr>
-        <tr><td>Intro to Sociology</td><td class="highlight-cell">Introductory Sociology</td><td>—</td><td>—</td><td>3</td><td>Easy</td></tr>
-        <tr><td>American / US Government</td><td class="highlight-cell">American Government</td><td>AP US Government</td><td>—</td><td>3</td><td>Easy</td></tr>
-        <tr><td>US History I (to 1877)</td><td class="highlight-cell">US History I</td><td>AP US History</td><td>—</td><td>3</td><td>Medium</td></tr>
-        <tr><td>US History II (1865+)</td><td class="highlight-cell">US History II</td><td>AP US History</td><td>Civil War & Reconstruction</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Western Civilization I</td><td>Western Civ I</td><td class="highlight-cell">AP World History</td><td>—</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Western Civilization II</td><td>Western Civ II</td><td class="highlight-cell">AP Euro History</td><td>—</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Developmental Psychology</td><td class="highlight-cell">Human Growth & Dev.</td><td>—</td><td>—</td><td>3</td><td>Easy-Med</td></tr>
-        <tr><td>Social Science Elective</td><td class="highlight-cell">Social Sciences & History</td><td>AP Human Geography</td><td>Foundations of Education</td><td>3</td><td>Easy-Med</td></tr>
-        <tr><td>Macroeconomics</td><td class="highlight-cell">Prin. of Macroeconomics</td><td>AP Macroeconomics</td><td>—</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Microeconomics</td><td class="highlight-cell">Prin. of Microeconomics</td><td>AP Microeconomics</td><td>—</td><td>3</td><td>Medium</td></tr>
-
-        <tr><td colspan="6" style="font-weight:800;color:var(--white);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;padding:16px 16px 8px;border-bottom:1px solid rgba(192,192,192,0.15)">BUSINESS</td></tr>
-        <tr><td>Intro to Business</td><td>—</td><td>—</td><td class="highlight-cell">Intro to Business</td><td>3</td><td>Easy-Med</td></tr>
-        <tr><td>Intro to Management</td><td class="highlight-cell">Prin. of Management</td><td>—</td><td>Prin. of Supervision</td><td>3</td><td>Easy-Med</td></tr>
-        <tr><td>Intro to Marketing</td><td class="highlight-cell">Prin. of Marketing</td><td>—</td><td>—</td><td>3</td><td>Easy-Med</td></tr>
-        <tr><td>Financial Accounting</td><td class="highlight-cell">Financial Accounting</td><td>—</td><td>—</td><td>3</td><td>Med-Hard</td></tr>
-        <tr><td>Business Law I</td><td class="highlight-cell">Intro Business Law</td><td>—</td><td>Business Law II</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Information Systems</td><td class="highlight-cell">Information Systems</td><td>AP CS Principles</td><td>Computing & IT</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Business Ethics</td><td>—</td><td>—</td><td class="highlight-cell">Ethics in America</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Personal Finance</td><td>—</td><td>—</td><td class="highlight-cell">Personal Finance</td><td>3</td><td>Easy-Med</td></tr>
-
-        <tr><td colspan="6" style="font-weight:800;color:var(--white);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;padding:16px 16px 8px;border-bottom:1px solid rgba(192,192,192,0.15)">HUMANITIES &amp; LANGUAGES</td></tr>
-        <tr><td>Humanities Elective</td><td class="highlight-cell">Humanities</td><td>AP Art History</td><td>Intro to World Religions</td><td>3</td><td>Medium</td></tr>
-        <tr><td>Spanish I & II</td><td class="highlight-cell">Spanish Language (Lvl 1-2)</td><td>AP Spanish Language</td><td>—</td><td>6</td><td>Medium</td></tr>
-        <tr><td>French I & II</td><td class="highlight-cell">French Language (Lvl 1-2)</td><td>AP French Language</td><td>—</td><td>6</td><td>Medium</td></tr>
-        <tr><td>German I & II</td><td class="highlight-cell">German Language (Lvl 1-2)</td><td>AP German Language</td><td>—</td><td>6</td><td>Medium</td></tr>
-        <tr><td>Public Speaking</td><td>—</td><td>—</td><td class="highlight-cell">Prin. of Public Speaking</td><td>3</td><td>Easy-Med</td></tr>
-        <tr><td>Educational Psychology</td><td class="highlight-cell">Intro Ed. Psychology</td><td>—</td><td>—</td><td>3</td><td>Medium</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="chapter" style="padding-top:40px;padding-bottom:0">
-    <div class="ch-body reveal">
-      <h3>Step 4: Verify on Transferology</h3>
-      <p>The table above shows the <em>general</em> equivalents. But every school has its own policies. Here's how to verify:</p>
-      <ol>
-        <li>Log into your <a href="https://www.transferology.com" target="_blank">Transferology account</a></li>
-        <li>Select "Will My Courses Transfer?"</li>
-        <li>Add each exam you plan to take (CLEP, AP, DSST)</li>
-        <li>Add your target school as the destination</li>
-        <li>Hit "Search for Matches" — you'll see exactly which credits your school accepts and what they count as</li>
-        <li>Update your spreadsheet's "Transfer Verified?" column to "Yes" for each confirmed match</li>
-      </ol>
-
-      <h3>Step 5: Prioritize by ROI</h3>
-      <p>Not all credits are created equal. Prioritize exams in this order:</p>
-      <ol>
-        <li><strong>Free exams first:</strong> Anything you can get a Modern States voucher for = $0 cost</li>
-        <li><strong>Highest credit value:</strong> Spanish Language and Natural Sciences give 6 credits each — double the value of a single exam</li>
-        <li><strong>Easiest exams:</strong> American Government, Introductory Psychology, Introductory Sociology have the highest pass rates</li>
-        <li><strong>Gen-ed requirements:</strong> These are universal — they transfer to nearly every school and satisfy common requirements</li>
-        <li><strong>Gap-fillers last:</strong> Use DSST for subjects that CLEP doesn't cover (Public Speaking, Business Ethics, Personal Finance)</li>
-      </ol>
-
-      <h3>Step 6: Build Your Attack Sequence</h3>
-      <p>Now schedule your exams. One per month is sustainable. One every 2-3 weeks is aggressive but doable with the study system in Chapter 8. Map it out:</p>
-    </div>
-
-    <div class="prompt-box reveal">
-      <div class="prompt-label">🤖 AI Prompt — Degree Dissection Assistant</div>
-      <div class="prompt-text">I'm a [grade level / situation] planning to attend [university name] for a [major name] degree. The degree requires [X] total credits. Here are my degree requirements: [paste course list from university website]. For each course, tell me: (1) Is there a CLEP, AP, or DSST exam that matches this course? (2) What's the exam name, cost, and difficulty? (3) Does [university name] accept this exam for credit? (4) What's the recommended study time? Organize the results into a prioritized list, starting with the easiest and highest-ROI exams first.</div>
-      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-    </div>
-  </div>
-
-  <!-- TOOL CARDS WITH DIRECT LINKS -->
-  <div style="max-width:1100px;margin:40px auto 0;padding:0 24px">
-    <div style="font-family:var(--font-d);font-size:22px;color:var(--white);margin-bottom:16px" class="reveal">Your Toolkit — Direct Links</div>
-    <div class="tool-grid reveal">
-      <div class="tool-card">
-        <div class="tool-name">Transferology</div>
-        <div class="tool-url"><a href="https://www.transferology.com" target="_blank" style="color:var(--silver)">transferology.com</a></div>
-        <div class="tool-desc">Create free account → Add target school → Enter your planned credits → Verify which ones transfer. This is your single source of truth.</div>
-        <div class="tool-badge">Step 1</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Modern States</div>
-        <div class="tool-url"><a href="https://modernstates.org" target="_blank" style="color:var(--silver)">modernstates.org</a></div>
-        <div class="tool-desc">Free CLEP prep courses + free exam vouchers. Complete the course with 75%+ → get your exam fee reimbursed. One free exam per course completed — no limit.</div>
-        <div class="tool-badge">Step 2</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">CLEP Registration</div>
-        <div class="tool-url"><a href="https://clep.collegeboard.org" target="_blank" style="color:var(--silver)">clep.collegeboard.org</a></div>
-        <div class="tool-desc">Official CLEP portal. Browse 34 exams, find test centers, check school policies, register for exams, and send score reports.</div>
-        <div class="tool-badge">Step 3</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">DSST Registration</div>
-        <div class="tool-url"><a href="https://www.prometric.com/test-takers/search/dsst" target="_blank" style="color:var(--silver)">prometric.com/dsst</a></div>
-        <div class="tool-desc">Browse DSST exams, find test centers, register. Covers subjects CLEP doesn't: Public Speaking, Ethics, Personal Finance, and more.</div>
-        <div class="tool-badge">Gap-Filler</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">AP Self-Study Registration</div>
-        <div class="tool-url"><a href="https://apstudents.collegeboard.org" target="_blank" style="color:var(--silver)">apstudents.collegeboard.org</a></div>
-        <div class="tool-desc">Register for AP exams (May only). You do NOT need to take the class — self-study is allowed for all exams. ~$98 per exam.</div>
-        <div class="tool-badge">May Only</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Anki Flashcards</div>
-        <div class="tool-url"><a href="https://apps.ankiweb.net" target="_blank" style="color:var(--silver)">apps.ankiweb.net</a></div>
-        <div class="tool-desc">Free spaced repetition flashcard app. Download for desktop + mobile. Use AI Prompt #4 from Chapter 9 to auto-generate cards for each exam.</div>
-        <div class="tool-badge">Free</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Sophia Learning</div>
-        <div class="tool-url"><a href="https://www.sophia.org" target="_blank" style="color:var(--silver)">sophia.org</a></div>
-        <div class="tool-desc">~$99/month unlimited ACE-recommended courses. Open-book quizzes, self-paced. Earn 3 credits in 3-5 days. Best value for pre-loading gen-ed credits before enrollment.</div>
-        <div class="tool-badge">Pre-Load Credits</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Study.com</div>
-        <div class="tool-url"><a href="https://study.com" target="_blank" style="color:var(--silver)">study.com</a></div>
-        <div class="tool-desc">~$200/month, 200+ ACE courses including upper-division. Proctored exams. Broader catalog than Sophia — covers courses CLEP doesn't reach.</div>
-        <div class="tool-badge">Upper-Division</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Saylor Academy</div>
-        <div class="tool-url"><a href="https://www.saylor.org" target="_blank" style="color:var(--silver)">saylor.org</a></div>
-        <div class="tool-desc">Free open-source courses with $5 exam fee for ACE credit. Smaller catalog but unbeatable price. Great supplement to Sophia and CLEP.</div>
-        <div class="tool-badge">Free + $5</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 8: STUDY TECHNIQUES -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter-wide" id="ch8">
-  <div class="ch-label reveal">Chapter 08</div>
-  <h2 class="ch-title reveal">Study Techniques <em>That Actually Work</em></h2>
-  <p class="ch-desc reveal">Forget highlighting. Forget re-reading. These are the evidence-based techniques that let me pass college exams in 2-3 weeks of focused study.</p>
-
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
-    <div class="glass-card">
-      <div class="gc-icon">🔄</div>
-      <div class="gc-title">Active Recall</div>
-      <div class="gc-body">Instead of passively re-reading notes, actively test yourself on key concepts using flashcards or self-quizzing. Close the textbook, try to explain the concept from memory, then check your answer. This strengthens neural pathways and dramatically improves retention. After learning a section, immediately quiz yourself before moving on.</div>
-      <div class="gc-tag">Highest Evidence</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">📅</div>
-      <div class="gc-title">Spaced Repetition</div>
-      <div class="gc-body">Review material at increasing intervals — Day 1, Day 3, Day 7, Day 14. Your brain strengthens memories each time you successfully retrieve them after a delay. Use Anki to automate this: the algorithm calculates optimal review timing so you study the right material at the right time.</div>
-      <div class="gc-tag">Use Anki</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🎯</div>
-      <div class="gc-title">The Feynman Technique</div>
-      <div class="gc-body">Explain the concept as if teaching a 12-year-old. If you can't explain it simply, you don't understand it well enough. Write down the concept, explain it in plain language, identify gaps in your explanation, go back to the source material, simplify again. Named after Nobel physicist Richard Feynman.</div>
-      <div class="gc-tag">Deep Understanding</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🔀</div>
-      <div class="gc-title">Interleaving</div>
-      <div class="gc-body">Instead of studying one topic for hours (blocked practice), mix different topics in a single session. Study macro for 25 minutes, switch to psychology for 25, then history. This forces your brain to constantly retrieve and differentiate concepts, leading to better long-term retention.</div>
-      <div class="gc-tag">Mix It Up</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🧬</div>
-      <div class="gc-title">The 80/20 Pareto Principle</div>
-      <div class="gc-body">80% of exam questions come from 20% of the material. Before studying, check the exam content outline. If 40% of questions come from one topic area, spend 40% of your study time there. Don't study everything equally — focus on what's actually tested.</div>
-      <div class="gc-tag">My Method</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">😴</div>
-      <div class="gc-title">Sleep &amp; Recovery</div>
-      <div class="gc-body">Sleep is when your brain consolidates memories from studying. Cutting sleep to study more is counterproductive. Aim for 7-9 hours per night. Consider NSDR (Non-Sleep Deep Rest) or a 20-minute power nap after intense study sessions to accelerate consolidation. Based on research from Dr. Andrew Huberman at Stanford.</div>
-      <div class="gc-tag">Huberman Protocol</div>
-    </div>
-  </div>
-
-  <div style="max-width:var(--max-w);margin:40px auto 0;padding:0 24px">
-    <a class="video-card reveal" href="https://aliabdaal.com/studying/the-ultimate-guide-to-studying-for-exams/" target="_blank" rel="noopener">
-      <div class="vc-play">▶</div>
-      <div class="vc-info">
-        <div class="vc-label">Recommended Course (Free, 3 Hours)</div>
-        <div class="vc-title">Evidence-Based Study Techniques — Complete Course</div>
-        <div class="vc-channel">Ali Abdaal — Cambridge-trained doctor, 5M+ subscribers</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 9: AI STUDY STACK -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="ch9">
-  <div class="ch-label reveal">Chapter 09</div>
-  <h2 class="ch-title reveal">The AI <em>Study Stack</em></h2>
-  <div class="ch-body reveal">
-    <p>When I graduated, ChatGPT didn't exist. You have an unfair advantage that no previous generation of students has had: AI as a personal study partner, tutor, quiz master, and flashcard generator. Used correctly, AI can compress your study time by 50% or more.</p>
-
-    <h3>7 AI Prompts for Exam Domination</h3>
-    <p>Copy these prompts into Claude or ChatGPT. Replace the bracketed text with your specific exam.</p>
-  </div>
-
-  <div style="max-width:var(--max-w);margin:0 auto;padding:0 24px">
-    <div class="prompt-box reveal">
-      <div class="prompt-label">🤖 Prompt 1 — Exam Syllabus Breakdown</div>
-      <div class="prompt-text">I'm preparing for the [CLEP Introductory Psychology] exam. Break down the complete exam syllabus into a prioritized study plan. For each topic area, tell me: (1) the percentage weight on the exam, (2) the key concepts I must know, (3) the most common question types, and (4) recommended study time in hours. Organize from highest-weight to lowest.</div>
-      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-    </div>
-
-    <div class="prompt-box reveal">
-      <div class="prompt-label">🤖 Prompt 2 — Active Recall Quiz Generator</div>
-      <div class="prompt-text">Act as a strict exam proctor. Generate 20 multiple-choice questions on [topic: Principles of Macroeconomics — Monetary Policy] at the difficulty level of a CLEP exam. Include 4 answer choices per question. After I answer each question, tell me if I'm correct, explain why the right answer is right, and explain why each wrong answer is wrong. Track my score as we go.</div>
-      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-    </div>
-
-    <div class="prompt-box reveal">
-      <div class="prompt-label">🤖 Prompt 3 — Feynman Technique Partner</div>
-      <div class="prompt-text">I'm going to try to explain [supply and demand curves] to you as if you're a smart 12-year-old. After I explain it, point out any gaps in my understanding, any inaccuracies, and any important concepts I missed. Then ask me follow-up questions to test my deeper understanding. Be rigorous but encouraging.</div>
-      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-    </div>
-
-    <div class="prompt-box reveal">
-      <div class="prompt-label">🤖 Prompt 4 — Anki Flashcard Generator</div>
-      <div class="prompt-text">Generate 30 Anki-style flashcards for [CLEP American Government — Constitutional Amendments]. Format each as: Front: [question or term] | Back: [concise answer or definition]. Make the questions specific enough to test recall, not recognition. Include both definition cards and application cards (scenario-based questions).</div>
-      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-    </div>
-
-    <div class="prompt-box reveal">
-      <div class="prompt-label">🤖 Prompt 5 — Practice Exam Simulator</div>
-      <div class="prompt-text">Simulate a full [CLEP College Composition] practice exam. Give me questions one at a time, timed at 90 seconds per question. Include the same distribution of topics as the real exam. At the end, give me my score out of 80, identify my weakest topic areas, and create a targeted 3-day study plan to address those weaknesses before my exam on [date].</div>
-      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-    </div>
-
-    <div class="prompt-box reveal">
-      <div class="prompt-label">🤖 Prompt 6 — Concept Connector</div>
-      <div class="prompt-text">I'm studying for [CLEP Introductory Sociology]. Take these 5 concepts: [social stratification, deviance, socialization, symbolic interactionism, functionalism] and show me how they connect to each other. Create a concept map in text form. Then give me 3 exam questions that require understanding multiple concepts together.</div>
-      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-    </div>
-
-    <div class="prompt-box reveal">
-      <div class="prompt-label">🤖 Prompt 7 — Night-Before Confidence Check</div>
-      <div class="prompt-text">My [CLEP Principles of Macroeconomics] exam is tomorrow. Give me a rapid-fire review of the 20 most likely topics to appear on the exam. For each, give me a one-sentence summary of the key concept and one potential trick question to watch out for. Keep it fast and focused — this is a final confidence check, not a study session.</div>
-      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-    </div>
-  </div>
-
-  <div class="chapter" style="padding-top:48px;padding-bottom:0">
-    <div class="ch-body reveal">
-      <h3>Recommended AI Tools</h3>
-    </div>
-
-    <div class="tool-grid reveal" id="tools">
-      <div class="tool-card">
-        <div class="tool-name">Claude</div>
-        <div class="tool-url">claude.ai</div>
-        <div class="tool-desc">Best for deep explanations, nuanced feedback, and long study sessions. Excellent at the Feynman Technique — it'll catch the gaps in your understanding. Free tier available.</div>
-        <div class="tool-badge">Best for Learning</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">ChatGPT</div>
-        <div class="tool-url">chatgpt.com</div>
-        <div class="tool-desc">Great for quiz generation, flashcard creation, and practice exams. The GPT-4 model handles complex subjects well. Free and paid tiers available.</div>
-        <div class="tool-badge">Best for Quizzes</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Anki</div>
-        <div class="tool-url">apps.ankiweb.net</div>
-        <div class="tool-desc">Free, open-source flashcard app with a spaced repetition algorithm. The gold standard for memorization. Create cards from AI-generated flashcards. Syncs across all your devices.</div>
-        <div class="tool-badge">Essential</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Khan Academy</div>
-        <div class="tool-url">khanacademy.org</div>
-        <div class="tool-desc">Free video lessons on virtually every CLEP subject. Great for visual learners who want to watch explanations before using AI to test themselves. Covers math, science, economics, history, and more.</div>
-        <div class="tool-badge">Free Videos</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Modern States</div>
-        <div class="tool-url">modernstates.org</div>
-        <div class="tool-desc">Free professor-taught courses for every CLEP exam. Complete the course, earn a voucher for a free exam. This is the single most important tool in your stack.</div>
-        <div class="tool-badge">Non-Negotiable</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Quizlet</div>
-        <div class="tool-url">quizlet.com</div>
-        <div class="tool-desc">Pre-made flashcard sets for most CLEP and DSST exams. Search for your specific exam to find community-created study sets. Good supplement to your Anki cards.</div>
-        <div class="tool-badge">Pre-Made Sets</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">InstantCert</div>
-        <div class="tool-url"><a href="https://www.instantcert.com" target="_blank" style="color:var(--silver)">instantcert.com</a></div>
-        <div class="tool-desc">Subscription-based CLEP/DSST prep with curated flashcard sets and study guides. Created specifically for credit-by-exam students. One of the oldest and most trusted resources in the community.</div>
-        <div class="tool-badge">Community Favorite</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">SpeedyPrep</div>
-        <div class="tool-url"><a href="https://speedyprep.com" target="_blank" style="color:var(--silver)">speedyprep.com</a></div>
-        <div class="tool-desc">CLEP prep with a pass guarantee. Uses adaptive learning to focus on your weak areas. Money-back if you don't pass after using their system. Great for students who want structured prep.</div>
-        <div class="tool-badge">Pass Guarantee</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">Peterson's Test Prep</div>
-        <div class="tool-url"><a href="https://www.petersons.com" target="_blank" style="color:var(--silver)">petersons.com</a></div>
-        <div class="tool-desc">Full-length CLEP practice tests with detailed answer explanations. Practice under real test conditions. Available for most CLEP subjects. Often available through your local library.</div>
-        <div class="tool-badge">Practice Tests</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-name">NotebookLM (Google)</div>
-        <div class="tool-url"><a href="https://notebooklm.google.com" target="_blank" style="color:var(--silver)">notebooklm.google.com</a></div>
-        <div class="tool-desc">Upload your study materials and textbooks — Google's AI creates summaries, flashcards, and study guides from YOUR specific content. Generates podcast-style audio summaries you can listen to while commuting.</div>
-        <div class="tool-badge">AI Study Partner</div>
-      </div>
-    </div>
-
-    <div style="max-width:var(--max-w);margin:40px auto 0;padding:0 24px">
-      <div class="ch-body reveal">
-        <h3>Communities — You're Not Alone</h3>
-        <p>Degree hacking can feel isolating. These communities are full of students who've been exactly where you are — and many who've already finished.</p>
-      </div>
-      <div class="tool-grid reveal">
-        <div class="tool-card">
-          <div class="tool-name">r/WGU</div>
-          <div class="tool-url"><a href="https://www.reddit.com/r/WGU" target="_blank" style="color:var(--silver)">reddit.com/r/WGU</a></div>
-          <div class="tool-desc">200K+ members. Course-specific tips, acceleration strategies, mentor recommendations, and daily "I just graduated!" posts that'll keep you motivated.</div>
-          <div class="tool-badge">200K+ Members</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-name">r/clep</div>
-          <div class="tool-url"><a href="https://www.reddit.com/r/clep" target="_blank" style="color:var(--silver)">reddit.com/r/clep</a></div>
-          <div class="tool-desc">Exam reviews, study tips, pass/fail reports, and resource recommendations for every CLEP exam. Search "[exam name]" to find exam-specific advice.</div>
-          <div class="tool-badge">Exam Reviews</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-name">DegreeForum</div>
-          <div class="tool-url"><a href="https://www.degreeforum.net" target="_blank" style="color:var(--silver)">degreeforum.net</a></div>
-          <div class="tool-desc">The original degree hacking community. Detailed threads on transfer policies, Sophia/Study.com course reviews, and complete degree plans shared by graduates.</div>
-          <div class="tool-badge">OG Community</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-name">College Hacked</div>
-          <div class="tool-url"><a href="https://www.collegehacked.com" target="_blank" style="color:var(--silver)">collegehacked.com</a></div>
-          <div class="tool-desc">Detailed comparison guides, Sophia vs Study.com breakdowns, UMPI vs WGU analysis, and regularly updated transfer policy info. Bookmark this.</div>
-          <div class="tool-badge">Comparison Guides</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 10: YOUR PERSONALIZED ROADMAP -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter-wide" id="ch10">
-  <div class="ch-label reveal">Chapter 10</div>
-  <h2 class="ch-title reveal">Your Personalized <em>Roadmap</em></h2>
-  <p class="ch-desc reveal">The right strategy depends on where you are right now. Find your starting point below and follow the roadmap designed for your situation.</p>
-
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
-    <div class="glass-card">
-      <div class="gc-icon">🌱</div>
-      <div class="gc-title">9th &mdash; 10th Grade</div>
-      <div class="gc-body">
-        <strong>You have the most time and flexibility.</strong> Start with 2-3 easy CLEP exams (College Composition, American Government, Introductory Psychology). Take 1 AP exam by self-study. Begin conversations about PSEO for junior year. Goal: 15-20 credits by end of sophomore year.
-        <br/><br/>
-        <strong>Summer strategy:</strong> Take one exam per month (Jun-Aug) = $12,000+ saved in one summer.
-      </div>
-      <div class="gc-tag">Maximum Potential</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🔥</div>
-      <div class="gc-title">11th &mdash; 12th Grade</div>
-      <div class="gc-body">
-        <strong>Prime time for acceleration.</strong> Enroll in PSEO immediately. Stack CLEP exams during breaks. Take 3-4 AP exams (self-study the ones your school doesn't offer). Use DSST to fill gaps. Goal: 45-60+ credits by graduation.
-        <br/><br/>
-        <strong>Critical:</strong> Use Transferology NOW to verify every credit will transfer to your target schools.
-      </div>
-      <div class="gc-tag">Peak Acceleration</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🎓</div>
-      <div class="gc-title">College Freshman / Sophomore</div>
-      <div class="gc-body">
-        <strong>Not too late.</strong> Use CLEP and DSST to knock out remaining gen-ed requirements instead of paying full tuition for them. Focus on exams that directly replace courses in your degree plan. This can shave 1-2 semesters off your timeline.
-        <br/><br/>
-        <strong>Key move:</strong> Talk to your academic advisor about which CLEP/DSST exams your school accepts and the maximum transfer credits allowed.
-      </div>
-      <div class="gc-tag">Still Powerful</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">💼</div>
-      <div class="gc-title">Working Adults</div>
-      <div class="gc-body">
-        <strong>Your life experience is an asset.</strong> CLEP exams test knowledge you may already have from work. Personal Finance, Intro to Business, and Management are common wins. Prior Learning Assessment can convert work experience into credits. Consider WGU (Western Governors University) for competency-based progression.
-      </div>
-      <div class="gc-tag">Experience = Credits</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🎖️</div>
-      <div class="gc-title">Military &amp; Veterans</div>
-      <div class="gc-body">
-        <strong>You have special advantages.</strong> DSST was originally designed for military. Many military training programs convert directly to college credit via the Joint Services Transcript (JST). CLEP exams are often free on base. Combine with GI Bill benefits for maximum impact.
-      </div>
-      <div class="gc-tag">Special Benefits</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🌏</div>
-      <div class="gc-title">International Students</div>
-      <div class="gc-body">
-        <strong>The system works globally.</strong> CLEP exams can be taken at international test centers. Many U.S. universities accept CLEP credits from international students. Foreign language CLEP exams (Spanish, French, German) can be easier if you're already bilingual or multilingual.
-      </div>
-      <div class="gc-tag">Global Access</div>
-    </div>
-  </div>
-
-  <!-- UNIVERSITY COMPLETION PATHS -->
-  <div style="max-width:var(--max-w);margin:48px auto 0;padding:0 24px">
-    <div class="ch-body reveal">
-      <h3>The Two University Paths for Maximum Acceleration</h3>
-      <p>Once you've pre-loaded credits through CLEP, Sophia, and Study.com, you need a university that accepts massive transfer loads and lets you move at your own pace. These are the two best options:</p>
-    </div>
-  </div>
-
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(2,1fr);max-width:1100px;margin:24px auto 0;padding:0 24px">
-    <div class="glass-card" style="border-color:rgba(192,192,192,0.25)">
-      <div class="gc-icon">🏛️</div>
-      <div class="gc-title">WGU (Western Governors University)</div>
-      <div class="gc-body">
-        <strong>Competency-based. Flat-rate per 6-month term.</strong> Pass exams (OAs) and projects (PAs) to advance — no seat time required. Pre-assess to skip material you already know. Accepts up to 90 transfer credits (75% of degree). Pass/fail grading means a 3.0 GPA cap, but graduates are accepted at Georgia Tech, Penn State, and more for grad school.
-        <br/><br/><strong>Best for:</strong> Students who can self-study and test out of courses rapidly. IT, Business, Education, and Healthcare degrees.
-      </div>
-      <div class="gc-tag">Self-Paced King</div>
-    </div>
-    <div class="glass-card" style="border-color:rgba(192,192,192,0.25)">
-      <div class="gc-icon">🎓</div>
-      <div class="gc-title">UMPI YourPace (Univ. of Maine at Presque Isle)</div>
-      <div class="gc-body">
-        <strong>Flat-rate per 8-week term. Letter grades (enables 4.0 GPA).</strong> Project and research-based assessments instead of proctored exams. Accepts up to 90 transfer credits. Liberal Studies degree = 45 credits in major, up to 75 free electives — maximum flexibility for transfers.
-        <br/><br/><strong>Best for:</strong> Students targeting grad school (letter grades matter), or those who prefer writing/projects over exams.
-      </div>
-      <div class="gc-tag">GPA Maximizer</div>
-    </div>
-  </div>
-
-  <!-- 52-WEEK TIMELINE -->
-  <div style="max-width:var(--max-w);margin:48px auto 0;padding:0 24px">
-    <div class="ch-body reveal">
-      <h3>The 52-Week Bachelor's Degree Timeline</h3>
-      <p>This is the aggressive playbook. It's not for everyone, but it shows what's possible when you stack every advantage.</p>
-    </div>
-  </div>
-
-  <div class="reveal" style="max-width:var(--max-w);margin:24px auto 0;padding:0 24px">
-    <table class="compare-table" style="font-size:13px">
-      <thead>
-        <tr>
-          <th>Phase</th>
-          <th>Weeks</th>
-          <th>What You're Doing</th>
-          <th>Credits</th>
-          <th>Running Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Pre-Load Sprint</strong></td>
-          <td>1-23</td>
-          <td>Sophia + Study.com + CLEP blitz. 2-3 courses/week on Sophia, 1 CLEP per month.</td>
-          <td class="highlight-cell">60</td>
-          <td>60</td>
-        </tr>
-        <tr>
-          <td><strong>Apply</strong></td>
-          <td>24</td>
-          <td>Submit application to WGU or UMPI. Request transcript evaluations from all providers.</td>
-          <td>0</td>
-          <td>60</td>
-        </tr>
-        <tr>
-          <td><strong>Final ACE Push</strong></td>
-          <td>25-28</td>
-          <td>Fill remaining gaps with Study.com upper-division courses or DSST exams.</td>
-          <td class="highlight-cell">15</td>
-          <td>75</td>
-        </tr>
-        <tr>
-          <td><strong>University Term 1</strong></td>
-          <td>29-36</td>
-          <td>Enrolled at WGU (6-month term) or UMPI YourPace (8-week term). Knock out residency credits.</td>
-          <td class="highlight-cell">15</td>
-          <td>90</td>
-        </tr>
-        <tr>
-          <td><strong>Intermediate</strong></td>
-          <td>37-44</td>
-          <td>Continue university coursework. Fill any remaining gen-ed with CLEP/DSST if needed.</td>
-          <td class="highlight-cell">15</td>
-          <td>105</td>
-        </tr>
-        <tr>
-          <td><strong>Final Push</strong></td>
-          <td>45-52</td>
-          <td>Complete final university courses. Capstone project. Apply for graduation.</td>
-          <td class="highlight-cell">15</td>
-          <td><strong>120</strong></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div style="max-width:var(--max-w);margin:24px auto 0;padding:0 24px">
-    <div class="callout reveal">
-      <div class="callout-icon">💰</div>
-      <div class="callout-body">
-        <div class="callout-title">Total Cost: $4,000 - $8,000</div>
-        <div class="callout-text">Sophia (~$600 for 6 months), Study.com (~$800 for 4 months), CLEP exams (~$500 for free via Modern States), one WGU term (~$3,575) or two UMPI terms (~$3,600). Compare that to $100,000+ for a traditional 4-year degree. Same accreditation. Same diploma. Fraction of the cost.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 11: FINANCIAL STRATEGY -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="ch11">
-  <div class="ch-label reveal">Chapter 11</div>
-  <h2 class="ch-title reveal">The Financial <em>Strategy</em></h2>
-  <div class="ch-body reveal">
-    <p>Credit stacking isn't just an academic strategy — it's a financial strategy. Every credit you earn before college is money saved, debt avoided, and years of earning potential gained.</p>
-
-    <h3>The Math: Traditional vs. Accelerated</h3>
-  </div>
-
-  <div class="reveal" style="max-width:var(--max-w);margin:0 auto;padding:0 24px">
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Traditional (4 Years)</th>
-          <th>Fast Grad (1-2 Years)</th>
-          <th>Maximum Acceleration</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tuition (public, in-state)</td>
-          <td>$44,000 &mdash; $100,000</td>
-          <td class="highlight-cell">$5,500 &mdash; $25,000</td>
-          <td class="highlight-cell">$4,000 &mdash; $8,000</td>
-        </tr>
-        <tr>
-          <td>Room &amp; Board (4 yrs vs. 1)</td>
-          <td>$48,000 &mdash; $60,000</td>
-          <td class="highlight-cell">$12,000 &mdash; $15,000</td>
-          <td class="highlight-cell">$0 (fully online)</td>
-        </tr>
-        <tr>
-          <td>Textbooks &amp; Supplies</td>
-          <td>$4,000 &mdash; $6,000</td>
-          <td class="highlight-cell">$500 &mdash; $1,000</td>
-          <td class="highlight-cell">$0 &mdash; $200</td>
-        </tr>
-        <tr>
-          <td>Opportunity Cost (lost wages)</td>
-          <td>$120,000+</td>
-          <td class="highlight-cell">$30,000 &mdash; $60,000</td>
-          <td class="highlight-cell">$0 (study while working)</td>
-        </tr>
-        <tr>
-          <td><strong>Total Cost</strong></td>
-          <td><strong>$216,000+</strong></td>
-          <td class="highlight-cell"><strong>$48,000 &mdash; $101,000</strong></td>
-          <td class="highlight-cell"><strong>$4,000 &mdash; $8,200</strong></td>
-        </tr>
-        <tr>
-          <td><strong>Potential Savings</strong></td>
-          <td>&mdash;</td>
-          <td class="highlight-cell"><strong>$85,000 &mdash; $168,000+</strong></td>
-          <td class="highlight-cell"><strong>$208,000+</strong></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="chapter" style="padding-top:48px;padding-bottom:0">
-    <div class="ch-body reveal">
-      <h3>The Maximum Acceleration Path</h3>
-      <p>The third column represents the full "pre-load" strategy: earn 75-90 credits through Sophia ($99/mo), Study.com ($200/mo), CLEP (free via Modern States), and Saylor ($5/exam) — all while working full-time. Then enroll at WGU or UMPI for one term to finish your residency credits. Total time: 12 months. Total cost: under $8,000. Same regionally-accredited bachelor's degree. This is covered in detail in Chapter 10's 52-Week Timeline.</p>
-
-      <h3>Time Value of Money</h3>
-      <p>A dollar today is worth more than a dollar in the future. By graduating 2-3 years early, you enter the workforce sooner. Even at an entry-level salary of $45,000/year, graduating 2 years early means $90,000 in additional lifetime earnings — before accounting for raises, promotions, and compound growth. Researchers estimate entering the workforce 3 years earlier creates a $150,000-$200,000 additional lifetime earnings advantage. Combined with debt avoidance, the total financial delta can exceed <strong>$250,000+ in your first decade</strong>. I bought a house at 20 because I had no debt and a head start.</p>
-
-      <h3>Navigating Financial Aid</h3>
-      <ul>
-        <li><strong>FAFSA:</strong> File it regardless of your income. Free money is free money. Many students skip this step and leave scholarships on the table.</li>
-        <li><strong>Scholarships:</strong> Start applying early and often. Local scholarships have smaller applicant pools and better odds.</li>
-        <li><strong>Work-Study Programs:</strong> On-campus jobs that align with your field of study provide income AND experience.</li>
-        <li><strong>Avoid private student loans</strong> if possible. Federal loans have income-driven repayment options and forgiveness programs. Private loans don't.</li>
-        <li><strong>Employer tuition reimbursement:</strong> Companies like Starbucks, Chipotle, UPS, Home Depot, Amazon, and Bank of America offer tuition benefits to part-time employees. Get hired, let them pay for your remaining courses. These benefits are tax-free up to $5,250/year.</li>
-      </ul>
-
-      <h3>The College Budget</h3>
-      <p>If you do attend in-person, budget meticulously. Track rent, food, transportation, textbooks, and entertainment. The savings from credit stacking only matter if you don't blow them on lifestyle inflation. Live like a student now so you don't have to later.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CHAPTER 12: GETTING THE MOST OUT OF COLLEGE -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" id="ch12">
-  <div class="ch-label reveal">Chapter 12</div>
-  <h2 class="ch-title reveal">Getting the Most <em>Out of College</em></h2>
-  <div class="ch-body reveal">
-    <p>Credit stacking gets you to college faster and cheaper. But college isn't just about the degree — it's about what you build while you're there. The students who get the most out of college aren't the ones with the highest GPAs. They're the ones who used their time strategically.</p>
-
-    <h3>Extracurriculars</h3>
-    <p>I was president of 4 student organizations in high school. These experiences shaped my leadership, communication, and networking skills more than any single course. In college, join or start organizations aligned with your career goals. Lead something. The title matters less than the experience of building, organizing, and managing.</p>
-
-    <h3>Networking</h3>
-    <p>The people you meet in college can change the trajectory of your career. But networking isn't about collecting business cards — it's about building genuine relationships. Attend office hours. Go to career fairs. Join LinkedIn groups in your field. Email professionals you admire and ask for 15 minutes of their time. Most will say yes.</p>
-
-    <h3>Utilizing Campus Resources</h3>
-    <ul>
-      <li><strong>Career Center:</strong> Resume reviews, mock interviews, job placement — all free. Use them aggressively.</li>
-      <li><strong>Academic Advisors:</strong> Meet with them every semester. They can help you find credit transfer opportunities you might miss.</li>
-      <li><strong>Tutoring Services:</strong> Free peer tutoring is available at virtually every university. No shame in using it — it's smart resource allocation.</li>
-      <li><strong>Library Resources:</strong> Access to databases, research tools, and study spaces. Your tuition pays for these — use them.</li>
-    </ul>
-
-    <h3>Managing Academic Pressure</h3>
-    <p>Accelerating your education doesn't mean burning out. If you've followed this guide, you're entering college with a significant head start. Use that advantage to take on challenging coursework at a sustainable pace, pursue internships, study abroad, or even explore a double major — all without the typical time pressure.</p>
-
-    <h3>Do Employers Respect Accelerated Degrees?</h3>
-    <p>This is probably your biggest fear. Let me kill it with data. In a survey of 300 employers who hired WGU graduates:</p>
-    </div>
-
-    <div class="emp-stats reveal">
-      <div class="emp-stat">
-        <div class="emp-num">98%</div>
-        <div class="emp-label">Met or Exceeded<br/>Expectations</div>
-      </div>
-      <div class="emp-stat">
-        <div class="emp-num">96%</div>
-        <div class="emp-label">Would Hire<br/>More WGU Grads</div>
-      </div>
-      <div class="emp-stat">
-        <div class="emp-num">$73K</div>
-        <div class="emp-label">Average Grad<br/>Starting Salary</div>
-      </div>
-    </div>
-
-    <div class="ch-body reveal">
-    <p>Here's the thing people don't understand: employers don't care how long it took you to get the degree. They care that you <strong>have</strong> the degree and that it's from a <strong>regionally accredited</strong> institution. WGU, UMPI, and every school discussed in this guide carries the same regional accreditation as state flagship universities. On a resume, "Bachelor of Science in Business Administration — Western Governors University" checks the same box as any other accredited school.</p>
-    <p>And here's the real competitive advantage: while your peers are graduating at 22 with $35,000 in debt and zero work experience, you're entering the workforce at 19 or 20 with no debt, potentially owning property, and with 2-3 extra years of career growth. That head start compounds for the rest of your life.</p>
-
-    <h3>Graduate School Accepts Accelerated Degrees</h3>
-    <p>The second most common objection: "Will grad schools take me seriously?" Same answer. Regional accreditation is regional accreditation. Here's proof from real students:</p>
-    </div>
-  </div>
-
-  <div class="reveal" style="max-width:var(--max-w);margin:24px auto;padding:0 24px">
-    <table class="compare-table" style="font-size:13px">
-      <thead>
-        <tr>
-          <th>Graduate School</th>
-          <th>Undergrad Source</th>
-          <th>Outcome</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="highlight-cell">Harvard University</td><td>UMD (1-Year Track)</td><td>Master's in Real Estate</td></tr>
-        <tr><td class="highlight-cell">Georgia Tech</td><td>WGU</td><td>Online MS in Computer Science</td></tr>
-        <tr><td class="highlight-cell">LSU</td><td>UMPI</td><td>Law / Graduate Programs</td></tr>
-        <tr><td class="highlight-cell">Penn State</td><td>WGU</td><td>Business School</td></tr>
-        <tr><td class="highlight-cell">Kennesaw State</td><td>WGU</td><td>Doctorate in Education</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="chapter" style="padding-top:24px;padding-bottom:0">
-    <div class="ch-body reveal">
-
-    <h3>The Bigger Picture</h3>
-    <p>This guide gave you the system. The study techniques. The tools. The financial strategy. But the most important thing is this: <strong>take action</strong>. Don't let this be another resource you save and forget. Schedule your first exam this week. Set up your Transferology account today. Open your spreadsheet and start mapping.</p>
-
-    <blockquote>"It takes the same effort to make $100k and $10M. It's the different sequence of people, strategies, content, and systems that gets you there."</blockquote>
-
-    <p>You have the sequence now. Go.</p>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- COMMON MISTAKES TO AVOID -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="ch-label reveal">Learn From Others</div>
-  <h2 class="ch-title reveal">7 Mistakes That <em>Derail Students</em></h2>
-  <p class="ch-desc reveal">These are the pitfalls I've seen over and over. Avoid every single one.</p>
-
-  <div class="reveal">
-    <div class="mistake-card">
-      <div class="mistake-num">MISTAKE 01</div>
-      <div class="mistake-title">Taking exams without verifying transfer first</div>
-      <div class="mistake-body">You pass a CLEP exam, celebrate, then discover your target school doesn't accept it for credit. Thousands of students waste time and money this way every year.</div>
-      <div class="mistake-fix">Fix: Verify EVERY exam on Transferology before paying or studying. Call the admissions office directly if unsure.</div>
-    </div>
-    <div class="mistake-card">
-      <div class="mistake-num">MISTAKE 02</div>
-      <div class="mistake-title">Relying on outdated transfer policies</div>
-      <div class="mistake-body">Credit transfer policies change frequently. That Reddit post from 2022 saying "WGU accepts Study.com credits" might no longer be accurate. Schools update policies every semester.</div>
-      <div class="mistake-fix">Fix: Always get transfer policies directly from the university's official website or registrar. Get confirmation in writing (email).</div>
-    </div>
-    <div class="mistake-card">
-      <div class="mistake-num">MISTAKE 03</div>
-      <div class="mistake-title">Not keeping documentation of everything</div>
-      <div class="mistake-body">You'll need official transcripts from every credit source — CLEP, DSST, Sophia, Study.com, AP, PSEO, community college. Missing one transcript can delay enrollment or graduation by weeks.</div>
-      <div class="mistake-fix">Fix: Create a folder (digital and physical) for every score report, receipt, and transcript request. Order official transcripts immediately after passing.</div>
-    </div>
-    <div class="mistake-card">
-      <div class="mistake-num">MISTAKE 04</div>
-      <div class="mistake-title">Studying for the wrong exam version</div>
-      <div class="mistake-body">CLEP and DSST exams get updated. Using study materials from 3 years ago means you might be studying content that's no longer on the exam — and missing content that is.</div>
-      <div class="mistake-fix">Fix: Always check the official exam description on collegeboard.org or getcollegecredit.com for the current content outline before studying.</div>
-    </div>
-    <div class="mistake-card">
-      <div class="mistake-num">MISTAKE 05</div>
-      <div class="mistake-title">Burning out by trying to do everything at once</div>
-      <div class="mistake-body">Taking 3 CLEP exams in one week while doing Sophia courses and PSEO homework. It feels productive until you crash. Burnout is the #1 reason accelerators quit.</div>
-      <div class="mistake-fix">Fix: One exam every 2-3 weeks is sustainable. One per week is sprinting. Build in rest days. This is a marathon at sprint pace — manage your energy.</div>
-    </div>
-    <div class="mistake-card">
-      <div class="mistake-num">MISTAKE 06</div>
-      <div class="mistake-title">Ignoring upper-division credit requirements</div>
-      <div class="mistake-body">Most bachelor's degrees require 30+ credits at the 300-400 level. CLEP and Sophia are great for gen-ed, but they won't cover your upper-division major courses. Students who only focus on easy lower-level credits hit a wall.</div>
-      <div class="mistake-fix">Fix: Map your FULL degree plan, including upper-division. Use Study.com for upper-level courses. Plan which credits must come from the university.</div>
-    </div>
-    <div class="mistake-card">
-      <div class="mistake-num">MISTAKE 07</div>
-      <div class="mistake-title">Not filing the FAFSA because "I won't qualify"</div>
-      <div class="mistake-body">Many students assume they won't get financial aid. But the FAFSA unlocks more than just need-based grants — it's required for federal loans, work-study, and many scholarships. Even if you're accelerating, you may still be eligible for aid during your enrolled term.</div>
-      <div class="mistake-fix">Fix: File it. Always. At studentaid.gov. It's free and takes 30 minutes. Worst case: you don't qualify. Best case: free money.</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- FAQ — EVERY OBJECTION ADDRESSED -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="ch-label reveal">Every Question Answered</div>
-  <h2 class="ch-title reveal">But Is This <em>Actually Legit?</em></h2>
-  <p class="ch-desc reveal">I've heard every objection. Every doubt. Every "yeah, but..." Let me answer all of them, right here.</p>
-
-  <div class="faq-grid reveal">
-    <div class="faq-item">
-      <div class="faq-q">Is this too good to be true? Is this a scam? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>No. Every credit pathway discussed in this guide — CLEP, DSST, AP, PSEO, Sophia Learning, Study.com, Saylor — is accredited and recognized by the American Council on Education (ACE) or the College Board. CLEP has been around since <strong>1967</strong>. Over 2,900 colleges accept CLEP credits. WGU has 150,000+ enrolled students and is accredited by the Northwest Commission on Colleges and Universities. This isn't a loophole — it's the system's own rules, used strategically.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Won't employers see my degree as "lesser" because I finished fast? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>Your diploma doesn't say "completed in 12 months." It says "Bachelor of Science" from an accredited university. 98% of employers who hired WGU graduates said they met or exceeded expectations. The average WGU graduate earns $73,000/year. Employers care about the credential and your ability to do the job — not how many semesters you sat in a classroom.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Is WGU / UMPI a diploma mill? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>Absolutely not. WGU is <strong>regionally accredited</strong> by NWCCU — the same accreditation body that accredits the University of Washington. UMPI is accredited by NECHE — the same body that accredits Harvard, MIT, and Yale. Regional accreditation is the gold standard in U.S. higher education. "Diploma mills" are unaccredited institutions that sell degrees. WGU and UMPI require demonstrated competency to earn every single credit.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">What if my credits don't transfer? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>This is why Chapter 7 exists. You verify EVERY credit on <strong>Transferology</strong> before you spend a dollar or an hour studying. You call the registrar's office and get confirmation in writing. "Hope is not a strategy." If a credit doesn't transfer, you find an alternative that does. With 34 CLEP exams, 30+ DSST exams, 70+ Sophia courses, and 200+ Study.com courses — there's always a path.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Am I cheating the system? Is this ethical? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>You're using the system's own rules. CLEP was created by the College Board — the same organization that runs the SAT and AP exams. ACE credit recommendations are sanctioned by the American Council on Education, which represents 1,700+ universities. Competency-based education (CBE) is endorsed by the U.S. Department of Education. You're not cheating. You're being strategic. The only people who lose are the institutions that charge $40,000/year for something you can learn in three weeks.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">My parents / counselor say this won't work <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>Most parents went through the traditional system and assume it's the only path. Most high school counselors have never heard of CLEP or Sophia Learning — or if they have, they don't understand how credit transfer works. This is normal. Don't argue with them. Show them the data. Show them this guide. Show them the graduate school acceptance table. Show them the math. Results are more convincing than arguments.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Can I really do this while working a job? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>Yes. Many of the most successful degree hackers do this while working full-time. Sophia courses are self-paced and open-book — you can study during lunch breaks. CLEP exams require 2-3 weeks of focused study, 1-2 hours per day. WGU and UMPI are 100% online. The 52-week timeline in Chapter 10 is designed to be compatible with full-time employment.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">I'm not smart enough to pass college exams without taking the class <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>You only need a 50 out of 80 to pass a CLEP exam — that's roughly 62%. The national first-attempt pass rate is 70%. These aren't genius-level tests. They cover introductory material that millions of students learn every semester. With the study techniques in Chapter 8, AI prompts in Chapter 9, and free prep through Modern States — you have more resources than any classroom student has ever had. Intelligence isn't the variable. Preparation is.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">What if I fail an exam? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>Then you wait (3 months for CLEP, 30 days for DSST) and retake it. The second-attempt pass rate is <strong>80%</strong>. A failed exam costs you $97 and some time. A failed traditional semester costs you $15,000+ and four months. The risk calculus isn't even close. Failure is data. Use your score report to identify weak areas, study those specifically, and pass on the second attempt.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Will using AI to study get me flagged for cheating? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>Using AI to <strong>study</strong> — generating flashcards, taking practice quizzes, explaining concepts — is not cheating. It's using a tool. The AI prompts in Chapter 9 are for study and preparation. When it comes to actual assessments: CLEP and DSST are proctored, in-person exams where AI isn't accessible. For Sophia and Study.com, their assignments must be your own work — don't submit AI-generated text as your own. Use AI to learn, then demonstrate that learning yourself.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Is this guide worth $97? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a"><p>A single CLEP exam saves you $1,500-$3,000 in tuition. The pre-built credit tracker spreadsheet alone saves you 20+ hours of manual research. The AI prompts compress weeks of study into days. The 52-week timeline gives you a step-by-step roadmap that would cost $500+ from an educational consultant. And the transfer verification process prevents you from wasting hundreds of dollars on non-transferable credits. If this guide helps you pass even one additional CLEP exam, it pays for itself 15x over.</p></div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- COMMUNITY PROOF (YouTube Comments) -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="ch-label reveal">From The Community</div>
-  <h2 class="ch-title reveal">Students Who've <em>Done It</em></h2>
-
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"I'm also Minnesotan and can confirm that PSEO/Dual Enrollment is OP. While doing over 18 online credits every semester, I graduated with my associates in 2022, bachelor's in 2023, and I'm currently in an accelerated, 10-month Masters of Data Science program."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— @LukeJonesLWJ</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"I went back to school at 42, studied for 24 hrs, took the college mathematics CLEP, easiest 6 credits I've ever gotten. Cost $120 proctored at home."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— @airgunningyup</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"Using CLEP tests and dual enrollment, I completed almost all the requirements for my engineering degree except the actual engineering classes before enrolling at a university."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— @darkforcesjedi</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"I'm currently on track to get my Computer Science degree in only one year as well. The college WGU is basically completely consisting of self study courses so my average completion time for a course is only about a week."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— @brody9752</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"This is beyond incredible. I didn't know this was possible. I have been trying to find self-study options to be accepted, but I was daunted by having to quit work and go full-time as a student again."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— @carolday3381</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"This is awesome John! I am a retired AP Physics teacher and agree with what you presented. Such a great way to beat the cost of higher Ed!"</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— @markbrown585</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"I went back to school at 42, studied for 24 hrs, took the college mathematics CLEP, easiest 6 credits I've ever gotten. Cost $120 proctored at home. It's never too late."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— @airgunningyup</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"Got my second degree and 5 developer certifications in one year while working and raising two kids. If I can do it, you can do it. Competency-based education changed my life."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— WGU Graduate, Software Developer</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"Finished my Bachelor's in 6 months at WGU while active duty Marines. Applied my Joint Services Transcript for lower-level courses and tested out of 17 degree requirements. Don't let anyone tell you it can't be done."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— Active Duty Marine, Bachelor's in 6 Months</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"I was skeptical. Really skeptical. But I passed 5 CLEP exams in one summer — American Government, Intro Psychology, Sociology, College Comp, and Macroeconomics. 15 credits for less than $500. I'm now a junior as a freshman."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— College Freshman, r/CLEP</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-body" style="font-style:italic">"Sophia Learning + CLEP was the combo that changed everything. Knocked out 45 credits in 3 months for under $400. My friends thought I was lying until they saw my transcript."</div>
-      <div style="margin-top:12px;font-size:13px;color:var(--silver);font-weight:600">— Degree Hacker, DegreeForum</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- QUICK REFERENCE CHECKLIST -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter">
-  <div class="ch-label reveal">Quick Reference</div>
-  <h2 class="ch-title reveal">Your Action <em>Checklist</em></h2>
-
-  <ul class="checklist reveal">
-    <li>Create your credit tracking spreadsheet (Google Sheets or Excel)</li>
-    <li>Sign up for a free Transferology account and add your target schools</li>
-    <li>Register on Modern States and start your first free CLEP prep course</li>
-    <li>Choose your first CLEP exam and schedule it within 3 weeks</li>
-    <li>Download Anki and create your first deck of flashcards</li>
-    <li>Map your target degree requirements to available CLEP/DSST/AP exams</li>
-    <li>Research PSEO/Dual Enrollment options in your state</li>
-    <li>Talk to your school counselor about credit stacking (bring this guide)</li>
-    <li>Set up your AI study partner (Claude or ChatGPT) and try the prompts in Chapter 9</li>
-    <li>File your FAFSA at studentaid.gov</li>
-    <li>Join the Fast Grad Academy community for support and accountability</li>
-    <li>Browse <a href="https://www.reddit.com/r/clep" target="_blank">r/clep</a> and <a href="https://www.reddit.com/r/WGU" target="_blank">r/WGU</a> for exam-specific tips and motivation</li>
-    <li>Check if your employer offers tuition reimbursement (Starbucks, Amazon, UPS, and others do)</li>
-    <li>Sign up for <a href="https://www.sophia.org" target="_blank">Sophia Learning</a> ($99/mo) to start pre-loading credits immediately</li>
-    <li>Share this guide with a friend who needs it</li>
-  </ul>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CLOSING LETTER FROM JOHN -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section class="chapter" style="padding-bottom:40px">
-  <div class="reveal" style="max-width:640px;margin:0 auto;background:rgba(192,192,192,0.04);border:1px solid rgba(192,192,192,0.12);border-radius:24px;padding:48px 36px">
-    <div style="font-family:var(--font-d);font-size:32px;color:var(--white);margin-bottom:24px;line-height:1.2">One Last Thing.</div>
-    <div style="font-size:15px;color:rgba(255,255,255,0.75);line-height:2">
-      <p>When I was 15, sitting in a high school classroom in Minnesota, I made a decision that changed everything: I refused to accept the default path.</p>
-      <p>Everyone around me was planning for four years of college, $40,000 in debt, and hoping for a decent job at the end. I looked at that math and thought — there has to be a better equation.</p>
-      <p>There was. And you're reading it.</p>
-      <p>I'm writing this from Bangkok. I'm 25. I have a Bachelor's from UMD, a Master's from Harvard, zero student debt, a house I bought at 20, and businesses that run while I sleep. None of this happened by accident. All of it happened because I found the system's rules and used them better than anyone expected a 15-year-old to.</p>
-      <p>You have something I didn't have: <strong>this guide</strong>. The exact playbook. The AI tools. The community. The resource links. The spreadsheets. Everything mapped out, step by step, with every objection answered and every mistake flagged.</p>
-      <p>The only variable left is you. Your willingness to schedule that first exam. To open Transferology. To tell your counselor "I've done the research, and here's my plan." To study when your friends are scrolling. To bet on yourself when everyone else is betting on the safe path.</p>
-      <p>The safe path isn't safe. It costs $200,000 and four years of your life. <em>Your</em> path costs $4,000 and twelve months.</p>
-      <p>Same degree. Same accreditation. Different sequence. Different life.</p>
-      <p style="margin-top:32px;margin-bottom:0"><strong style="color:var(--white)">Decades into days. I'll see you on the other side.</strong></p>
-      <p style="margin-top:16px;margin-bottom:0;color:var(--silver);font-weight:600">To your freedom,<br/>John Zheng</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- FOOTER -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<footer>
-  <div class="f-brand">Fast Grad Academy</div>
-  <div class="f-tagline">Decades into days.</div>
-  <div style="margin:32px auto;max-width:400px">
-    <a class="video-card" href="https://thejohnzheng.com" target="_blank" rel="noopener" style="justify-content:center">
-      <div class="vc-info" style="text-align:center">
-        <div class="vc-label">Get More Systems</div>
-        <div class="vc-title">Subscribe to The Automated Founder Newsletter</div>
-        <div class="vc-channel">thejohnzheng.com &middot; Every Sunday</div>
-      </div>
-    </a>
-  </div>
-  <div class="f-copy">&copy; 2026 Fast Grad Academy &middot; John Zheng &middot; All rights reserved.</div>
-</footer>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- SCRIPTS -->
-<!-- ═══════════════════════════════════════════════════════════ -->
 <script>
-// ── PROGRESS BAR ──
-const progressBar = document.getElementById('progressBar');
-window.addEventListener('scroll', () => {
-  const h = document.documentElement;
-  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-  progressBar.style.width = pct + '%';
+// ── Progress bar ──
+var rpFill = document.querySelector('.reading-progress-fill');
+window.addEventListener('scroll', function(){
+  var h = document.documentElement;
+  var pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  if(rpFill) rpFill.style.transform = 'scaleX(' + pct + ')';
 });
 
-// ── SCROLL REVEAL ──
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+// ── Scroll reveal ──
+var ro = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
 
-// ── COUNTER ANIMATION ──
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting && !e.target.dataset.counted) {
-      e.target.dataset.counted = 'true';
-      const target = parseInt(e.target.dataset.count);
-      const duration = 1800;
-      const start = performance.now();
-      const prefix = target >= 1000 ? '' : '$';
-      const suffix = target >= 1000 ? '+' : 'K+';
-      function tick(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(eased * target);
-        if (target >= 1000) {
-          e.target.textContent = current.toLocaleString() + suffix;
-        } else {
-          e.target.textContent = prefix + current + suffix;
-        }
-        if (progress < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
-
-// ── COPY PROMPT ──
-function copyPrompt(btn) {
-  const text = btn.parentElement.querySelector('.prompt-text').textContent;
-  const orig = btn.textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ Copied!';
-    btn.style.background = 'rgba(192,192,192,0.2)';
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.style.background = '';
-    }, 2000);
+// ── Copy prompt ──
+function copyPrompt(btn){
+  var text = btn.parentElement.querySelector('.prompt-text').textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var orig=btn.textContent; btn.textContent='✓ Copied!';
+    btn.style.background='rgba(192,192,192,0.2)';
+    setTimeout(function(){ btn.textContent=orig; btn.style.background=''; },2000);
   });
 }
 
-// ── ACCORDION ──
-document.querySelectorAll('.acc-header').forEach(header => {
-  header.addEventListener('click', () => {
-    const item = header.parentElement;
-    const wasOpen = item.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
-    // Toggle clicked
-    if (!wasOpen) item.classList.add('open');
+// ── FAQ accordion ──
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click', function(){
+    var item = q.parentElement;
+    var was = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+    if(!was) item.classList.add('open');
   });
 });
 
-// ── ACTIVE NAV ──
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+// ── Nav hamburger ──
+var ham = document.getElementById('navHamburger');
+var mob = document.getElementById('navMobile');
+if(ham && mob){
+  ham.addEventListener('click',function(){ mob.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-link').forEach(function(l){
+    l.addEventListener('click',function(){ mob.classList.remove('open'); });
   });
-  navLinks.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-  });
-});
+}
 
-// ── FAQ ACCORDION ──
-document.querySelectorAll('.faq-q').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.parentElement;
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  });
-});
+// ── Sidebar toggle (mobile) ──
+var sbToggle = document.getElementById('sbToggle');
+var sidebar  = document.getElementById('sidebar');
+var sbOverlay = document.getElementById('sbOverlay');
+if(sbToggle && sidebar){
+  sbToggle.addEventListener('click',function(){ sidebar.classList.toggle('open'); });
+  if(sbOverlay) sbOverlay.addEventListener('click',function(){ sidebar.classList.remove('open'); });
+}
+</script>
 
-// ── TIMELINE SHRINK ANIMATION ──
-const tsEl = document.getElementById('timelineShrink');
-if (tsEl) {
-  const tsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('animated'), 400);
-        tsObserver.unobserve(e.target);
-      }
+<script>
+(function(){
+  try{
+    var s = JSON.parse(localStorage.getItem('fga_course')||'{}');
+    if(!s.access) return; // gate will show
+    var completed = s.completed||[];
+    var pct = Math.round(completed.length/12*100);
+
+    // Show progress ring
+    var pa = document.getElementById('dashProgArea');
+    if(pa) pa.style.display='flex';
+
+    // Update ring
+    var rf = document.getElementById('dashRingFill');
+    var rp = document.getElementById('dashRingPct');
+    if(rf) rf.setAttribute('stroke-dashoffset', 188.5*(1-pct/100));
+    if(rp) rp.textContent = pct+'%';
+
+    // Labels
+    var lbl = document.getElementById('dashProgLabel');
+    var sub = document.getElementById('dashProgSub');
+    if(lbl) lbl.textContent = completed.length === 0 ? 'Ready to begin' : completed.length+' of 12 chapters complete';
+    if(sub) sub.textContent = pct === 100 ? '🎉 Course complete! You have the system.' : (pct === 0 ? 'Start with Chapter 1 below' : 'Keep going — you're building momentum');
+
+    // Mark completed cards
+    completed.forEach(function(n){
+      var card = document.querySelector('.ch-card[data-ch="'+n+'"]');
+      if(card) card.classList.add('done');
     });
-  }, { threshold: 0.3 });
-  tsObserver.observe(tsEl);
+
+    // Resume button
+    var rb = document.getElementById('resumeBtn');
+    if(rb){
+      var last = s.lastVisited||1;
+      if(completed.indexOf(last)!==-1){
+        // Find next uncompleted
+        for(var i=1;i<=12;i++){
+          if(completed.indexOf(i)===-1){ last=i; break; }
+        }
+      }
+      if(completed.length===12){
+        rb.textContent='Review Course';
+        rb.href='/ch1';
+      } else {
+        rb.textContent='Resume — Chapter '+last;
+      }
+      rb.dataset.ch = last;
+    }
+  }catch(e){}
+})();
+function resumeCourse(){
+  try{
+    var rb = document.getElementById('resumeBtn');
+    var ch = rb ? (rb.dataset.ch||'1') : '1';
+    window.location.href='/ch'+ch;
+  }catch(e){window.location.href='/ch1';}
 }
 </script>
 </body>
