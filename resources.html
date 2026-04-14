@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Exam Resource Library — Fast Grad Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --black:#0a0a0a;--white:#ffffff;--silver:#c0c0c0;--muted:#a8a8a8;
+  --glass:rgba(255,255,255,0.04);--glass-b:rgba(255,255,255,0.08);
+  --clep:#4a90d9;--dsst:#7a5af8;--ap:#e8916a;
+  --font-d:'Instrument Serif',serif;--font-b:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--font-b);font-size:15px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--glass-b);display:flex;align-items:center;padding:0 24px;gap:32px}
+.nav-brand{font-family:var(--font-d);font-size:17px;color:var(--white);margin-right:auto}
+.nav-link{font-size:13px;color:var(--muted);letter-spacing:0.03em;transition:color 0.2s}
+.nav-link:hover{color:var(--white)}
+
+/* HERO */
+.hero{padding:120px 24px 60px;text-align:center;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-block;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--glass-b);border-radius:999px;padding:5px 14px;margin-bottom:24px}
+.hero h1{font-family:var(--font-d);font-size:clamp(36px,6vw,56px);font-weight:400;line-height:1.1;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--silver)}
+.hero p{color:rgba(255,255,255,0.65);font-size:16px;max-width:580px;margin:0 auto}
+
+/* FILTER TABS */
+.filter-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:0 24px 48px}
+.filter-btn{font-family:var(--font-b);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--glass-b);background:var(--glass);color:var(--muted);border-radius:999px;padding:7px 18px;cursor:pointer;transition:all 0.2s}
+.filter-btn:hover{color:var(--white);border-color:rgba(255,255,255,0.2)}
+.filter-btn.active{color:var(--white);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25)}
+.filter-btn[data-type="CLEP"].active{border-color:var(--clep);color:var(--clep);background:rgba(74,144,217,0.1)}
+.filter-btn[data-type="DSST"].active{border-color:var(--dsst);color:var(--dsst);background:rgba(122,90,248,0.1)}
+.filter-btn[data-type="AP"].active{border-color:var(--ap);color:var(--ap);background:rgba(232,145,106,0.1)}
+
+/* SEARCH */
+.search-wrap{max-width:480px;margin:0 auto 48px;padding:0 24px}
+.search-input{width:100%;background:var(--glass);border:1px solid var(--glass-b);border-radius:12px;padding:12px 18px;color:var(--white);font-family:var(--font-b);font-size:14px;outline:none;transition:border 0.2s}
+.search-input:focus{border-color:rgba(255,255,255,0.2)}
+.search-input::placeholder{color:var(--muted)}
+
+/* GRID */
+.exam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;max-width:1200px;margin:0 auto;padding:0 24px 80px}
+
+/* CARD */
+.exam-card{background:var(--glass);border:1px solid var(--glass-b);border-radius:14px;padding:20px;transition:border-color 0.2s,transform 0.2s}
+.exam-card:hover{border-color:rgba(255,255,255,0.14);transform:translateY(-2px)}
+.exam-card[data-type="CLEP"]{border-top:2px solid rgba(74,144,217,0.4)}
+.exam-card[data-type="DSST"]{border-top:2px solid rgba(122,90,248,0.4)}
+.exam-card[data-type="AP"]{border-top:2px solid rgba(232,145,106,0.4)}
+.exam-card.hidden{display:none}
+
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.card-title{font-family:var(--font-d);font-size:17px;line-height:1.3;flex:1}
+.card-badge{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap;flex-shrink:0}
+.card-badge.CLEP{background:rgba(74,144,217,0.15);color:var(--clep)}
+.card-badge.DSST{background:rgba(122,90,248,0.15);color:var(--dsst)}
+.card-badge.AP{background:rgba(232,145,106,0.15);color:var(--ap)}
+
+.card-cost{font-size:12px;color:var(--muted);margin-bottom:14px}
+.card-cost strong{color:var(--silver)}
+
+.resource-list{display:flex;flex-direction:column;gap:7px}
+.resource-link{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid transparent;transition:all 0.2s;font-size:13px;color:rgba(255,255,255,0.8)}
+.resource-link:hover{background:rgba(255,255,255,0.06);border-color:var(--glass-b);color:var(--white)}
+.resource-link .r-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0}
+.resource-link[data-free] .r-dot{background:#4caf50}
+.resource-link .r-name{flex:1;line-height:1.3}
+.resource-link .r-arrow{font-size:10px;color:var(--muted);flex-shrink:0}
+
+.card-tip{margin-top:12px;padding:10px 12px;background:rgba(255,255,255,0.025);border-radius:8px;font-size:12px;color:var(--muted);line-height:1.5;border-left:2px solid rgba(255,255,255,0.1)}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:80px 24px;color:var(--muted);grid-column:1/-1}
+
+/* FOOTER */
+footer{border-top:1px solid var(--glass-b);padding:40px 24px;text-align:center}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.footer-links a{font-size:13px;color:var(--muted);transition:color 0.2s}
+.footer-links a:hover{color:var(--white)}
+.f-copy{font-size:11px;color:rgba(255,255,255,0.25)}
+
+@media(max-width:600px){
+  .exam-grid{grid-template-columns:1fr;padding:0 16px 60px}
+  .hero{padding:96px 16px 40px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-brand">Fast Grad Academy</a>
+  <a href="/guide" class="nav-link">Dashboard</a>
+  <a href="/resources" class="nav-link active">Resources</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Free Study Resources</div>
+  <h1>The Exam <em>Resource Library</em></h1>
+  <p>Every CLEP, DSST, and AP exam — with the best free prep resources for each. Filter, search, and start studying.</p>
+</div>
+
+<div class="search-wrap">
+  <input class="search-input" id="searchInput" type="text" placeholder="Search exams… e.g. Macroeconomics, Biology, History"/>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-type="ALL">All Exams</button>
+  <button class="filter-btn" data-type="CLEP">CLEP ($97)</button>
+  <button class="filter-btn" data-type="DSST">DSST ($85)</button>
+  <button class="filter-btn" data-type="AP">AP ($98)</button>
+</div>
+
+<div class="exam-grid" id="examGrid">
+  <!-- Cards injected by JS below -->
+  <div class="empty-state" id="emptyState" style="display:none">No exams match your search.</div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/guide">The Guide</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/refund">Refund &amp; Terms</a>
+    <a href="/contact">Contact</a>
+  </div>
+  <p class="f-copy">&copy; 2026 Fast Grad Academy &middot; John Zheng &middot; All rights reserved.</p>
+</footer>
+
+<script>
+// ── Exam Data ──────────────────────────────────────────────────────────────────
+// Green dot = free resource  |  Gray dot = paid/low-cost
+var EXAMS = [
+
+// ════════════════════════════════════════
+// CLEP EXAMS
+// ════════════════════════════════════════
+{type:"CLEP",name:"Principles of Macroeconomics",cost:"$97 (free via Modern States)",tip:"One of the highest-ROI CLEP exams. Modern States prep is excellent. Khan Academy covers every concept.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/principles-of-macroeconomics/",free:true},
+  {name:"Khan Academy — AP Macroeconomics",url:"https://www.khanacademy.org/economics-finance-domain/ap-macroeconomics",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/principles-of-macroeconomics",free:true},
+  {name:"OpenStax Principles of Macroeconomics",url:"https://openstax.org/details/books/principles-macroeconomics-3e",free:true}
+]},
+{type:"CLEP",name:"Principles of Microeconomics",cost:"$97 (free via Modern States)",tip:"Pairs well with Macroeconomics. Take both in the same prep window.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/principles-of-microeconomics/",free:true},
+  {name:"Khan Academy — AP Microeconomics",url:"https://www.khanacademy.org/economics-finance-domain/ap-microeconomics",free:true},
+  {name:"OpenStax Principles of Microeconomics",url:"https://openstax.org/details/books/principles-microeconomics-3e",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/principles-of-microeconomics",free:true}
+]},
+{type:"CLEP",name:"Introductory Psychology",cost:"$97 (free via Modern States)",tip:"One of the most popular CLEPs. Very studyable in 1–2 weeks with Crash Course.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/introductory-psychology/",free:true},
+  {name:"Khan Academy — AP Psychology",url:"https://www.khanacademy.org/test-prep/ap-psychology",free:true},
+  {name:"Crash Course Psychology (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/introductory-psychology",free:true}
+]},
+{type:"CLEP",name:"Introductory Sociology",cost:"$97 (free via Modern States)",tip:"Light reading load. Crash Course + Modern States is enough for most students.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/introductory-sociology/",free:true},
+  {name:"Crash Course Sociology (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtMJ-AfB_7J1538YKWkZAnGA",free:true},
+  {name:"OpenStax Introduction to Sociology",url:"https://openstax.org/details/books/introduction-sociology-3e",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/introductory-sociology",free:true}
+]},
+{type:"CLEP",name:"American Government",cost:"$97 (free via Modern States)",tip:"Straightforward factual exam. Modern States + Khan Academy is sufficient.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/american-government/",free:true},
+  {name:"Khan Academy — AP US Government",url:"https://www.khanacademy.org/test-prep/ap-us-government-and-politics",free:true},
+  {name:"Crash Course Government & Politics (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtOfse2ncvffeelTrqvhrz8H",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/american-government",free:true}
+]},
+{type:"CLEP",name:"History of the United States I",cost:"$97 (free via Modern States)",tip:"Covers pre-colonial through Reconstruction. Crash Course US History is excellent.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/history-of-the-united-states-i/",free:true},
+  {name:"Crash Course US History (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtMwmepBjTSG593eG7ObzO7s",free:true},
+  {name:"Khan Academy — AP US History",url:"https://www.khanacademy.org/test-prep/ap-us-history",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/history-of-the-united-states-i",free:true}
+]},
+{type:"CLEP",name:"History of the United States II",cost:"$97 (free via Modern States)",tip:"Covers Reconstruction through modern era. Companion to US History I.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/history-of-the-united-states-ii/",free:true},
+  {name:"Crash Course US History II (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtMwmepBjTSG593eG7ObzO7s",free:true},
+  {name:"Khan Academy — AP US History",url:"https://www.khanacademy.org/test-prep/ap-us-history",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/history-of-the-united-states-ii",free:true}
+]},
+{type:"CLEP",name:"Western Civilization I",cost:"$97 (free via Modern States)",tip:"Ancient world through the Reformation. Crash Course World History fills the gaps.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/western-civilization-i/",free:true},
+  {name:"Crash Course World History (YouTube)",url:"https://www.youtube.com/playlist?list=PLBDA2E52FB1EF80C9",free:true},
+  {name:"Khan Academy — World History",url:"https://www.khanacademy.org/humanities/world-history",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/western-civilization-i",free:true}
+]},
+{type:"CLEP",name:"Western Civilization II",cost:"$97 (free via Modern States)",tip:"17th century through modern era. Pairs well with WC I.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/western-civilization-ii/",free:true},
+  {name:"Crash Course European History (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtNjasccl-WajpONGX3zoY4M",free:true},
+  {name:"Khan Academy — World History",url:"https://www.khanacademy.org/humanities/world-history",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/western-civilization-ii",free:true}
+]},
+{type:"CLEP",name:"College Algebra",cost:"$97 (free via Modern States)",tip:"If you're comfortable with Algebra II from high school, this is a fast pass.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/college-algebra/",free:true},
+  {name:"Khan Academy — Algebra 2",url:"https://www.khanacademy.org/math/algebra2",free:true},
+  {name:"Professor Leonard College Algebra (YouTube)",url:"https://www.youtube.com/playlist?list=PLDesaqWTN534onelong",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/college-algebra",free:true}
+]},
+{type:"CLEP",name:"Precalculus",cost:"$97 (free via Modern States)",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/precalculus/",free:true},
+  {name:"Khan Academy — Precalculus",url:"https://www.khanacademy.org/math/precalculus",free:true},
+  {name:"Professor Leonard Precalculus (YouTube)",url:"https://www.youtube.com/playlist?list=PLDesaqWTN53ItXy2gViFp4S3F6p6hSYtY",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/precalculus",free:true}
+]},
+{type:"CLEP",name:"Calculus",cost:"$97 (free via Modern States)",tip:"Requires strong Precalculus foundation. Professor Leonard is the gold standard.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/calculus/",free:true},
+  {name:"Professor Leonard Calculus I (YouTube)",url:"https://www.youtube.com/playlist?list=PLF797E961509B4EB5",free:true},
+  {name:"Khan Academy — AP Calculus AB",url:"https://www.khanacademy.org/test-prep/ap-calculus-ab",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/calculus",free:true}
+]},
+{type:"CLEP",name:"College Mathematics",cost:"$97 (free via Modern States)",tip:"For non-STEM majors. Covers basic stats, sets, logic. Easier than College Algebra.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/college-mathematics/",free:true},
+  {name:"Khan Academy — Basic Math",url:"https://www.khanacademy.org/math/cc-sixth-grade-math",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/college-mathematics",free:true}
+]},
+{type:"CLEP",name:"Biology",cost:"$97 (free via Modern States)",tip:"One of the harder CLEPs. Khan Academy AP Biology is comprehensive.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/biology/",free:true},
+  {name:"Khan Academy — AP Biology",url:"https://www.khanacademy.org/test-prep/ap-biology",free:true},
+  {name:"Crash Course Biology (YouTube)",url:"https://www.youtube.com/playlist?list=PL3EED4C1D684D3ADF",free:true},
+  {name:"OpenStax Biology 2e",url:"https://openstax.org/details/books/biology-2e",free:true}
+]},
+{type:"CLEP",name:"Chemistry",cost:"$97 (free via Modern States)",tip:"Math-heavy. Requires real prep time — budget 3–4 weeks.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/chemistry/",free:true},
+  {name:"Khan Academy — AP Chemistry",url:"https://www.khanacademy.org/test-prep/ap-chemistry",free:true},
+  {name:"Crash Course Chemistry (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtPHzzYuWy6fYEaX9mQQ8oGr",free:true},
+  {name:"OpenStax Chemistry 2e",url:"https://openstax.org/details/books/chemistry-2e",free:true}
+]},
+{type:"CLEP",name:"Natural Sciences",cost:"$97 (free via Modern States)",tip:"Broad survey of biology + physical science. Great if you're not a science major.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/natural-sciences/",free:true},
+  {name:"Crash Course Biology (YouTube)",url:"https://www.youtube.com/playlist?list=PL3EED4C1D684D3ADF",free:true},
+  {name:"Crash Course Chemistry (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtPHzzYuWy6fYEaX9mQQ8oGr",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/natural-sciences",free:true}
+]},
+{type:"CLEP",name:"Principles of Management",cost:"$97 (free via Modern States)",tip:"Very practical exam. Easy pass for anyone with work or business experience.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/principles-of-management/",free:true},
+  {name:"OpenStax Principles of Management",url:"https://openstax.org/details/books/principles-management",free:true},
+  {name:"Crash Course Business – Management (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtNamTKBNE7I8-HCcc22V9zS",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/principles-of-management",free:true}
+]},
+{type:"CLEP",name:"Principles of Marketing",cost:"$97 (free via Modern States)",tip:"Great for entrepreneurs. Covers the 4 Ps, consumer behavior, market segmentation.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/principles-of-marketing/",free:true},
+  {name:"OpenStax Principles of Marketing",url:"https://openstax.org/details/books/principles-marketing",free:true},
+  {name:"Khan Academy — Marketing",url:"https://www.khanacademy.org/college-careers-more/entrepreneurship2",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/principles-of-marketing",free:true}
+]},
+{type:"CLEP",name:"Financial Accounting",cost:"$97 (free via Modern States)",tip:"Requires understanding debits/credits, financial statements. Khan Academy is solid.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/financial-accounting/",free:true},
+  {name:"Khan Academy — Finance & Capital Markets",url:"https://www.khanacademy.org/economics-finance-domain/core-finance",free:true},
+  {name:"AccountingCoach (free)",url:"https://www.accountingcoach.com/",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/financial-accounting",free:true}
+]},
+{type:"CLEP",name:"Introductory Business Law",cost:"$97 (free via Modern States)",tip:"Contracts, torts, commercial law. No prior law knowledge needed.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/introductory-business-law/",free:true},
+  {name:"OpenStax Business Law I Essentials",url:"https://openstax.org/details/books/business-law-i-essentials",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/introductory-business-law",free:true}
+]},
+{type:"CLEP",name:"Information Systems",cost:"$97 (free via Modern States)",tip:"Covers hardware, software, networking basics, databases. Practical and studyable.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/information-systems/",free:true},
+  {name:"Khan Academy — Computing",url:"https://www.khanacademy.org/computing",free:true},
+  {name:"GCF Global — Tech Literacy (free)",url:"https://edu.gcfglobal.org/en/topics/technology/",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/information-systems",free:true}
+]},
+{type:"CLEP",name:"Human Growth and Development",cost:"$97 (free via Modern States)",tip:"Lifespan psychology — Piaget, Erikson, Vygotsky. Very memorizable.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/human-growth-and-development/",free:true},
+  {name:"Khan Academy — AP Psychology (developmental)",url:"https://www.khanacademy.org/test-prep/ap-psychology",free:true},
+  {name:"Crash Course Psychology (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/human-growth-and-development",free:true}
+]},
+{type:"CLEP",name:"Introduction to Educational Psychology",cost:"$97 (free via Modern States)",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/introduction-to-educational-psychology/",free:true},
+  {name:"Khan Academy — AP Psychology",url:"https://www.khanacademy.org/test-prep/ap-psychology",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/introduction-to-educational-psychology",free:true}
+]},
+{type:"CLEP",name:"Social Sciences & History",cost:"$97 (free via Modern States)",tip:"A broad survey — econ, history, sociology, political science. Good general-ed pass.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/social-sciences-and-history/",free:true},
+  {name:"Crash Course History Series (YouTube)",url:"https://www.youtube.com/c/crashcourse/playlists",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/social-sciences-and-history",free:true}
+]},
+{type:"CLEP",name:"Humanities",cost:"$97 (free via Modern States)",tip:"Literature, art, music, philosophy. Very broad. Use the InstantCert forums for targeted prep.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/humanities/",free:true},
+  {name:"Khan Academy — Art History",url:"https://www.khanacademy.org/humanities/art-history",free:true},
+  {name:"SparkNotes Literature Guides (free)",url:"https://www.sparknotes.com/",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/humanities",free:true}
+]},
+{type:"CLEP",name:"Analyzing & Interpreting Literature",cost:"$97 (free via Modern States)",tip:"No specific books required — tests literary analysis skills. SparkNotes is your friend.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/analyzing-and-interpreting-literature/",free:true},
+  {name:"SparkNotes Literary Terms Guide",url:"https://www.sparknotes.com/",free:true},
+  {name:"Purdue OWL — Literary Analysis",url:"https://owl.purdue.edu/owl/subject_specific_writing/writing_in_literature/index.html",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/analyzing-and-interpreting-literature",free:true}
+]},
+{type:"CLEP",name:"American Literature",cost:"$97 (free via Modern States)",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/american-literature/",free:true},
+  {name:"SparkNotes Classic American Literature",url:"https://www.sparknotes.com/",free:true},
+  {name:"Project Gutenberg — Free Classic Texts",url:"https://www.gutenberg.org/",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/american-literature",free:true}
+]},
+{type:"CLEP",name:"College Composition",cost:"$97 (free via Modern States)",tip:"Essay-heavy exam. Practice writing clear, organized arguments under time pressure.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/college-composition/",free:true},
+  {name:"Purdue OWL Writing Lab (free)",url:"https://owl.purdue.edu/",free:true},
+  {name:"Khan Academy — Grammar & Writing",url:"https://www.khanacademy.org/test-prep/sat/x0a8c2e5f3af3b69c:writing-and-language",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/college-composition",free:true}
+]},
+{type:"CLEP",name:"College Composition Modular",cost:"$97 (free via Modern States)",tip:"Multiple choice only version of College Composition. Easier to pass quickly.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/college-composition-modular/",free:true},
+  {name:"Purdue OWL Writing Lab (free)",url:"https://owl.purdue.edu/",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/college-composition-modular",free:true}
+]},
+{type:"CLEP",name:"Spanish Language (Level 1 & 2)",cost:"$97 (free via Modern States)",tip:"Best CLEP for heritage speakers. Level 2 earns 12 credits. Duolingo + practice speaking.",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/spanish-language-levels-1-and-2/",free:true},
+  {name:"Duolingo Spanish (free)",url:"https://www.duolingo.com/course/es/en/Learn-Spanish",free:true},
+  {name:"SpanishPod101 (free tier)",url:"https://www.spanishpod101.com/",free:false},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/spanish-language",free:true}
+]},
+{type:"CLEP",name:"French Language (Level 1 & 2)",cost:"$97 (free via Modern States)",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/french-language-levels-1-and-2/",free:true},
+  {name:"Duolingo French (free)",url:"https://www.duolingo.com/course/fr/en/Learn-French",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/french-language",free:true}
+]},
+{type:"CLEP",name:"German Language (Level 1 & 2)",cost:"$97 (free via Modern States)",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/german-language-levels-1-and-2/",free:true},
+  {name:"Duolingo German (free)",url:"https://www.duolingo.com/course/de/en/Learn-German",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/german-language",free:true}
+]},
+{type:"CLEP",name:"Introduction to Computing",cost:"$97 (free via Modern States)",resources:[
+  {name:"Modern States — Free Prep + Exam Voucher",url:"https://modernstates.org/course/introduction-to-computing/",free:true},
+  {name:"Khan Academy — Computer Science",url:"https://www.khanacademy.org/computing/computer-science",free:true},
+  {name:"CS50x (Harvard, free)",url:"https://cs50.harvard.edu/x/",free:true},
+  {name:"College Board Official CLEP Page",url:"https://clep.collegeboard.org/clep-exams/introduction-to-computing",free:true}
+]},
+
+// ════════════════════════════════════════
+// DSST EXAMS
+// ════════════════════════════════════════
+{type:"DSST",name:"Personal Finance",cost:"$85",tip:"One of the easiest DSSTs. Real-world knowledge about budgeting, credit, investing goes a long way.",resources:[
+  {name:"Khan Academy — Personal Finance",url:"https://www.khanacademy.org/college-careers-more/personal-finance",free:true},
+  {name:"OpenStax Personal Finance",url:"https://openstax.org/details/books/personal-finance",free:true},
+  {name:"Peterson's DSST Test Prep",url:"https://www.petersons.com/college-search/dsst-clep-test-prep.aspx",free:false},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/personal-finance",free:true}
+]},
+{type:"DSST",name:"Business Math",cost:"$85",resources:[
+  {name:"Khan Academy — Business Math",url:"https://www.khanacademy.org/math/cc-sixth-grade-math",free:true},
+  {name:"OpenStax Prealgebra",url:"https://openstax.org/details/books/prealgebra-2e",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/business-mathematics",free:true}
+]},
+{type:"DSST",name:"Principles of Finance",cost:"$85",tip:"More advanced than Personal Finance. Covers time value of money, NPV, bonds.",resources:[
+  {name:"Khan Academy — Finance & Capital Markets",url:"https://www.khanacademy.org/economics-finance-domain/core-finance",free:true},
+  {name:"OpenStax Corporate Finance",url:"https://openstax.org/details/books/corporate-finance",free:true},
+  {name:"Crash Course Economics (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtPNZwz5_o_5uirJ8gQXnhEO",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/principles-of-finance",free:true}
+]},
+{type:"DSST",name:"Organizational Behavior",cost:"$85",tip:"Management theory, motivation, group dynamics. OpenStax is excellent for this.",resources:[
+  {name:"OpenStax Organizational Behavior",url:"https://openstax.org/details/books/organizational-behavior",free:true},
+  {name:"Crash Course Business – Soft Skills (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtNamTKBNE7I8-HCcc22V9zS",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/organizational-behavior",free:true}
+]},
+{type:"DSST",name:"Business Ethics & Society",cost:"$85",resources:[
+  {name:"OpenStax Business Ethics",url:"https://openstax.org/details/books/business-ethics",free:true},
+  {name:"Crash Course Philosophy (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtNgK6MoafnFVcFa99by46Ey",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/business-ethics-and-society",free:true}
+]},
+{type:"DSST",name:"Principles of Statistics",cost:"$85",tip:"Very doable with Khan Academy. Focus on hypothesis testing, confidence intervals.",resources:[
+  {name:"Khan Academy — Statistics & Probability",url:"https://www.khanacademy.org/math/statistics-probability",free:true},
+  {name:"OpenStax Introductory Statistics",url:"https://openstax.org/details/books/introductory-statistics",free:true},
+  {name:"Crash Course Statistics (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtNM_Y-bUAhblSAdWRnmBUcr",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/principles-of-statistics",free:true}
+]},
+{type:"DSST",name:"Lifespan Developmental Psychology",cost:"$85",tip:"Heavily overlaps with CLEP Human Growth & Development. Prep both together.",resources:[
+  {name:"Khan Academy — AP Psychology (developmental)",url:"https://www.khanacademy.org/test-prep/ap-psychology",free:true},
+  {name:"Crash Course Psychology (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6",free:true},
+  {name:"OpenStax Psychology 2e",url:"https://openstax.org/details/books/psychology-2e",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/lifespan-developmental-psychology",free:true}
+]},
+{type:"DSST",name:"Environmental Science",cost:"$85",resources:[
+  {name:"Khan Academy — AP Environmental Science",url:"https://www.khanacademy.org/test-prep/ap-environmental-science",free:true},
+  {name:"Crash Course Ecology (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV",free:true},
+  {name:"OpenStax Environmental Science (free)",url:"https://openstax.org/details/books/environmental-science",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/environment-and-humanity",free:true}
+]},
+{type:"DSST",name:"Principles of Physical Science",cost:"$85",resources:[
+  {name:"Khan Academy — Physics",url:"https://www.khanacademy.org/science/physics",free:true},
+  {name:"Crash Course Physics (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/principles-of-physical-science-i",free:true}
+]},
+{type:"DSST",name:"Criminal Justice",cost:"$85",resources:[
+  {name:"Crash Course Sociology — Crime (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtMJ-AfB_7J1538YKWkZAnGA",free:true},
+  {name:"OpenStax Introduction to Sociology",url:"https://openstax.org/details/books/introduction-sociology-3e",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/criminal-justice",free:true}
+]},
+{type:"DSST",name:"Introduction to Law Enforcement",cost:"$85",resources:[
+  {name:"Peterson's DSST Test Prep",url:"https://www.petersons.com/",free:false},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/introduction-to-law-enforcement",free:true}
+]},
+{type:"DSST",name:"Introduction to World Religions",cost:"$85",tip:"Crash Course Religions series is perfect for this.",resources:[
+  {name:"Crash Course World History — Religion (YouTube)",url:"https://www.youtube.com/playlist?list=PLBDA2E52FB1EF80C9",free:true},
+  {name:"Khan Academy — World History & Religion",url:"https://www.khanacademy.org/humanities/world-history",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/introduction-to-world-religions",free:true}
+]},
+{type:"DSST",name:"Human/Cultural Geography",cost:"$85",resources:[
+  {name:"Khan Academy — AP Human Geography",url:"https://www.khanacademy.org/test-prep/ap-human-geography",free:true},
+  {name:"Crash Course Geography (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtO85OdeSohaazVBmhBtFBCN",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/human-cultural-geography",free:true}
+]},
+{type:"DSST",name:"Ethics in America",cost:"$85",resources:[
+  {name:"Crash Course Philosophy (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtNgK6MoafnFVcFa99by46Ey",free:true},
+  {name:"OpenStax Ethics and Society",url:"https://openstax.org/details/books/business-ethics",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/ethics-in-america",free:true}
+]},
+{type:"DSST",name:"Foundations of Education",cost:"$85",resources:[
+  {name:"Khan Academy — Teaching & Education",url:"https://www.khanacademy.org/",free:true},
+  {name:"OpenStax Introduction to Education",url:"https://openstax.org/",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/foundations-of-education",free:true}
+]},
+{type:"DSST",name:"Management Information Systems",cost:"$85",resources:[
+  {name:"Khan Academy — Computing",url:"https://www.khanacademy.org/computing",free:true},
+  {name:"OpenStax Business & IT",url:"https://openstax.org/",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/management-information-systems",free:true}
+]},
+{type:"DSST",name:"Technical Writing",cost:"$85",tip:"Clear and concise writing with an emphasis on structure and audience. Purdue OWL is ideal.",resources:[
+  {name:"Purdue OWL — Technical Writing",url:"https://owl.purdue.edu/owl/subject_specific_writing/professional_technical_writing/index.html",free:true},
+  {name:"Google Technical Writing Courses (free)",url:"https://developers.google.com/tech-writing",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/technical-writing",free:true}
+]},
+{type:"DSST",name:"The Civil War & Reconstruction",cost:"$85",tip:"Crash Course US History episodes 20–27 cover this period brilliantly.",resources:[
+  {name:"Crash Course US History (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtMwmepBjTSG593eG7ObzO7s",free:true},
+  {name:"Khan Academy — AP US History",url:"https://www.khanacademy.org/test-prep/ap-us-history",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/the-civil-war-and-reconstruction",free:true}
+]},
+{type:"DSST",name:"A History of the Vietnam War",cost:"$85",resources:[
+  {name:"Crash Course US History (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtMwmepBjTSG593eG7ObzO7s",free:true},
+  {name:"Khan Academy — AP US History",url:"https://www.khanacademy.org/test-prep/ap-us-history",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/a-history-of-the-vietnam-war",free:true}
+]},
+{type:"DSST",name:"Substance Abuse",cost:"$85",resources:[
+  {name:"NIH National Institute on Drug Abuse (free)",url:"https://nida.nih.gov/research-topics",free:true},
+  {name:"OpenStax Psychology 2e",url:"https://openstax.org/details/books/psychology-2e",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/substance-abuse",free:true}
+]},
+{type:"DSST",name:"Math for Liberal Arts",cost:"$85",tip:"Non-STEM math survey. Easier than College Algebra. Logic, sets, basic stats.",resources:[
+  {name:"Khan Academy — Basic Math & Statistics",url:"https://www.khanacademy.org/math/statistics-probability",free:true},
+  {name:"OpenStax Math in Society",url:"https://openstax.org/details/books/math-in-society",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/math-for-liberal-arts",free:true}
+]},
+{type:"DSST",name:"Health & Human Development",cost:"$85",resources:[
+  {name:"Khan Academy — Health & Medicine",url:"https://www.khanacademy.org/science/health-and-medicine",free:true},
+  {name:"OpenStax Anatomy & Physiology",url:"https://openstax.org/details/books/anatomy-and-physiology-2e",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/health-and-human-development",free:true}
+]},
+{type:"DSST",name:"Fundamentals of College Algebra",cost:"$85",resources:[
+  {name:"Khan Academy — Algebra 1 & 2",url:"https://www.khanacademy.org/math/algebra2",free:true},
+  {name:"Professor Leonard — College Algebra (YouTube)",url:"https://www.youtube.com/c/ProfessorLeonard",free:true},
+  {name:"Official DSST Fact Sheet",url:"https://www.getcollegecredit.com/exams/fundamentals-of-college-algebra",free:true}
+]},
+
+// ════════════════════════════════════════
+// AP EXAMS (Self-Study)
+// ════════════════════════════════════════
+{type:"AP",name:"AP Macroeconomics",cost:"$98",tip:"Easiest AP to self-study. Khan Academy covers 90% of the content.",resources:[
+  {name:"Khan Academy — AP Macroeconomics",url:"https://www.khanacademy.org/economics-finance-domain/ap-macroeconomics",free:true},
+  {name:"AP Classroom (official, free with test registration)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"Crash Course Economics (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtPNZwz5_o_5uirJ8gQXnhEO",free:true},
+  {name:"AP Macroeconomics Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-macroeconomics",free:true}
+]},
+{type:"AP",name:"AP Microeconomics",cost:"$98",resources:[
+  {name:"Khan Academy — AP Microeconomics",url:"https://www.khanacademy.org/economics-finance-domain/ap-microeconomics",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"Crash Course Economics (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtPNZwz5_o_5uirJ8gQXnhEO",free:true},
+  {name:"AP Microeconomics Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-microeconomics",free:true}
+]},
+{type:"AP",name:"AP Psychology",cost:"$98",tip:"Highest pass rate of all AP exams. 2–3 weeks of Khan Academy is plenty.",resources:[
+  {name:"Khan Academy — AP Psychology",url:"https://www.khanacademy.org/test-prep/ap-psychology",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"Crash Course Psychology (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6",free:true},
+  {name:"AP Psychology Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-psychology",free:true}
+]},
+{type:"AP",name:"AP Human Geography",cost:"$98",resources:[
+  {name:"Khan Academy — AP Human Geography",url:"https://www.khanacademy.org/test-prep/ap-human-geography",free:true},
+  {name:"Crash Course Geography (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtO85OdeSohaazVBmhBtFBCN",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP Human Geography Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-human-geography",free:true}
+]},
+{type:"AP",name:"AP US History",cost:"$98",resources:[
+  {name:"Khan Academy — AP US History",url:"https://www.khanacademy.org/test-prep/ap-us-history",free:true},
+  {name:"Crash Course US History (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtMwmepBjTSG593eG7ObzO7s",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP US History Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-united-states-history",free:true}
+]},
+{type:"AP",name:"AP US Government & Politics",cost:"$98",resources:[
+  {name:"Khan Academy — AP US Government",url:"https://www.khanacademy.org/test-prep/ap-us-government-and-politics",free:true},
+  {name:"Crash Course Government (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtOfse2ncvffeelTrqvhrz8H",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP US Gov Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-united-states-government-and-politics",free:true}
+]},
+{type:"AP",name:"AP World History: Modern",cost:"$98",resources:[
+  {name:"Khan Academy — World History",url:"https://www.khanacademy.org/humanities/world-history",free:true},
+  {name:"Crash Course World History (YouTube)",url:"https://www.youtube.com/playlist?list=PLBDA2E52FB1EF80C9",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP World History Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-world-history-modern",free:true}
+]},
+{type:"AP",name:"AP English Language & Composition",cost:"$98",tip:"Practice rhetorical analysis essays. Purdue OWL and real AP free-response samples.",resources:[
+  {name:"Khan Academy — AP English Language",url:"https://www.khanacademy.org/test-prep/ap-english-language-and-composition",free:true},
+  {name:"Purdue OWL — Rhetorical Analysis",url:"https://owl.purdue.edu/owl/subject_specific_writing/writing_in_literature/rhetorical_approaches_to_literary_analysis.html",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP English Language Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-english-language-and-composition",free:true}
+]},
+{type:"AP",name:"AP English Literature & Composition",cost:"$98",resources:[
+  {name:"Khan Academy — AP English Literature",url:"https://www.khanacademy.org/test-prep/ap-english-literature-and-composition",free:true},
+  {name:"SparkNotes Literature Guides",url:"https://www.sparknotes.com/",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP English Literature Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-english-literature-and-composition",free:true}
+]},
+{type:"AP",name:"AP Environmental Science",cost:"$98",tip:"Lower pass rate but manageable with Khan Academy APES.",resources:[
+  {name:"Khan Academy — AP Environmental Science",url:"https://www.khanacademy.org/test-prep/ap-environmental-science",free:true},
+  {name:"Crash Course Ecology (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP Environmental Science Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-environmental-science",free:true}
+]},
+{type:"AP",name:"AP Statistics",cost:"$98",tip:"The most practical AP. Khan Academy Statistics is comprehensive.",resources:[
+  {name:"Khan Academy — AP Statistics",url:"https://www.khanacademy.org/test-prep/ap-statistics",free:true},
+  {name:"Crash Course Statistics (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtNM_Y-bUAhblSAdWRnmBUcr",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP Statistics Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-statistics",free:true}
+]},
+{type:"AP",name:"AP Calculus AB",cost:"$98",tip:"Professor Leonard on YouTube is better than most classroom teachers.",resources:[
+  {name:"Khan Academy — AP Calculus AB",url:"https://www.khanacademy.org/test-prep/ap-calculus-ab",free:true},
+  {name:"Professor Leonard — Calculus I (YouTube)",url:"https://www.youtube.com/playlist?list=PLF797E961509B4EB5",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP Calculus AB Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-calculus-ab",free:true}
+]},
+{type:"AP",name:"AP Biology",cost:"$98",tip:"Content-heavy. Give yourself 6–8 weeks. Khan Academy AP Biology is thorough.",resources:[
+  {name:"Khan Academy — AP Biology",url:"https://www.khanacademy.org/test-prep/ap-biology",free:true},
+  {name:"Crash Course Biology (YouTube)",url:"https://www.youtube.com/playlist?list=PL3EED4C1D684D3ADF",free:true},
+  {name:"OpenStax Biology 2e",url:"https://openstax.org/details/books/biology-2e",free:true},
+  {name:"AP Biology Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-biology",free:true}
+]},
+{type:"AP",name:"AP Chemistry",cost:"$98",tip:"Hardest AP on this list. Do not underestimate — budget 8–10 weeks.",resources:[
+  {name:"Khan Academy — AP Chemistry",url:"https://www.khanacademy.org/test-prep/ap-chemistry",free:true},
+  {name:"Crash Course Chemistry (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtPHzzYuWy6fYEaX9mQQ8oGr",free:true},
+  {name:"OpenStax Chemistry 2e",url:"https://openstax.org/details/books/chemistry-2e",free:true},
+  {name:"AP Chemistry Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-chemistry",free:true}
+]},
+{type:"AP",name:"AP Physics 1: Algebra-Based",cost:"$98",resources:[
+  {name:"Khan Academy — AP Physics 1",url:"https://www.khanacademy.org/test-prep/ap-physics-1",free:true},
+  {name:"Crash Course Physics (YouTube)",url:"https://www.youtube.com/playlist?list=PL8dPuuaLjXtN0ge7yDk_UA0ldZJdhwkoV",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP Physics 1 Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-physics-1-algebra-based",free:true}
+]},
+{type:"AP",name:"AP Computer Science Principles",cost:"$98",tip:"Most beginner-friendly AP CS exam. No prior coding experience needed.",resources:[
+  {name:"Khan Academy — AP CS Principles",url:"https://www.khanacademy.org/test-prep/ap-computer-science-principles",free:true},
+  {name:"CS50x Introduction to Computer Science (Harvard, free)",url:"https://cs50.harvard.edu/x/",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP CS Principles Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-computer-science-principles",free:true}
+]},
+{type:"AP",name:"AP Spanish Language & Culture",cost:"$98",tip:"Ideal for heritage speakers. 8–9 credits at most schools.",resources:[
+  {name:"Khan Academy — AP Spanish",url:"https://www.khanacademy.org/test-prep/ap-spanish-language-and-culture",free:true},
+  {name:"Duolingo Spanish (free)",url:"https://www.duolingo.com/course/es/en/Learn-Spanish",free:true},
+  {name:"AP Classroom (official)",url:"https://apclassroom.collegeboard.org/",free:true},
+  {name:"AP Spanish Language Official Exam Page",url:"https://apstudents.collegeboard.org/courses/ap-spanish-language-and-culture",free:true}
+]}
+
+]; // end EXAMS
+
+// ── Render ─────────────────────────────────────────────────────────────────────
+var grid = document.getElementById('examGrid');
+var emptyState = document.getElementById('emptyState');
+var activeType = 'ALL';
+var searchQ = '';
+
+function renderCards(){
+  var cards = grid.querySelectorAll('.exam-card');
+  cards.forEach(function(c){ c.remove(); });
+
+  var filtered = EXAMS.filter(function(e){
+    var typeMatch = activeType === 'ALL' || e.type === activeType;
+    var q = searchQ.toLowerCase();
+    var textMatch = !q || e.name.toLowerCase().includes(q) || e.type.toLowerCase().includes(q) || (e.tip||'').toLowerCase().includes(q);
+    return typeMatch && textMatch;
+  });
+
+  emptyState.style.display = filtered.length === 0 ? 'block' : 'none';
+
+  filtered.forEach(function(exam){
+    var card = document.createElement('div');
+    card.className = 'exam-card';
+    card.setAttribute('data-type', exam.type);
+
+    var resources = exam.resources.map(function(r){
+      return '<a href="'+r.url+'" target="_blank" rel="noopener" class="resource-link"'+(r.free?' data-free':'')+'>'+
+        '<div class="r-dot"></div>'+
+        '<span class="r-name">'+r.name+'</span>'+
+        '<span class="r-arrow">↗</span>'+
+      '</a>';
+    }).join('');
+
+    var tipHtml = exam.tip ? '<div class="card-tip">💡 '+exam.tip+'</div>' : '';
+
+    card.innerHTML =
+      '<div class="card-top">'+
+        '<div class="card-title">'+exam.name+'</div>'+
+        '<span class="card-badge '+exam.type+'">'+exam.type+'</span>'+
+      '</div>'+
+      '<div class="card-cost"><strong>'+exam.cost+'</strong></div>'+
+      '<div class="resource-list">'+resources+'</div>'+
+      tipHtml;
+
+    grid.appendChild(card);
+  });
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    activeType = btn.getAttribute('data-type');
+    renderCards();
+  });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', function(){
+  searchQ = this.value;
+  renderCards();
+});
+
+renderCards();
+</script>
+</body>
+</html>
