@@ -998,7 +998,7 @@ if(mcBtn){
   try{
     var s2 = JSON.parse(localStorage.getItem('fga_course')||'{}');
     if((s2.completed||[]).indexOf(2) !== -1){
-      mcBtn.textContent = '✓  Chapter 2 Complete';
+      mcBtn.textContent = '✓  Chapter 2 Complete — click to unmark';
       mcBtn.classList.add('done');
     }
   }catch(e){}
@@ -1007,24 +1007,35 @@ if(mcBtn){
     try{
       var s = JSON.parse(localStorage.getItem('fga_course')||'{}');
       if(!s.completed) s.completed=[];
-      if(s.completed.indexOf(2) === -1){
+      var idx = s.completed.indexOf(2);
+      if(idx === -1){
+        // Mark complete
         s.completed.push(2);
         localStorage.setItem('fga_course', JSON.stringify(s));
-        mcBtn.textContent = '✓  Chapter 2 Complete';
+        mcBtn.textContent = '✓  Chapter 2 Complete — click to unmark';
         mcBtn.classList.add('done');
-        // Update sidebar dot
         var item = document.querySelector('.sb-item[data-ch="2"]');
         var dot  = document.getElementById('sbdot-2');
         if(item) item.classList.add('done');
         if(dot){ dot.textContent=''; dot.classList.add('checkmark'); }
-        // Update progress
-        var completed = s.completed||[];
-        var pct = Math.round(completed.length/12*100);
-        var fillEl = document.getElementById('sbProgFill');
-        var pctEl  = document.getElementById('sb-pct');
-        if(fillEl) fillEl.style.width = pct+'%';
-        if(pctEl)  pctEl.textContent  = completed.length+' / 12';
+      } else {
+        // Unmark
+        s.completed.splice(idx, 1);
+        localStorage.setItem('fga_course', JSON.stringify(s));
+        mcBtn.textContent = 'Mark Chapter 2 Complete';
+        mcBtn.classList.remove('done');
+        var item = document.querySelector('.sb-item[data-ch="2"]');
+        var dot  = document.getElementById('sbdot-2');
+        if(item) item.classList.remove('done');
+        if(dot){ dot.textContent='2'; dot.classList.remove('checkmark'); }
       }
+      // Update progress bar either way
+      var completed = s.completed||[];
+      var pct = Math.round(completed.length/12*100);
+      var fillEl = document.getElementById('sbProgFill');
+      var pctEl  = document.getElementById('sb-pct');
+      if(fillEl) fillEl.style.width = pct+'%';
+      if(pctEl)  pctEl.textContent  = completed.length+' / 12';
     }catch(e){}
   });
 }
