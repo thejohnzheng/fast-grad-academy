@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ch. 05 — DSST, AP & Other Credit Paths | Fast Grad Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#ffffff;--off-white:#f5f5f5;--silver-light:#e8e8e8;
+  --silver:#c0c0c0;--muted:#a8a8a8;--charcoal:#3a3a3a;--dark:#1a1a1a;--black:#0a0a0a;
+  --glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);
+  --glow:rgba(192,192,192,0.12);
+  --font-d:'Instrument Serif',Georgia,serif;
+  --font-b:'Inter',-apple-system,sans-serif;
+  --font-m:'JetBrains Mono',monospace;
+  --max-w:900px;
+  --section-pad:100px 24px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--font-b);font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--silver);color:var(--black)}
+img{max-width:100%;display:block}
+a{color:var(--silver);text-decoration:underline;text-underline-offset:3px;transition:color 0.2s}
+a:hover{color:var(--white)}
+
+/* ── PROGRESS BAR ── */
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--silver),var(--white));z-index:200;transition:width 0.1s linear;width:0%}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}.reveal-d3{transition-delay:0.3s}.reveal-d4{transition-delay:0.4s}
+
+/* ── OLD NAV REMOVED — using .fga-unified-nav instead ── */
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:160px 24px 120px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:1000px;height:1000px;background:radial-gradient(circle,rgba(192,192,192,0.06) 0%,transparent 65%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);padding:8px 20px;border:1px solid var(--glass-border);border-radius:999px;margin-bottom:40px;background:var(--glass)}
+.hero h1{font-family:var(--font-d);font-size:clamp(44px,7vw,88px);font-weight:400;line-height:1.05;letter-spacing:-0.03em;max-width:800px;margin-bottom:28px}
+.hero h1 em{font-style:italic;color:var(--silver)}
+.hero-sub{font-size:18px;font-weight:300;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:48px}
+.hero-author{display:flex;align-items:center;gap:14px;font-size:14px;color:var(--muted)}
+.hero-author .avatar{width:44px;height:44px;background:linear-gradient(135deg,var(--charcoal),var(--dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:20px;color:var(--white);border:1px solid var(--glass-border)}
+.hero-author strong{color:var(--white);font-weight:600}
+.scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;animation:float 2s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.scroll-hint .arrow{width:1px;height:30px;background:linear-gradient(to bottom,var(--silver),transparent)}
+
+/* ── STATS BAR ── */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.04)}
+.stat-cell{background:var(--black);padding:44px 20px;text-align:center}
+.stat-num{font-family:var(--font-d);font-size:clamp(36px,5vw,52px);color:var(--white);line-height:1}
+.stat-num .unit{font-size:0.5em;color:var(--silver)}
+.stat-label{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+@media(max-width:600px){.stats-bar{grid-template-columns:repeat(2,1fr)}}
+
+/* ── CHAPTER SECTIONS ── */
+.chapter{max-width:var(--max-w);margin:0 auto;padding:var(--section-pad)}
+.chapter-wide{max-width:1100px;margin:0 auto;padding:var(--section-pad)}
+.ch-label{font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:40px;display:flex;align-items:center;gap:16px}
+.ch-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
+.ch-title{font-family:var(--font-d);font-size:clamp(32px,4.5vw,52px);font-weight:400;line-height:1.12;letter-spacing:-0.02em;margin-bottom:20px}
+.ch-title em{font-style:italic;color:var(--silver)}
+.ch-desc{font-size:16px;color:var(--muted);font-weight:300;max-width:600px;line-height:1.85;margin-bottom:40px}
+.ch-body{font-size:16px;color:rgba(255,255,255,0.78);line-height:1.9}
+.ch-body p{margin-bottom:24px}
+.ch-body h3{font-family:var(--font-d);font-size:28px;font-weight:400;color:var(--white);margin:48px 0 16px;letter-spacing:-0.01em}
+.ch-body h4{font-size:16px;font-weight:700;color:var(--white);margin:32px 0 12px;letter-spacing:0.02em}
+.ch-body ul,.ch-body ol{margin:16px 0 24px 20px}
+.ch-body li{margin-bottom:10px;color:rgba(255,255,255,0.72)}
+.ch-body strong{color:var(--white);font-weight:600}
+.ch-body blockquote{border-left:2px solid var(--silver);padding:16px 24px;margin:32px 0;font-family:var(--font-d);font-size:22px;font-style:italic;color:var(--silver);line-height:1.5;background:var(--glass);border-radius:0 12px 12px 0}
+
+/* ── DIVIDER ── */
+.divider{width:100%;height:1px;background:rgba(255,255,255,0.04)}
+
+/* ── GLASS CARDS ── */
+.glass-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:32px}
+.glass-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:32px 24px;transition:all 0.3s}
+.glass-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(192,192,192,0.18);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.gc-icon{font-size:28px;margin-bottom:14px}
+.gc-title{font-family:var(--font-d);font-size:20px;color:var(--white);margin-bottom:8px}
+.gc-body{font-size:14px;color:var(--muted);line-height:1.7}
+.gc-tag{display:inline-block;margin-top:14px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:rgba(192,192,192,0.1);color:var(--silver)}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:48px;margin-top:48px}
+.timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--silver),rgba(192,192,192,0.05))}
+.tl-item{position:relative;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+.tl-item::before{content:'';position:absolute;left:-37px;top:34px;width:11px;height:11px;border-radius:50%;background:var(--charcoal);border:2px solid var(--silver);z-index:2}
+.tl-item.highlight::before{background:var(--white);box-shadow:0 0 16px rgba(192,192,192,0.5)}
+.tl-year{font-family:var(--font-m);font-size:12px;color:var(--silver);letter-spacing:0.1em;margin-bottom:6px}
+.tl-title{font-family:var(--font-d);font-size:22px;color:var(--white);margin-bottom:6px}
+.tl-desc{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* ── IMAGE PLACEHOLDER ── */
+.img-placeholder{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,rgba(192,192,192,0.06),rgba(192,192,192,0.02));border:1px dashed rgba(192,192,192,0.2);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin:32px 0;color:var(--muted);font-size:13px;letter-spacing:0.05em}
+.img-placeholder .ph-icon{font-size:36px;opacity:0.4}
+.img-placeholder .ph-label{font-weight:600;text-transform:uppercase;letter-spacing:0.15em;font-size:11px}
+.img-placeholder.portrait{aspect-ratio:3/4;max-width:360px}
+.img-placeholder.square{aspect-ratio:1/1;max-width:400px}
+.img-milestone{width:100%;background:linear-gradient(135deg,rgba(192,192,192,0.08),rgba(192,192,192,0.02));border:1px solid rgba(192,192,192,0.15);border-radius:20px;padding:48px 32px;text-align:center;margin:32px 0}
+.img-milestone .ph-icon{font-size:48px;margin-bottom:16px}
+.img-milestone .ph-title{font-family:var(--font-d);font-size:28px;color:var(--white);margin-bottom:8px}
+.img-milestone .ph-sub{font-size:14px;color:var(--muted)}
+.milestone-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:48px 0}
+@media(max-width:700px){.milestone-row{grid-template-columns:1fr}}
+
+/* ── VIDEO EMBED ── */
+.video-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:20px;margin:24px 0;display:flex;align-items:center;gap:16px;transition:all 0.2s;text-decoration:none}
+.video-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(192,192,192,0.2);transform:translateY(-1px)}
+.video-card .vc-play{width:48px;height:48px;background:rgba(192,192,192,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.video-card .vc-info{flex:1}
+.video-card .vc-label{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.video-card .vc-title{font-size:15px;font-weight:600;color:var(--white);text-decoration:none}
+.video-card .vc-channel{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* ── TOOL CARD ── */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:32px 0}
+.tool-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:24px 20px;transition:all 0.2s}
+.tool-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(192,192,192,0.15)}
+.tool-name{font-family:var(--font-d);font-size:18px;color:var(--white);margin-bottom:4px}
+.tool-url{font-family:var(--font-m);font-size:11px;color:var(--silver);margin-bottom:8px}
+.tool-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.tool-badge{display:inline-block;margin-top:10px;font-size:9px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:3px 10px;border-radius:999px;color:var(--black);background:var(--silver)}
+
+/* ── PROMPT BOX ── */
+.prompt-box{background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);border-radius:16px;padding:24px;margin:20px 0;position:relative}
+.prompt-label{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--silver);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.prompt-text{font-family:var(--font-m);font-size:13px;color:rgba(255,255,255,0.7);line-height:1.8;white-space:pre-wrap}
+.copy-btn{position:absolute;top:16px;right:16px;background:rgba(192,192,192,0.1);border:1px solid rgba(192,192,192,0.2);color:var(--silver);font-size:11px;font-weight:600;padding:5px 14px;border-radius:8px;cursor:pointer;transition:all 0.2s;font-family:var(--font-b)}
+.copy-btn:hover{background:rgba(192,192,192,0.2);color:var(--white)}
+
+/* ── COMPARISON TABLE ── */
+.compare-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:14px}
+.compare-table th{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-align:left;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.compare-table td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.04);color:rgba(255,255,255,0.72)}
+.compare-table tr:hover td{background:rgba(255,255,255,0.02)}
+.compare-table .highlight-cell{color:var(--white);font-weight:700}
+
+/* ── CHECKLIST ── */
+.checklist{margin:24px 0;list-style:none;padding:0}
+.checklist li{padding:12px 0 12px 32px;border-bottom:1px solid rgba(255,255,255,0.04);color:rgba(255,255,255,0.78);position:relative;font-size:15px}
+.checklist li::before{content:'';position:absolute;left:0;top:16px;width:16px;height:16px;border:1.5px solid var(--silver);border-radius:4px}
+
+/* ── ACCORDION ── */
+.accordion{margin:24px 0}
+.acc-item{border:1px solid var(--glass-border);border-radius:14px;margin-bottom:8px;overflow:hidden;background:var(--glass)}
+.acc-header{padding:18px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:15px;color:var(--white);transition:background 0.2s}
+.acc-header:hover{background:rgba(255,255,255,0.03)}
+.acc-header .arrow{transition:transform 0.3s;font-size:12px;color:var(--muted)}
+.acc-item.open .acc-header .arrow{transform:rotate(180deg)}
+.acc-content{max-height:0;overflow:hidden;transition:max-height 0.4s ease;padding:0 24px}
+.acc-item.open .acc-content{max-height:600px;padding:0 24px 24px}
+.acc-content p{font-size:14px;color:var(--muted);line-height:1.75;margin-top:8px}
+
+/* ── CALLOUT ── */
+.callout{background:rgba(192,192,192,0.06);border:1px solid rgba(192,192,192,0.12);border-radius:16px;padding:28px 28px;margin:32px 0;display:flex;gap:16px;align-items:flex-start}
+.callout .callout-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.callout .callout-body{flex:1}
+.callout .callout-title{font-weight:700;font-size:15px;color:var(--white);margin-bottom:6px}
+.callout .callout-text{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* ── TABLE OF CONTENTS ── */
+.toc{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:40px 36px;margin:48px 0}
+.toc-title{font-family:var(--font-d);font-size:28px;color:var(--white);margin-bottom:24px}
+.toc-list{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.toc-list li{display:flex;align-items:baseline;gap:12px}
+.toc-list li a{text-decoration:none;font-size:14px;color:var(--muted);transition:color 0.2s;padding:6px 0;display:flex;align-items:baseline;gap:10px}
+.toc-list li a:hover{color:var(--white)}
+.toc-list .toc-num{font-family:var(--font-m);font-size:11px;color:var(--silver);min-width:24px}
+@media(max-width:600px){.toc-list{grid-template-columns:1fr}}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:80px 24px;border-top:1px solid rgba(255,255,255,0.04)}
+footer .f-brand{font-family:var(--font-d);font-size:28px;color:var(--white);margin-bottom:12px}
+footer .f-tagline{font-size:13px;color:var(--muted);letter-spacing:0.1em}
+footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
+
+/* ── COUNTER ANIMATION ── */
+.counter{font-variant-numeric:tabular-nums}
+
+/* ── ANIMATED TIMELINE SHRINK ── */
+.timeline-shrink{position:relative;margin:48px 0;overflow:hidden}
+.ts-track{display:flex;align-items:stretch;gap:0;min-height:120px}
+.ts-bar{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 12px;border-right:1px solid rgba(255,255,255,0.06);transition:flex 1.5s cubic-bezier(0.4,0,0.2,1),opacity 0.8s ease}
+.ts-bar:last-child{border-right:none}
+.ts-bar .ts-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.ts-bar .ts-value{font-family:var(--font-d);font-size:clamp(20px,3vw,32px);color:var(--white)}
+.ts-bar .ts-sub{font-size:11px;color:var(--muted);margin-top:4px}
+.ts-bar.traditional{background:rgba(255,80,80,0.06);border-color:rgba(255,80,80,0.12)}
+.ts-bar.accelerated{background:rgba(192,192,192,0.08);border-color:rgba(192,192,192,0.15)}
+.ts-bar.fga{background:linear-gradient(135deg,rgba(255,255,255,0.06),rgba(192,192,192,0.1));border-color:rgba(192,192,192,0.2)}
+.timeline-shrink.animated .ts-bar.traditional{flex:1;opacity:0.4}
+.timeline-shrink.animated .ts-bar.accelerated{flex:0.5;opacity:0.6}
+.timeline-shrink.animated .ts-bar.fga{flex:0.25}
+.ts-arrow{display:flex;align-items:center;justify-content:center;padding:0 8px;font-size:20px;color:var(--silver);opacity:0;transition:opacity 0.8s ease 0.5s}
+.timeline-shrink.animated .ts-arrow{opacity:1}
+
+/* ── FAQ ACCORDION ENHANCED ── */
+.faq-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:32px}
+.faq-item{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;overflow:hidden;transition:border-color 0.3s}
+.faq-item:hover{border-color:rgba(192,192,192,0.15)}
+.faq-q{padding:20px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:600;font-size:15px;color:var(--white);transition:background 0.2s;user-select:none}
+.faq-q:hover{background:rgba(255,255,255,0.02)}
+.faq-q .faq-arrow{transition:transform 0.3s;font-size:14px;color:var(--muted);flex-shrink:0}
+.faq-item.open .faq-q .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.5s ease;padding:0 24px}
+.faq-item.open .faq-a{max-height:800px;padding:0 24px 24px}
+.faq-a p{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.8;margin-top:0}
+.faq-a strong{color:var(--white)}
+
+/* ── MISTAKE CARD ── */
+.mistake-card{background:rgba(255,80,80,0.04);border:1px solid rgba(255,80,80,0.12);border-radius:16px;padding:24px;margin-bottom:12px;transition:all 0.2s}
+.mistake-card:hover{background:rgba(255,80,80,0.06);border-color:rgba(255,80,80,0.2)}
+.mistake-num{font-family:var(--font-m);font-size:11px;color:rgba(255,80,80,0.6);letter-spacing:0.1em;margin-bottom:6px}
+.mistake-title{font-weight:700;font-size:15px;color:var(--white);margin-bottom:8px}
+.mistake-body{font-size:14px;color:var(--muted);line-height:1.7}
+.mistake-fix{margin-top:10px;font-size:13px;color:var(--silver);font-weight:600}
+
+/* ── EMPLOYER STAT BAR ── */
+.emp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(192,192,192,0.08);border-radius:16px;overflow:hidden;margin:32px 0}
+.emp-stat{background:var(--black);padding:28px 16px;text-align:center}
+.emp-num{font-family:var(--font-d);font-size:clamp(28px,4vw,42px);color:var(--white);line-height:1}
+.emp-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+@media(max-width:500px){.emp-stats{grid-template-columns:1fr}}
+
+/* ── GRADUATION PHOTO PLACEHOLDERS ── */
+.grad-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:48px 0}
+.grad-photo{aspect-ratio:4/5;background:linear-gradient(135deg,rgba(192,192,192,0.08),rgba(192,192,192,0.02));border:1px solid rgba(192,192,192,0.12);border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:24px;overflow:hidden;position:relative}
+.grad-photo img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:20px}
+.grad-photo .gp-icon{font-size:48px;opacity:0.5}
+.grad-photo .gp-label{font-family:var(--font-d);font-size:18px;color:var(--white)}
+.grad-photo .gp-sub{font-size:12px;color:var(--muted);letter-spacing:0.05em}
+@media(max-width:600px){.grad-photos{grid-template-columns:1fr;max-width:300px;margin-left:auto;margin-right:auto}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .chapter,.chapter-wide{padding:60px 18px}
+  .milestone-row{grid-template-columns:1fr}
+  .glass-grid{grid-template-columns:1fr}
+  .tool-grid{grid-template-columns:1fr}
+  .ts-track{flex-direction:column}
+  .ts-arrow{transform:rotate(90deg)}
+}
+
+/* ═══════════════════════ UNIFIED FGA NAV ═══════════════════════ */
+.fga-unified-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.85) 100%);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(192,192,192,0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: var(--font-display, 'Instrument Serif', Georgia, serif);
+  font-size: 18px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.nav-brand:hover {
+  color: #c0c0c0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.nav-link {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a8a8a8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ffffff;
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+}
+
+.nav-hamburger span {
+  width: 24px;
+  height: 2px;
+  background: #c0c0c0;
+  border-radius: 1px;
+  transition: all 0.3s;
+}
+
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background: rgba(10,10,10,0.98);
+  border-top: 1px solid rgba(192,192,192,0.1);
+}
+
+.nav-mobile.open {
+  display: flex;
+}
+
+.mobile-link {
+  padding: 16px 24px !important;
+  display: block !important;
+  border-bottom: 1px solid rgba(192,192,192,0.05);
+  font-size: 14px !important;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-hamburger {
+    display: flex;
+  }
+  
+  .nav-brand {
+    font-size: 16px;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   COURSE LAYOUT — SIDEBAR + MAIN
+═══════════════════════════════════════ */
+.sidebar{
+  width:268px;min-width:268px;background:#0d0d0d;
+  border-right:1px solid rgba(255,255,255,0.06);
+  position:fixed;top:0;left:0;height:100vh;
+  overflow-y:auto;z-index:100;
+  display:flex;flex-direction:column;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.08) transparent;
+}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px}
+.main-content{margin-left:268px;min-height:100vh}
+.reading-progress{
+  position:fixed;top:0;left:268px;right:0;height:2px;
+  background:rgba(255,255,255,0.06);z-index:200;
+}
+.reading-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--silver),var(--white));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.1s linear;
+}
+
+/* ─ Sidebar brand ─ */
+.sb-brand{
+  padding:22px 20px 18px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  flex-shrink:0;
+}
+.sb-brand-name{
+  font-family:var(--font-d);font-size:15px;
+  color:var(--white);font-weight:400;
+  text-decoration:none;display:block;
+}
+.sb-brand-name:hover{color:var(--silver)}
+.sb-tagline{
+  font-size:9px;color:var(--muted);
+  letter-spacing:0.18em;text-transform:uppercase;margin-top:4px;
+}
+
+/* ─ Sidebar overall progress ─ */
+.sb-prog-wrap{
+  padding:14px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  flex-shrink:0;
+}
+.sb-prog-row{
+  display:flex;justify-content:space-between;
+  font-size:10px;color:var(--muted);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px;
+}
+.sb-prog-track{
+  height:3px;background:rgba(255,255,255,0.08);
+  border-radius:999px;overflow:hidden;
+}
+.sb-prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--silver),var(--white));
+  border-radius:999px;transition:width 0.4s ease;
+}
+
+/* ─ Sidebar nav ─ */
+.sb-nav{flex:1;padding:12px 0 24px;overflow-y:auto}
+.sb-group{
+  font-size:9px;font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:rgba(255,255,255,0.25);
+  padding:14px 20px 5px;
+}
+.sb-item{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 16px 7px 20px;cursor:pointer;
+  transition:background 0.15s;text-decoration:none;
+  border-left:2px solid transparent;
+}
+.sb-item:hover{background:rgba(255,255,255,0.04)}
+.sb-item.active{
+  background:rgba(192,192,192,0.07);
+  border-left-color:var(--silver);
+}
+.sb-dot{
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--muted);flex-shrink:0;
+  transition:all 0.2s;font-family:var(--font-m);
+}
+.sb-item.done .sb-dot{
+  background:var(--white);border-color:var(--white);
+  color:var(--black);font-size:11px;
+}
+.sb-item.done .sb-dot::after{content:'✓'}
+.sb-title{
+  font-size:12.5px;color:rgba(255,255,255,0.45);
+  line-height:1.3;transition:color 0.15s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.sb-item.active .sb-title,.sb-item:hover .sb-title{color:var(--white)}
+.sb-item.done .sb-title{color:rgba(255,255,255,0.6)}
+
+/* ─ Mark-complete ─ */
+.mc-wrap{
+  max-width:var(--max-w);margin:0 auto;
+  padding:0 24px 40px;
+}
+.mc-btn{
+  width:100%;padding:15px 24px;
+  background:rgba(192,192,192,0.08);
+  border:1px solid rgba(192,192,192,0.18);
+  border-radius:12px;color:var(--silver);
+  font-family:var(--font-b);font-size:13px;
+  font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.2s;
+}
+.mc-btn:hover{background:rgba(192,192,192,0.15);border-color:var(--silver);color:var(--white)}
+.mc-btn.done{
+  background:rgba(255,255,255,0.08);
+  border-color:var(--white);color:var(--white);
+}
+
+/* ─ Chapter nav ─ */
+.ch-nav-row{
+  display:flex;justify-content:space-between;align-items:stretch;
+  max-width:var(--max-w);margin:0 auto;
+  padding:32px 24px 80px;
+  border-top:1px solid rgba(255,255,255,0.04);
+  gap:16px;
+}
+.ch-nav-btn{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;padding:14px 18px;
+  border:1px solid rgba(255,255,255,0.07);border-radius:12px;
+  transition:all 0.2s;background:rgba(255,255,255,0.02);
+  max-width:48%;min-width:0;
+}
+.ch-nav-btn:hover{background:rgba(255,255,255,0.05);border-color:rgba(192,192,192,0.2)}
+.ch-nav-btn.ch-next{margin-left:auto;flex-direction:row-reverse;text-align:right}
+.ch-nav-label{font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:3px}
+.ch-nav-title{font-size:13px;color:var(--white);font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.ch-nav-arrow{font-size:16px;color:var(--silver);flex-shrink:0}
+
+/* ─ Mobile ─ */
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%);transition:transform 0.3s ease;z-index:300}
+  .sidebar.open{transform:translateX(0)}
+  .main-content{margin-left:0}
+  .reading-progress{left:0}
+  .sb-toggle{display:flex!important}
+  .sb-overlay{display:block!important}
+}
+.sb-toggle{
+  display:none;position:fixed;top:14px;left:14px;z-index:400;
+  width:40px;height:40px;background:rgba(13,13,13,0.95);
+  border:1px solid rgba(255,255,255,0.1);border-radius:8px;
+  align-items:center;justify-content:center;
+  cursor:pointer;flex-direction:column;gap:5px;
+}
+.sb-toggle span{width:18px;height:1.5px;background:var(--white);border-radius:999px}
+.sb-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.6);z-index:200;
+}
+
+/* ═══════════════════════════════════════
+   DASHBOARD
+═══════════════════════════════════════ */
+.dash-hero{
+  padding:80px 24px 48px;max-width:840px;
+  margin:0 auto;text-align:center;
+}
+.dash-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--muted);
+  padding:7px 18px;border:1px solid var(--glass-border);
+  border-radius:999px;margin-bottom:32px;background:var(--glass);
+}
+.dash-title{
+  font-family:var(--font-d);font-size:clamp(36px,5vw,60px);
+  font-weight:400;line-height:1.08;letter-spacing:-0.025em;
+  margin-bottom:20px;
+}
+.dash-title em{font-style:italic;color:var(--silver)}
+.dash-sub{
+  font-size:16px;font-weight:300;color:var(--muted);
+  max-width:520px;margin:0 auto 40px;line-height:1.8;
+}
+.dash-stats{
+  display:flex;gap:32px;justify-content:center;
+  font-size:13px;color:var(--muted);
+  margin-bottom:40px;flex-wrap:wrap;
+}
+.dash-stats span{display:flex;align-items:center;gap:6px}
+.resume-btn{
+  display:inline-block;padding:14px 36px;
+  background:var(--white);color:var(--black);
+  font-family:var(--font-b);font-size:13px;
+  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;border-radius:8px;
+  transition:opacity 0.2s;cursor:pointer;border:none;
+}
+.resume-btn:hover{opacity:0.88}
+
+/* ─ Overall progress ring area ─ */
+.dash-prog-area{
+  display:flex;align-items:center;gap:20px;
+  max-width:480px;margin:0 auto 56px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:16px;padding:20px 24px;
+}
+.dash-ring{position:relative;width:72px;height:72px;flex-shrink:0}
+.dash-ring svg{transform:rotate(-90deg)}
+.dash-ring-text{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--font-d);font-size:20px;color:var(--white);
+}
+.dash-prog-info{text-align:left}
+.dash-prog-info strong{font-size:16px;color:var(--white);display:block;margin-bottom:4px}
+.dash-prog-info span{font-size:13px;color:var(--muted)}
+
+/* ─ Chapter cards ─ */
+.ch-cards-section{
+  max-width:1100px;margin:0 auto;
+  padding:0 24px 100px;
+}
+.ch-cards-group-label{
+  font-size:10px;font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--muted);
+  padding:8px 0 14px;
+  display:flex;align-items:center;gap:12px;
+}
+.ch-cards-group-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.04)}
+.ch-cards-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;margin-bottom:40px;
+}
+.ch-card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:16px;padding:22px;
+  text-decoration:none;display:block;
+  transition:all 0.22s;position:relative;overflow:hidden;
+}
+.ch-card:hover{
+  background:rgba(255,255,255,0.05);
+  border-color:rgba(192,192,192,0.18);
+  transform:translateY(-2px);
+}
+.ch-card.done{border-color:rgba(255,255,255,0.12)}
+.ch-card-check{
+  position:absolute;top:14px;right:14px;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:var(--silver);
+  opacity:0;transition:opacity 0.2s;
+}
+.ch-card.done .ch-card-check{opacity:1}
+.ch-card-num{
+  font-family:var(--font-m);font-size:10px;
+  color:var(--muted);margin-bottom:8px;letter-spacing:0.08em;
+}
+.ch-card-title{
+  font-family:var(--font-d);font-size:18px;
+  color:var(--white);margin-bottom:8px;line-height:1.25;
+}
+.ch-card-desc{
+  font-size:13px;color:var(--muted);
+  line-height:1.65;margin-bottom:14px;
+}
+.ch-card-meta{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;color:rgba(255,255,255,0.3);
+}
+.ch-card-meta .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.2)}
+
+
+.fga-unified-nav{position:fixed;top:0;left:268px;right:0;z-index:150;padding:0 24px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);height:56px;display:flex;align-items:center}
+.nav-container{display:flex;align-items:center;gap:32px;width:100%}
+.nav-brand{font-family:var(--font-d);font-size:17px;color:var(--white);text-decoration:none;font-weight:400;margin-right:auto}
+.nav-brand:hover{color:var(--silver)}
+.nav-links{display:flex;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s;font-weight:400}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-hamburger span{width:20px;height:1.5px;background:var(--white);border-radius:999px;display:block}
+.nav-mobile{display:none;position:fixed;top:56px;left:268px;right:0;background:rgba(10,10,10,0.98);padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);z-index:149}
+.nav-mobile.open{display:flex;flex-direction:column;gap:12px}
+@media(max-width:900px){
+  .fga-unified-nav{left:0}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .nav-mobile{left:0}
+  .main-content{padding-top:56px}
+}
+@media(min-width:901px){.main-content{padding-top:56px}}
+
+</style>
+</head>
+<body>
+
+<div id="access-gate" style="position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="max-width:420px;width:100%;text-align:center">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:#fff;margin-bottom:8px">Fast Grad Academy</div>
+    <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#a8a8a8;margin-bottom:48px">Student Access Required</div>
+    <input id="ag-input" type="password" placeholder="Enter your access code"
+      style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.2s"
+      onkeydown="if(event.key==='Enter')unlockAccess()"
+    />
+    <div id="ag-err" style="font-size:13px;color:#e55;margin-bottom:12px;display:none">Incorrect code. Please try again.</div>
+    <button onclick="unlockAccess()"
+      style="width:100%;padding:14px;background:#fff;color:#0a0a0a;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;border-radius:10px;cursor:pointer;transition:opacity 0.2s"
+      onmouseover="this.style.opacity=0.88" onmouseout="this.style.opacity=1">
+      Unlock Course
+    </button>
+    <div style="margin-top:24px;font-size:12px;color:rgba(255,255,255,0.25)">
+      Purchased the guide? Check your email for your code.
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  try{
+    var s=JSON.parse(localStorage.getItem('fga_course')||'{}');
+    if(s.access){document.getElementById('access-gate').style.display='none';return;}
+  }catch(e){}
+  document.body.style.overflow='hidden';
+})();
+function unlockAccess(){
+  var v=document.getElementById('ag-input').value.trim();
+  var e=document.getElementById('ag-err');
+  if(v.toUpperCase()==='P@SSW0RD!'||v==='P@ssw0rd!'){
+    var s=JSON.parse(localStorage.getItem('fga_course')||'{}');
+    s.access=true;
+    if(!s.completed)s.completed=[];
+    localStorage.setItem('fga_course',JSON.stringify(s));
+    var g=document.getElementById('access-gate');
+    g.style.transition='opacity 0.4s';g.style.opacity='0';
+    setTimeout(function(){g.style.display='none';document.body.style.overflow='';},400);
+  } else {
+    e.style.display='block';
+    document.getElementById('ag-input').style.borderColor='#e55';
+  }
+}
+</script>
+
+
+<nav class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <a href="/guide" class="sb-brand-name">Fast Grad Academy</a>
+    <div class="sb-tagline">The Complete Guide</div>
+  </div>
+  <div class="sb-prog-wrap">
+    <div class="sb-prog-row">
+      <span>Progress</span>
+      <span id="sb-pct">0 / 12</span>
+    </div>
+    <div class="sb-prog-track"><div class="sb-prog-fill" id="sbProgFill" style="width:0%"></div></div>
+  </div>
+  <div class="sb-nav"><div class="sb-group">FOUNDATIONS</div>
+<a href="/ch1" class="sb-item" data-ch="1">
+  <div class="sb-dot" id="sbdot-1">01</div>
+  <span class="sb-title">Breaking the Education System</span>
+</a>
+<a href="/ch2" class="sb-item" data-ch="2">
+  <div class="sb-dot" id="sbdot-2">02</div>
+  <span class="sb-title">Vision & Mental Fortitude</span>
+</a>
+<a href="/ch3" class="sb-item" data-ch="3">
+  <div class="sb-dot" id="sbdot-3">03</div>
+  <span class="sb-title">The Credit Stacking System</span>
+</a>
+<div class="sb-group">CREDIT PATHWAYS</div>
+<a href="/ch4" class="sb-item" data-ch="4">
+  <div class="sb-dot" id="sbdot-4">04</div>
+  <span class="sb-title">Mastering CLEP Exams</span>
+</a>
+<a href="/ch5" class="sb-item active" data-ch="5">
+  <div class="sb-dot" id="sbdot-5">05</div>
+  <span class="sb-title">DSST, AP & Other Credit Paths</span>
+</a>
+<a href="/ch6" class="sb-item" data-ch="6">
+  <div class="sb-dot" id="sbdot-6">06</div>
+  <span class="sb-title">PSEO & Dual Enrollment</span>
+</a>
+<a href="/ch7" class="sb-item" data-ch="7">
+  <div class="sb-dot" id="sbdot-7">07</div>
+  <span class="sb-title">Dissecting Your Degree</span>
+</a>
+<div class="sb-group">EXECUTION</div>
+<a href="/ch8" class="sb-item" data-ch="8">
+  <div class="sb-dot" id="sbdot-8">08</div>
+  <span class="sb-title">Study Techniques That Work</span>
+</a>
+<a href="/ch9" class="sb-item" data-ch="9">
+  <div class="sb-dot" id="sbdot-9">09</div>
+  <span class="sb-title">The AI Study Stack</span>
+</a>
+<a href="/ch10" class="sb-item" data-ch="10">
+  <div class="sb-dot" id="sbdot-10">10</div>
+  <span class="sb-title">Your Personalized Roadmap</span>
+</a>
+<div class="sb-group">STRATEGY</div>
+<a href="/ch11" class="sb-item" data-ch="11">
+  <div class="sb-dot" id="sbdot-11">11</div>
+  <span class="sb-title">The Financial Strategy</span>
+</a>
+<a href="/ch12" class="sb-item" data-ch="12">
+  <div class="sb-dot" id="sbdot-12">12</div>
+  <span class="sb-title">Getting the Most Out of College</span>
+</a>
+</div>
+</nav>
+<div class="sb-overlay" id="sbOverlay"></div>
+<button class="sb-toggle" id="sbToggle">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- Reading progress -->
+<div class="reading-progress"><div class="reading-progress-fill"></div></div>
+
+<!-- Top nav -->
+<nav class="fga-unified-nav">
+  <div class="nav-container">
+    <a href="/guide" class="nav-brand">Fast Grad Academy</a>
+    <div class="nav-links">
+      <a href="/guide" class="nav-link">Course Home</a>
+      <a href="/" class="nav-link">Main Site</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="/guide" class="nav-link mobile-link">Course Home</a>
+    <a href="/" class="nav-link mobile-link">Main Site</a>
+  </div>
+</nav>
+
+<!-- Main content -->
+<div class="main-content">
+
+  <section class="chapter" id="ch5">
+  <div class="ch-label reveal">Chapter 05</div>
+  <h2 class="ch-title reveal">DSST, AP &amp; <em>Other Credit Paths</em></h2>
+  <div class="ch-body reveal">
+    <h3>DSST (DANTES Subject Standardized Tests)</h3>
+    <p>DSST offers 33+ exams covering subjects that CLEP doesn't — like Ethics in America, Cybersecurity, Technical Writing, Introduction to Business, and Personal Finance. Key differences from CLEP:</p>
+    <ul>
+      <li><strong>Retake policy:</strong> Wait only 30 days (vs. 3 months for CLEP)</li>
+      <li><strong>Originally military-focused,</strong> but available to all students</li>
+      <li><strong>Some unique subjects</strong> not covered by any other exam program</li>
+    </ul>
+
+    <h4>Top 5 DSST Exams to Consider</h4>
+    <ol>
+      <li><strong>Principles of Public Speaking</strong> — fulfills oral communication requirements</li>
+      <li><strong>Introduction to Business</strong> — broad business fundamentals</li>
+      <li><strong>Personal Finance</strong> — practical knowledge + college credit</li>
+      <li><strong>Computing and Information Technology</strong> — IT/computer science credit</li>
+      <li><strong>Introduction to World Religions</strong> — humanities elective</li>
+    </ol>
+
+    <h3>AP Exams (Advanced Placement)</h3>
+    <p>Most students think you need to take an AP class to take an AP exam. <strong>You don't.</strong> Self-study is allowed for every AP exam. You register through the College Board website, pay ~$98 per exam, and take the test in May.</p>
+    <p>AP scores range from 1-5. Most colleges accept scores of 3+ for credit, though more selective schools may require 4 or 5. Key exams to consider for self-study:</p>
+
+    <ul>
+      <li><strong>AP Human Geography</strong> — accessible content, high pass rate</li>
+      <li><strong>AP Environmental Science</strong> — lab component is minimal for the exam</li>
+      <li><strong>AP Psychology</strong> — significant overlap with CLEP Introductory Psychology</li>
+      <li><strong>AP Microeconomics / Macroeconomics</strong> — complements CLEP economics exams</li>
+      <li><strong>AP US History</strong> — if you have strong reading comprehension skills</li>
+    </ul>
+
+    <h3>When to Use Each Pathway</h3>
+  </div>
+
+  <div class="reveal" style="max-width:var(--max-w);margin:0 auto;padding:0 24px">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>CLEP</th>
+          <th>DSST</th>
+          <th>AP</th>
+          <th>PSEO</th>
+          <th>ACE Providers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cost per exam</td>
+          <td class="highlight-cell">$97 (free w/ Modern States)</td>
+          <td>$100-110</td>
+          <td>$98</td>
+          <td class="highlight-cell">Free</td>
+          <td class="highlight-cell">$5-99/mo (unlimited)</td>
+        </tr>
+        <tr>
+          <td>When to take</td>
+          <td>Year-round</td>
+          <td>Year-round</td>
+          <td>May only</td>
+          <td>Fall/Spring semesters</td>
+          <td>Year-round, self-paced</td>
+        </tr>
+        <tr>
+          <td>Retake wait</td>
+          <td>3 months</td>
+          <td class="highlight-cell">30 days</td>
+          <td>1 year</td>
+          <td>N/A (course-based)</td>
+          <td class="highlight-cell">Immediate</td>
+        </tr>
+        <tr>
+          <td>Credits per exam</td>
+          <td>3-6</td>
+          <td>3</td>
+          <td>3-6</td>
+          <td>3-4 per course</td>
+          <td>3 per course</td>
+        </tr>
+        <tr>
+          <td>School acceptance</td>
+          <td>2,900+</td>
+          <td>1,900+</td>
+          <td>Most</td>
+          <td>State-specific</td>
+          <td>ACE-recommended (WGU, UMPI, many others)</td>
+        </tr>
+        <tr>
+          <td>Best for</td>
+          <td>Gen-ed bulk</td>
+          <td>Gap-filling</td>
+          <td>Advanced subjects</td>
+          <td>HS students</td>
+          <td class="highlight-cell">Pre-loading 60-90 credits fast</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="chapter" style="padding-top:48px;padding-bottom:0">
+    <div class="ch-body reveal">
+      <h3>ACE Credit Providers — The Accelerator Most Students Miss</h3>
+      <p>ACE (American Council on Education) evaluates non-traditional courses and recommends them for college credit. These online platforms let you earn credits at a fraction of the cost and speed of traditional college — and they're accepted at hundreds of schools including WGU, UMPI, and many state universities.</p>
+    </div>
+
+    <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));max-width:1100px;margin:24px auto 0;padding:0 24px">
+      <div class="glass-card">
+        <div class="gc-icon">📘</div>
+        <div class="gc-title">Sophia Learning</div>
+        <div class="gc-body"><strong>~$99/month, unlimited courses.</strong> Open-book quizzes, micro-learning modules. Best for general education. Many students complete 3 credits in 3-5 days. A single month can yield 15-20 credits. Transfers to WGU, SNHU, UMPI, Purdue Global, and dozens more.</div>
+        <div class="gc-tag">Fastest ROI</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-icon">📗</div>
+        <div class="gc-title">Study.com</div>
+        <div class="gc-body"><strong>~$200/month, unlimited courses.</strong> 200+ ACE-recommended courses with video lessons and proctored exams. Covers both lower and upper-division courses. Higher cost but broader catalog — can replace courses that CLEP and Sophia don't cover.</div>
+        <div class="gc-tag">Broadest Catalog</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-icon">📙</div>
+        <div class="gc-title">Saylor Academy</div>
+        <div class="gc-body"><strong>Free courses, $5 exam fee.</strong> Fully open-source curriculum. Fewer courses than Sophia or Study.com, but the price is unbeatable. Great supplemental option. ACE-recommended credits transfer to partner schools.</div>
+        <div class="gc-tag">Virtually Free</div>
+      </div>
+    </div>
+
+    <div class="chapter" style="padding-top:24px;padding-bottom:0">
+      <div class="callout reveal">
+        <div class="callout-icon">🔥</div>
+        <div class="callout-body">
+          <div class="callout-title">The Pre-Loading Strategy</div>
+          <div class="callout-text">The most aggressive degree hackers earn 60-90 credits through Sophia + Study.com + CLEP <strong>before ever enrolling</strong> at a university. Then they enter a school like WGU or UMPI, transfer everything in, and finish their remaining 30 credits in one term. Total out-of-pocket: as low as <strong>$4,000-$6,000</strong> for an entire bachelor's degree. This is the strategy detailed in Chapter 10.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+  <!-- Mark complete -->
+  <div class="mc-wrap">
+    <button class="mc-btn" id="mcBtn">Mark Chapter 5 Complete</button>
+  </div>
+
+  <!-- Chapter nav -->
+  <div class="ch-nav-row">
+    <a href="/ch4" class="ch-nav-btn">
+  <span class="ch-nav-arrow">←</span>
+  <div><span class="ch-nav-label">Previous</span><span class="ch-nav-title">Mastering CLEP Exams</span></div>
+</a>
+    <a href="/ch6" class="ch-nav-btn ch-next">
+  <span class="ch-nav-arrow">→</span>
+  <div><span class="ch-nav-label">Next</span><span class="ch-nav-title">PSEO & Dual Enrollment</span></div>
+</a>
+  </div>
+
+</div><!-- /main-content -->
+
+
+<script>
+// ── Progress bar ──
+var rpFill = document.querySelector('.reading-progress-fill');
+window.addEventListener('scroll', function(){
+  var h = document.documentElement;
+  var pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  if(rpFill) rpFill.style.transform = 'scaleX(' + pct + ')';
+});
+
+// ── Scroll reveal ──
+var ro = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+
+// ── Copy prompt ──
+function copyPrompt(btn){
+  var text = btn.parentElement.querySelector('.prompt-text').textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    var orig=btn.textContent; btn.textContent='✓ Copied!';
+    btn.style.background='rgba(192,192,192,0.2)';
+    setTimeout(function(){ btn.textContent=orig; btn.style.background=''; },2000);
+  });
+}
+
+// ── FAQ accordion ──
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click', function(){
+    var item = q.parentElement;
+    var was = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+    if(!was) item.classList.add('open');
+  });
+});
+
+// ── Nav hamburger ──
+var ham = document.getElementById('navHamburger');
+var mob = document.getElementById('navMobile');
+if(ham && mob){
+  ham.addEventListener('click',function(){ mob.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-link').forEach(function(l){
+    l.addEventListener('click',function(){ mob.classList.remove('open'); });
+  });
+}
+
+// ── Sidebar toggle (mobile) ──
+var sbToggle = document.getElementById('sbToggle');
+var sidebar  = document.getElementById('sidebar');
+var sbOverlay = document.getElementById('sbOverlay');
+if(sbToggle && sidebar){
+  sbToggle.addEventListener('click',function(){ sidebar.classList.toggle('open'); });
+  if(sbOverlay) sbOverlay.addEventListener('click',function(){ sidebar.classList.remove('open'); });
+}
+</script>
+
+<script>
+(function(){
+  try{
+    var s = JSON.parse(localStorage.getItem('fga_course')||'{}');
+    if(!s.access){ window.location.href='/guide'; return; }
+    var completed = s.completed||[];
+    var pct = Math.round(completed.length/12*100);
+    var fillEl = document.getElementById('sbProgFill');
+    var pctEl  = document.getElementById('sb-pct');
+    if(fillEl) fillEl.style.width = pct+'%';
+    if(pctEl)  pctEl.textContent  = completed.length+' / 12';
+    completed.forEach(function(n){
+      var item = document.querySelector('.sb-item[data-ch="'+n+'"]');
+      var dot  = document.getElementById('sbdot-'+n);
+      if(item) item.classList.add('done');
+      if(dot){ dot.textContent=''; dot.classList.add('checkmark'); }
+    });
+    // Update lastVisited
+    s.lastVisited = 5;
+    localStorage.setItem('fga_course', JSON.stringify(s));
+  }catch(e){}
+})();
+
+// Mark complete
+var mcBtn = document.getElementById('mcBtn');
+if(mcBtn){
+  // Init button state
+  try{
+    var s2 = JSON.parse(localStorage.getItem('fga_course')||'{}');
+    if((s2.completed||[]).indexOf(5) !== -1){
+      mcBtn.textContent = '✓  Chapter 5 Complete';
+      mcBtn.classList.add('done');
+    }
+  }catch(e){}
+
+  mcBtn.addEventListener('click', function(){
+    try{
+      var s = JSON.parse(localStorage.getItem('fga_course')||'{}');
+      if(!s.completed) s.completed=[];
+      if(s.completed.indexOf(5) === -1){
+        s.completed.push(5);
+        localStorage.setItem('fga_course', JSON.stringify(s));
+        mcBtn.textContent = '✓  Chapter 5 Complete';
+        mcBtn.classList.add('done');
+        // Update sidebar dot
+        var item = document.querySelector('.sb-item[data-ch="5"]');
+        var dot  = document.getElementById('sbdot-5');
+        if(item) item.classList.add('done');
+        if(dot){ dot.textContent=''; dot.classList.add('checkmark'); }
+        // Update progress
+        var completed = s.completed||[];
+        var pct = Math.round(completed.length/12*100);
+        var fillEl = document.getElementById('sbProgFill');
+        var pctEl  = document.getElementById('sb-pct');
+        if(fillEl) fillEl.style.width = pct+'%';
+        if(pctEl)  pctEl.textContent  = completed.length+' / 12';
+      }
+    }catch(e){}
+  });
+}
+</script>
+</body>
+</html>
