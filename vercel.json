@@ -143,5 +143,6 @@
         }
       ]
     }
-  ]
+  ],
+  "_deploy_note": "password protection added via middleware.js"
 }
