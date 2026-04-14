@@ -27,7 +27,8 @@
     { "source": "/ch9", "destination": "/ch9.html" },
     { "source": "/ch10", "destination": "/ch10.html" },
     { "source": "/ch11", "destination": "/ch11.html" },
-    { "source": "/ch12", "destination": "/ch12.html" }
+    { "source": "/ch12", "destination": "/ch12.html" },
+    { "source": "/resources", "destination": "/resources.html" }
   ],
   "headers": [
     {
