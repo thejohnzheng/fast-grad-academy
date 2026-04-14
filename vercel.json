@@ -7,31 +7,96 @@
     },
     "api/verify.js": {
       "maxDuration": 10
+    },
+    "api/checkout.js": {
+      "maxDuration": 10
     }
   },
   "redirects": [
-    { "source": "/visual-guide", "destination": "/", "statusCode": 301 },
-    { "source": "/visual-guide.html", "destination": "/", "statusCode": 301 }
+    {
+      "source": "/visual-guide",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/visual-guide.html",
+      "destination": "/",
+      "statusCode": 301
+    }
   ],
   "rewrites": [
-    { "source": "/guide", "destination": "/guide.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/refund", "destination": "/refund.html" },
-    { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/ch1", "destination": "/ch1.html" },
-    { "source": "/ch2", "destination": "/ch2.html" },
-    { "source": "/ch3", "destination": "/ch3.html" },
-    { "source": "/ch4", "destination": "/ch4.html" },
-    { "source": "/ch5", "destination": "/ch5.html" },
-    { "source": "/ch6", "destination": "/ch6.html" },
-    { "source": "/ch7", "destination": "/ch7.html" },
-    { "source": "/ch8", "destination": "/ch8.html" },
-    { "source": "/ch9", "destination": "/ch9.html" },
-    { "source": "/ch10", "destination": "/ch10.html" },
-    { "source": "/ch11", "destination": "/ch11.html" },
-    { "source": "/ch12", "destination": "/ch12.html" },
-    { "source": "/resources", "destination": "/resources.html" }
+    {
+      "source": "/guide",
+      "destination": "/guide.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/refund",
+      "destination": "/refund.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/ch1",
+      "destination": "/ch1.html"
+    },
+    {
+      "source": "/ch2",
+      "destination": "/ch2.html"
+    },
+    {
+      "source": "/ch3",
+      "destination": "/ch3.html"
+    },
+    {
+      "source": "/ch4",
+      "destination": "/ch4.html"
+    },
+    {
+      "source": "/ch5",
+      "destination": "/ch5.html"
+    },
+    {
+      "source": "/ch6",
+      "destination": "/ch6.html"
+    },
+    {
+      "source": "/ch7",
+      "destination": "/ch7.html"
+    },
+    {
+      "source": "/ch8",
+      "destination": "/ch8.html"
+    },
+    {
+      "source": "/ch9",
+      "destination": "/ch9.html"
+    },
+    {
+      "source": "/ch10",
+      "destination": "/ch10.html"
+    },
+    {
+      "source": "/ch11",
+      "destination": "/ch11.html"
+    },
+    {
+      "source": "/ch12",
+      "destination": "/ch12.html"
+    },
+    {
+      "source": "/resources",
+      "destination": "/resources.html"
+    }
   ],
   "headers": [
     {
