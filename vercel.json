@@ -9,9 +9,12 @@
       "maxDuration": 10
     }
   },
+  "redirects": [
+    { "source": "/visual-guide", "destination": "/", "statusCode": 301 },
+    { "source": "/visual-guide.html", "destination": "/", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/guide", "destination": "/guide.html" },
-    { "source": "/visual-guide", "destination": "/visual-guide.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/refund", "destination": "/refund.html" },
