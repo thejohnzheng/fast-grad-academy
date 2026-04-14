@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --white:#ffffff;--off-white:#f5f5f5;--silver-light:#e8e8e8;
@@ -660,308 +659,6 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
 }
 @media(min-width:901px){.main-content{padding-top:56px}}
 
-
-
-/* ═══════════════════════════════════════
-   COURSE LAYOUT — SIDEBAR + MAIN
-═══════════════════════════════════════ */
-.sidebar{
-  width:268px;min-width:268px;background:#0d0d0d;
-  border-right:1px solid rgba(255,255,255,0.06);
-  position:fixed;top:0;left:0;height:100vh;
-  overflow-y:auto;z-index:100;
-  display:flex;flex-direction:column;
-  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.08) transparent;
-}
-.sidebar::-webkit-scrollbar{width:4px}
-.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px}
-.main-content{margin-left:268px;min-height:100vh}
-.reading-progress{
-  position:fixed;top:0;left:268px;right:0;height:2px;
-  background:rgba(255,255,255,0.06);z-index:200;
-}
-.reading-progress-fill{
-  height:100%;
-  background:linear-gradient(90deg,var(--silver),var(--white));
-  transform:scaleX(0);transform-origin:left;
-  transition:transform 0.1s linear;
-}
-
-/* ─ Sidebar brand ─ */
-.sb-brand{
-  padding:22px 20px 18px;
-  border-bottom:1px solid rgba(255,255,255,0.06);
-  flex-shrink:0;
-}
-.sb-brand-name{
-  font-family:var(--font-d);font-size:15px;
-  color:var(--white);font-weight:400;
-  text-decoration:none;display:block;
-}
-.sb-brand-name:hover{color:var(--silver)}
-.sb-tagline{
-  font-size:9px;color:var(--muted);
-  letter-spacing:0.18em;text-transform:uppercase;margin-top:4px;
-}
-
-/* ─ Sidebar overall progress ─ */
-.sb-prog-wrap{
-  padding:14px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.06);
-  flex-shrink:0;
-}
-.sb-prog-row{
-  display:flex;justify-content:space-between;
-  font-size:10px;color:var(--muted);
-  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px;
-}
-.sb-prog-track{
-  height:3px;background:rgba(255,255,255,0.08);
-  border-radius:999px;overflow:hidden;
-}
-.sb-prog-fill{
-  height:100%;
-  background:linear-gradient(90deg,var(--silver),var(--white));
-  border-radius:999px;transition:width 0.4s ease;
-}
-
-/* ─ Sidebar nav ─ */
-.sb-nav{flex:1;padding:12px 0 24px;overflow-y:auto}
-.sb-group{
-  font-size:9px;font-weight:700;letter-spacing:0.22em;
-  text-transform:uppercase;color:rgba(255,255,255,0.25);
-  padding:14px 20px 5px;
-}
-.sb-item{
-  display:flex;align-items:center;gap:10px;
-  padding:7px 16px 7px 20px;cursor:pointer;
-  transition:background 0.15s;text-decoration:none;
-  border-left:2px solid transparent;
-}
-.sb-item:hover{background:rgba(255,255,255,0.04)}
-.sb-item.active{
-  background:rgba(192,192,192,0.07);
-  border-left-color:var(--silver);
-}
-.sb-dot{
-  width:20px;height:20px;border-radius:50%;
-  border:1.5px solid rgba(255,255,255,0.18);
-  display:flex;align-items:center;justify-content:center;
-  font-size:9px;color:var(--muted);flex-shrink:0;
-  transition:all 0.2s;font-family:var(--font-m);
-}
-.sb-item.done .sb-dot{
-  background:var(--white);border-color:var(--white);
-  color:var(--black);font-size:11px;
-}
-.sb-item.done .sb-dot::after{content:'✓'}
-.sb-title{
-  font-size:12.5px;color:rgba(255,255,255,0.45);
-  line-height:1.3;transition:color 0.15s;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.sb-item.active .sb-title,.sb-item:hover .sb-title{color:var(--white)}
-.sb-item.done .sb-title{color:rgba(255,255,255,0.6)}
-
-/* ─ Mark-complete ─ */
-.mc-wrap{
-  max-width:var(--max-w);margin:0 auto;
-  padding:0 24px 40px;
-}
-.mc-btn{
-  width:100%;padding:15px 24px;
-  background:rgba(192,192,192,0.08);
-  border:1px solid rgba(192,192,192,0.18);
-  border-radius:12px;color:var(--silver);
-  font-family:var(--font-b);font-size:13px;
-  font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
-  cursor:pointer;transition:all 0.2s;
-}
-.mc-btn:hover{background:rgba(192,192,192,0.15);border-color:var(--silver);color:var(--white)}
-.mc-btn.done{
-  background:rgba(255,255,255,0.08);
-  border-color:var(--white);color:var(--white);
-}
-
-/* ─ Chapter nav ─ */
-.ch-nav-row{
-  display:flex;justify-content:space-between;align-items:stretch;
-  max-width:var(--max-w);margin:0 auto;
-  padding:32px 24px 80px;
-  border-top:1px solid rgba(255,255,255,0.04);
-  gap:16px;
-}
-.ch-nav-btn{
-  display:flex;align-items:center;gap:12px;
-  text-decoration:none;padding:14px 18px;
-  border:1px solid rgba(255,255,255,0.07);border-radius:12px;
-  transition:all 0.2s;background:rgba(255,255,255,0.02);
-  max-width:48%;min-width:0;
-}
-.ch-nav-btn:hover{background:rgba(255,255,255,0.05);border-color:rgba(192,192,192,0.2)}
-.ch-nav-btn.ch-next{margin-left:auto;flex-direction:row-reverse;text-align:right}
-.ch-nav-label{font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:3px}
-.ch-nav-title{font-size:13px;color:var(--white);font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
-.ch-nav-arrow{font-size:16px;color:var(--silver);flex-shrink:0}
-
-/* ─ Mobile ─ */
-@media(max-width:900px){
-  .sidebar{transform:translateX(-100%);transition:transform 0.3s ease;z-index:300}
-  .sidebar.open{transform:translateX(0)}
-  .main-content{margin-left:0}
-  .reading-progress{left:0}
-  .sb-toggle{display:flex!important}
-  .sb-overlay{display:block!important}
-}
-.sb-toggle{
-  display:none;position:fixed;top:14px;left:14px;z-index:400;
-  width:40px;height:40px;background:rgba(13,13,13,0.95);
-  border:1px solid rgba(255,255,255,0.1);border-radius:8px;
-  align-items:center;justify-content:center;
-  cursor:pointer;flex-direction:column;gap:5px;
-}
-.sb-toggle span{width:18px;height:1.5px;background:var(--white);border-radius:999px}
-.sb-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,0.6);z-index:200;
-}
-
-/* ═══════════════════════════════════════
-   DASHBOARD
-═══════════════════════════════════════ */
-.dash-hero{
-  padding:80px 24px 48px;max-width:840px;
-  margin:0 auto;text-align:center;
-}
-.dash-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:10px;font-weight:700;letter-spacing:0.22em;
-  text-transform:uppercase;color:var(--muted);
-  padding:7px 18px;border:1px solid var(--glass-border);
-  border-radius:999px;margin-bottom:32px;background:var(--glass);
-}
-.dash-title{
-  font-family:var(--font-d);font-size:clamp(36px,5vw,60px);
-  font-weight:400;line-height:1.08;letter-spacing:-0.025em;
-  margin-bottom:20px;
-}
-.dash-title em{font-style:italic;color:var(--silver)}
-.dash-sub{
-  font-size:16px;font-weight:300;color:var(--muted);
-  max-width:520px;margin:0 auto 40px;line-height:1.8;
-}
-.dash-stats{
-  display:flex;gap:32px;justify-content:center;
-  font-size:13px;color:var(--muted);
-  margin-bottom:40px;flex-wrap:wrap;
-}
-.dash-stats span{display:flex;align-items:center;gap:6px}
-.resume-btn{
-  display:inline-block;padding:14px 36px;
-  background:var(--white);color:var(--black);
-  font-family:var(--font-b);font-size:13px;
-  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-  text-decoration:none;border-radius:8px;
-  transition:opacity 0.2s;cursor:pointer;border:none;
-}
-.resume-btn:hover{opacity:0.88}
-
-/* ─ Overall progress ring area ─ */
-.dash-prog-area{
-  display:flex;align-items:center;gap:20px;
-  max-width:480px;margin:0 auto 56px;
-  background:rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.07);
-  border-radius:16px;padding:20px 24px;
-}
-.dash-ring{position:relative;width:72px;height:72px;flex-shrink:0}
-.dash-ring svg{transform:rotate(-90deg)}
-.dash-ring-text{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  font-family:var(--font-d);font-size:20px;color:var(--white);
-}
-.dash-prog-info{text-align:left}
-.dash-prog-info strong{font-size:16px;color:var(--white);display:block;margin-bottom:4px}
-.dash-prog-info span{font-size:13px;color:var(--muted)}
-
-/* ─ Chapter cards ─ */
-.ch-cards-section{
-  max-width:1100px;margin:0 auto;
-  padding:0 24px 100px;
-}
-.ch-cards-group-label{
-  font-size:10px;font-weight:700;letter-spacing:0.22em;
-  text-transform:uppercase;color:var(--muted);
-  padding:8px 0 14px;
-  display:flex;align-items:center;gap:12px;
-}
-.ch-cards-group-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.04)}
-.ch-cards-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:14px;margin-bottom:40px;
-}
-.ch-card{
-  background:rgba(255,255,255,0.02);
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:16px;padding:22px;
-  text-decoration:none;display:block;
-  transition:all 0.22s;position:relative;overflow:hidden;
-}
-.ch-card:hover{
-  background:rgba(255,255,255,0.05);
-  border-color:rgba(192,192,192,0.18);
-  transform:translateY(-2px);
-}
-.ch-card.done{border-color:rgba(255,255,255,0.12)}
-.ch-card-check{
-  position:absolute;top:14px;right:14px;
-  width:22px;height:22px;border-radius:50%;
-  background:rgba(255,255,255,0.08);
-  display:flex;align-items:center;justify-content:center;
-  font-size:10px;color:var(--silver);
-  opacity:0;transition:opacity 0.2s;
-}
-.ch-card.done .ch-card-check{opacity:1}
-.ch-card-num{
-  font-family:var(--font-m);font-size:10px;
-  color:var(--muted);margin-bottom:8px;letter-spacing:0.08em;
-}
-.ch-card-title{
-  font-family:var(--font-d);font-size:18px;
-  color:var(--white);margin-bottom:8px;line-height:1.25;
-}
-.ch-card-desc{
-  font-size:13px;color:var(--muted);
-  line-height:1.65;margin-bottom:14px;
-}
-.ch-card-meta{
-  display:flex;align-items:center;gap:10px;
-  font-size:11px;color:rgba(255,255,255,0.3);
-}
-.ch-card-meta .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.2)}
-
-
-.fga-unified-nav{position:fixed;top:0;left:268px;right:0;z-index:150;padding:0 24px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);height:56px;display:flex;align-items:center}
-.nav-container{display:flex;align-items:center;gap:32px;width:100%}
-.nav-brand{font-family:var(--font-d);font-size:17px;color:var(--white);text-decoration:none;font-weight:400;margin-right:auto}
-.nav-brand:hover{color:var(--silver)}
-.nav-links{display:flex;gap:24px}
-.nav-link{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s;font-weight:400}
-.nav-link:hover,.nav-link.active{color:var(--white)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.nav-hamburger span{width:20px;height:1.5px;background:var(--white);border-radius:999px;display:block}
-.nav-mobile{display:none;position:fixed;top:56px;left:268px;right:0;background:rgba(10,10,10,0.98);padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);z-index:149}
-.nav-mobile.open{display:flex;flex-direction:column;gap:12px}
-@media(max-width:900px){
-  .fga-unified-nav{left:0}
-  .nav-links{display:none}
-  .nav-hamburger{display:flex}
-  .nav-mobile{left:0}
-  .main-content{padding-top:56px}
-}
-@media(min-width:901px){.main-content{padding-top:56px}}
-
 </style>
 </head>
 <body>
@@ -1105,7 +802,82 @@ function unlockAccess(){
 <!-- Main content -->
 <div class="main-content">
 
-  <p>Chapter 6 content not found.</p>
+  <section class="chapter" id="ch6">
+  <div class="ch-label reveal">Chapter 06</div>
+  <h2 class="ch-title reveal">PSEO &amp; <em>Dual Enrollment</em></h2>
+  <div class="ch-body reveal">
+    <p>This was my secret weapon. PSEO (Post-Secondary Enrollment Options) is a specific type of dual enrollment program that lets high school students take college courses — often <strong>completely free</strong>. Tuition, fees, and sometimes even textbooks are covered by the state or school district.</p>
+
+    <p>Dual enrollment programs come in three main flavors:</p>
+
+    <h3>Types of Programs</h3>
+    <ol>
+      <li><strong>PSEO (Post-Secondary Enrollment Options):</strong> Available in select states. Take courses at local colleges or universities with full state funding. This is the gold standard.</li>
+      <li><strong>Concurrent Enrollment:</strong> Similar to PSEO but may have different funding structures. College-level courses taught at your high school by qualified instructors.</li>
+      <li><strong>Early College Programs:</strong> Structured pathways where you earn both a high school diploma and an associate degree (or substantial college credit) by graduation.</li>
+    </ol>
+
+    <h3>Eligibility</h3>
+    <p>Requirements vary by state and institution, but typically include:</p>
+    <ul>
+      <li>Minimum GPA of 2.5 or higher</li>
+      <li>Usually available to juniors and seniors (some states allow sophomores)</li>
+      <li>Placement test scores (SAT, ACT, or college-specific exams)</li>
+      <li>Demonstrated readiness for college-level coursework</li>
+    </ul>
+
+    <h3>Top 5 Dual Enrollment Courses to Take</h3>
+  </div>
+
+  <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+    <div class="glass-card">
+      <div class="gc-icon">🧠</div>
+      <div class="gc-title">Introduction to Psychology</div>
+      <div class="gc-body">Foundational psychology principles. Transfers as intro psych or social science elective credit. Ideal for anyone interested in healthcare, business, or behavioral sciences.</div>
+    </div>
+    <div class="glass-card">
+      <div class="gc-icon">📐</div>
+      <div class="gc-title">College Algebra</div>
+      <div class="gc-body">Fundamental algebraic concepts. Transfers as college-level math or quantitative reasoning. Essential if your degree requires math coursework.</div>
+    </div>
+    <div class="glass-card">
+      <div class="gc-icon">✍️</div>
+      <div class="gc-title">English Composition</div>
+      <div class="gc-body">Writing skills, argumentative essays, critical analysis. Transfers as English comp or general education. Every degree requires this — knock it out early.</div>
+    </div>
+    <div class="glass-card">
+      <div class="gc-icon">👥</div>
+      <div class="gc-title">Introduction to Sociology</div>
+      <div class="gc-body">Sociological concepts, research methods, cultural diversity. Transfers as sociology or social science elective. Complements psychology for broader gen-ed coverage.</div>
+    </div>
+    <div class="glass-card">
+      <div class="gc-icon">🌍</div>
+      <div class="gc-title">Environmental Science</div>
+      <div class="gc-body">Environmental systems, ecological principles, resource management. Transfers as natural science elective. Often satisfies a lab science requirement.</div>
+    </div>
+  </div>
+
+  <div class="chapter" style="padding-top:48px;padding-bottom:0">
+    <div class="ch-body reveal">
+      <h3>How to Get Started</h3>
+      <ol>
+        <li><strong>Research programs</strong> in your state. Google "[your state] PSEO program" or "[your state] dual enrollment high school."</li>
+        <li><strong>Meet eligibility requirements.</strong> Get your GPA and test scores ready.</li>
+        <li><strong>Talk to your counselor.</strong> Yes, some will push back. I dealt with this. Be persistent. Come prepared with research. Know the specific program rules and your eligibility.</li>
+        <li><strong>Apply to the program.</strong> Follow deadlines carefully. Provide transcripts, letters of recommendation, and test scores as required.</li>
+        <li><strong>Choose courses strategically.</strong> Work with a college advisor to ensure your courses align with your target degree and will transfer to your intended university.</li>
+      </ol>
+
+      <div class="callout">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">Counselor Resistance Is Normal</div>
+          <div class="callout-text">My guidance counselor initially pushed back on PSEO enrollment. This is common. Many counselors are unfamiliar with credit stacking or may be concerned about students leaving traditional coursework. Come prepared with program documentation, eligibility proof, and your academic plan. Be respectful but firm. This is your education and your financial future.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Mark complete -->
   <div class="mc-wrap">
