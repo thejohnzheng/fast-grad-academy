@@ -599,42 +599,7 @@
   </style>
 </head>
 <body>
-<!-- ═══════════════════════ ACCESS GATE ═══════════════════════ -->
-<div id="access-wall" style="
-  position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;
-  background:var(--black);
-  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-  padding:40px 24px;
-">
-  <div style="max-width:560px;">
-    <div style="font-size:10px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted-silver);padding:8px 18px;border:1px solid rgba(192,192,192,0.12);border-radius:999px;display:inline-flex;margin-bottom:40px;background:rgba(255,255,255,0.03);">Coming Soon</div>
-    <h1 style="font-family:var(--font-display);font-size:clamp(40px,6vw,72px);font-weight:400;line-height:1.08;letter-spacing:-0.025em;color:var(--white);margin-bottom:24px;">Fast Grad<br/><em style="font-style:italic;color:var(--silver);">Academy</em></h1>
-    <p style="font-size:18px;font-weight:300;color:var(--charcoal);line-height:1.8;margin-bottom:40px;">We're putting the finishing touches on something big. Enter the access code to preview.</p>
-    <div style="margin-bottom:24px;">
-      <input id="gate-input" type="password" placeholder="Enter access code" autocomplete="off" style="
-        font-family:var(--font-body);font-size:15px;padding:14px 22px;border-radius:999px;
-        border:1px solid rgba(192,192,192,0.15);background:rgba(255,255,255,0.03);color:var(--white);
-        width:240px;text-align:center;outline:none;transition:border-color 0.3s;
-      " onkeydown="if(event.key==='Enter')document.getElementById('gate-btn').click()"/>
-      <button id="gate-btn" onclick="
-        if(document.getElementById('gate-input').value==='P@ssw0rd!'){
-          document.getElementById('access-wall').style.transition='opacity 0.4s ease';
-          document.getElementById('access-wall').style.opacity='0';
-          setTimeout(()=>{document.getElementById('access-wall').style.display='none';},400);
-        } else {
-          document.getElementById('gate-input').style.borderColor='#e55';
-          document.getElementById('gate-err').style.display='block';
-        }
-      " style="
-        font-family:var(--font-body);font-size:14px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
-        color:var(--black);background:var(--white);padding:14px 32px;border-radius:999px;
-        border:none;cursor:pointer;margin-left:8px;transition:all 0.2s;
-      ">Unlock</button>
-    </div>
-    <p id="gate-err" style="display:none;color:#e55;font-size:13px;margin-top:-12px;margin-bottom:16px;">Incorrect access code.</p>
-    <p style="font-size:13px;color:var(--muted-silver);">Questions? <a href="mailto:john@executivestrategy.consulting" style="color:var(--silver);text-decoration:underline;">Contact John</a></p>
-  </div>
-</div>
+<!-- Access wall removed for launch — landing page is now public -->
 
 <!-- ═══════════════════════ UNIFIED NAV ═══════════════════════ -->
 <nav class="fga-unified-nav">
