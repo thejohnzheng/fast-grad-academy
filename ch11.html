@@ -667,18 +667,20 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
   <div style="max-width:420px;width:100%;text-align:center">
     <div style="font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:#fff;margin-bottom:8px">Fast Grad Academy</div>
     <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#a8a8a8;margin-bottom:48px">Student Access Required</div>
-    <input id="ag-input" type="password" placeholder="Enter your access code"
-      style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.2s"
+    <input id="ag-input" type="text" placeholder="Enter your access code (FGA-XXXX-XXXX)"
+      style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.2s;text-transform:uppercase;letter-spacing:0.08em"
       onkeydown="if(event.key==='Enter')unlockAccess()"
+      autocomplete="off" spellcheck="false"
     />
-    <div id="ag-err" style="font-size:13px;color:#e55;margin-bottom:12px;display:none">Incorrect code. Please try again.</div>
-    <button onclick="unlockAccess()"
+    <div id="ag-err" style="font-size:13px;color:#e55;margin-bottom:12px;display:none">Invalid access code. Please check your email for the correct code.</div>
+    <button id="ag-btn" onclick="unlockAccess()"
       style="width:100%;padding:14px;background:#fff;color:#0a0a0a;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;border-radius:10px;cursor:pointer;transition:opacity 0.2s"
       onmouseover="this.style.opacity=0.88" onmouseout="this.style.opacity=1">
       Unlock Course
     </button>
     <div style="margin-top:24px;font-size:12px;color:rgba(255,255,255,0.25)">
-      Purchased the guide? Check your email for your code.
+      Purchased the guide? Check your email for your access code.<br/>
+      <a href="/" style="color:rgba(255,255,255,0.35);text-decoration:underline;margin-top:8px;display:inline-block">Don\'t have a code? Purchase here &rarr;</a>
     </div>
   </div>
 </div>
@@ -693,18 +695,38 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
 function unlockAccess(){
   var v=document.getElementById('ag-input').value.trim();
   var e=document.getElementById('ag-err');
-  if(v.toUpperCase()==='P@SSW0RD!'||v==='P@ssw0rd!'){
-    var s=JSON.parse(localStorage.getItem('fga_course')||'{}');
-    s.access=true;
-    if(!s.completed)s.completed=[];
-    localStorage.setItem('fga_course',JSON.stringify(s));
-    var g=document.getElementById('access-gate');
-    g.style.transition='opacity 0.4s';g.style.opacity='0';
-    setTimeout(function(){location.reload();},400);
-  } else {
+  var btn=document.getElementById('ag-btn');
+  if(!v){e.style.display='block';e.textContent='Please enter your access code.';return;}
+  btn.textContent='Verifying...';btn.disabled=true;
+  fetch('/api/verify',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({code:v})
+  })
+  .then(function(r){return r.json();})
+  .then(function(data){
+    if(data.valid){
+      var s=JSON.parse(localStorage.getItem('fga_course')||'{}');
+      s.access=true;
+      s.code=v.toUpperCase();
+      s.email=data.email||'';
+      if(!s.completed)s.completed=[];
+      localStorage.setItem('fga_course',JSON.stringify(s));
+      var g=document.getElementById('access-gate');
+      g.style.transition='opacity 0.4s';g.style.opacity='0';
+      setTimeout(function(){location.reload();},400);
+    } else {
+      e.style.display='block';
+      e.textContent='Invalid access code. Please check your email for the correct code.';
+      document.getElementById('ag-input').style.borderColor='#e55';
+      btn.textContent='Unlock Course';btn.disabled=false;
+    }
+  })
+  .catch(function(){
     e.style.display='block';
-    document.getElementById('ag-input').style.borderColor='#e55';
-  }
+    e.textContent='Network error. Please try again.';
+    btn.textContent='Unlock Course';btn.disabled=false;
+  });
 }
 </script>
 
