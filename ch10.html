@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 
+
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --white:#ffffff;--off-white:#f5f5f5;--silver-light:#e8e8e8;
@@ -659,6 +660,308 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
 }
 @media(min-width:901px){.main-content{padding-top:56px}}
 
+
+
+/* ═══════════════════════════════════════
+   COURSE LAYOUT — SIDEBAR + MAIN
+═══════════════════════════════════════ */
+.sidebar{
+  width:268px;min-width:268px;background:#0d0d0d;
+  border-right:1px solid rgba(255,255,255,0.06);
+  position:fixed;top:0;left:0;height:100vh;
+  overflow-y:auto;z-index:100;
+  display:flex;flex-direction:column;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.08) transparent;
+}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px}
+.main-content{margin-left:268px;min-height:100vh}
+.reading-progress{
+  position:fixed;top:0;left:268px;right:0;height:2px;
+  background:rgba(255,255,255,0.06);z-index:200;
+}
+.reading-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--silver),var(--white));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.1s linear;
+}
+
+/* ─ Sidebar brand ─ */
+.sb-brand{
+  padding:22px 20px 18px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  flex-shrink:0;
+}
+.sb-brand-name{
+  font-family:var(--font-d);font-size:15px;
+  color:var(--white);font-weight:400;
+  text-decoration:none;display:block;
+}
+.sb-brand-name:hover{color:var(--silver)}
+.sb-tagline{
+  font-size:9px;color:var(--muted);
+  letter-spacing:0.18em;text-transform:uppercase;margin-top:4px;
+}
+
+/* ─ Sidebar overall progress ─ */
+.sb-prog-wrap{
+  padding:14px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  flex-shrink:0;
+}
+.sb-prog-row{
+  display:flex;justify-content:space-between;
+  font-size:10px;color:var(--muted);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px;
+}
+.sb-prog-track{
+  height:3px;background:rgba(255,255,255,0.08);
+  border-radius:999px;overflow:hidden;
+}
+.sb-prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--silver),var(--white));
+  border-radius:999px;transition:width 0.4s ease;
+}
+
+/* ─ Sidebar nav ─ */
+.sb-nav{flex:1;padding:12px 0 24px;overflow-y:auto}
+.sb-group{
+  font-size:9px;font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:rgba(255,255,255,0.25);
+  padding:14px 20px 5px;
+}
+.sb-item{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 16px 7px 20px;cursor:pointer;
+  transition:background 0.15s;text-decoration:none;
+  border-left:2px solid transparent;
+}
+.sb-item:hover{background:rgba(255,255,255,0.04)}
+.sb-item.active{
+  background:rgba(192,192,192,0.07);
+  border-left-color:var(--silver);
+}
+.sb-dot{
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--muted);flex-shrink:0;
+  transition:all 0.2s;font-family:var(--font-m);
+}
+.sb-item.done .sb-dot{
+  background:var(--white);border-color:var(--white);
+  color:var(--black);font-size:11px;
+}
+.sb-item.done .sb-dot::after{content:'✓'}
+.sb-title{
+  font-size:12.5px;color:rgba(255,255,255,0.45);
+  line-height:1.3;transition:color 0.15s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.sb-item.active .sb-title,.sb-item:hover .sb-title{color:var(--white)}
+.sb-item.done .sb-title{color:rgba(255,255,255,0.6)}
+
+/* ─ Mark-complete ─ */
+.mc-wrap{
+  max-width:var(--max-w);margin:0 auto;
+  padding:0 24px 40px;
+}
+.mc-btn{
+  width:100%;padding:15px 24px;
+  background:rgba(192,192,192,0.08);
+  border:1px solid rgba(192,192,192,0.18);
+  border-radius:12px;color:var(--silver);
+  font-family:var(--font-b);font-size:13px;
+  font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.2s;
+}
+.mc-btn:hover{background:rgba(192,192,192,0.15);border-color:var(--silver);color:var(--white)}
+.mc-btn.done{
+  background:rgba(255,255,255,0.08);
+  border-color:var(--white);color:var(--white);
+}
+
+/* ─ Chapter nav ─ */
+.ch-nav-row{
+  display:flex;justify-content:space-between;align-items:stretch;
+  max-width:var(--max-w);margin:0 auto;
+  padding:32px 24px 80px;
+  border-top:1px solid rgba(255,255,255,0.04);
+  gap:16px;
+}
+.ch-nav-btn{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;padding:14px 18px;
+  border:1px solid rgba(255,255,255,0.07);border-radius:12px;
+  transition:all 0.2s;background:rgba(255,255,255,0.02);
+  max-width:48%;min-width:0;
+}
+.ch-nav-btn:hover{background:rgba(255,255,255,0.05);border-color:rgba(192,192,192,0.2)}
+.ch-nav-btn.ch-next{margin-left:auto;flex-direction:row-reverse;text-align:right}
+.ch-nav-label{font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:3px}
+.ch-nav-title{font-size:13px;color:var(--white);font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.ch-nav-arrow{font-size:16px;color:var(--silver);flex-shrink:0}
+
+/* ─ Mobile ─ */
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%);transition:transform 0.3s ease;z-index:300}
+  .sidebar.open{transform:translateX(0)}
+  .main-content{margin-left:0}
+  .reading-progress{left:0}
+  .sb-toggle{display:flex!important}
+  .sb-overlay{display:block!important}
+}
+.sb-toggle{
+  display:none;position:fixed;top:14px;left:14px;z-index:400;
+  width:40px;height:40px;background:rgba(13,13,13,0.95);
+  border:1px solid rgba(255,255,255,0.1);border-radius:8px;
+  align-items:center;justify-content:center;
+  cursor:pointer;flex-direction:column;gap:5px;
+}
+.sb-toggle span{width:18px;height:1.5px;background:var(--white);border-radius:999px}
+.sb-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.6);z-index:200;
+}
+
+/* ═══════════════════════════════════════
+   DASHBOARD
+═══════════════════════════════════════ */
+.dash-hero{
+  padding:80px 24px 48px;max-width:840px;
+  margin:0 auto;text-align:center;
+}
+.dash-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--muted);
+  padding:7px 18px;border:1px solid var(--glass-border);
+  border-radius:999px;margin-bottom:32px;background:var(--glass);
+}
+.dash-title{
+  font-family:var(--font-d);font-size:clamp(36px,5vw,60px);
+  font-weight:400;line-height:1.08;letter-spacing:-0.025em;
+  margin-bottom:20px;
+}
+.dash-title em{font-style:italic;color:var(--silver)}
+.dash-sub{
+  font-size:16px;font-weight:300;color:var(--muted);
+  max-width:520px;margin:0 auto 40px;line-height:1.8;
+}
+.dash-stats{
+  display:flex;gap:32px;justify-content:center;
+  font-size:13px;color:var(--muted);
+  margin-bottom:40px;flex-wrap:wrap;
+}
+.dash-stats span{display:flex;align-items:center;gap:6px}
+.resume-btn{
+  display:inline-block;padding:14px 36px;
+  background:var(--white);color:var(--black);
+  font-family:var(--font-b);font-size:13px;
+  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;border-radius:8px;
+  transition:opacity 0.2s;cursor:pointer;border:none;
+}
+.resume-btn:hover{opacity:0.88}
+
+/* ─ Overall progress ring area ─ */
+.dash-prog-area{
+  display:flex;align-items:center;gap:20px;
+  max-width:480px;margin:0 auto 56px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:16px;padding:20px 24px;
+}
+.dash-ring{position:relative;width:72px;height:72px;flex-shrink:0}
+.dash-ring svg{transform:rotate(-90deg)}
+.dash-ring-text{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--font-d);font-size:20px;color:var(--white);
+}
+.dash-prog-info{text-align:left}
+.dash-prog-info strong{font-size:16px;color:var(--white);display:block;margin-bottom:4px}
+.dash-prog-info span{font-size:13px;color:var(--muted)}
+
+/* ─ Chapter cards ─ */
+.ch-cards-section{
+  max-width:1100px;margin:0 auto;
+  padding:0 24px 100px;
+}
+.ch-cards-group-label{
+  font-size:10px;font-weight:700;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--muted);
+  padding:8px 0 14px;
+  display:flex;align-items:center;gap:12px;
+}
+.ch-cards-group-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.04)}
+.ch-cards-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;margin-bottom:40px;
+}
+.ch-card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:16px;padding:22px;
+  text-decoration:none;display:block;
+  transition:all 0.22s;position:relative;overflow:hidden;
+}
+.ch-card:hover{
+  background:rgba(255,255,255,0.05);
+  border-color:rgba(192,192,192,0.18);
+  transform:translateY(-2px);
+}
+.ch-card.done{border-color:rgba(255,255,255,0.12)}
+.ch-card-check{
+  position:absolute;top:14px;right:14px;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:var(--silver);
+  opacity:0;transition:opacity 0.2s;
+}
+.ch-card.done .ch-card-check{opacity:1}
+.ch-card-num{
+  font-family:var(--font-m);font-size:10px;
+  color:var(--muted);margin-bottom:8px;letter-spacing:0.08em;
+}
+.ch-card-title{
+  font-family:var(--font-d);font-size:18px;
+  color:var(--white);margin-bottom:8px;line-height:1.25;
+}
+.ch-card-desc{
+  font-size:13px;color:var(--muted);
+  line-height:1.65;margin-bottom:14px;
+}
+.ch-card-meta{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;color:rgba(255,255,255,0.3);
+}
+.ch-card-meta .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.2)}
+
+
+.fga-unified-nav{position:fixed;top:0;left:268px;right:0;z-index:150;padding:0 24px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);height:56px;display:flex;align-items:center}
+.nav-container{display:flex;align-items:center;gap:32px;width:100%}
+.nav-brand{font-family:var(--font-d);font-size:17px;color:var(--white);text-decoration:none;font-weight:400;margin-right:auto}
+.nav-brand:hover{color:var(--silver)}
+.nav-links{display:flex;gap:24px}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s;font-weight:400}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-hamburger span{width:20px;height:1.5px;background:var(--white);border-radius:999px;display:block}
+.nav-mobile{display:none;position:fixed;top:56px;left:268px;right:0;background:rgba(10,10,10,0.98);padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);z-index:149}
+.nav-mobile.open{display:flex;flex-direction:column;gap:12px}
+@media(max-width:900px){
+  .fga-unified-nav{left:0}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .nav-mobile{left:0}
+  .main-content{padding-top:56px}
+}
+@media(min-width:901px){.main-content{padding-top:56px}}
+
 </style>
 </head>
 <body>
@@ -700,7 +1003,7 @@ function unlockAccess(){
     localStorage.setItem('fga_course',JSON.stringify(s));
     var g=document.getElementById('access-gate');
     g.style.transition='opacity 0.4s';g.style.opacity='0';
-    setTimeout(function(){g.style.display='none';document.body.style.overflow='';},400);
+    setTimeout(function(){location.reload();},400);
   } else {
     e.style.display='block';
     document.getElementById('ag-input').style.borderColor='#e55';
@@ -802,173 +1105,7 @@ function unlockAccess(){
 <!-- Main content -->
 <div class="main-content">
 
-  <section class="chapter-wide" id="ch10">
-  <div class="ch-label reveal">Chapter 10</div>
-  <h2 class="ch-title reveal">Your Personalized <em>Roadmap</em></h2>
-  <p class="ch-desc reveal">The right strategy depends on where you are right now. Find your starting point below and follow the roadmap designed for your situation.</p>
-
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
-    <div class="glass-card">
-      <div class="gc-icon">🌱</div>
-      <div class="gc-title">9th &mdash; 10th Grade</div>
-      <div class="gc-body">
-        <strong>You have the most time and flexibility.</strong> Start with 2-3 easy CLEP exams (College Composition, American Government, Introductory Psychology). Take 1 AP exam by self-study. Begin conversations about PSEO for junior year. Goal: 15-20 credits by end of sophomore year.
-        <br/><br/>
-        <strong>Summer strategy:</strong> Take one exam per month (Jun-Aug) = $12,000+ saved in one summer.
-      </div>
-      <div class="gc-tag">Maximum Potential</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🔥</div>
-      <div class="gc-title">11th &mdash; 12th Grade</div>
-      <div class="gc-body">
-        <strong>Prime time for acceleration.</strong> Enroll in PSEO immediately. Stack CLEP exams during breaks. Take 3-4 AP exams (self-study the ones your school doesn't offer). Use DSST to fill gaps. Goal: 45-60+ credits by graduation.
-        <br/><br/>
-        <strong>Critical:</strong> Use Transferology NOW to verify every credit will transfer to your target schools.
-      </div>
-      <div class="gc-tag">Peak Acceleration</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🎓</div>
-      <div class="gc-title">College Freshman / Sophomore</div>
-      <div class="gc-body">
-        <strong>Not too late.</strong> Use CLEP and DSST to knock out remaining gen-ed requirements instead of paying full tuition for them. Focus on exams that directly replace courses in your degree plan. This can shave 1-2 semesters off your timeline.
-        <br/><br/>
-        <strong>Key move:</strong> Talk to your academic advisor about which CLEP/DSST exams your school accepts and the maximum transfer credits allowed.
-      </div>
-      <div class="gc-tag">Still Powerful</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">💼</div>
-      <div class="gc-title">Working Adults</div>
-      <div class="gc-body">
-        <strong>Your life experience is an asset.</strong> CLEP exams test knowledge you may already have from work. Personal Finance, Intro to Business, and Management are common wins. Prior Learning Assessment can convert work experience into credits. Consider WGU (Western Governors University) for competency-based progression.
-      </div>
-      <div class="gc-tag">Experience = Credits</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🎖️</div>
-      <div class="gc-title">Military &amp; Veterans</div>
-      <div class="gc-body">
-        <strong>You have special advantages.</strong> DSST was originally designed for military. Many military training programs convert directly to college credit via the Joint Services Transcript (JST). CLEP exams are often free on base. Combine with GI Bill benefits for maximum impact.
-      </div>
-      <div class="gc-tag">Special Benefits</div>
-    </div>
-    <div class="glass-card">
-      <div class="gc-icon">🌏</div>
-      <div class="gc-title">International Students</div>
-      <div class="gc-body">
-        <strong>The system works globally.</strong> CLEP exams can be taken at international test centers. Many U.S. universities accept CLEP credits from international students. Foreign language CLEP exams (Spanish, French, German) can be easier if you're already bilingual or multilingual.
-      </div>
-      <div class="gc-tag">Global Access</div>
-    </div>
-  </div>
-
-  <!-- UNIVERSITY COMPLETION PATHS -->
-  <div style="max-width:var(--max-w);margin:48px auto 0;padding:0 24px">
-    <div class="ch-body reveal">
-      <h3>The Two University Paths for Maximum Acceleration</h3>
-      <p>Once you've pre-loaded credits through CLEP, Sophia, and Study.com, you need a university that accepts massive transfer loads and lets you move at your own pace. These are the two best options:</p>
-    </div>
-  </div>
-
-  <div class="glass-grid reveal" style="grid-template-columns:repeat(2,1fr);max-width:1100px;margin:24px auto 0;padding:0 24px">
-    <div class="glass-card" style="border-color:rgba(192,192,192,0.25)">
-      <div class="gc-icon">🏛️</div>
-      <div class="gc-title">WGU (Western Governors University)</div>
-      <div class="gc-body">
-        <strong>Competency-based. Flat-rate per 6-month term.</strong> Pass exams (OAs) and projects (PAs) to advance — no seat time required. Pre-assess to skip material you already know. Accepts up to 90 transfer credits (75% of degree). Pass/fail grading means a 3.0 GPA cap, but graduates are accepted at Georgia Tech, Penn State, and more for grad school.
-        <br/><br/><strong>Best for:</strong> Students who can self-study and test out of courses rapidly. IT, Business, Education, and Healthcare degrees.
-      </div>
-      <div class="gc-tag">Self-Paced King</div>
-    </div>
-    <div class="glass-card" style="border-color:rgba(192,192,192,0.25)">
-      <div class="gc-icon">🎓</div>
-      <div class="gc-title">UMPI YourPace (Univ. of Maine at Presque Isle)</div>
-      <div class="gc-body">
-        <strong>Flat-rate per 8-week term. Letter grades (enables 4.0 GPA).</strong> Project and research-based assessments instead of proctored exams. Accepts up to 90 transfer credits. Liberal Studies degree = 45 credits in major, up to 75 free electives — maximum flexibility for transfers.
-        <br/><br/><strong>Best for:</strong> Students targeting grad school (letter grades matter), or those who prefer writing/projects over exams.
-      </div>
-      <div class="gc-tag">GPA Maximizer</div>
-    </div>
-  </div>
-
-  <!-- 52-WEEK TIMELINE -->
-  <div style="max-width:var(--max-w);margin:48px auto 0;padding:0 24px">
-    <div class="ch-body reveal">
-      <h3>The 52-Week Bachelor's Degree Timeline</h3>
-      <p>This is the aggressive playbook. It's not for everyone, but it shows what's possible when you stack every advantage.</p>
-    </div>
-  </div>
-
-  <div class="reveal" style="max-width:var(--max-w);margin:24px auto 0;padding:0 24px">
-    <table class="compare-table" style="font-size:13px">
-      <thead>
-        <tr>
-          <th>Phase</th>
-          <th>Weeks</th>
-          <th>What You're Doing</th>
-          <th>Credits</th>
-          <th>Running Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Pre-Load Sprint</strong></td>
-          <td>1-23</td>
-          <td>Sophia + Study.com + CLEP blitz. 2-3 courses/week on Sophia, 1 CLEP per month.</td>
-          <td class="highlight-cell">60</td>
-          <td>60</td>
-        </tr>
-        <tr>
-          <td><strong>Apply</strong></td>
-          <td>24</td>
-          <td>Submit application to WGU or UMPI. Request transcript evaluations from all providers.</td>
-          <td>0</td>
-          <td>60</td>
-        </tr>
-        <tr>
-          <td><strong>Final ACE Push</strong></td>
-          <td>25-28</td>
-          <td>Fill remaining gaps with Study.com upper-division courses or DSST exams.</td>
-          <td class="highlight-cell">15</td>
-          <td>75</td>
-        </tr>
-        <tr>
-          <td><strong>University Term 1</strong></td>
-          <td>29-36</td>
-          <td>Enrolled at WGU (6-month term) or UMPI YourPace (8-week term). Knock out residency credits.</td>
-          <td class="highlight-cell">15</td>
-          <td>90</td>
-        </tr>
-        <tr>
-          <td><strong>Intermediate</strong></td>
-          <td>37-44</td>
-          <td>Continue university coursework. Fill any remaining gen-ed with CLEP/DSST if needed.</td>
-          <td class="highlight-cell">15</td>
-          <td>105</td>
-        </tr>
-        <tr>
-          <td><strong>Final Push</strong></td>
-          <td>45-52</td>
-          <td>Complete final university courses. Capstone project. Apply for graduation.</td>
-          <td class="highlight-cell">15</td>
-          <td><strong>120</strong></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div style="max-width:var(--max-w);margin:24px auto 0;padding:0 24px">
-    <div class="callout reveal">
-      <div class="callout-icon">💰</div>
-      <div class="callout-body">
-        <div class="callout-title">Total Cost: $4,000 - $8,000</div>
-        <div class="callout-text">Sophia (~$600 for 6 months), Study.com (~$800 for 4 months), CLEP exams (~$500 for free via Modern States), one WGU term (~$3,575) or two UMPI terms (~$3,600). Compare that to $100,000+ for a traditional 4-year degree. Same accreditation. Same diploma. Fraction of the cost.</div>
-      </div>
-    </div>
-  </div>
-</section>
+  <p>Chapter 10 content not found.</p>
 
   <!-- Mark complete -->
   <div class="mc-wrap">
