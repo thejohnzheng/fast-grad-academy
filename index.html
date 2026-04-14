@@ -981,7 +981,7 @@
       <div class="price-line">Free updates as exam policies change</div>
     </div>
 
-    <a href="mailto:john@executivestrategy.consulting?subject=Fast%20Grad%20Academy%20Guide%20Purchase&body=I%27d%20like%20to%20purchase%20the%20Fast%20Grad%20Academy%20guide." class="price-cta">Get Instant Access — $97</a>
+    <a href="#" onclick="startCheckout(event)" class="price-cta" id="checkout-btn">Get Instant Access — $97</a>
   </div>
   <p class="guarantee reveal reveal-d1">One-time purchase. Instant digital delivery. All sales final — this is a digital product with immediate access.</p>
 </section>
@@ -1124,6 +1124,38 @@ function initializeFAQ() {
         answer.classList.add('open');
       }
     });
+  });
+}
+
+// ═══════════════════════ STRIPE CHECKOUT ═══════════════════════
+function startCheckout(e) {
+  if (e) e.preventDefault();
+  var btn = document.getElementById('checkout-btn');
+  var orig = btn.textContent;
+  btn.textContent = 'Redirecting to checkout...';
+  btn.style.pointerEvents = 'none';
+  btn.style.opacity = '0.7';
+  fetch('/api/checkout', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({})
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Something went wrong. Please try again or contact john@executivestrategy.consulting');
+      btn.textContent = orig;
+      btn.style.pointerEvents = '';
+      btn.style.opacity = '';
+    }
+  })
+  .catch(function() {
+    alert('Network error. Please check your connection and try again.');
+    btn.textContent = orig;
+    btn.style.pointerEvents = '';
+    btn.style.opacity = '';
   });
 }
 
