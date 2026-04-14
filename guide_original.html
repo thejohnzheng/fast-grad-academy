@@ -431,12 +431,7 @@ async function verifyAccess() {
 
   if (!code) { input.focus(); return; }
 
-  // Dev/preview bypass (keeps your P@ssw0rd! working for testing)
-  if (code === 'P@SSW0RD!' || code === 'P@SSW0RD') {
-    document.getElementById('coming-soon-wall').style.display = 'none';
-    document.body.style.overflow = '';
-    return;
-  }
+  // Dev bypass removed for launch — all access goes through /api/verify
 
   err.style.display = 'none';
   loading.style.display = 'block';
