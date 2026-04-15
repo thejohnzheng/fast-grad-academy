@@ -681,6 +681,10 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
   <div style="max-width:420px;width:100%;text-align:center">
     <div style="font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:#fff;margin-bottom:8px">Fast Grad Academy</div>
     <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#a8a8a8;margin-bottom:48px">Student Access Required</div>
+    <input id="ag-email" type="email" placeholder="Enter your purchase email"
+      style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.2s"
+      autocomplete="email" spellcheck="false"
+    />
     <input id="ag-input" type="text" placeholder="Enter your access code (FGA-XXXX-XXXX)"
       style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.2s;text-transform:uppercase;letter-spacing:0.08em"
       onkeydown="if(event.key==='Enter')unlockAccess()"
@@ -708,14 +712,16 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
 })();
 function unlockAccess(){
   var v=document.getElementById('ag-input').value.trim();
+  var em=document.getElementById('ag-email').value.trim();
   var e=document.getElementById('ag-err');
   var btn=document.getElementById('ag-btn');
+  if(!em){e.style.display='block';e.textContent='Please enter your email address.';return;}
   if(!v){e.style.display='block';e.textContent='Please enter your access code.';return;}
   btn.textContent='Verifying...';btn.disabled=true;
   fetch('/api/verify',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({code:v})
+    body:JSON.stringify({code:v,email:em})
   })
   .then(function(r){return r.json();})
   .then(function(data){
@@ -723,7 +729,7 @@ function unlockAccess(){
       var s=JSON.parse(localStorage.getItem('fga_course')||'{}');
       s.access=true;
       s.code=v.toUpperCase();
-      s.email=data.email||'';
+      s.email=em||data.email||'';
       if(!s.completed)s.completed=[];
       localStorage.setItem('fga_course',JSON.stringify(s));
       var g=document.getElementById('access-gate');
@@ -731,7 +737,7 @@ function unlockAccess(){
       setTimeout(function(){location.reload();},400);
     } else {
       e.style.display='block';
-      e.textContent='Invalid access code. Please check your email for the correct code.';
+      e.textContent='Invalid email or access code. Make sure both match your purchase.';
       document.getElementById('ag-input').style.borderColor='#e55';
       btn.textContent='Unlock Course';btn.disabled=false;
     }
