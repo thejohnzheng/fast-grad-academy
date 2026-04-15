@@ -25,6 +25,7 @@ export default async function handler(req, res) {
 
     const sessionParams = {
       mode: 'payment',
+            allow_promotion_codes: true,
       payment_method_types: ['card'],
       line_items: [
         {
