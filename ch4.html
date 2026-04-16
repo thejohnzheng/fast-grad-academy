@@ -673,152 +673,31 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
 }
 @media(min-width:901px){.main-content{padding-top:56px}}
 
-/* ── Action Checklist Styles ── */
-.action-checklist{
-  margin:40px 0;
-  padding:32px;
-  background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:14px;
-  max-width:var(--max-w,680px);
-  font-family:var(--font-b,'Inter'),sans-serif;
-}
-.ac-header{
-  display:flex;
-  align-items:center;
-  margin-bottom:18px;
-  gap:12px;
-}
-.ac-label{
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  color:#888;
-  padding-bottom:8px;
-  border-bottom:1px solid rgba(255,255,255,0.1);
-  flex:1;
-}
-.ac-subtitle{
-  font-family:var(--font-d,'Instrument Serif'),Georgia,serif;
-  font-size:22px;
-  font-weight:400;
-  color:#fff;
-  margin:0 0 20px 0;
-  line-height:1.3;
-}
-.ac-progress{
-  display:flex;
-  gap:16px;
-  align-items:center;
-  margin-bottom:24px;
-  padding:16px;
-  background:rgba(255,255,255,0.02);
-  border-radius:10px;
-}
-.ac-progress-bar{
-  flex:1;
-  height:6px;
-  background:rgba(255,255,255,0.08);
-  border-radius:3px;
-  overflow:hidden;
-}
-.ac-progress-fill{
-  height:100%;
-  background:linear-gradient(90deg,rgba(255,255,255,0.4),rgba(255,255,255,0.6));
-  transition:width 0.3s ease;
-  border-radius:3px;
-}
-.ac-progress-text{
-  font-size:13px;
-  color:var(--muted,rgba(255,255,255,0.5));
-  white-space:nowrap;
-}
-.ac-items{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.ac-item{
-  display:flex;
-  gap:12px;
-  padding:14px 16px;
-  background:rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:10px;
-  cursor:pointer;
-  transition:all 0.2s ease;
-}
-.ac-item:hover{
-  background:rgba(255,255,255,0.06);
-  border-color:rgba(255,255,255,0.12);
-}
-.ac-item.checked{
-  background:rgba(255,255,255,0.08);
-  border-color:rgba(255,255,255,0.15);
-}
-.ac-checkbox{
-  min-width:20px;
-  width:20px;
-  height:20px;
-  border:2px solid rgba(255,255,255,0.2);
-  border-radius:5px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:all 0.2s ease;
-  position:relative;
-  margin-top:2px;
-}
-.ac-item:hover .ac-checkbox{
-  border-color:rgba(255,255,255,0.4);
-  background:rgba(255,255,255,0.05);
-}
-.ac-item.checked .ac-checkbox{
-  background:rgba(255,255,255,0.15);
-  border-color:rgba(255,255,255,0.3);
-}
-.ac-item.checked .ac-checkbox::after{
-  content:'✓';
-  font-size:13px;
-  color:rgba(255,255,255,0.8);
-  font-weight:700;
-}
-.ac-item-content{
-  flex:1;
-}
-.ac-item-title{
-  font-size:15px;
-  font-weight:600;
-  color:#fff;
-  margin-bottom:4px;
-}
-.ac-item-desc{
-  font-size:13px;
-  color:var(--muted,rgba(255,255,255,0.5));
-  margin-bottom:8px;
-}
-.ac-item-links{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.ac-item-link{
-  font-size:12px;
-  color:rgba(255,255,255,0.6);
-  text-decoration:none;
-  transition:color 0.2s ease;
-  font-weight:500;
-}
-.ac-item-link:hover{
-  color:rgba(255,255,255,0.9);
-}
-@media(max-width:600px){
-  .action-checklist{padding:20px}
-  .ac-subtitle{font-size:18px;margin-bottom:16px}
-  .ac-progress{flex-direction:column;align-items:stretch}
-  .ac-progress-bar{width:100%}
-}
+/* ── ACTION CHECKLIST ── */
+.action-checklist{max-width:var(--max-w);margin:0 auto;padding:48px 24px 0}
+.ac-header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.ac-label{font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:16px}
+.ac-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
+.ac-subtitle{font-family:var(--font-d);font-size:clamp(28px,3.5vw,40px);font-weight:400;line-height:1.15;margin-bottom:24px}
+.ac-progress{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+.ac-progress-bar{flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden}
+.ac-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--silver),var(--white));border-radius:99px;transition:width 0.4s ease}
+.ac-progress-text{font-size:12px;font-weight:600;color:var(--muted);font-family:var(--font-m);min-width:42px;text-align:right}
+.ac-items{display:flex;flex-direction:column;gap:12px}
+.ac-item{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:18px 20px;cursor:pointer;transition:all 0.2s;display:flex;align-items:flex-start;gap:16px;-webkit-user-select:none;user-select:none}
+.ac-item:hover{border-color:rgba(192,192,192,0.18);background:rgba(255,255,255,0.06)}
+.ac-item.checked{border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.04)}
+.ac-checkbox{width:24px;height:24px;min-width:24px;border:1.5px solid var(--silver);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.2s;margin-top:2px;font-size:14px}
+.ac-item.checked .ac-checkbox{background:#22c55e;border-color:#22c55e;color:#fff}
+.ac-item.checked .ac-checkbox::after{content:'\2713'}
+.ac-item-title{font-weight:600;font-size:15px;color:var(--white);margin-bottom:4px}
+.ac-item.checked .ac-item-title{text-decoration:line-through;color:var(--muted)}
+.ac-item-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.ac-links-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.ac-item-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--silver);text-decoration:none;padding:5px 14px;border:1px solid rgba(192,192,192,0.15);border-radius:999px;transition:all 0.2s;font-family:var(--font-b)}
+.ac-item-link:hover{color:var(--white);border-color:rgba(192,192,192,0.4);background:rgba(255,255,255,0.04)}
+.link-arrow{font-size:14px;transition:transform 0.2s}
+.ac-item-link:hover .link-arrow{transform:translateX(2px)}
 
 </style>
 </head>
@@ -1073,7 +952,7 @@ function unlockAccess(){
   <div class="ac-items" id="acItems"></div>
 </div>
 
-  <!-- Mark complete -->
+<!-- Mark complete -->
   <div class="mc-wrap">
     <button class="mc-btn" id="mcBtn">Mark Chapter 4 Complete</button>
   </div>
@@ -1235,81 +1114,52 @@ if(mcBtn){
   });
 }
 
-// ── Action Checklist (Chapter 4) ──
+</script>
+<script>
 (function(){
-  const storageKey = 'fga_actions_ch4';
-  const items = [
-    { title: 'Register with Modern States and CLEP', desc: 'Create accounts and set up exam registration. Activate Modern States scholarship for fee reimbursement.', links: [{text: 'Modern States', url: 'https://modernstates.org/'}, {text: 'CLEP', url: 'https://clep.collegeboard.org/'}] },
-    { title: 'Enroll in Khan Academy CLEP Prep', desc: 'Pick your first target CLEP exam and start the free prep course.', links: [{text: 'Khan Academy', url: 'https://www.khanacademy.org/'}] },
-    { title: 'Take a Full Practice Test', desc: 'Get a baseline score and identify your weak areas. Use this to build your study plan.', links: [] },
-    { title: 'Find Your Test Center', desc: 'Locate the nearest Pearson Vue testing center and check exam availability.', links: [{text: 'Test Centers', url: 'https://www.pearsonvue.com/clep/'}] },
-    { title: 'Schedule Your 2–3 Week Study Sprint', desc: 'Block dedicated study time in your calendar. Aim to take your first CLEP within 3 weeks.', links: [] },
-    { title: 'Join the Reddit CLEP Community', desc: 'Follow r/clep for study tips, exam walkthroughs, and motivation.', links: [{text: 'r/clep', url: 'https://www.reddit.com/r/clep/'}] }
+  var chNum = 4;
+  var storageKey = 'fga_actions_ch' + chNum;
+  var items = [
+    {title:'Register for Modern States & Pick Your First CLEP', desc:'Complete a Modern States course to earn a free CLEP voucher. Start with one of the top 5 easiest CLEPs.', links:[{label:'Modern States', url:'https://modernstates.org'},{label:'CLEP Exam List', url:'https://clep.collegeboard.org/clep-exams'}]},
+    {title:'Use Free CLEP Prep on Khan Academy', desc:'Khan Academy covers many CLEP subject areas for free. Pair it with Modern States for full coverage.', links:[{label:'Khan Academy', url:'https://www.khanacademy.org'}]},
+    {title:'Take a CLEP Practice Test', desc:'College Board offers free sample questions for every CLEP exam. Take one before studying to find your gaps.', links:[{label:'CLEP Practice', url:'https://clep.collegeboard.org/clep-exams'}]},
+    {title:'Find Your Nearest CLEP Test Center', desc:'CLEP exams are taken at designated test centers. Find yours and check scheduling availability.', links:[{label:'Find Test Center', url:'https://clep.collegeboard.org/find-a-test-center'}]},
+    {title:'Set a 2-3 Week Study Sprint Schedule', desc:'Block 1-2 hours daily for the next 2-3 weeks focused on your first exam. Intensity beats duration.', links:[{label:'Google Calendar', url:'https://calendar.google.com'}]},
+    {title:'Join the CLEP Community on Reddit', desc:'r/clep has study tips, score reports, and exam-specific advice from students who\'ve passed.', links:[{label:'Reddit r/CLEP', url:'https://www.reddit.com/r/clep'}]}
   ];
-
-  function initChecklist(){
-    let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
-    if(!state.items) state.items = {};
-
-    const container = document.getElementById('acItems');
-    const totalEl = document.getElementById('acTotal');
-    if(!container) return;
-
-    totalEl.textContent = items.length;
-
-    items.forEach((item, idx) => {
-      const checked = state.items[idx] || false;
-      const itemEl = document.createElement('div');
-      itemEl.className = 'ac-item' + (checked ? ' checked' : '');
-      itemEl.dataset.index = idx;
-
-      let linksHtml = '';
-      if(item.links && item.links.length > 0){
-        linksHtml = '<div class="ac-item-links">' + item.links.map(link =>
-          `<a href="${link.url}" target="_blank" rel="noopener" class="ac-item-link">${link.text} →</a>`
-        ).join('') + '</div>';
-      }
-
-      itemEl.innerHTML = `
-        <div class="ac-checkbox"></div>
-        <div class="ac-item-content">
-          <div class="ac-item-title">${item.title}</div>
-          <div class="ac-item-desc">${item.desc}</div>
-          ${linksHtml}
-        </div>
-      `;
-
-      itemEl.addEventListener('click', function(e){
-        if(e.target.closest('.ac-item-link')) return;
-        toggleItem(idx);
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch(e){}
+  var container = document.getElementById('acItems');
+  if(!container) return;
+  items.forEach(function(item, idx){
+    var itemDiv = document.createElement('div');
+    itemDiv.className = 'ac-item' + (state[idx] ? ' checked' : '');
+    var linksHtml = '';
+    if(item.links && item.links.length){
+      linksHtml = '<div class="ac-links-row">';
+      item.links.forEach(function(l){
+        linksHtml += '<a class="ac-item-link" href="' + l.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + l.label + ' <span class="link-arrow">&rarr;</span></a>';
       });
-
-      container.appendChild(itemEl);
+      linksHtml += '</div>';
+    }
+    itemDiv.innerHTML = '<div class="ac-checkbox"></div><div class="ac-content"><div class="ac-item-title">' + item.title + '</div><div class="ac-item-desc">' + item.desc + '</div>' + linksHtml + '</div>';
+    itemDiv.addEventListener('click', function(e){
+      if(e.target.closest('.ac-item-link')) return;
+      state[idx] = !state[idx];
+      itemDiv.classList.toggle('checked');
+      localStorage.setItem(storageKey, JSON.stringify(state));
+      updateProgress();
     });
-
-    updateProgress();
-  }
-
-  function toggleItem(idx){
-    let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
-    if(!state.items) state.items = {};
-    state.items[idx] = !state.items[idx];
-    localStorage.setItem(storageKey, JSON.stringify(state));
-
-    const itemEl = document.querySelector(`.ac-item[data-index="${idx}"]`);
-    if(itemEl) itemEl.classList.toggle('checked');
-    updateProgress();
-  }
-
+    container.appendChild(itemDiv);
+  });
   function updateProgress(){
-    let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
-    const checkedCount = Object.values(state.items || {}).filter(Boolean).length;
-    document.getElementById('acChecked').textContent = checkedCount;
-    const pct = Math.round(checkedCount / items.length * 100);
-    document.getElementById('acProgressFill').style.width = pct + '%';
+    var done = Object.keys(state).filter(function(k){ return state[k]; }).length;
+    var el = document.getElementById('acChecked');
+    var fill = document.getElementById('acProgressFill');
+    if(el) el.textContent = done;
+    if(fill) fill.style.width = Math.round(done / items.length * 100) + '%';
   }
-
-  document.addEventListener('DOMContentLoaded', initChecklist);
+  updateProgress();
 })();
 </script>
 </body>
