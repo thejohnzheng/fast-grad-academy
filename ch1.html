@@ -1066,81 +1066,52 @@ if(mcBtn){
   });
 }
 
-// ── Action Checklist (Chapter 1) ──
+</script>
+<script>
 (function(){
-  const storageKey = 'fga_actions_ch1';
-  const items = [
-    { title: 'Subscribe to YouTube Channel', desc: 'Watch John Zheng\'s full story and updated guides on The Automated Founder', links: [{text: 'YouTube', url: 'https://www.youtube.com/@John_Zheng'}] },
-    { title: 'Set Up Modern States Account', desc: 'Create free account and unlock exam fee reimbursement (up to $97 per CLEP)', links: [{text: 'Modern States', url: 'https://modernstates.org/'}] },
-    { title: 'Explore Sophia.org', desc: 'Browse transfer-friendly courses and understand the platform', links: [{text: 'Sophia.org', url: 'https://www.sophia.org/'}] },
-    { title: 'Check Your Target School\'s Transfer Policy', desc: 'Verify which CLEP/DSST credits transfer and build your target list', links: [] },
-    { title: 'Read CLEP Official Overview', desc: 'Understand exam format, scoring, and which subjects count toward your degree', links: [{text: 'CLEP Overview', url: 'https://clep.collegeboard.org/'}] },
-    { title: 'Set Your Target Credit Goal', desc: 'Decide how many credits to stack (12? 24? 36?) and which exams to prioritize', links: [] }
+  var chNum = 1;
+  var storageKey = 'fga_actions_ch' + chNum;
+  var items = [
+    {title:'Watch the Full Story on YouTube', desc:'See how John compressed his degree and the exact strategy behind it.', links:[{label:'YouTube Channel', url:'https://www.youtube.com/@John_Zheng'}]},
+    {title:'Browse Modern States — Free CLEP Prep', desc:'Modern States offers free courses for every CLEP exam. Enroll in your first one today.', links:[{label:'Modern States', url:'https://modernstates.org'}]},
+    {title:'Check Sophia.org Free Trial Courses', desc:'Sophia offers self-paced courses that transfer to 60+ partner schools. Explore what\'s available.', links:[{label:'Sophia.org', url:'https://www.sophia.org'}]},
+    {title:'Look Up Your School\'s Transfer Credit Policy', desc:'Google "[your school] + transfer credit policy" or check the registrar page. Know what credits they accept before you start.', links:[]},
+    {title:'Read the College Board CLEP Overview', desc:'Understand what CLEP exams are, how they\'re scored, and which subjects are offered.', links:[{label:'CLEP Official', url:'https://clep.collegeboard.org'}]},
+    {title:'Set a Target: How Many Credits Do You Want to Earn?', desc:'Write down a number — 15, 30, 60. Having a concrete goal shapes every decision from here on.', links:[]}
   ];
-
-  function initChecklist(){
-    let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
-    if(!state.items) state.items = {};
-
-    const container = document.getElementById('acItems');
-    const totalEl = document.getElementById('acTotal');
-    if(!container) return;
-
-    totalEl.textContent = items.length;
-
-    items.forEach((item, idx) => {
-      const checked = state.items[idx] || false;
-      const itemEl = document.createElement('div');
-      itemEl.className = 'ac-item' + (checked ? ' checked' : '');
-      itemEl.dataset.index = idx;
-
-      let linksHtml = '';
-      if(item.links && item.links.length > 0){
-        linksHtml = '<div class="ac-item-links">' + item.links.map(link =>
-          `<a href="${link.url}" target="_blank" rel="noopener" class="ac-item-link">${link.text} →</a>`
-        ).join('') + '</div>';
-      }
-
-      itemEl.innerHTML = `
-        <div class="ac-checkbox"></div>
-        <div class="ac-item-content">
-          <div class="ac-item-title">${item.title}</div>
-          <div class="ac-item-desc">${item.desc}</div>
-          ${linksHtml}
-        </div>
-      `;
-
-      itemEl.addEventListener('click', function(e){
-        if(e.target.closest('.ac-item-link')) return;
-        toggleItem(idx);
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch(e){}
+  var container = document.getElementById('acItems');
+  if(!container) return;
+  items.forEach(function(item, idx){
+    var itemDiv = document.createElement('div');
+    itemDiv.className = 'ac-item' + (state[idx] ? ' checked' : '');
+    var linksHtml = '';
+    if(item.links && item.links.length){
+      linksHtml = '<div class="ac-links-row">';
+      item.links.forEach(function(l){
+        linksHtml += '<a class="ac-item-link" href="' + l.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + l.label + ' <span class="link-arrow">&rarr;</span></a>';
       });
-
-      container.appendChild(itemEl);
+      linksHtml += '</div>';
+    }
+    itemDiv.innerHTML = '<div class="ac-checkbox"></div><div class="ac-content"><div class="ac-item-title">' + item.title + '</div><div class="ac-item-desc">' + item.desc + '</div>' + linksHtml + '</div>';
+    itemDiv.addEventListener('click', function(e){
+      if(e.target.closest('.ac-item-link')) return;
+      state[idx] = !state[idx];
+      itemDiv.classList.toggle('checked');
+      localStorage.setItem(storageKey, JSON.stringify(state));
+      updateProgress();
     });
-
-    updateProgress();
-  }
-
-  function toggleItem(idx){
-    let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
-    if(!state.items) state.items = {};
-    state.items[idx] = !state.items[idx];
-    localStorage.setItem(storageKey, JSON.stringify(state));
-
-    const itemEl = document.querySelector(`.ac-item[data-index="${idx}"]`);
-    if(itemEl) itemEl.classList.toggle('checked');
-    updateProgress();
-  }
-
+    container.appendChild(itemDiv);
+  });
   function updateProgress(){
-    let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
-    const checkedCount = Object.values(state.items || {}).filter(Boolean).length;
-    document.getElementById('acChecked').textContent = checkedCount;
-    const pct = Math.round(checkedCount / items.length * 100);
-    document.getElementById('acProgressFill').style.width = pct + '%';
+    var done = Object.keys(state).filter(function(k){ return state[k]; }).length;
+    var el = document.getElementById('acChecked');
+    var fill = document.getElementById('acProgressFill');
+    if(el) el.textContent = done;
+    if(fill) fill.style.width = Math.round(done / items.length * 100) + '%';
   }
-
-  document.addEventListener('DOMContentLoaded', initChecklist);
+  updateProgress();
 })();
 </script>
 </body>
