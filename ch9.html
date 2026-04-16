@@ -672,6 +672,31 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
   .main-content{padding-top:56px}
 }
 @media(min-width:901px){.main-content{padding-top:56px}}
+/* ── ACTION CHECKLIST ── */
+.action-checklist{max-width:var(--max-w);margin:0 auto;padding:48px 24px 0}
+.ac-header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.ac-label{font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:16px}
+.ac-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
+.ac-subtitle{font-family:var(--font-d);font-size:clamp(28px,3.5vw,40px);font-weight:400;line-height:1.15;margin-bottom:24px}
+.ac-progress{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+.ac-progress-bar{flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden}
+.ac-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--silver),var(--white));border-radius:99px;transition:width 0.4s ease}
+.ac-progress-text{font-size:12px;font-weight:600;color:var(--muted);font-family:var(--font-m);min-width:42px;text-align:right}
+.ac-items{display:flex;flex-direction:column;gap:12px}
+.ac-item{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:18px 20px;cursor:pointer;transition:all 0.2s;display:flex;align-items:flex-start;gap:16px;-webkit-user-select:none;user-select:none}
+.ac-item:hover{border-color:rgba(192,192,192,0.18);background:rgba(255,255,255,0.06)}
+.ac-item.checked{border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.04)}
+.ac-checkbox{width:24px;height:24px;min-width:24px;border:1.5px solid var(--silver);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.2s;margin-top:2px;font-size:14px}
+.ac-item.checked .ac-checkbox{background:#22c55e;border-color:#22c55e;color:#fff}
+.ac-item.checked .ac-checkbox::after{content:'✓'}
+.ac-item-title{font-weight:600;font-size:15px;color:var(--white);margin-bottom:4px}
+.ac-item.checked .ac-item-title{text-decoration:line-through;color:var(--muted)}
+.ac-item-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.ac-links-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.ac-item-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--silver);text-decoration:none;padding:5px 14px;border:1px solid rgba(192,192,192,0.15);border-radius:999px;transition:all 0.2s;font-family:var(--font-b)}
+.ac-item-link:hover{color:var(--white);border-color:rgba(192,192,192,0.4);background:rgba(255,255,255,0.04)}
+.link-arrow{font-size:14px;transition:transform 0.2s}
+.ac-item-link:hover .link-arrow{transform:translateX(2px)}
 
 </style>
 </head>
@@ -995,6 +1020,16 @@ function unlockAccess(){
   </div>
 </section>
 
+<div class="action-checklist">
+  <div class="ac-header"><div class="ac-label">Your Action Items</div></div>
+  <h3 class="ac-subtitle">Put This Chapter Into Action</h3>
+  <div class="ac-progress">
+    <div class="ac-progress-bar"><div class="ac-progress-fill" id="acProgressFill" style="width:0%"></div></div>
+    <div class="ac-progress-text"><span id="acChecked">0</span>/<span id="acTotal">6</span></div>
+  </div>
+  <div class="ac-items" id="acItems"></div>
+</div>
+
   <!-- Mark complete -->
   <div class="mc-wrap">
     <button class="mc-btn" id="mcBtn">Mark Chapter 9 Complete</button>
@@ -1156,6 +1191,53 @@ if(mcBtn){
     }catch(e){}
   });
 }
+</script>
+<script>
+(function(){
+  var chNum = 9;
+  var storageKey = 'fga_actions_ch' + chNum;
+  var items = [
+    {title:'Open Claude or ChatGPT and Try Prompt #1', desc:'Use the first AI study prompt from this chapter on your current exam topic. See how it accelerates your understanding.', links:[{label:'Claude', url:'https://claude.ai'},{label:'ChatGPT', url:'https://chat.openai.com'}]},
+    {title:'Generate AI-Powered Flashcards', desc:'Ask the AI to create 20 Q&A flashcards on your exam topic, then import them into Anki.', links:[{label:'Anki', url:'https://apps.ankiweb.net'}]},
+    {title:'Use AI to Create a Practice Exam', desc:'Prompt: "Create a 25-question practice exam for [CLEP subject] with answer explanations." Take it timed.', links:[]},
+    {title:'Try the "Explain Like I\'m 5" Prompt', desc:'Ask AI to explain your hardest topic in the simplest possible terms. Then rebuild your understanding from there.', links:[]},
+    {title:'Build an AI Study Schedule', desc:'Prompt: "I have 14 days to pass the [exam name]. Create a day-by-day study plan with specific topics and time blocks."', links:[]},
+    {title:'Explore Magoosh for Test Prep', desc:'Magoosh offers video lessons and practice questions for standardized tests. Check if they cover your exam.', links:[{label:'Magoosh', url:'https://magoosh.com'}]}
+  ];
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch(e){}
+  var container = document.getElementById('acItems');
+  if(!container) return;
+  items.forEach(function(item, idx){
+    var itemDiv = document.createElement('div');
+    itemDiv.className = 'ac-item' + (state[idx] ? ' checked' : '');
+    var linksHtml = '';
+    if(item.links && item.links.length){
+      linksHtml = '<div class="ac-links-row">';
+      item.links.forEach(function(l){
+        linksHtml += '<a class="ac-item-link" href="' + l.url + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + l.label + ' <span class="link-arrow">&rarr;</span></a>';
+      });
+      linksHtml += '</div>';
+    }
+    itemDiv.innerHTML = '<div class="ac-checkbox"></div><div class="ac-content"><div class="ac-item-title">' + item.title + '</div><div class="ac-item-desc">' + item.desc + '</div>' + linksHtml + '</div>';
+    itemDiv.addEventListener('click', function(e){
+      if(e.target.closest('.ac-item-link')) return;
+      state[idx] = !state[idx];
+      itemDiv.classList.toggle('checked');
+      localStorage.setItem(storageKey, JSON.stringify(state));
+      updateProgress();
+    });
+    container.appendChild(itemDiv);
+  });
+  function updateProgress(){
+    var done = Object.keys(state).filter(function(k){ return state[k]; }).length;
+    var el = document.getElementById('acChecked');
+    var fill = document.getElementById('acProgressFill');
+    if(el) el.textContent = done;
+    if(fill) fill.style.width = Math.round(done / items.length * 100) + '%';
+  }
+  updateProgress();
+})();
 </script>
 </body>
 </html>

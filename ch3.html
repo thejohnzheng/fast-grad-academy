@@ -673,6 +673,153 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
 }
 @media(min-width:901px){.main-content{padding-top:56px}}
 
+/* ── Action Checklist Styles ── */
+.action-checklist{
+  margin:40px 0;
+  padding:32px;
+  background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  max-width:var(--max-w,680px);
+  font-family:var(--font-b,'Inter'),sans-serif;
+}
+.ac-header{
+  display:flex;
+  align-items:center;
+  margin-bottom:18px;
+  gap:12px;
+}
+.ac-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:#888;
+  padding-bottom:8px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  flex:1;
+}
+.ac-subtitle{
+  font-family:var(--font-d,'Instrument Serif'),Georgia,serif;
+  font-size:22px;
+  font-weight:400;
+  color:#fff;
+  margin:0 0 20px 0;
+  line-height:1.3;
+}
+.ac-progress{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  margin-bottom:24px;
+  padding:16px;
+  background:rgba(255,255,255,0.02);
+  border-radius:10px;
+}
+.ac-progress-bar{
+  flex:1;
+  height:6px;
+  background:rgba(255,255,255,0.08);
+  border-radius:3px;
+  overflow:hidden;
+}
+.ac-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,rgba(255,255,255,0.4),rgba(255,255,255,0.6));
+  transition:width 0.3s ease;
+  border-radius:3px;
+}
+.ac-progress-text{
+  font-size:13px;
+  color:var(--muted,rgba(255,255,255,0.5));
+  white-space:nowrap;
+}
+.ac-items{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.ac-item{
+  display:flex;
+  gap:12px;
+  padding:14px 16px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:10px;
+  cursor:pointer;
+  transition:all 0.2s ease;
+}
+.ac-item:hover{
+  background:rgba(255,255,255,0.06);
+  border-color:rgba(255,255,255,0.12);
+}
+.ac-item.checked{
+  background:rgba(255,255,255,0.08);
+  border-color:rgba(255,255,255,0.15);
+}
+.ac-checkbox{
+  min-width:20px;
+  width:20px;
+  height:20px;
+  border:2px solid rgba(255,255,255,0.2);
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.2s ease;
+  position:relative;
+  margin-top:2px;
+}
+.ac-item:hover .ac-checkbox{
+  border-color:rgba(255,255,255,0.4);
+  background:rgba(255,255,255,0.05);
+}
+.ac-item.checked .ac-checkbox{
+  background:rgba(255,255,255,0.15);
+  border-color:rgba(255,255,255,0.3);
+}
+.ac-item.checked .ac-checkbox::after{
+  content:'✓';
+  font-size:13px;
+  color:rgba(255,255,255,0.8);
+  font-weight:700;
+}
+.ac-item-content{
+  flex:1;
+}
+.ac-item-title{
+  font-size:15px;
+  font-weight:600;
+  color:#fff;
+  margin-bottom:4px;
+}
+.ac-item-desc{
+  font-size:13px;
+  color:var(--muted,rgba(255,255,255,0.5));
+  margin-bottom:8px;
+}
+.ac-item-links{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.ac-item-link{
+  font-size:12px;
+  color:rgba(255,255,255,0.6);
+  text-decoration:none;
+  transition:color 0.2s ease;
+  font-weight:500;
+}
+.ac-item-link:hover{
+  color:rgba(255,255,255,0.9);
+}
+@media(max-width:600px){
+  .action-checklist{padding:20px}
+  .ac-subtitle{font-size:18px;margin-bottom:16px}
+  .ac-progress{flex-direction:column;align-items:stretch}
+  .ac-progress-bar{width:100%}
+}
+
 </style>
 </head>
 <body>
@@ -911,6 +1058,16 @@ function unlockAccess(){
   </div>
 </section>
 
+<div class="action-checklist">
+  <div class="ac-header"><div class="ac-label">Your Action Items</div></div>
+  <h3 class="ac-subtitle">Put This Chapter Into Action</h3>
+  <div class="ac-progress">
+    <div class="ac-progress-bar"><div class="ac-progress-fill" id="acProgressFill" style="width:0%"></div></div>
+    <div class="ac-progress-text"><span id="acChecked">0</span>/<span id="acTotal">6</span></div>
+  </div>
+  <div class="ac-items" id="acItems"></div>
+</div>
+
   <!-- Mark complete -->
   <div class="mc-wrap">
     <button class="mc-btn" id="mcBtn">Mark Chapter 3 Complete</button>
@@ -1072,6 +1229,83 @@ if(mcBtn){
     }catch(e){}
   });
 }
+
+// ── Action Checklist (Chapter 3) ──
+(function(){
+  const storageKey = 'fga_actions_ch3';
+  const items = [
+    { title: 'Map Out Credit Pathways to Your Target School', desc: 'List your target degree, identify requirements, and find which exams map directly to them.', links: [] },
+    { title: 'Create Modern States Account', desc: 'Sign up for free exam fee reimbursement ($97 per CLEP), valid for 12 months.', links: [{text: 'Modern States', url: 'https://modernstates.org/'}] },
+    { title: 'Start Sophia.org Free Trial', desc: 'Explore the platform, browse courses, and understand the self-paced model.', links: [{text: 'Sophia.org', url: 'https://www.sophia.org/'}] },
+    { title: 'Check Study.com Transfer Agreement', desc: 'Verify which Study.com courses transfer to your target school.', links: [{text: 'Study.com', url: 'https://www.study.com/'}] },
+    { title: 'Build a Credit Stacking Spreadsheet', desc: 'Track: Exam, Credits, Cost, Score Target, Transfer Status, Timeline.', links: [] },
+    { title: 'Pick Your First 3 Target Exams', desc: 'Choose exams that align with required courses and your strongest subjects.', links: [] }
+  ];
+
+  function initChecklist(){
+    let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    if(!state.items) state.items = {};
+
+    const container = document.getElementById('acItems');
+    const totalEl = document.getElementById('acTotal');
+    if(!container) return;
+
+    totalEl.textContent = items.length;
+
+    items.forEach((item, idx) => {
+      const checked = state.items[idx] || false;
+      const itemEl = document.createElement('div');
+      itemEl.className = 'ac-item' + (checked ? ' checked' : '');
+      itemEl.dataset.index = idx;
+
+      let linksHtml = '';
+      if(item.links && item.links.length > 0){
+        linksHtml = '<div class="ac-item-links">' + item.links.map(link =>
+          `<a href="${link.url}" target="_blank" rel="noopener" class="ac-item-link">${link.text} →</a>`
+        ).join('') + '</div>';
+      }
+
+      itemEl.innerHTML = `
+        <div class="ac-checkbox"></div>
+        <div class="ac-item-content">
+          <div class="ac-item-title">${item.title}</div>
+          <div class="ac-item-desc">${item.desc}</div>
+          ${linksHtml}
+        </div>
+      `;
+
+      itemEl.addEventListener('click', function(e){
+        if(e.target.closest('.ac-item-link')) return;
+        toggleItem(idx);
+      });
+
+      container.appendChild(itemEl);
+    });
+
+    updateProgress();
+  }
+
+  function toggleItem(idx){
+    let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    if(!state.items) state.items = {};
+    state.items[idx] = !state.items[idx];
+    localStorage.setItem(storageKey, JSON.stringify(state));
+
+    const itemEl = document.querySelector(`.ac-item[data-index="${idx}"]`);
+    if(itemEl) itemEl.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress(){
+    let state = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    const checkedCount = Object.values(state.items || {}).filter(Boolean).length;
+    document.getElementById('acChecked').textContent = checkedCount;
+    const pct = Math.round(checkedCount / items.length * 100);
+    document.getElementById('acProgressFill').style.width = pct + '%';
+  }
+
+  document.addEventListener('DOMContentLoaded', initChecklist);
+})();
 </script>
 </body>
 </html>
