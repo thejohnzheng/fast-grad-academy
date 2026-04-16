@@ -672,6 +672,14 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
   .main-content{padding-top:56px}
 }
 @media(min-width:901px){.main-content{padding-top:56px}}
+
+/* ── CHAPTER IMAGES ── */
+.ch-img{max-width:var(--max-w);margin:32px auto;padding:0 24px;display:block}
+.ch-img img,.ch-img svg{width:100%;height:auto;border-radius:16px;border:1px solid var(--glass-border)}
+.ch-img-caption{font-size:11px;color:var(--muted);text-align:center;margin-top:8px;font-family:var(--font-b)}
+.ch-photo{max-width:var(--max-w);margin:32px auto;padding:0 24px}
+.ch-photo img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(192,192,192,0.1);object-fit:cover}
+
 /* ── ACTION CHECKLIST ── */
 .action-checklist{max-width:var(--max-w);margin:0 auto;padding:48px 24px 0}
 .ac-header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
@@ -959,6 +967,11 @@ function unlockAccess(){
     <div class="ch-body reveal">
       <h3>The 52-Week Bachelor's Degree Timeline</h3>
       <p>This is the aggressive playbook. It's not for everyone, but it shows what's possible when you stack every advantage.</p>
+
+      <div class="ch-img" style="padding:0;margin:32px 0">
+        <img src="img/timeline-52week.svg" alt="52-week roadmap to a bachelor's degree — 4 phases from pre-load sprint to graduation">
+        <div class="ch-img-caption">Your roadmap: 4 phases, 52 weeks, one accredited degree.</div>
+      </div>
     </div>
   </div>
 

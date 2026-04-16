@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" fill="none">
+  <rect width="800" height="320" rx="20" fill="#0a0a0a"/>
+
+  <!-- Title -->
+  <text x="400" y="36" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="0.2em" text-anchor="middle">YOUR 52-WEEK ROADMAP TO A BACHELOR'S DEGREE</text>
+
+  <!-- Main timeline line -->
+  <line x1="60" y1="130" x2="740" y2="130" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <line x1="60" y1="130" x2="740" y2="130" stroke="url(#tlGrad)" stroke-width="2"/>
+
+  <!-- Phase 1: Pre-Load Sprint -->
+  <rect x="60" y="110" width="280" height="40" rx="20" fill="rgba(192,192,192,0.06)" stroke="rgba(192,192,192,0.15)" stroke-width="1"/>
+  <circle cx="80" cy="130" r="8" fill="#c0c0c0"/>
+  <text x="80" y="134" fill="#0a0a0a" font-family="Inter,sans-serif" font-size="9" font-weight="800" text-anchor="middle">1</text>
+  <text x="110" y="125" fill="#ffffff" font-family="Inter,sans-serif" font-size="12" font-weight="700">Pre-Load Sprint</text>
+  <text x="110" y="140" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10">Weeks 1–23 · Sophia + Study.com + CLEP</text>
+
+  <rect x="80" y="165" width="100" height="50" rx="12" fill="rgba(192,192,192,0.04)" stroke="rgba(192,192,192,0.1)" stroke-width="1"/>
+  <text x="130" y="186" fill="#ffffff" font-family="'Instrument Serif',Georgia,serif" font-size="24" text-anchor="middle">60</text>
+  <text x="130" y="203" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" font-weight="600" letter-spacing="0.05em" text-anchor="middle">CREDITS</text>
+
+  <!-- Phase 2: Apply -->
+  <circle cx="370" cy="130" r="8" fill="#c0c0c0"/>
+  <text x="370" y="134" fill="#0a0a0a" font-family="Inter,sans-serif" font-size="9" font-weight="800" text-anchor="middle">2</text>
+  <text x="370" y="105" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">Apply</text>
+  <text x="370" y="92" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">Week 24</text>
+
+  <!-- Phase 3: ACE Push -->
+  <rect x="395" y="110" width="130" height="40" rx="20" fill="rgba(192,192,192,0.06)" stroke="rgba(192,192,192,0.15)" stroke-width="1"/>
+  <circle cx="415" cy="130" r="8" fill="#c0c0c0"/>
+  <text x="415" y="134" fill="#0a0a0a" font-family="Inter,sans-serif" font-size="9" font-weight="800" text-anchor="middle">3</text>
+  <text x="445" y="125" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700">ACE Push</text>
+  <text x="445" y="140" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9">Wk 25–28</text>
+
+  <rect x="400" y="165" width="80" height="50" rx="12" fill="rgba(192,192,192,0.04)" stroke="rgba(192,192,192,0.1)" stroke-width="1"/>
+  <text x="440" y="186" fill="#ffffff" font-family="'Instrument Serif',Georgia,serif" font-size="24" text-anchor="middle">75</text>
+  <text x="440" y="203" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" font-weight="600" letter-spacing="0.05em" text-anchor="middle">CREDITS</text>
+
+  <!-- Phase 4: University -->
+  <rect x="545" y="110" width="175" height="40" rx="20" fill="rgba(34,197,94,0.06)" stroke="rgba(34,197,94,0.2)" stroke-width="1"/>
+  <circle cx="565" cy="130" r="8" fill="#22c55e"/>
+  <text x="565" y="134" fill="#fff" font-family="Inter,sans-serif" font-size="9" font-weight="800" text-anchor="middle">4</text>
+  <text x="595" y="125" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700">University Terms</text>
+  <text x="595" y="140" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9">Weeks 29–52</text>
+
+  <rect x="560" y="165" width="80" height="50" rx="12" fill="rgba(34,197,94,0.06)" stroke="rgba(34,197,94,0.15)" stroke-width="1"/>
+  <text x="600" y="186" fill="#22c55e" font-family="'Instrument Serif',Georgia,serif" font-size="24" text-anchor="middle">120</text>
+  <text x="600" y="203" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" font-weight="600" letter-spacing="0.05em" text-anchor="middle">CREDITS</text>
+
+  <!-- Graduation flag -->
+  <circle cx="740" cy="130" r="12" fill="#22c55e"/>
+  <text x="740" y="135" fill="#fff" font-family="Inter,sans-serif" font-size="14" text-anchor="middle">🎓</text>
+  <text x="740" y="105" fill="#22c55e" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">GRADUATE</text>
+  <text x="740" y="92" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">Week 52</text>
+
+  <!-- Bottom stats -->
+  <rect x="100" y="248" width="180" height="52" rx="12" fill="rgba(192,192,192,0.04)" stroke="rgba(192,192,192,0.08)" stroke-width="1"/>
+  <text x="190" y="270" fill="#ffffff" font-family="'Instrument Serif',Georgia,serif" font-size="20" text-anchor="middle">$4,000 – $8,200</text>
+  <text x="190" y="288" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" font-weight="600" letter-spacing="0.08em" text-anchor="middle">TOTAL COST</text>
+
+  <rect x="310" y="248" width="180" height="52" rx="12" fill="rgba(192,192,192,0.04)" stroke="rgba(192,192,192,0.08)" stroke-width="1"/>
+  <text x="400" y="270" fill="#ffffff" font-family="'Instrument Serif',Georgia,serif" font-size="20" text-anchor="middle">12 Months</text>
+  <text x="400" y="288" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" font-weight="600" letter-spacing="0.08em" text-anchor="middle">TIME TO DEGREE</text>
+
+  <rect x="520" y="248" width="180" height="52" rx="12" fill="rgba(34,197,94,0.06)" stroke="rgba(34,197,94,0.12)" stroke-width="1"/>
+  <text x="610" y="270" fill="#22c55e" font-family="'Instrument Serif',Georgia,serif" font-size="20" text-anchor="middle">$85,000+</text>
+  <text x="610" y="288" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" font-weight="600" letter-spacing="0.08em" text-anchor="middle">POTENTIAL SAVINGS</text>
+
+  <defs>
+    <linearGradient id="tlGrad" x1="60" y1="0" x2="740" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c0c0c0" stop-opacity="0.3"/>
+      <stop offset="0.7" stop-color="#c0c0c0" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#22c55e" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+</svg>

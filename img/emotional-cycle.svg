@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" fill="none">
+  <rect width="800" height="380" rx="20" fill="#0a0a0a"/>
+
+  <!-- Grid lines -->
+  <line x1="80" y1="60" x2="80" y2="300" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="260" y1="60" x2="260" y2="300" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="440" y1="60" x2="440" y2="300" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="620" y1="60" x2="620" y2="300" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="80" y1="180" x2="740" y2="180" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4,6"/>
+
+  <!-- The curve -->
+  <path d="M 80 200 C 120 200, 140 90, 200 80 C 260 70, 280 110, 320 160 C 360 210, 400 280, 460 290 C 520 300, 540 260, 580 200 C 620 140, 660 80, 740 60"
+        stroke="url(#curveGrad)" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- Gradient glow under curve -->
+  <path d="M 80 200 C 120 200, 140 90, 200 80 C 260 70, 280 110, 320 160 C 360 210, 400 280, 460 290 C 520 300, 540 260, 580 200 C 620 140, 660 80, 740 60 L 740 300 L 80 300 Z"
+        fill="url(#areaGrad)" opacity="0.15"/>
+
+  <!-- Phase dots -->
+  <circle cx="80" cy="200" r="6" fill="#c0c0c0"/>
+  <circle cx="200" cy="80" r="6" fill="#c0c0c0"/>
+  <circle cx="460" cy="290" r="6" fill="#ef4444"/>
+  <circle cx="740" cy="60" r="6" fill="#22c55e"/>
+
+  <!-- Phase labels -->
+  <text x="80" y="330" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" font-weight="600" letter-spacing="0.08em" text-anchor="middle">START</text>
+
+  <text x="200" y="50" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">Uninformed</text>
+  <text x="200" y="64" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">Optimism</text>
+  <text x="200" y="330" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">"I can totally do this!"</text>
+
+  <text x="460" y="330" fill="#ef4444" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">Valley of Despair</text>
+  <text x="460" y="346" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">"Maybe this was a mistake..."</text>
+
+  <text x="660" y="50" fill="#22c55e" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">Pushing</text>
+  <text x="660" y="64" fill="#22c55e" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">Through</text>
+  <text x="740" y="330" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">"It's working."</text>
+
+  <text x="320" y="140" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" font-weight="600" text-anchor="middle">Informed</text>
+  <text x="320" y="153" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" font-weight="600" text-anchor="middle">Pessimism</text>
+
+  <!-- Y-axis labels -->
+  <text x="40" y="85" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" transform="rotate(-90,40,85)">CONFIDENCE</text>
+
+  <!-- Arrow at end -->
+  <polygon points="740,60 732,68 735,62 728,62" fill="#22c55e"/>
+
+  <!-- Annotation: "YOU ARE HERE" callout for Valley -->
+  <rect x="390" y="248" width="140" height="28" rx="14" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+  <text x="460" y="267" fill="#ef4444" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="0.1em" text-anchor="middle">MOST PEOPLE QUIT</text>
+
+  <defs>
+    <linearGradient id="curveGrad" x1="80" y1="0" x2="740" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c0c0c0"/>
+      <stop offset="0.5" stop-color="#ef4444"/>
+      <stop offset="1" stop-color="#22c55e"/>
+    </linearGradient>
+    <linearGradient id="areaGrad" x1="0" y1="60" x2="0" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c0c0c0" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#c0c0c0" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

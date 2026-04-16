@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" fill="none">
+  <rect width="800" height="340" rx="20" fill="#0a0a0a"/>
+
+  <!-- Title -->
+  <text x="400" y="36" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="0.2em" text-anchor="middle">THE REAL COST OF COLLEGE — TWO PATHS</text>
+
+  <!-- Traditional Path bar -->
+  <rect x="80" y="70" width="640" height="80" rx="14" fill="rgba(239,68,68,0.06)" stroke="rgba(239,68,68,0.15)" stroke-width="1"/>
+
+  <!-- Bar fill (proportional — $216K out of $216K = 100%) -->
+  <rect x="84" y="74" width="632" height="72" rx="12" fill="rgba(239,68,68,0.08)"/>
+
+  <text x="110" y="98" fill="#ef4444" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="0.15em">TRADITIONAL PATH — 4 YEARS</text>
+
+  <text x="110" y="130" fill="#ffffff" font-family="'Instrument Serif',Georgia,serif" font-size="32">$216,000+</text>
+
+  <text x="360" y="130" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="11">Tuition + Room &amp; Board + Books + Opportunity Cost</text>
+
+  <!-- Fast Grad bar -->
+  <rect x="80" y="170" width="200" height="80" rx="14" fill="rgba(34,197,94,0.06)" stroke="rgba(34,197,94,0.2)" stroke-width="1"/>
+
+  <!-- Bar fill (proportional — $8K out of $216K ≈ 3.7%, but make it visible) -->
+  <rect x="84" y="174" width="192" height="72" rx="12" fill="rgba(34,197,94,0.1)"/>
+
+  <text x="110" y="198" fill="#22c55e" font-family="Inter,sans-serif" font-size="10" font-weight="700" letter-spacing="0.15em">FAST GRAD PATH — 1 YEAR</text>
+
+  <text x="110" y="232" fill="#ffffff" font-family="'Instrument Serif',Georgia,serif" font-size="32">$4,000 – $8,200</text>
+
+  <!-- Savings callout -->
+  <rect x="320" y="175" width="400" height="70" rx="14" fill="rgba(34,197,94,0.04)" stroke="rgba(34,197,94,0.12)" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <text x="340" y="200" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" font-weight="600" letter-spacing="0.1em">YOU KEEP THIS</text>
+
+  <text x="340" y="230" fill="#22c55e" font-family="'Instrument Serif',Georgia,serif" font-size="28">$208,000+</text>
+  <text x="530" y="230" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="12">in savings, invested earnings, &amp; zero debt</text>
+
+  <!-- Bottom breakdown -->
+  <line x1="80" y1="275" x2="720" y2="275" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <text x="140" y="300" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">Sophia</text>
+  <text x="140" y="316" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">~$600</text>
+
+  <text x="260" y="300" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">Study.com</text>
+  <text x="260" y="316" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">~$800</text>
+
+  <text x="380" y="300" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">CLEP Exams</text>
+  <text x="380" y="316" fill="#22c55e" font-family="Inter,sans-serif" font-size="10" font-weight="700" text-anchor="middle">FREE</text>
+
+  <text x="500" y="300" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">1 University Term</text>
+  <text x="500" y="316" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">~$3,575</text>
+
+  <text x="640" y="300" fill="#ffffff" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">This Guide</text>
+  <text x="640" y="316" fill="#a8a8a8" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">$97</text>
+
+  <!-- Divider dots -->
+  <circle cx="200" cy="305" r="2" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="320" cy="305" r="2" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="440" cy="305" r="2" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="570" cy="305" r="2" fill="rgba(255,255,255,0.1)"/>
+
+  <!-- Source -->
+  <text x="400" y="338" fill="rgba(255,255,255,0.2)" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">Sources: NCES, College Board Trends in College Pricing</text>
+</svg>
