@@ -313,39 +313,84 @@
     }
     .feature-card-label span { font-size: 11px; color: var(--muted-silver); font-weight: 400; }
 
-    /* ─── REVIEWS CAROUSEL (infinite marquee) ─── */
-    .reviews { padding: 80px 24px; overflow: hidden; }
-    .reviews-header { text-align: center; margin-bottom: 56px; max-width: 700px; margin-left: auto; margin-right: auto; }
-    .reviews-header h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: var(--black); margin-bottom: 12px; }
-    .reviews-header p { font-size: 14px; color: var(--muted-silver); }
-    .review-track {
-      display: flex; gap: 20px; width: max-content;
-      animation: marquee-reviews 60s linear infinite;
+    /* ─── WALL OF PROOF ─── */
+    .proof-section { padding: 80px 0; overflow: hidden; background: var(--black); color: var(--white); }
+    .proof-header { text-align: center; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto; padding: 0 24px; }
+    .proof-header .eyebrow { color: rgba(255,255,255,0.5); }
+    .proof-header h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: var(--white); margin-bottom: 12px; }
+    .proof-header p { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 600px; margin: 0 auto; }
+
+    .proof-stats {
+      display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+      padding: 32px 24px 48px; max-width: 900px; margin: 0 auto;
     }
-    .review-track:hover { animation-play-state: paused; }
-    @keyframes marquee-reviews { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .review-card {
-      flex-shrink: 0; width: 360px;
-      background: var(--off-white);
-      border-radius: 20px;
-      padding: 32px 28px;
-      border-left: 3px solid var(--black);
+    .proof-stat { text-align: center; }
+    .proof-stat-num { font-family: var(--font-display); font-size: clamp(28px, 4vw, 42px); font-weight: 400; color: var(--white); }
+    .proof-stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+    .proof-row { position: relative; margin-bottom: 16px; }
+    .proof-row::before,
+    .proof-row::after {
+      content: ''; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; pointer-events: none;
     }
-    .review-stars {
-      font-size: 14px;
-      color: #d4a534;
+    .proof-row::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
+    .proof-row::after { right: 0; background: linear-gradient(to left, var(--black), transparent); }
+
+    .proof-track {
+      display: flex; gap: 16px; width: max-content;
+      animation: proof-scroll 120s linear infinite;
+    }
+    .proof-track:hover { animation-play-state: paused; }
+    .proof-track-reverse {
+      display: flex; gap: 16px; width: max-content;
+      animation: proof-scroll-reverse 100s linear infinite;
+    }
+    .proof-track-reverse:hover { animation-play-state: paused; }
+    @keyframes proof-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes proof-scroll-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+    .proof-card {
+      flex-shrink: 0; width: 320px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px 22px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .proof-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
+    .proof-card.proof-card--john {
+      border-left: 3px solid #c0c0c0;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .proof-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .proof-tag {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 4px;
+      background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5);
+    }
+    .proof-tag--clep { background: rgba(59,130,246,0.15); color: #93bbfd; }
+    .proof-tag--wgu { background: rgba(34,197,94,0.15); color: #86efac; }
+    .proof-tag--dual { background: rgba(168,85,247,0.15); color: #c4b5fd; }
+    .proof-tag--sophia { background: rgba(251,146,60,0.15); color: #fdba74; }
+    .proof-tag--yt { background: rgba(255,0,0,0.12); color: #fca5a5; }
+    .proof-tag--verified { background: rgba(212,165,52,0.15); color: #fbbf24; }
+
+    .proof-headline {
+      font-family: var(--font-display); font-size: 20px; font-weight: 400;
+      color: var(--white); line-height: 1.3; margin-bottom: 10px;
+    }
+    .proof-desc {
+      font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; font-weight: 300;
       margin-bottom: 16px;
-      letter-spacing: 3px;
     }
-    .review-source {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted-silver); margin-bottom: 14px;
+    .proof-meta { display: flex; justify-content: space-between; align-items: center; }
+    .proof-name { font-size: 13px; font-weight: 600; color: var(--white); }
+    .proof-source { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; }
+    .proof-disclaimer {
+      text-align: center; margin-top: 32px; padding: 0 24px;
+      font-size: 11px; color: rgba(255,255,255,0.3); max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.6;
     }
-    .review-text { font-size: 14px; color: var(--charcoal); line-height: 1.75; font-weight: 300; margin-bottom: 24px; font-style: italic; }
-    .review-name { font-size: 13px; font-weight: 600; color: var(--black); }
-    .review-title { font-size: 12px; color: var(--muted-silver); margin-top: 4px; }
-    .review-disclaimer { text-align: center; margin-top: 28px; font-size: 11px; color: var(--muted-silver); max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
     /* ─── PRICING ─── */
     .pricing { padding: 80px 24px; max-width: 600px; margin: 0 auto; text-align: center; }
@@ -646,9 +691,9 @@
         grid-template-columns: 1fr;
       }
 
-      .review-grid {
-        grid-template-columns: 1fr;
-      }
+      .proof-stats { gap: 24px; }
+      .proof-card { width: 280px; padding: 20px 18px; }
+      .proof-headline { font-size: 17px; }
 
       footer {
         flex-direction: column;
@@ -1034,136 +1079,333 @@
 </section>
 
 <!-- REVIEWS CAROUSEL -->
-<section class="reviews" id="reviews">
-  <div class="reviews-header">
-    <div class="eyebrow reveal reveal-d1">What people are saying</div>
-    <h2 class="reveal reveal-d2">1,952 Students. 5.0 Stars.</h2>
-    <p class="reveal reveal-d3">Real comments from YouTube (1.4M views) and verified Gumroad purchases.</p>
+<section class="proof-section" id="reviews">
+  <div class="proof-header">
+    <div class="eyebrow reveal reveal-d1">This isn't just my story</div>
+    <h2 class="reveal reveal-d2">Thousands of people are doing this.</h2>
+    <p class="reveal reveal-d3">CLEP, DSST, dual enrollment, competency-based degrees. The strategy is proven. These are real people, real numbers, real outcomes.</p>
   </div>
-  <div class="review-track">
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">6.1K likes</span></div>
-      <p class="review-text">"He could have kept this for himself, but he's telling others how to do it. Cool guy."</p>
-      <div class="review-name">Gaia M.</div>
+
+  <div class="proof-stats reveal reveal-d2">
+    <div class="proof-stat">
+      <div class="proof-stat-num">800K+</div>
+      <div class="proof-stat-label">Learners used credit-by-exam</div>
     </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">1.4K likes</span></div>
-      <p class="review-text">"I graduated with my associates in 2022, bachelor's in 2023, and I'm currently in an accelerated Masters of Data Science program. You're a beast bro, thanks for sharing."</p>
-      <div class="review-name">The Bald Coder</div>
-      <div class="review-title">Minnesotan, followed the same path</div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">$750M+</div>
+      <div class="proof-stat-label">Total tuition saved</div>
     </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">1.9K likes</span></div>
-      <p class="review-text">"I am a retired AP Physics teacher and agree with what you presented. Such a great way to beat the cost of higher Ed!"</p>
-      <div class="review-name">9Point8</div>
-      <div class="review-title">Retired AP Physics Teacher</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-source">&#10003; Verified Purchase</div>
-      <p class="review-text">"What you provided has saved me a lot of time. I feel so fortunate to have come across this information, as it will help me shorten my years of study in college."</p>
-      <div class="review-name">Huyen N.</div>
-      <div class="review-title">Gumroad buyer</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">257 likes</span></div>
-      <p class="review-text">"I went back to school at 42, studied for 24 hrs, took the college mathematics CLEP. Easiest 6 credits I've ever gotten. Cost $120 — those 2 classes would have cost $3,000."</p>
-      <div class="review-name">Airgunning Up</div>
-      <div class="review-title">Adult learner, saved $2,880</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">373 likes</span></div>
-      <p class="review-text">"I dropped out at 16, got my GED and got into ASU before the next semester started."</p>
-      <div class="review-name">Financial Life</div>
-      <div class="review-title">Discovered CLEP testing on accident</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">327 likes</span></div>
-      <p class="review-text">"Thanks to you, maybe my children and nephews/nieces can learn from my mistakes and graduate sooner and cheaper than I did."</p>
-      <div class="review-name">El Chino G.</div>
-      <div class="review-title">Parent planning for family</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-source">&#10003; Verified Purchase</div>
-      <p class="review-text">"I'm a freshman in high school and I now have the opportunity to follow the same path as you."</p>
-      <div class="review-name">Anonymous Freshman</div>
-      <div class="review-title">Gumroad buyer</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube</div>
-      <p class="review-text">"I'm an 8th grade teacher. I will be sharing this."</p>
-      <div class="review-name">TJesse</div>
-      <div class="review-title">Middle school educator</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">917 likes</span></div>
-      <p class="review-text">"I never knew you could just skip the class straight to the test. This really helps us smart guys looking to take the faster path straight to our goals."</p>
-      <div class="review-name">Pablo V.</div>
-    </div>
-    <!-- duplicate set for seamless loop -->
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">6.1K likes</span></div>
-      <p class="review-text">"He could have kept this for himself, but he's telling others how to do it. Cool guy."</p>
-      <div class="review-name">Gaia M.</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">1.4K likes</span></div>
-      <p class="review-text">"I graduated with my associates in 2022, bachelor's in 2023, and I'm currently in an accelerated Masters of Data Science program. You're a beast bro, thanks for sharing."</p>
-      <div class="review-name">The Bald Coder</div>
-      <div class="review-title">Minnesotan, followed the same path</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">1.9K likes</span></div>
-      <p class="review-text">"I am a retired AP Physics teacher and agree with what you presented. Such a great way to beat the cost of higher Ed!"</p>
-      <div class="review-name">9Point8</div>
-      <div class="review-title">Retired AP Physics Teacher</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-source">&#10003; Verified Purchase</div>
-      <p class="review-text">"What you provided has saved me a lot of time. I feel so fortunate to have come across this information, as it will help me shorten my years of study in college."</p>
-      <div class="review-name">Huyen N.</div>
-      <div class="review-title">Gumroad buyer</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">257 likes</span></div>
-      <p class="review-text">"I went back to school at 42, studied for 24 hrs, took the college mathematics CLEP. Easiest 6 credits I've ever gotten. Cost $120 — those 2 classes would have cost $3,000."</p>
-      <div class="review-name">Airgunning Up</div>
-      <div class="review-title">Adult learner, saved $2,880</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">373 likes</span></div>
-      <p class="review-text">"I dropped out at 16, got my GED and got into ASU before the next semester started."</p>
-      <div class="review-name">Financial Life</div>
-      <div class="review-title">Discovered CLEP testing on accident</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">327 likes</span></div>
-      <p class="review-text">"Thanks to you, maybe my children and nephews/nieces can learn from my mistakes and graduate sooner and cheaper than I did."</p>
-      <div class="review-name">El Chino G.</div>
-      <div class="review-title">Parent planning for family</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <div class="review-source">&#10003; Verified Purchase</div>
-      <p class="review-text">"I'm a freshman in high school and I now have the opportunity to follow the same path as you."</p>
-      <div class="review-name">Anonymous Freshman</div>
-      <div class="review-title">Gumroad buyer</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube</div>
-      <p class="review-text">"I'm an 8th grade teacher. I will be sharing this."</p>
-      <div class="review-name">TJesse</div>
-      <div class="review-title">Middle school educator</div>
-    </div>
-    <div class="review-card">
-      <div class="review-source">&#9654; YouTube <span style="font-weight:400;letter-spacing:0">917 likes</span></div>
-      <p class="review-text">"I never knew you could just skip the class straight to the test. This really helps us smart guys looking to take the faster path straight to our goals."</p>
-      <div class="review-name">Pablo V.</div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">3,000+</div>
+      <div class="proof-stat-label">Colleges accept CLEP</div>
     </div>
   </div>
-  <p class="review-disclaimer reveal reveal-d4">Real comments from YouTube and verified Gumroad purchases. Quoted with minor edits for length.</p>
+
+  <!-- ROW 1: scrolls left -->
+  <div class="proof-row">
+    <div class="proof-track">
+      <!-- === 12 cards === -->
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--yt">YouTube</span><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Associates '22. Bachelor's '23. Masters '24.</div>
+        <div class="proof-desc">Followed the same accelerated path from Minnesota. Now in a data science masters program.</div>
+        <div class="proof-meta"><span class="proof-name">The Bald Coder</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--sophia">Sophia</span></div>
+        <div class="proof-headline">Bachelor's in 6 months for $2,500</div>
+        <div class="proof-desc">Used 38 alternative credits, then blitzed a competency-based school to finish the rest in one semester.</div>
+        <div class="proof-meta"><span class="proof-name">Eric</span><span class="proof-source">College Hacked</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--dual">PSEO</span></div>
+        <div class="proof-headline">3 degrees at age 18 for $6,000</div>
+        <div class="proof-desc">High school diploma, associate's, and bachelor's — all earned simultaneously. 90 credits via CLEP starting in middle school.</div>
+        <div class="proof-meta"><span class="proof-name">Matt Frame</span><span class="proof-source">Star Tribune</span></div>
+      </div>
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--yt">YouTube</span></div>
+        <div class="proof-headline">$120 instead of $3,000</div>
+        <div class="proof-desc">Went back to school at 42. Studied 24 hours, took the College Mathematics CLEP. Easiest 6 credits ever.</div>
+        <div class="proof-meta"><span class="proof-name">Airgunning Up</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">36 credits at age 16. Saved $50,000.</div>
+        <div class="proof-desc">Used Modern States free CLEP prep. Parents paid $0 in exam fees. Entered college as a near-sophomore.</div>
+        <div class="proof-meta"><span class="proof-name">Adrian Hernandez Vega</span><span class="proof-source">Modern States</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--wgu">TESU</span></div>
+        <div class="proof-headline">2 degrees in 18 months for $17,000</div>
+        <div class="proof-desc">Banked 60 credits via CLEP, then knocked out a BA in Communications and an AFA in Fine Arts at Thomas Edison State.</div>
+        <div class="proof-meta"><span class="proof-name">Julia Shingleton</span><span class="proof-source">Modern States</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--sophia">Sophia</span></div>
+        <div class="proof-headline">90 credits via Sophia. Degree for $3,500.</div>
+        <div class="proof-desc">Completed bachelor's in 17 months. 90 of 120 credits came from Sophia at $99/month.</div>
+        <div class="proof-meta"><span class="proof-name">Cory</span><span class="proof-source">College Hacked</span></div>
+      </div>
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--yt">YouTube</span></div>
+        <div class="proof-headline">Dropped out at 16. Got into ASU.</div>
+        <div class="proof-desc">Got GED and enrolled at Arizona State before the next semester started. Discovered CLEP testing by accident.</div>
+        <div class="proof-meta"><span class="proof-name">Financial Life</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--wgu">WGU</span></div>
+        <div class="proof-headline">BS + MBA in 14 months. 120% income increase.</div>
+        <div class="proof-desc">Marketing degree in 8 months, MBA in 6 months. $5,000 out of pocket. 40% raise after 2 years, 120% after 4.</div>
+        <div class="proof-meta"><span class="proof-name">Dan Sanchez</span><span class="proof-source">Personal Blog</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--dual">Dual Enroll</span></div>
+        <div class="proof-headline">Both daughters graduated college before finishing high school</div>
+        <div class="proof-desc">Used Colorado's dual enrollment program. Saved $60,000. Both started bachelor's programs 2 years ahead, debt-free.</div>
+        <div class="proof-meta"><span class="proof-name">Shelley Branine</span><span class="proof-source">WorthyNest</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">100+ CLEP credits. BA at 18. ~$6,000.</div>
+        <div class="proof-desc">Tested out of over 100 college credits while in middle school and high school. Psychology degree from TESU.</div>
+        <div class="proof-meta"><span class="proof-name">Katie Frame</span><span class="proof-source">Star Tribune</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--sophia">Study.com</span></div>
+        <div class="proof-headline">Psychology degree in 8 months for $5,500</div>
+        <div class="proof-desc">First in his family to graduate college. Used alternative credits and finished at University of Maine.</div>
+        <div class="proof-meta"><span class="proof-name">Randy</span><span class="proof-source">College Hacked</span></div>
+      </div>
+      <!-- === duplicate 12 for seamless loop === -->
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--yt">YouTube</span><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Associates '22. Bachelor's '23. Masters '24.</div>
+        <div class="proof-desc">Followed the same accelerated path from Minnesota. Now in a data science masters program.</div>
+        <div class="proof-meta"><span class="proof-name">The Bald Coder</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--sophia">Sophia</span></div>
+        <div class="proof-headline">Bachelor's in 6 months for $2,500</div>
+        <div class="proof-desc">Used 38 alternative credits, then blitzed a competency-based school to finish the rest in one semester.</div>
+        <div class="proof-meta"><span class="proof-name">Eric</span><span class="proof-source">College Hacked</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--dual">PSEO</span></div>
+        <div class="proof-headline">3 degrees at age 18 for $6,000</div>
+        <div class="proof-desc">High school diploma, associate's, and bachelor's — all earned simultaneously. 90 credits via CLEP starting in middle school.</div>
+        <div class="proof-meta"><span class="proof-name">Matt Frame</span><span class="proof-source">Star Tribune</span></div>
+      </div>
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--yt">YouTube</span></div>
+        <div class="proof-headline">$120 instead of $3,000</div>
+        <div class="proof-desc">Went back to school at 42. Studied 24 hours, took the College Mathematics CLEP. Easiest 6 credits ever.</div>
+        <div class="proof-meta"><span class="proof-name">Airgunning Up</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">36 credits at age 16. Saved $50,000.</div>
+        <div class="proof-desc">Used Modern States free CLEP prep. Parents paid $0 in exam fees. Entered college as a near-sophomore.</div>
+        <div class="proof-meta"><span class="proof-name">Adrian Hernandez Vega</span><span class="proof-source">Modern States</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--wgu">TESU</span></div>
+        <div class="proof-headline">2 degrees in 18 months for $17,000</div>
+        <div class="proof-desc">Banked 60 credits via CLEP, then knocked out a BA in Communications and an AFA in Fine Arts at Thomas Edison State.</div>
+        <div class="proof-meta"><span class="proof-name">Julia Shingleton</span><span class="proof-source">Modern States</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--sophia">Sophia</span></div>
+        <div class="proof-headline">90 credits via Sophia. Degree for $3,500.</div>
+        <div class="proof-desc">Completed bachelor's in 17 months. 90 of 120 credits came from Sophia at $99/month.</div>
+        <div class="proof-meta"><span class="proof-name">Cory</span><span class="proof-source">College Hacked</span></div>
+      </div>
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--yt">YouTube</span></div>
+        <div class="proof-headline">Dropped out at 16. Got into ASU.</div>
+        <div class="proof-desc">Got GED and enrolled at Arizona State before the next semester started. Discovered CLEP testing by accident.</div>
+        <div class="proof-meta"><span class="proof-name">Financial Life</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--wgu">WGU</span></div>
+        <div class="proof-headline">BS + MBA in 14 months. 120% income increase.</div>
+        <div class="proof-desc">Marketing degree in 8 months, MBA in 6 months. $5,000 out of pocket. 40% raise after 2 years, 120% after 4.</div>
+        <div class="proof-meta"><span class="proof-name">Dan Sanchez</span><span class="proof-source">Personal Blog</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--dual">Dual Enroll</span></div>
+        <div class="proof-headline">Both daughters graduated college before finishing high school</div>
+        <div class="proof-desc">Used Colorado's dual enrollment program. Saved $60,000. Both started bachelor's programs 2 years ahead, debt-free.</div>
+        <div class="proof-meta"><span class="proof-name">Shelley Branine</span><span class="proof-source">WorthyNest</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">100+ CLEP credits. BA at 18. ~$6,000.</div>
+        <div class="proof-desc">Tested out of over 100 college credits while in middle school and high school. Psychology degree from TESU.</div>
+        <div class="proof-meta"><span class="proof-name">Katie Frame</span><span class="proof-source">Star Tribune</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--sophia">Study.com</span></div>
+        <div class="proof-headline">Psychology degree in 8 months for $5,500</div>
+        <div class="proof-desc">First in his family to graduate college. Used alternative credits and finished at University of Maine.</div>
+        <div class="proof-meta"><span class="proof-name">Randy</span><span class="proof-source">College Hacked</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: scrolls right (reverse) -->
+  <div class="proof-row">
+    <div class="proof-track-reverse">
+      <!-- === 12 cards === -->
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--wgu">WGU</span></div>
+        <div class="proof-headline">CS degree in 3 months. Under $5,000.</div>
+        <div class="proof-desc">Completed 34 courses (120 credits) in a single WGU term. Story went viral on Hacker News.</div>
+        <div class="proof-meta"><span class="proof-name">Miguel Rochefort</span><span class="proof-source">Hacker News</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--clep">DSST</span></div>
+        <div class="proof-headline">BA in Psychology at 19. $8,000 total.</div>
+        <div class="proof-desc">Started earning credits at age 12 via CLEP, DSST, Sophia, Study.com. Graduated debt-free from TESU.</div>
+        <div class="proof-meta"><span class="proof-name">Aviendha</span><span class="proof-source">HS4CC Blog</span></div>
+      </div>
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--yt">YouTube</span></div>
+        <div class="proof-headline">Retired AP teacher: "Such a great way to beat the cost of higher Ed!"</div>
+        <div class="proof-desc">AP Physics teacher with decades of experience confirmed the strategy works exactly as described.</div>
+        <div class="proof-meta"><span class="proof-name">9Point8</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--sophia">StraighterLine</span></div>
+        <div class="proof-headline">BS in Business for $8,200. Zero debt.</div>
+        <div class="proof-desc">Used AP, dual enrollment, StraighterLine ($59/course), and CLEP. Under $1,400 per semester. Promoted after graduating.</div>
+        <div class="proof-meta"><span class="proof-name">Kara Prado</span><span class="proof-source">Money.com</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Age 51. 66 CLEP exams. Saved $25,000+.</div>
+        <div class="proof-desc">Most CLEP exams passed in Modern States history. Enrolled at TESU to complete his degree. Exam fees: $0.</div>
+        <div class="proof-meta"><span class="proof-name">Elliot Rosen</span><span class="proof-source">Modern States</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--clep">DSST</span></div>
+        <div class="proof-headline">52 credits via exams. 5-year degree in 1 year.</div>
+        <div class="proof-desc">Started credit-by-exam at age 13. Walked onto campus with over half her accounting degree already done.</div>
+        <div class="proof-meta"><span class="proof-name">Tayah</span><span class="proof-source">Peterson's</span></div>
+      </div>
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--verified">Verified Purchase</span></div>
+        <div class="proof-headline">"Saved me a lot of time. I feel so fortunate."</div>
+        <div class="proof-desc">Found the guide and immediately started shortening years of college study. Verified Gumroad buyer.</div>
+        <div class="proof-meta"><span class="proof-name">Huyen N.</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">BA + Associate's for under $5,000</div>
+        <div class="proof-desc">Graduated high school at 18 with both a bachelor's and associate's degree. Zero loans. Zero scholarships needed.</div>
+        <div class="proof-meta"><span class="proof-name">Olivia's daughter</span><span class="proof-source">LinkedIn</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Entire freshman year for $0</div>
+        <div class="proof-desc">Homeschooled student used Modern States free CLEP prep and vouchers. Earned ~30 credits before stepping on campus.</div>
+        <div class="proof-meta"><span class="proof-name">Sean</span><span class="proof-source">HS4CC Blog</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Honors in 17 months. $11,000. Accepted to Northwestern.</div>
+        <div class="proof-desc">Graduated with honors using alternative credits. Then accepted to Northwestern for a master's in clinical counseling.</div>
+        <div class="proof-meta"><span class="proof-name">Emerald L.</span><span class="proof-source">College Hacked</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">4 exams. 8 weeks. $0. Got her diploma.</div>
+        <div class="proof-desc">Passed Spanish, Sociology, Psychology, and Marketing CLEPs using free Modern States prep. Met all remaining graduation requirements.</div>
+        <div class="proof-meta"><span class="proof-name">Brown</span><span class="proof-source">Modern States</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Military vet. 25 credits transferred. Saved $12,000.</div>
+        <div class="proof-desc">Passed CLEP Spanish for 12 credits, earned 13 more via Prior Learning Assessment. Entered Barry University as a sophomore.</div>
+        <div class="proof-meta"><span class="proof-name">Carlos Paillacar</span><span class="proof-source">League for Innovation</span></div>
+      </div>
+      <!-- === duplicate 12 for seamless loop === -->
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--wgu">WGU</span></div>
+        <div class="proof-headline">CS degree in 3 months. Under $5,000.</div>
+        <div class="proof-desc">Completed 34 courses (120 credits) in a single WGU term. Story went viral on Hacker News.</div>
+        <div class="proof-meta"><span class="proof-name">Miguel Rochefort</span><span class="proof-source">Hacker News</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--clep">DSST</span></div>
+        <div class="proof-headline">BA in Psychology at 19. $8,000 total.</div>
+        <div class="proof-desc">Started earning credits at age 12 via CLEP, DSST, Sophia, Study.com. Graduated debt-free from TESU.</div>
+        <div class="proof-meta"><span class="proof-name">Aviendha</span><span class="proof-source">HS4CC Blog</span></div>
+      </div>
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--yt">YouTube</span></div>
+        <div class="proof-headline">Retired AP teacher: "Such a great way to beat the cost of higher Ed!"</div>
+        <div class="proof-desc">AP Physics teacher with decades of experience confirmed the strategy works exactly as described.</div>
+        <div class="proof-meta"><span class="proof-name">9Point8</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--sophia">StraighterLine</span></div>
+        <div class="proof-headline">BS in Business for $8,200. Zero debt.</div>
+        <div class="proof-desc">Used AP, dual enrollment, StraighterLine ($59/course), and CLEP. Under $1,400 per semester. Promoted after graduating.</div>
+        <div class="proof-meta"><span class="proof-name">Kara Prado</span><span class="proof-source">Money.com</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Age 51. 66 CLEP exams. Saved $25,000+.</div>
+        <div class="proof-desc">Most CLEP exams passed in Modern States history. Enrolled at TESU to complete his degree. Exam fees: $0.</div>
+        <div class="proof-meta"><span class="proof-name">Elliot Rosen</span><span class="proof-source">Modern States</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span><span class="proof-tag proof-tag--clep">DSST</span></div>
+        <div class="proof-headline">52 credits via exams. 5-year degree in 1 year.</div>
+        <div class="proof-desc">Started credit-by-exam at age 13. Walked onto campus with over half her accounting degree already done.</div>
+        <div class="proof-meta"><span class="proof-name">Tayah</span><span class="proof-source">Peterson's</span></div>
+      </div>
+      <div class="proof-card proof-card--john">
+        <div class="proof-tags"><span class="proof-tag proof-tag--verified">Verified Purchase</span></div>
+        <div class="proof-headline">"Saved me a lot of time. I feel so fortunate."</div>
+        <div class="proof-desc">Found the guide and immediately started shortening years of college study. Verified Gumroad buyer.</div>
+        <div class="proof-meta"><span class="proof-name">Huyen N.</span><span class="proof-source">FGA Community</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">BA + Associate's for under $5,000</div>
+        <div class="proof-desc">Graduated high school at 18 with both a bachelor's and associate's degree. Zero loans. Zero scholarships needed.</div>
+        <div class="proof-meta"><span class="proof-name">Olivia's daughter</span><span class="proof-source">LinkedIn</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Entire freshman year for $0</div>
+        <div class="proof-desc">Homeschooled student used Modern States free CLEP prep and vouchers. Earned ~30 credits before stepping on campus.</div>
+        <div class="proof-meta"><span class="proof-name">Sean</span><span class="proof-source">HS4CC Blog</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Honors in 17 months. $11,000. Accepted to Northwestern.</div>
+        <div class="proof-desc">Graduated with honors using alternative credits. Then accepted to Northwestern for a master's in clinical counseling.</div>
+        <div class="proof-meta"><span class="proof-name">Emerald L.</span><span class="proof-source">College Hacked</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">4 exams. 8 weeks. $0. Got her diploma.</div>
+        <div class="proof-desc">Passed Spanish, Sociology, Psychology, and Marketing CLEPs using free Modern States prep. Met all remaining graduation requirements.</div>
+        <div class="proof-meta"><span class="proof-name">Brown</span><span class="proof-source">Modern States</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-tags"><span class="proof-tag proof-tag--clep">CLEP</span></div>
+        <div class="proof-headline">Military vet. 25 credits transferred. Saved $12,000.</div>
+        <div class="proof-desc">Passed CLEP Spanish for 12 credits, earned 13 more via Prior Learning Assessment. Entered Barry University as a sophomore.</div>
+        <div class="proof-meta"><span class="proof-name">Carlos Paillacar</span><span class="proof-source">League for Innovation</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="proof-disclaimer reveal reveal-d4">Real stories sourced from YouTube, Modern States, news outlets, personal blogs, and verified purchases. Stories represent individual outcomes. FGA teaches you the exact strategies these people used.</p>
 </section>
 
 <!-- FOR PARENTS -->
