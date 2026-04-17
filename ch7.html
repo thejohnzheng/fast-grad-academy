@@ -93,12 +93,9 @@ a:hover{color:var(--white)}
 /* ── TOOL STRIP ── */
 .tool-strip{margin:32px 0 48px;padding:24px 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
 .tool-strip-label{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px}
-.tool-strip-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent}
-.tool-strip-row::-webkit-scrollbar{height:4px}
-.tool-strip-row::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
-.tool-strip-card{flex-shrink:0;width:auto}
-.tool-strip-card img{height:80px;width:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s}
-.tool-strip-card img:hover{transform:scale(1.03);border-color:rgba(255,255,255,0.2)}
+.tool-strip-row{display:flex;gap:12px;flex-wrap:wrap;padding-bottom:8px}
+.tool-strip-card{flex-shrink:0;display:inline-flex;align-items:center;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:8px 18px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;transition:background 0.2s,color 0.2s,border-color 0.2s}
+.tool-strip-card:hover{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2)}
 /* ── DIVIDER ── */
 .divider{width:100%;height:1px;background:rgba(255,255,255,0.04)}
 
@@ -881,11 +878,11 @@ function unlockAccess(){
   <div class="tool-strip reveal">
     <div class="tool-strip-label">Tools in this chapter</div>
     <div class="tool-strip-row">
-      <a class="tool-strip-card" href="https://www.transferology.com" target="_blank" rel="noopener"><img src="img/tool-transferology.png" alt="Transferology — Credit Transfer Checker"></a>
-      <a class="tool-strip-card" href="https://clep.collegeboard.org" target="_blank" rel="noopener"><img src="img/tool-clep.png" alt="CLEP — College Board"></a>
-      <a class="tool-strip-card" href="https://modernstates.org" target="_blank" rel="noopener"><img src="img/tool-modernstates.png" alt="Modern States — Free CLEP Prep"></a>
-      <a class="tool-strip-card" href="https://getcollegecredit.com" target="_blank" rel="noopener"><img src="img/tool-dsst.png" alt="DSST — Get College Credit"></a>
-      <a class="tool-strip-card" href="https://chatgpt.com" target="_blank" rel="noopener"><img src="img/tool-chatgpt.png" alt="ChatGPT / Claude — AI Study Stack"></a>
+      <a class="tool-strip-card" href="https://www.transferology.com" target="_blank" rel="noopener">Transferology</a>
+      <a class="tool-strip-card" href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a>
+      <a class="tool-strip-card" href="https://modernstates.org" target="_blank" rel="noopener">Modern States</a>
+      <a class="tool-strip-card" href="https://getcollegecredit.com" target="_blank" rel="noopener">DSST</a>
+      <a class="tool-strip-card" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a>
     </div>
   </div>
 
