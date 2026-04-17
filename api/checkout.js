@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════
 // STRIPE CHECKOUT SESSION CREATOR
-// POST /api/checkout — creates a Stripe Checkout session for $97 guide
+// POST /api/checkout — creates a Stripe Checkout session for $197 guide
 // Returns { url } to redirect the buyer to Stripe
 // ═══════════════════════════════════════════════════════════
 

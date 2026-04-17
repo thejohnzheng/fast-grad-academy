@@ -40,11 +40,21 @@ body{background:var(--black);color:var(--white);font-family:var(--font-b);font-s
 a{color:var(--silver);text-decoration:none;transition:color .2s}
 a:hover{color:var(--white)}
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 32px;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
-.nav-brand{font-family:var(--font-d);font-size:18px;color:var(--white);display:flex;align-items:center;gap:8px}
-.nav-back{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:.02em}
-.nav-back:hover{color:var(--white)}
+/* NAV — unified */
+.fga-unified-nav{position:fixed;top:0;left:0;right:0;z-index:150;padding:0 24px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);height:56px;display:flex;align-items:center}
+.nav-container{display:flex;align-items:center;gap:32px;width:100%}
+.nav-brand{font-family:var(--font-d);font-size:17px;color:var(--white);text-decoration:none;font-weight:400;margin-right:auto}
+.nav-brand:hover{color:var(--silver)}
+.nav-links{display:flex;gap:24px}
+.nav-links .nav-link{font-size:13px;font-weight:500;color:rgba(255,255,255,0.5);text-decoration:none;letter-spacing:0.02em;transition:color 0.2s}
+.nav-links .nav-link:hover{color:#fff}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-hamburger span{width:20px;height:1.5px;background:var(--white);border-radius:999px;display:block}
+.nav-mobile{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(10,10,10,0.98);padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);z-index:149}
+.nav-mobile.open{display:flex;flex-direction:column;gap:12px}
+.nav-mobile .mobile-link{font-size:14px;color:rgba(255,255,255,0.6);text-decoration:none;padding:8px 0}
+.nav-mobile .mobile-link:hover{color:#fff}
+@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}}
 
 /* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
@@ -203,7 +213,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 
 /* PRINT */
 @media print{
-  .nav,.action-bar,.modal-overlay,.toast-container,.btn,.row-actions,.table-controls,.gened-edit-btn{display:none!important}
+  .fga-unified-nav,.action-bar,.modal-overlay,.toast-container,.btn,.row-actions,.table-controls,.gened-edit-btn{display:none!important}
   body{background:#fff;color:#000}
   .glass{background:#f5f5f5;border:1px solid #ddd}
   .section{padding:20px 0}
@@ -213,7 +223,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  .nav{padding:14px 16px}
+  .fga-unified-nav{padding:14px 16px}
   .section{padding:60px 16px}
   .section:first-of-type{padding-top:100px}
   .glass{padding:20px;border-radius:16px}
@@ -230,9 +240,19 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <body>
 
 <!-- NAV -->
-<nav class="nav">
-  <a href="index.html" class="nav-brand">&#x1F680; Fast Grad Academy</a>
-  <a href="index.html" class="nav-back">&larr; Back to Course</a>
+<nav class="fga-unified-nav">
+  <div class="nav-container">
+    <a href="/" class="nav-brand">Fast Grad Academy</a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/guide" class="nav-link">The Guide</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" onclick="document.getElementById('navMobile').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="/" class="nav-link mobile-link">Home</a>
+    <a href="/guide" class="nav-link mobile-link">The Guide</a>
+  </div>
 </nav>
 
 <!-- OVERVIEW DASHBOARD -->
