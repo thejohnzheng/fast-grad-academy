@@ -678,28 +678,41 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
 </head>
 <body>
 
+<style>
+@keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-4px)}20%,40%,60%,80%{transform:translateX(4px)}}
+.ag-shake{animation:shake 0.5s ease}
+.ag-err-box{font-size:13px;color:#ff6b6b;margin-bottom:14px;display:none;background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.2);border-radius:10px;padding:12px 16px;text-align:left;line-height:1.6}
+.ag-err-box strong{color:#ff8a8a}
+</style>
 <div id="access-gate" style="position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
-  <div style="max-width:420px;width:100%;text-align:center">
+  <div id="ag-form-wrap" style="max-width:420px;width:100%;text-align:center">
     <div style="font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:#fff;margin-bottom:8px">Fast Grad Academy</div>
-    <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#a8a8a8;margin-bottom:48px">Student Access Required</div>
-    <input id="ag-email" type="email" placeholder="Enter your purchase email"
-      style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.2s"
+    <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#a8a8a8;margin-bottom:40px">Student Access Required</div>
+
+    <!-- Email hint box -->
+    <div style="background:rgba(192,192,192,0.06);border:1px solid rgba(192,192,192,0.12);border-radius:12px;padding:14px 18px;margin-bottom:24px;text-align:left;">
+      <div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">
+        <strong style="color:#fff;">Already purchased?</strong> Your access code was emailed to you right after checkout. Check your inbox (and spam) for an email from <span style="color:#c0c0c0;">Fast Grad Academy</span>.
+      </div>
+    </div>
+
+    <input id="ag-email" type="email" placeholder="Email you used at checkout"
+      style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.3s"
       autocomplete="email" spellcheck="false"
     />
-    <input id="ag-input" type="text" placeholder="Enter your access code (FGA-XXXX-XXXX)"
-      style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.2s;text-transform:uppercase;letter-spacing:0.08em"
+    <input id="ag-input" type="text" placeholder="Access code (FGA-XXXX-XXXX)"
+      style="width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;transition:border 0.3s;text-transform:uppercase;letter-spacing:0.08em"
       onkeydown="if(event.key==='Enter')unlockAccess()"
       autocomplete="off" spellcheck="false"
     />
-    <div id="ag-err" style="font-size:13px;color:#e55;margin-bottom:12px;display:none">Invalid access code. Please check your email for the correct code.</div>
+    <div id="ag-err" class="ag-err-box"></div>
     <button id="ag-btn" onclick="unlockAccess()"
       style="width:100%;padding:14px;background:#fff;color:#0a0a0a;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;border-radius:10px;cursor:pointer;transition:opacity 0.2s"
       onmouseover="this.style.opacity=0.88" onmouseout="this.style.opacity=1">
       Unlock Course
     </button>
-    <div style="margin-top:24px;font-size:12px;color:rgba(255,255,255,0.25)">
-      Purchased the guide? Check your email for your access code.<br/>
-      <a href="/" style="color:rgba(255,255,255,0.35);text-decoration:underline;margin-top:8px;display:inline-block">Don't have a code? Purchase here &rarr;</a>
+    <div style="margin-top:24px;font-size:12px;color:rgba(255,255,255,0.3)">
+      <a href="/" style="color:rgba(255,255,255,0.45);text-decoration:underline">Don't have a code? Purchase the guide here &rarr;</a>
     </div>
   </div>
 </div>
@@ -711,13 +724,26 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
   }catch(e){}
   document.body.style.overflow='hidden';
 })();
+function showAgError(msg){
+  var e=document.getElementById('ag-err');
+  var wrap=document.getElementById('ag-form-wrap');
+  e.innerHTML=msg;
+  e.style.display='block';
+  wrap.classList.remove('ag-shake');
+  void wrap.offsetWidth; // trigger reflow
+  wrap.classList.add('ag-shake');
+}
 function unlockAccess(){
   var v=document.getElementById('ag-input').value.trim();
   var em=document.getElementById('ag-email').value.trim();
-  var e=document.getElementById('ag-err');
+  var emailInput=document.getElementById('ag-email');
+  var codeInput=document.getElementById('ag-input');
   var btn=document.getElementById('ag-btn');
-  if(!em){e.style.display='block';e.textContent='Please enter your email address.';return;}
-  if(!v){e.style.display='block';e.textContent='Please enter your access code.';return;}
+  // Reset borders
+  emailInput.style.borderColor='rgba(255,255,255,0.12)';
+  codeInput.style.borderColor='rgba(255,255,255,0.12)';
+  if(!em){showAgError('<strong>Email required.</strong> Enter the email you used when you purchased.');emailInput.style.borderColor='#ff6b6b';emailInput.focus();return;}
+  if(!v){showAgError('<strong>Access code required.</strong> Check your email inbox for a message from Fast Grad Academy with your code.');codeInput.style.borderColor='#ff6b6b';codeInput.focus();return;}
   btn.textContent='Verifying...';btn.disabled=true;
   fetch('/api/verify',{
     method:'POST',
@@ -737,15 +763,14 @@ function unlockAccess(){
       g.style.transition='opacity 0.4s';g.style.opacity='0';
       setTimeout(function(){location.reload();},400);
     } else {
-      e.style.display='block';
-      e.textContent='Invalid email or access code. Make sure both match your purchase.';
-      document.getElementById('ag-input').style.borderColor='#e55';
+      showAgError('<strong>That didn\'t match.</strong> Make sure you\'re using the exact email from checkout and the code from your confirmation email. Check your spam folder too!');
+      codeInput.style.borderColor='#ff6b6b';
+      emailInput.style.borderColor='#ff6b6b';
       btn.textContent='Unlock Course';btn.disabled=false;
     }
   })
   .catch(function(){
-    e.style.display='block';
-    e.textContent='Network error. Please try again.';
+    showAgError('<strong>Connection error.</strong> Please check your internet and try again.');
     btn.textContent='Unlock Course';btn.disabled=false;
   });
 }

@@ -24,6 +24,8 @@ function generateAccessCode() {
 }
 
 async function sendAccessEmail(email, accessCode) {
+  const firstName = email.split('@')[0].replace(/[+._\d]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).trim() || 'there';
+
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -33,7 +35,8 @@ async function sendAccessEmail(email, accessCode) {
     body: JSON.stringify({
       from: process.env.FROM_EMAIL || 'Fast Grad Academy <noreply@fastgradacademy.com>',
       to: [email],
-      subject: 'Your Fast Grad Academy Guide — Access Code Inside',
+      reply_to: 'hello@fastgradacademy.com',
+      subject: "You just made the smartest investment in your education",
       html: `
 <!DOCTYPE html>
 <html>
@@ -42,36 +45,48 @@ async function sendAccessEmail(email, accessCode) {
   <div style="max-width:560px;margin:0 auto;padding:48px 32px;">
 
     <!-- Header -->
-    <div style="text-align:center;margin-bottom:48px;">
+    <div style="text-align:center;margin-bottom:40px;">
       <div style="font-family:Georgia,serif;font-size:24px;color:#ffffff;letter-spacing:-0.02em;">Fast Grad Academy</div>
-      <div style="font-size:11px;color:#a8a8a8;letter-spacing:0.2em;text-transform:uppercase;margin-top:8px;">The Complete Guide</div>
     </div>
 
-    <!-- Main Content -->
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:40px 32px;text-align:center;">
-      <div style="font-size:14px;color:#a8a8a8;margin-bottom:8px;">Your Personal Access Code</div>
-      <div style="font-family:'Courier New',monospace;font-size:32px;font-weight:700;color:#ffffff;letter-spacing:0.1em;padding:20px 0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);margin:16px 0;">
+    <!-- Personal welcome -->
+    <div style="font-size:16px;color:rgba(255,255,255,0.85);line-height:1.9;margin-bottom:32px;">
+      <p style="margin:0 0 16px;">Hey ${firstName},</p>
+      <p style="margin:0 0 16px;">I want you to know — what you just did takes guts. Most people talk about wanting to get ahead. You actually did something about it.</p>
+      <p style="margin:0 0 16px;">I built this guide because I wish someone had shown me the playbook when I started. I graduated college at 20, saved over $85,000, and got a 3-year head start on my career — not because I'm smarter than anyone else, but because I found the system's own rules and used them.</p>
+      <p style="margin:0 0 16px;">Now you have the same playbook. Every strategy, every shortcut, every resource — it's all yours.</p>
+    </div>
+
+    <!-- Access Code Box -->
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:36px 32px;text-align:center;margin-bottom:32px;">
+      <div style="font-size:12px;color:#a8a8a8;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">Your Personal Access Code</div>
+      <div style="font-family:'Courier New',monospace;font-size:32px;font-weight:700;color:#ffffff;letter-spacing:0.1em;padding:16px 0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);margin:12px 0;">
         ${accessCode}
       </div>
-      <div style="font-size:13px;color:#a8a8a8;margin-top:16px;line-height:1.6;">
-        This code is unique to you. Do not share it.
-      </div>
+      <div style="font-size:12px;color:#a8a8a8;margin-top:12px;">This code + your email = lifetime access</div>
     </div>
 
     <!-- CTA Button -->
-    <div style="text-align:center;margin:32px 0;">
-      <a href="https://fastgradacademy.com/guide" style="display:inline-block;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:16px 40px;border-radius:999px;text-decoration:none;">
-        Unlock The Guide
+    <div style="text-align:center;margin:28px 0 36px;">
+      <a href="https://fastgradacademy.com/guide" style="display:inline-block;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:16px 44px;border-radius:999px;text-decoration:none;">
+        Start The Guide &rarr;
       </a>
     </div>
 
-    <!-- Instructions -->
-    <div style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;margin-top:32px;">
-      <strong style="color:#ffffff;">How to access your guide:</strong><br/>
-      1. Click the button above or go to <a href="https://fastgradacademy.com/guide" style="color:#c0c0c0;">fastgradacademy.com/guide</a><br/>
-      2. Enter your access code: <strong style="color:#ffffff;">${accessCode}</strong><br/>
-      3. Start your journey to graduating in 12 months
+    <!-- Quick start -->
+    <div style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:32px;">
+      <strong style="color:#ffffff;">Getting started is simple:</strong><br/>
+      1. Go to <a href="https://fastgradacademy.com/guide" style="color:#c0c0c0;">fastgradacademy.com/guide</a><br/>
+      2. Enter your email and access code: <strong style="color:#ffffff;">${accessCode}</strong><br/>
+      3. Dive into Chapter 1 — it'll change how you think about college forever
     </div>
+
+    <!-- Closing note -->
+    <div style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:8px;">
+      You're about to save yourself years of time and tens of thousands of dollars. I'm genuinely excited for you.
+    </div>
+    <div style="font-size:15px;color:rgba(255,255,255,0.75);margin-bottom:4px;">— John</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.35);">Founder, Fast Grad Academy</div>
 
     <!-- Divider -->
     <div style="height:1px;background:rgba(255,255,255,0.06);margin:40px 0;"></div>
@@ -79,11 +94,11 @@ async function sendAccessEmail(email, accessCode) {
     <!-- Footer -->
     <div style="text-align:center;">
       <div style="font-size:13px;color:#a8a8a8;margin-bottom:8px;">
-        Questions? Reply to this email or contact <a href="mailto:john@executivestrategy.consulting" style="color:#c0c0c0;">john@executivestrategy.consulting</a>
+        Questions? Just reply to this email — I read every one.
       </div>
       <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:24px;">
-        &copy; 2026 Executive Strategy Consulting LLC d.b.a. Fast Grad Academy. All rights reserved.<br/>
-        This is a non-refundable digital product. Your access code grants lifetime access.
+        &copy; 2026 Fast Grad Academy. All rights reserved.<br/>
+        Your access code grants lifetime access to the complete guide.
       </div>
     </div>
 
@@ -101,6 +116,43 @@ async function sendAccessEmail(email, accessCode) {
   }
 
   return res.json();
+}
+
+async function sendSaleNotification(email, accessCode) {
+  try {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: process.env.FROM_EMAIL || 'Fast Grad Academy <noreply@fastgradacademy.com>',
+        to: ['johnzhengmn@gmail.com'],
+        subject: `New FGA Sale! ${email}`,
+        html: `
+<body style="margin:0;padding:0;background:#0a0a0a;font-family:'Helvetica Neue',Arial,sans-serif;">
+<div style="max-width:480px;margin:0 auto;padding:40px 24px;">
+  <div style="font-size:36px;text-align:center;margin-bottom:16px;">💰</div>
+  <div style="text-align:center;font-family:Georgia,serif;font-size:28px;color:#ffffff;margin-bottom:32px;">New Sale!</div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;">
+    <div style="font-size:13px;color:#a8a8a8;margin-bottom:4px;">Customer</div>
+    <div style="font-size:16px;color:#ffffff;margin-bottom:16px;font-weight:600;">${email}</div>
+    <div style="font-size:13px;color:#a8a8a8;margin-bottom:4px;">Access Code</div>
+    <div style="font-family:'Courier New',monospace;font-size:18px;color:#ffffff;margin-bottom:16px;">${accessCode}</div>
+    <div style="font-size:13px;color:#a8a8a8;margin-bottom:4px;">Time</div>
+    <div style="font-size:14px;color:#ffffff;">${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })}</div>
+  </div>
+  <div style="text-align:center;margin-top:24px;font-size:13px;color:rgba(255,255,255,0.4);">Fast Grad Academy — Automated sale notification</div>
+</div>
+</body>
+        `,
+      }),
+    });
+    console.log('Sale notification sent to johnzhengmn@gmail.com');
+  } catch (err) {
+    console.error('Sale notification failed (non-critical):', err);
+  }
 }
 
 export default async function handler(req, res) {
@@ -178,7 +230,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Failed to store access code' });
     }
 
-    // Send branded email
+    // Send branded welcome email to customer
     try {
       await sendAccessEmail(email, accessCode);
       console.log(`Access code ${accessCode} sent to ${email}`);
@@ -186,6 +238,9 @@ export default async function handler(req, res) {
       console.error('Email send failed (code still stored):', emailErr);
       // Don't fail the webhook — the code is stored, we can resend manually
     }
+
+    // Send sale notification to John
+    await sendSaleNotification(email, accessCode);
 
     return res.status(200).json({ received: true });
   }
