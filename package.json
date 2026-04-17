@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "echo 'Open in browser at http://localhost:3000'",
-    "build": "echo 'Static site with Vercel serverless functions'",
+    "build": "node fga-build.js",
     "start": "echo 'Deploy to Vercel'"
   },
   "dependencies": {
