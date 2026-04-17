@@ -317,7 +317,14 @@
     .proof-section { padding: 80px 0; overflow: hidden; background: var(--black); color: var(--white); }
     .proof-header { text-align: center; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto; padding: 0 24px; }
     .proof-header .eyebrow { color: rgba(255,255,255,0.5); }
-    .proof-header h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: var(--white); margin-bottom: 12px; }
+    .proof-header h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: var(--white); margin-bottom: 12px; position: relative; }
+    .proof-section::before {
+      content: ''; position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .proof-section { position: relative; }
     .proof-header p { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 600px; margin: 0 auto; }
 
     .proof-stats {
@@ -1655,8 +1662,44 @@ function startCheckout(e) {
 document.addEventListener('DOMContentLoaded', () => {
   initializeReveals();
   initializeStatCounters();
+  initializeProofCounters();
   initializeFAQ();
 });
+
+// ═══════════════════════ PROOF SECTION COUNTERS ═══════════════════════
+function initializeProofCounters() {
+  const proofStats = document.querySelectorAll('.proof-stat-num');
+  if (!proofStats.length) return;
+
+  const configs = [
+    { el: proofStats[0], value: 800, prefix: '', suffix: 'K+' },
+    { el: proofStats[1], value: 750, prefix: '$', suffix: 'M+' },
+    { el: proofStats[2], value: 3000, prefix: '', suffix: '+', format: true }
+  ];
+
+  function easeOut(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+  configs.forEach(cfg => {
+    let done = false;
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !done) {
+        done = true;
+        const start = Date.now();
+        const dur = 1800;
+        (function tick() {
+          const p = Math.min((Date.now() - start) / dur, 1);
+          const v = Math.floor(easeOut(p) * cfg.value);
+          const d = cfg.format ? v.toLocaleString() : v;
+          cfg.el.textContent = cfg.prefix + d + cfg.suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })();
+        obs.unobserve(cfg.el);
+      }
+    }, { threshold: 0.5 });
+    cfg.el.textContent = cfg.prefix + '0' + cfg.suffix;
+    obs.observe(cfg.el);
+  });
+}
 
 // Feature carousel and reviews carousel are pure CSS animations (no JS needed)
 </script>
