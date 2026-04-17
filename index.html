@@ -221,33 +221,6 @@
     .card-tag { display: inline-block; background: var(--black); color: var(--white); padding: 5px 14px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 20px; }
     .bento-card.dark .card-tag { background: rgba(255,255,255,0.12); color: var(--silver); }
 
-    /* ─── CLEP SECTION ─── */
-    .clep-section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
-    .clep-header { margin-bottom: 56px; }
-    .clep-header h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 400; color: var(--black); margin-bottom: 12px; }
-    .clep-header p { font-size: 16px; color: var(--charcoal); font-weight: 300; max-width: 520px; }
-
-    .clep-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-    .clep-card { background: var(--off-white); border-radius: 16px; padding: 28px 24px; border: 1px solid transparent; transition: border-color 0.2s, background 0.2s; }
-    .clep-card:hover { border-color: var(--silver); background: #f0f0f0; }
-    .clep-exam { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); margin-bottom: 8px; }
-    .clep-subject { font-family: var(--font-display); font-size: 18px; color: var(--black); margin-bottom: 8px; line-height: 1.2; }
-    .clep-credits { font-size: 12px; color: var(--muted-silver); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
-    .clep-credit-val { font-size: 28px; font-family: var(--font-display); color: var(--black); }
-    .clep-hours { font-size: 11px; color: var(--muted-silver); margin-top: 4px; }
-
-    /* ─── QUOTE ─── */
-    .quote-section {
-      padding: 100px 24px; text-align: center;
-      border-top: 1px solid var(--off-white); border-bottom: 1px solid var(--off-white);
-    }
-    .quote-section blockquote {
-      font-family: var(--font-display); font-style: italic;
-      font-size: clamp(22px, 3vw, 36px); color: var(--charcoal);
-      max-width: 760px; margin: 0 auto 24px; line-height: 1.45;
-    }
-    .quote-section cite { font-family: var(--font-body); font-style: normal; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted-silver); }
-
     /* ─── THE MATH ─── */
     .math-section { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
     .math-section h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 400; color: var(--black); margin-bottom: 48px; text-align: center; }
@@ -684,16 +657,6 @@
         grid-column: span 1;
       }
 
-      .clep-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      @media (max-width: 480px) {
-        .clep-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
       .math-compare {
         grid-template-columns: 1fr;
       }
@@ -776,6 +739,7 @@
 })();
 </script>
 
+
 <!-- HERO -->
 <section class="hero">
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" class="reveal reveal-d1">
@@ -829,32 +793,6 @@
        style="width:100%;border-radius:16px">
 </div>
 
-<!-- LETTER FROM JOHN -->
-<section class="letter-section">
-  <div class="eyebrow reveal reveal-d1">A letter from John</div>
-  <h2 class="reveal reveal-d2">I was terrified of student debt.<br/><em style="font-style:italic; color: var(--charcoal);">So I engineered a way out.</em></h2>
-
-  <p class="reveal reveal-d3">As a freshman in high school, I knew college was going to be my path. But there was one thing I was terrified of: <strong>student debt.</strong> The average private university student borrows $35,000+ after they graduate — and those numbers keep climbing.</p>
-
-  <p class="reveal reveal-d4">So I asked a different question. Not <em>"which college should I go to?"</em> — but <em>"how do I get this credential as fast, as cheaply, and as strategically as possible?"</em></p>
-
-  <p class="reveal reveal-d1">While registering for sophomore classes, I found out you could earn college credits in high school through AP exams. Then I fell down the rabbit hole: CLEP exams, DSST exams, self-study options — and PSEO, where the state of Minnesota literally pays for you to take college courses while you're still in high school. <strong>For free.</strong></p>
-
-  <p class="reveal reveal-d2">I stacked every one of these. I used a tool called Transferology to make sure every single credit would transfer. I made a spreadsheet — one column with my degree requirements, one column with the exam or course that could satisfy each one. I double-checked, triple-checked, quadruple-checked everything.</p>
-
-  <p class="reveal reveal-d3">My graduating class was supposed to be 2023. <strong>I finished in 2020.</strong> I entered my freshman year as a college senior. I graduated with my BBA in Organizational Management from the University of Minnesota system in ONE YEAR. I was 19. Then I graduated Harvard with my Master's at 21. Bought my first house at 20. Traveled to 18+ countries by 23.</p>
-
-  <p class="reveal reveal-d4">Nobody handed me this. I had to fight my school counselor for PSEO enrollment. I had to personally request AP exams my school didn't even offer. I studied for most exams in 2–3 weeks each. I had to figure out every piece of this puzzle myself — with wrong information pointing me in circles.</p>
-
-  <p class="reveal reveal-d1">That ends with you. This guide is the map I didn't have.</p>
-
-  <p class="reveal reveal-d2"><strong>Now you have it.</strong></p>
-
-  <div class="letter-sig reveal reveal-d3">
-    <div class="name">— John Zheng</div>
-    <div class="title">Youngest BBA Graduate in UMD History · Harvard Master's, Age 21 · Founder, Fast Grad Academy</div>
-  </div>
-</section>
 
 <!-- PAIN SECTION -->
 <div class="pain-section">
@@ -878,135 +816,6 @@
   </div>
 </div>
 
-<!-- WHAT'S INSIDE — BENTO GRID -->
-<section class="inside" id="inside">
-  <div class="inside-header">
-    <div class="eyebrow reveal reveal-d1">What's inside</div>
-    <h2 class="reveal reveal-d2">The Complete Acceleration System</h2>
-    <p class="reveal reveal-d3">12 chapters covering every strategy, tool, and shortcut — from CLEP exams to PSEO to AI-powered study methods.</p>
-  </div>
-
-  <div class="bento">
-    <div class="bento-card wide dark reveal reveal-d1">
-      <div>
-        <div class="card-num">Chapter 01–02</div>
-        <div class="card-title">The CLEP Master Strategy</div>
-        <div class="card-desc">The most powerful credit acceleration tool most students never use. Earn 3–6 college credits per exam with a single 90-minute test. John used CLEP alone to bank 41 credits before stepping foot on campus.</div>
-      </div>
-      <span class="card-tag">Up to 41 credits</span>
-    </div>
-    <div class="bento-card reveal reveal-d2">
-      <div>
-        <div class="card-num">Chapter 03</div>
-        <div class="card-title">DSST & AP Exam Stacking</div>
-        <div class="card-desc">CLEP isn't the only test that converts to college credit. DSST covers business, science, and technical subjects. AP exams are accepted at nearly every university.</div>
-      </div>
-      <span class="card-tag">+ 30 more credits</span>
-    </div>
-    <div class="bento-card reveal reveal-d3">
-      <div>
-        <div class="card-num">Chapter 04</div>
-        <div class="card-title">PSEO — Free College in High School</div>
-        <div class="card-desc">In most states, high school students can take actual college courses — fully funded by the state. John used PSEO before his freshman year. Most students have never heard of it.</div>
-      </div>
-      <span class="card-tag">Free credits</span>
-    </div>
-    <div class="bento-card reveal reveal-d4">
-      <div>
-        <div class="card-num">Chapter 05</div>
-        <div class="card-title">Degree Map & Transfer Planning</div>
-        <div class="card-desc">Not all credits transfer. This chapter shows you exactly how to map your exams to your target degree requirements so nothing is wasted.</div>
-      </div>
-      <span class="card-tag">Zero wasted credits</span>
-    </div>
-    <div class="bento-card reveal reveal-d1">
-      <div>
-        <div class="card-num">Chapter 06</div>
-        <div class="card-title">Credit for Prior Learning & Portfolio</div>
-        <div class="card-desc">Work experience, certifications, military service, and even self-study can convert to college credit at the right institutions. Most people leave this on the table.</div>
-      </div>
-      <span class="card-tag">Unconventional</span>
-    </div>
-    <div class="bento-card wide reveal reveal-d2">
-      <div>
-        <div class="card-num">Chapter 07–08</div>
-        <div class="card-title">The Neuroscience Study System</div>
-        <div class="card-desc">The science of how to actually retain information — not willpower hacks. Active Recall, Spaced Repetition, the Feynman Technique, Interleaving, and the Huberman Sleep Protocol. Combined with an AI-accelerated study stack, your learning speed multiplies.</div>
-      </div>
-      <span class="card-tag">Science-backed</span>
-    </div>
-    <div class="bento-card dark reveal reveal-d3">
-      <div>
-        <div class="card-num">Chapter 09</div>
-        <div class="card-title">The AI Study Stack</div>
-        <div class="card-desc">How to use ChatGPT, Claude, and Anki to compress months of studying into weeks. Exact prompts included.</div>
-      </div>
-      <span class="card-tag">Exact prompts</span>
-    </div>
-    <div class="bento-card reveal reveal-d4">
-      <div>
-        <div class="card-num">Chapter 10–12</div>
-        <div class="card-title">Financial Strategy & ROI Optimization</div>
-        <div class="card-desc">Exam fees, scholarship stacking, FAFSA timing, and the full financial model for your specific situation. How to make the math work regardless of your school or state.</div>
-      </div>
-      <span class="card-tag">Save $30K+</span>
-    </div>
-  </div>
-</section>
-
-<!-- 5 CLEP EXAMS -->
-<section class="clep-section">
-  <div class="clep-header">
-    <div class="eyebrow reveal reveal-d1">The Fast Grad Starter Stack</div>
-    <h2 class="reveal reveal-d2">5 CLEP Exams to Take First</h2>
-    <p class="reveal reveal-d3">High pass rates, wide university acceptance, minimal study time. Start here.</p>
-  </div>
-  <div class="clep-grid">
-    <div class="clep-card reveal reveal-d1">
-      <div class="clep-exam">CLEP Exam #1</div>
-      <div class="clep-subject">College Composition</div>
-      <div class="clep-credits">Credits earned</div>
-      <div class="clep-credit-val">6</div>
-      <div class="clep-hours">~40 hrs prep</div>
-    </div>
-    <div class="clep-card reveal reveal-d2">
-      <div class="clep-exam">CLEP Exam #2</div>
-      <div class="clep-subject">U.S. History I</div>
-      <div class="clep-credits">Credits earned</div>
-      <div class="clep-credit-val">3</div>
-      <div class="clep-hours">~30 hrs prep</div>
-    </div>
-    <div class="clep-card reveal reveal-d3">
-      <div class="clep-exam">CLEP Exam #3</div>
-      <div class="clep-subject">Principles of Marketing</div>
-      <div class="clep-credits">Credits earned</div>
-      <div class="clep-credit-val">3</div>
-      <div class="clep-hours">~25 hrs prep</div>
-    </div>
-    <div class="clep-card reveal reveal-d4">
-      <div class="clep-exam">CLEP Exam #4</div>
-      <div class="clep-subject">College Algebra</div>
-      <div class="clep-credits">Credits earned</div>
-      <div class="clep-credit-val">3</div>
-      <div class="clep-hours">~35 hrs prep</div>
-    </div>
-    <div class="clep-card reveal reveal-d1">
-      <div class="clep-exam">CLEP Exam #5</div>
-      <div class="clep-subject">Information Systems</div>
-      <div class="clep-credits">Credits earned</div>
-      <div class="clep-credit-val">3</div>
-      <div class="clep-hours">~20 hrs prep</div>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTE -->
-<div class="quote-section">
-  <blockquote class="reveal reveal-d1">
-    "Everyone told me it couldn't be done. My counselor, my classmates, even some teachers. I graduated college before any of them finished sophomore year."
-  </blockquote>
-  <cite class="reveal reveal-d2">— John Zheng · BBA at 19, Harvard Master's at 21</cite>
-</div>
 
 <!-- THE MATH -->
 <section class="math-section" id="math">
@@ -1061,27 +870,31 @@
   </div>
 </section>
 
-<!-- PREVIEW / FEATURE CAROUSEL -->
-<section style="padding:80px 0;background:var(--off-white)">
-  <div style="max-width:900px;margin:0 auto;text-align:center;padding:0 24px">
-    <div class="eyebrow reveal reveal-d1">See what's inside</div>
-    <h2 class="reveal reveal-d2" style="margin-bottom:12px">Built to get you there.<br/><em>Not just to teach you.</em></h2>
-    <p class="reveal reveal-d3" style="color:var(--charcoal);max-width:600px;margin:0 auto 48px;font-size:15px">12 chapters. Interactive checklists. Personalized roadmaps. AI study prompts. Everything designed to move you from enrollment to graduation in 12 months.</p>
-  </div>
-  <div class="feature-carousel reveal reveal-d4">
-    <div class="feature-track">
-      <div class="feature-card"><img src="img/preview-dashboard.png" alt="Course dashboard"><div class="feature-card-label">Course Dashboard <span>12 chapters, progress tracking</span></div></div>
-      <div class="feature-card"><img src="img/preview-chapter.png" alt="Chapter content"><div class="feature-card-label">Chapter Content <span>In-depth strategy breakdowns</span></div></div>
-      <div class="feature-card"><img src="img/preview-roadmap.png" alt="Personalized roadmap"><div class="feature-card-label">Personalized Roadmap <span>Situation-based pathways</span></div></div>
-      <div class="feature-card"><img src="img/preview-actions.png" alt="Action checklist"><div class="feature-card-label">Action Checklist <span>Interactive to-do items</span></div></div>
-      <div class="feature-card"><img src="img/preview-checklist.png" alt="Career checklist"><div class="feature-card-label">Career Checklist <span>LinkedIn, resume, networking</span></div></div>
-      <!-- duplicate set for seamless loop -->
-      <div class="feature-card"><img src="img/preview-dashboard.png" alt="Course dashboard"><div class="feature-card-label">Course Dashboard <span>12 chapters, progress tracking</span></div></div>
-      <div class="feature-card"><img src="img/preview-chapter.png" alt="Chapter content"><div class="feature-card-label">Chapter Content <span>In-depth strategy breakdowns</span></div></div>
-      <div class="feature-card"><img src="img/preview-roadmap.png" alt="Personalized roadmap"><div class="feature-card-label">Personalized Roadmap <span>Situation-based pathways</span></div></div>
-      <div class="feature-card"><img src="img/preview-actions.png" alt="Action checklist"><div class="feature-card-label">Action Checklist <span>Interactive to-do items</span></div></div>
-      <div class="feature-card"><img src="img/preview-checklist.png" alt="Career checklist"><div class="feature-card-label">Career Checklist <span>LinkedIn, resume, networking</span></div></div>
-    </div>
+
+<!-- LETTER FROM JOHN -->
+<section class="letter-section">
+  <div class="eyebrow reveal reveal-d1">A letter from John</div>
+  <h2 class="reveal reveal-d2">I was terrified of student debt.<br/><em style="font-style:italic; color: var(--charcoal);">So I engineered a way out.</em></h2>
+
+  <p class="reveal reveal-d3">As a freshman in high school, I knew college was going to be my path. But there was one thing I was terrified of: <strong>student debt.</strong> The average private university student borrows $35,000+ after they graduate — and those numbers keep climbing.</p>
+
+  <p class="reveal reveal-d4">So I asked a different question. Not <em>"which college should I go to?"</em> — but <em>"how do I get this credential as fast, as cheaply, and as strategically as possible?"</em></p>
+
+  <p class="reveal reveal-d1">While registering for sophomore classes, I found out you could earn college credits in high school through AP exams. Then I fell down the rabbit hole: CLEP exams, DSST exams, self-study options — and PSEO, where the state of Minnesota literally pays for you to take college courses while you're still in high school. <strong>For free.</strong></p>
+
+  <p class="reveal reveal-d2">I stacked every one of these. I used a tool called Transferology to make sure every single credit would transfer. I made a spreadsheet — one column with my degree requirements, one column with the exam or course that could satisfy each one. I double-checked, triple-checked, quadruple-checked everything.</p>
+
+  <p class="reveal reveal-d3">My graduating class was supposed to be 2023. <strong>I finished in 2020.</strong> I entered my freshman year as a college senior. I graduated with my BBA in Organizational Management from the University of Minnesota system in ONE YEAR. I was 19. Then I graduated Harvard with my Master's at 21. Bought my first house at 20. Traveled to 18+ countries by 23.</p>
+
+  <p class="reveal reveal-d4">Nobody handed me this. I had to fight my school counselor for PSEO enrollment. I had to personally request AP exams my school didn't even offer. I studied for most exams in 2–3 weeks each. I had to figure out every piece of this puzzle myself — with wrong information pointing me in circles.</p>
+
+  <p class="reveal reveal-d1">That ends with you. This guide is the map I didn't have.</p>
+
+  <p class="reveal reveal-d2"><strong>Now you have it.</strong></p>
+
+  <div class="letter-sig reveal reveal-d3">
+    <div class="name">— John Zheng</div>
+    <div class="title">Youngest BBA Graduate in UMD History · Harvard Master's, Age 21 · Founder, Fast Grad Academy</div>
   </div>
 </section>
 
@@ -1415,6 +1228,118 @@
   <p class="proof-disclaimer reveal reveal-d4">Real stories sourced from YouTube, Modern States, news outlets, personal blogs, and verified purchases. Stories represent individual outcomes. FGA teaches you the exact strategies these people used.</p>
 </section>
 
+
+
+<!-- MID-PAGE CTA -->
+<div style="background:var(--black);padding:0 24px 80px;text-align:center">
+  <div class="reveal reveal-d1" style="max-width:600px;margin:0 auto">
+    <p style="font-size:17px;color:rgba(255,255,255,0.6);font-weight:300;margin-bottom:28px;line-height:1.7">One CLEP exam saves $1,500+ in tuition. This guide pays for itself <strong style="color:#fff">7&times; over</strong> from your first test.</p>
+    <a href="#pricing" class="btn-primary" style="background:#fff;color:#0a0a0a;font-size:14px;padding:16px 40px">Get the Guide — $197</a>
+  </div>
+</div>
+
+
+<!-- WHAT'S INSIDE — BENTO GRID -->
+<section class="inside" id="inside">
+  <div class="inside-header">
+    <div class="eyebrow reveal reveal-d1">What's inside</div>
+    <h2 class="reveal reveal-d2">The Complete Acceleration System</h2>
+    <p class="reveal reveal-d3">12 chapters covering every strategy, tool, and shortcut — from CLEP exams to PSEO to AI-powered study methods.</p>
+  </div>
+
+  <div class="bento">
+    <div class="bento-card wide dark reveal reveal-d1">
+      <div>
+        <div class="card-num">Chapter 01–02</div>
+        <div class="card-title">The CLEP Master Strategy</div>
+        <div class="card-desc">The most powerful credit acceleration tool most students never use. Earn 3–6 college credits per exam with a single 90-minute test. John used CLEP alone to bank 41 credits before stepping foot on campus.</div>
+      </div>
+      <span class="card-tag">Up to 41 credits</span>
+    </div>
+    <div class="bento-card reveal reveal-d2">
+      <div>
+        <div class="card-num">Chapter 03</div>
+        <div class="card-title">DSST & AP Exam Stacking</div>
+        <div class="card-desc">CLEP isn't the only test that converts to college credit. DSST covers business, science, and technical subjects. AP exams are accepted at nearly every university.</div>
+      </div>
+      <span class="card-tag">+ 30 more credits</span>
+    </div>
+    <div class="bento-card reveal reveal-d3">
+      <div>
+        <div class="card-num">Chapter 04</div>
+        <div class="card-title">PSEO — Free College in High School</div>
+        <div class="card-desc">In most states, high school students can take actual college courses — fully funded by the state. John used PSEO before his freshman year. Most students have never heard of it.</div>
+      </div>
+      <span class="card-tag">Free credits</span>
+    </div>
+    <div class="bento-card reveal reveal-d4">
+      <div>
+        <div class="card-num">Chapter 05</div>
+        <div class="card-title">Degree Map & Transfer Planning</div>
+        <div class="card-desc">Not all credits transfer. This chapter shows you exactly how to map your exams to your target degree requirements so nothing is wasted.</div>
+      </div>
+      <span class="card-tag">Zero wasted credits</span>
+    </div>
+    <div class="bento-card reveal reveal-d1">
+      <div>
+        <div class="card-num">Chapter 06</div>
+        <div class="card-title">Credit for Prior Learning & Portfolio</div>
+        <div class="card-desc">Work experience, certifications, military service, and even self-study can convert to college credit at the right institutions. Most people leave this on the table.</div>
+      </div>
+      <span class="card-tag">Unconventional</span>
+    </div>
+    <div class="bento-card wide reveal reveal-d2">
+      <div>
+        <div class="card-num">Chapter 07–08</div>
+        <div class="card-title">The Neuroscience Study System</div>
+        <div class="card-desc">The science of how to actually retain information — not willpower hacks. Active Recall, Spaced Repetition, the Feynman Technique, Interleaving, and the Huberman Sleep Protocol. Combined with an AI-accelerated study stack, your learning speed multiplies.</div>
+      </div>
+      <span class="card-tag">Science-backed</span>
+    </div>
+    <div class="bento-card dark reveal reveal-d3">
+      <div>
+        <div class="card-num">Chapter 09</div>
+        <div class="card-title">The AI Study Stack</div>
+        <div class="card-desc">How to use ChatGPT, Claude, and Anki to compress months of studying into weeks. Exact prompts included.</div>
+      </div>
+      <span class="card-tag">Exact prompts</span>
+    </div>
+    <div class="bento-card reveal reveal-d4">
+      <div>
+        <div class="card-num">Chapter 10–12</div>
+        <div class="card-title">Financial Strategy & ROI Optimization</div>
+        <div class="card-desc">Exam fees, scholarship stacking, FAFSA timing, and the full financial model for your specific situation. How to make the math work regardless of your school or state.</div>
+      </div>
+      <span class="card-tag">Save $30K+</span>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW / FEATURE CAROUSEL -->
+<section style="padding:80px 0;background:var(--off-white)">
+  <div style="max-width:900px;margin:0 auto;text-align:center;padding:0 24px">
+    <div class="eyebrow reveal reveal-d1">See what's inside</div>
+    <h2 class="reveal reveal-d2" style="margin-bottom:12px">Built to get you there.<br/><em>Not just to teach you.</em></h2>
+    <p class="reveal reveal-d3" style="color:var(--charcoal);max-width:600px;margin:0 auto 48px;font-size:15px">12 chapters. Interactive checklists. Personalized roadmaps. AI study prompts. Everything designed to move you from enrollment to graduation in 12 months.</p>
+  </div>
+  <div class="feature-carousel reveal reveal-d4">
+    <div class="feature-track">
+      <div class="feature-card"><img src="img/preview-dashboard.png" alt="Course dashboard"><div class="feature-card-label">Course Dashboard <span>12 chapters, progress tracking</span></div></div>
+      <div class="feature-card"><img src="img/preview-chapter.png" alt="Chapter content"><div class="feature-card-label">Chapter Content <span>In-depth strategy breakdowns</span></div></div>
+      <div class="feature-card"><img src="img/preview-roadmap.png" alt="Personalized roadmap"><div class="feature-card-label">Personalized Roadmap <span>Situation-based pathways</span></div></div>
+      <div class="feature-card"><img src="img/preview-actions.png" alt="Action checklist"><div class="feature-card-label">Action Checklist <span>Interactive to-do items</span></div></div>
+      <div class="feature-card"><img src="img/preview-checklist.png" alt="Career checklist"><div class="feature-card-label">Career Checklist <span>LinkedIn, resume, networking</span></div></div>
+      <!-- duplicate set for seamless loop -->
+      <div class="feature-card"><img src="img/preview-dashboard.png" alt="Course dashboard"><div class="feature-card-label">Course Dashboard <span>12 chapters, progress tracking</span></div></div>
+      <div class="feature-card"><img src="img/preview-chapter.png" alt="Chapter content"><div class="feature-card-label">Chapter Content <span>In-depth strategy breakdowns</span></div></div>
+      <div class="feature-card"><img src="img/preview-roadmap.png" alt="Personalized roadmap"><div class="feature-card-label">Personalized Roadmap <span>Situation-based pathways</span></div></div>
+      <div class="feature-card"><img src="img/preview-actions.png" alt="Action checklist"><div class="feature-card-label">Action Checklist <span>Interactive to-do items</span></div></div>
+      <div class="feature-card"><img src="img/preview-checklist.png" alt="Career checklist"><div class="feature-card-label">Career Checklist <span>LinkedIn, resume, networking</span></div></div>
+    </div>
+  </div>
+</section>
+
+
 <!-- FOR PARENTS -->
 <section class="parents-section" id="parents">
   <div class="eyebrow reveal reveal-d1">For parents &amp; families</div>
@@ -1458,6 +1383,7 @@
   </div>
 </section>
 
+
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="eyebrow reveal reveal-d1">Simple pricing</div>
@@ -1481,9 +1407,11 @@
     </div>
 
     <a href="#" onclick="startCheckout(event)" class="price-cta" id="checkout-btn">Get Instant Access — $197</a>
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:16px;line-height:1.5">One CLEP exam saves $1,500+ in tuition. This guide pays for itself 7&times; from your first test.</p>
   </div>
   <p class="guarantee reveal reveal-d1">One-time purchase. Instant digital delivery. All sales final — this is a digital product with immediate access.</p>
 </section>
+
 
 <!-- FAQ -->
 <section class="faq">
@@ -1510,6 +1438,7 @@
   </div>
 </section>
 
+
 <!-- FINAL CTA -->
 <div class="final-cta">
   <h2 class="reveal reveal-d1">Stop paying for<br/><em>time you don't need.</em></h2>
@@ -1517,6 +1446,7 @@
   <a href="#pricing" class="btn-white reveal reveal-d3">Get the Guide — $197</a>
   <p class="final-cta-note reveal reveal-d4">Instant access · One-time payment · All sales final</p>
 </div>
+
 
 <!-- FOOTER -->
 <footer>
