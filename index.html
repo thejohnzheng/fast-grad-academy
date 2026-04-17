@@ -286,6 +286,10 @@
     .parents-cta { text-align: center; font-size: 15px; color: var(--charcoal); line-height: 1.8; max-width: 680px; margin: 0 auto; }
     @media(max-width:700px){ .parents-grid { grid-template-columns: 1fr; } }
 
+    /* ─── PREVIEW SLIDER ─── */
+    .preview-dot { width: 10px; height: 10px; border-radius: 50%; border: none; background: var(--silver); cursor: pointer; transition: all 0.3s; padding: 0; }
+    .preview-dot.active { background: var(--black); transform: scale(1.2); }
+
     /* ─── REVIEWS ─── */
     .reviews { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
     .reviews-header { text-align: center; margin-bottom: 56px; }
@@ -963,6 +967,37 @@
   </div>
 </section>
 
+<!-- PREVIEW / SHOWCASE -->
+<section style="padding:80px 24px;background:var(--off-white)">
+  <div style="max-width:900px;margin:0 auto;text-align:center">
+    <div class="eyebrow reveal reveal-d1">See what's inside</div>
+    <h2 class="reveal reveal-d2" style="margin-bottom:12px">Built to get you there.<br/><em>Not just to teach you.</em></h2>
+    <p class="reveal reveal-d3" style="color:var(--charcoal);max-width:600px;margin:0 auto 48px;font-size:15px">12 chapters. Interactive checklists. Personalized roadmaps. AI study prompts. Everything designed to move you from enrollment to graduation in 12 months.</p>
+
+    <div class="reveal reveal-d4" style="position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(0,0,0,0.08);box-shadow:0 4px 24px rgba(0,0,0,0.06)">
+      <div class="preview-slider" id="previewSlider" style="display:flex;transition:transform 0.5s ease;will-change:transform">
+        <img src="img/preview-dashboard.png" alt="Course dashboard with 12 chapters and progress tracking" style="width:100%;flex-shrink:0">
+        <img src="img/preview-chapter.png" alt="Chapter content — Mastering CLEP Exams with sidebar navigation" style="width:100%;flex-shrink:0">
+        <img src="img/preview-roadmap.png" alt="Personalized roadmap with situation-based pathways" style="width:100%;flex-shrink:0">
+        <img src="img/preview-actions.png" alt="Interactive action checklist with linked resources" style="width:100%;flex-shrink:0">
+        <img src="img/preview-checklist.png" alt="Career action items with LinkedIn integration" style="width:100%;flex-shrink:0">
+      </div>
+    </div>
+
+    <div class="reveal reveal-d1" style="display:flex;justify-content:center;gap:8px;margin-top:20px">
+      <button onclick="goSlide(0)" class="preview-dot active" aria-label="Dashboard"></button>
+      <button onclick="goSlide(1)" class="preview-dot" aria-label="Chapter content"></button>
+      <button onclick="goSlide(2)" class="preview-dot" aria-label="Roadmap"></button>
+      <button onclick="goSlide(3)" class="preview-dot" aria-label="Action items"></button>
+      <button onclick="goSlide(4)" class="preview-dot" aria-label="Checklist"></button>
+    </div>
+
+    <div class="reveal reveal-d2" style="display:flex;justify-content:center;gap:10px;margin-top:16px">
+      <span class="preview-label" id="previewLabel" style="font-size:13px;color:var(--muted-silver);font-weight:500">Course Dashboard</span>
+    </div>
+  </div>
+</section>
+
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="reviews-header">
@@ -1242,6 +1277,27 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeStatCounters();
   initializeFAQ();
 });
+
+// Preview slider
+const previewLabels = ['Course Dashboard', 'Chapter Content', 'Personalized Roadmap', 'Action Checklist', 'Career Checklist'];
+let currentSlide = 0;
+let slideInterval;
+
+function goSlide(n) {
+  currentSlide = n;
+  const slider = document.getElementById('previewSlider');
+  if (slider) slider.style.transform = `translateX(-${n * 100}%)`;
+  document.querySelectorAll('.preview-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+  const label = document.getElementById('previewLabel');
+  if (label) label.textContent = previewLabels[n];
+  resetAutoSlide();
+}
+
+function resetAutoSlide() {
+  clearInterval(slideInterval);
+  slideInterval = setInterval(() => goSlide((currentSlide + 1) % 5), 4000);
+}
+resetAutoSlide();
 </script>
 
 </body>
