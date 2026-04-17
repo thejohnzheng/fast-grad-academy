@@ -481,6 +481,7 @@ footer .f-copy{font-size:11px;color:rgba(255,255,255,0.3);margin-top:32px}
   padding:0 24px 40px;
 }
 .mc-btn{
+  margin-top:40px;
   width:100%;padding:15px 24px;
   background:rgba(192,192,192,0.08);
   border:1px solid rgba(192,192,192,0.18);
@@ -998,15 +999,201 @@ function unlockAccess(){
     </div>
   </div>
 
-  <!-- 52-WEEK TIMELINE -->
+  <!-- 52-WEEK INTERACTIVE TIMELINE -->
   <div style="max-width:var(--max-w);margin:48px auto 0;padding:0 24px">
     <div class="ch-body reveal">
       <h3>The 52-Week Bachelor's Degree Timeline</h3>
       <p>This is the aggressive playbook. It's not for everyone, but it shows what's possible when you stack every advantage.</p>
+    </div>
 
-      <div class="ch-img" style="padding:0;margin:32px 0">
-        <img src="img/timeline-52week.svg" alt="52-week roadmap to a bachelor's degree — 4 phases from pre-load sprint to graduation">
-        <div class="ch-img-caption">Your roadmap: 4 phases, 52 weeks, one accredited degree.</div>
+    <div class="tl-wrap reveal" style="margin-top:32px">
+      <style>
+        .tl-wrap{position:relative}
+
+        /* Progress bar */
+        .tl-bar{display:flex;align-items:center;gap:0;margin-bottom:48px;position:relative;padding:0 8px}
+        .tl-segment{height:6px;border-radius:3px;position:relative;transition:height 0.3s,filter 0.3s}
+        .tl-segment:hover{height:10px;filter:brightness(1.3)}
+        .tl-seg-1{flex:23;background:linear-gradient(90deg,rgba(192,192,192,0.2),rgba(192,192,192,0.4))}
+        .tl-seg-2{flex:1;background:rgba(192,192,192,0.15)}
+        .tl-seg-3{flex:4;background:linear-gradient(90deg,rgba(192,192,192,0.4),rgba(59,130,246,0.4))}
+        .tl-seg-4{flex:24;background:linear-gradient(90deg,rgba(59,130,246,0.4),rgba(34,197,94,0.5))}
+        .tl-node{width:14px;height:14px;border-radius:50%;flex-shrink:0;border:2px solid;position:relative;z-index:2}
+        .tl-node-1{background:#0a0a0a;border-color:#c0c0c0}
+        .tl-node-2{background:#0a0a0a;border-color:#c0c0c0}
+        .tl-node-3{background:#0a0a0a;border-color:#3b82f6}
+        .tl-node-4{background:#0a0a0a;border-color:#22c55e}
+        .tl-node-end{width:28px;height:28px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;box-shadow:0 0 20px rgba(34,197,94,0.3);animation:tl-pulse 2s infinite}
+        @keyframes tl-pulse{0%,100%{box-shadow:0 0 20px rgba(34,197,94,0.3)}50%{box-shadow:0 0 30px rgba(34,197,94,0.5)}}
+
+        /* Phase cards */
+        .tl-phases{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+        @media(max-width:768px){.tl-phases{grid-template-columns:1fr 1fr}.tl-bar{display:none}}
+        @media(max-width:480px){.tl-phases{grid-template-columns:1fr}}
+
+        .tl-phase{
+          background:rgba(255,255,255,0.03);
+          border:1px solid rgba(255,255,255,0.06);
+          border-radius:16px;
+          padding:24px 20px;
+          cursor:pointer;
+          transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
+          position:relative;
+          overflow:hidden;
+        }
+        .tl-phase::before{
+          content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;
+          opacity:0;transition:opacity 0.3s;
+        }
+        .tl-phase:hover{
+          background:rgba(255,255,255,0.06);
+          border-color:rgba(255,255,255,0.12);
+          transform:translateY(-4px);
+          box-shadow:0 12px 40px rgba(0,0,0,0.4);
+        }
+        .tl-phase:hover::before{opacity:1}
+        .tl-phase:nth-child(1)::before{background:linear-gradient(90deg,#c0c0c0,#a8a8a8)}
+        .tl-phase:nth-child(2)::before{background:#c0c0c0}
+        .tl-phase:nth-child(3)::before{background:linear-gradient(90deg,#c0c0c0,#3b82f6)}
+        .tl-phase:nth-child(4)::before{background:linear-gradient(90deg,#3b82f6,#22c55e)}
+
+        .tl-phase-num{
+          display:inline-flex;align-items:center;justify-content:center;
+          width:28px;height:28px;border-radius:50%;
+          font-size:12px;font-weight:800;color:#0a0a0a;
+          margin-bottom:14px;
+        }
+        .tl-phase:nth-child(1) .tl-phase-num{background:#c0c0c0}
+        .tl-phase:nth-child(2) .tl-phase-num{background:#c0c0c0}
+        .tl-phase:nth-child(3) .tl-phase-num{background:#3b82f6;color:#fff}
+        .tl-phase:nth-child(4) .tl-phase-num{background:#22c55e}
+
+        .tl-phase-name{font-family:var(--font-d);font-size:20px;color:#fff;margin-bottom:4px}
+        .tl-phase-weeks{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:14px}
+        .tl-phase-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;margin-bottom:16px}
+
+        .tl-phase-credits{
+          display:flex;align-items:baseline;gap:6px;
+          padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);
+        }
+        .tl-credit-num{font-family:var(--font-d);font-size:32px;color:#fff}
+        .tl-phase:nth-child(4) .tl-credit-num{color:#22c55e}
+        .tl-credit-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+
+        .tl-phase-tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+        .tl-tool-pill{
+          font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+          padding:3px 8px;border-radius:4px;
+          background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);
+        }
+
+        /* Bottom stats row */
+        .tl-stats{display:flex;justify-content:center;gap:16px;margin-top:32px;flex-wrap:wrap}
+        .tl-stat-card{
+          background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+          border-radius:12px;padding:20px 28px;text-align:center;flex:1;min-width:160px;max-width:220px;
+          transition:border-color 0.3s;
+        }
+        .tl-stat-card:hover{border-color:rgba(255,255,255,0.15)}
+        .tl-stat-val{font-family:var(--font-d);font-size:24px;color:#fff;margin-bottom:4px}
+        .tl-stat-card:last-child .tl-stat-val{color:#22c55e}
+        .tl-stat-lbl{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+      </style>
+
+      <!-- Progress bar -->
+      <div class="tl-bar">
+        <div class="tl-node tl-node-1"></div>
+        <div class="tl-segment tl-seg-1"></div>
+        <div class="tl-node tl-node-2"></div>
+        <div class="tl-segment tl-seg-2"></div>
+        <div class="tl-node tl-node-3"></div>
+        <div class="tl-segment tl-seg-3"></div>
+        <div class="tl-segment tl-seg-4"></div>
+        <div class="tl-node-end">🎓</div>
+      </div>
+
+      <!-- Phase cards -->
+      <div class="tl-phases">
+        <div class="tl-phase">
+          <div class="tl-phase-num">1</div>
+          <div class="tl-phase-name">Pre-Load Sprint</div>
+          <div class="tl-phase-weeks">Weeks 1 – 23</div>
+          <div class="tl-phase-desc">Stack credits before you ever step on campus. Sophia, Study.com, StraighterLine, and CLEP exams — all at your own pace, from home.</div>
+          <div class="tl-phase-credits">
+            <div class="tl-credit-num">60</div>
+            <div class="tl-credit-label">credits banked</div>
+          </div>
+          <div class="tl-phase-tools">
+            <span class="tl-tool-pill">Sophia</span>
+            <span class="tl-tool-pill">Study.com</span>
+            <span class="tl-tool-pill">CLEP</span>
+            <span class="tl-tool-pill">StraighterLine</span>
+          </div>
+        </div>
+
+        <div class="tl-phase">
+          <div class="tl-phase-num">2</div>
+          <div class="tl-phase-name">Apply</div>
+          <div class="tl-phase-weeks">Week 24</div>
+          <div class="tl-phase-desc">Apply to WGU, TESU, Excelsior, UMPI, or your target school. Transfer all banked credits. Arrive as a senior on day one.</div>
+          <div class="tl-phase-credits">
+            <div class="tl-credit-num">60</div>
+            <div class="tl-credit-label">credits transferred</div>
+          </div>
+          <div class="tl-phase-tools">
+            <span class="tl-tool-pill">Transferology</span>
+            <span class="tl-tool-pill">WGU</span>
+            <span class="tl-tool-pill">TESU</span>
+          </div>
+        </div>
+
+        <div class="tl-phase">
+          <div class="tl-phase-num">3</div>
+          <div class="tl-phase-name">ACE Push</div>
+          <div class="tl-phase-weeks">Weeks 25 – 28</div>
+          <div class="tl-phase-desc">While waiting for enrollment, keep stacking. DSST exams, ACE-recommended courses, and any remaining gen-eds. Every credit now is one less later.</div>
+          <div class="tl-phase-credits">
+            <div class="tl-credit-num">75</div>
+            <div class="tl-credit-label">total credits</div>
+          </div>
+          <div class="tl-phase-tools">
+            <span class="tl-tool-pill">DSST</span>
+            <span class="tl-tool-pill">CLEP</span>
+            <span class="tl-tool-pill">ACE</span>
+          </div>
+        </div>
+
+        <div class="tl-phase">
+          <div class="tl-phase-num">4</div>
+          <div class="tl-phase-name">University Terms</div>
+          <div class="tl-phase-weeks">Weeks 29 – 52</div>
+          <div class="tl-phase-desc">Finish remaining major courses at your university. At WGU, this is competency-based — go as fast as you can prove mastery. Sprint to graduation.</div>
+          <div class="tl-phase-credits">
+            <div class="tl-credit-num">120</div>
+            <div class="tl-credit-label">degree complete</div>
+          </div>
+          <div class="tl-phase-tools">
+            <span class="tl-tool-pill">WGU</span>
+            <span class="tl-tool-pill">TESU</span>
+            <span class="tl-tool-pill">Excelsior</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom stats -->
+      <div class="tl-stats">
+        <div class="tl-stat-card">
+          <div class="tl-stat-val">$4K – $8.2K</div>
+          <div class="tl-stat-lbl">Total Cost</div>
+        </div>
+        <div class="tl-stat-card">
+          <div class="tl-stat-val">12 Months</div>
+          <div class="tl-stat-lbl">Time to Degree</div>
+        </div>
+        <div class="tl-stat-card">
+          <div class="tl-stat-val">$85,000+</div>
+          <div class="tl-stat-lbl">Potential Savings</div>
+        </div>
       </div>
     </div>
   </div>
