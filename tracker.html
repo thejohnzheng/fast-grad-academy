@@ -617,7 +617,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
       html += '<div class="glass gened-card reveal reveal-d'+(i%4+1)+'">'
         + '<div class="gened-header"><div class="gened-name">'+cat+'</div><div class="gened-status '+statusClass+'">'+status+'</div></div>'
         + '<div class="gened-progress"><div class="gened-bar-bg"><div class="gened-bar-fill" style="width:'+pct+'%"></div></div><div class="gened-fraction">'+earned+' / '+needed+'</div></div>'
-        + '<button class="gened-edit-btn" onclick="openGenedModal(\''+cat.replace(/'/g,"\\'")+'\')">&pencil; Edit Requirement</button>'
+        + '<button class="gened-edit-btn" onclick="openGenedModal(\''+cat.replace(/'/g,"\\'")+'\')">✏️ Edit Requirement</button>'
         + '</div>';
     });
     el.innerHTML = html;
