@@ -165,6 +165,79 @@
     .letter-sig .title { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-silver); margin-top: 8px; }
     .divider { width: 40px; height: 1px; background: var(--silver); margin: 56px 0; }
 
+    /* ─── IN THE HEADLINES ─── */
+    .headlines-section {
+      padding: 56px 24px;
+      background: var(--off-white);
+      border-top: 1px solid #e8e8e8;
+      border-bottom: 1px solid #e8e8e8;
+      overflow: hidden;
+    }
+    .headlines-label {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted-silver);
+      margin-bottom: 32px;
+    }
+    .headlines-track-wrapper {
+      position: relative;
+    }
+    .headlines-track-wrapper::before,
+    .headlines-track-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 120px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .headlines-track-wrapper::before { left: 0; background: linear-gradient(to right, var(--off-white), transparent); }
+    .headlines-track-wrapper::after { right: 0; background: linear-gradient(to left, var(--off-white), transparent); }
+    .headlines-track {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      width: max-content;
+      animation: headlines-scroll 35s linear infinite;
+    }
+    .headlines-track:hover { animation-play-state: paused; }
+    @keyframes headlines-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .headline-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      white-space: nowrap;
+    }
+    .headline-source {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-silver);
+      padding: 4px 10px;
+      border: 1px solid #d5d5d5;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .headline-text {
+      font-family: var(--font-display);
+      font-size: 18px;
+      color: var(--black);
+      font-weight: 400;
+    }
+    .headline-sep {
+      width: 4px;
+      height: 4px;
+      background: var(--silver);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
     /* ─── TRANSITION GRADIENT ─── */
     .pain-section::before {
       content: '';
@@ -257,7 +330,11 @@
     .parent-card p { font-size: 14px; color: var(--charcoal); line-height: 1.7; }
     .parent-card .source { font-size: 11px; color: var(--muted-silver); margin-top: 8px; }
     .parents-cta { text-align: center; font-size: 15px; color: var(--charcoal); line-height: 1.8; max-width: 680px; margin: 0 auto; }
-    @media(max-width:700px){ .parents-grid { grid-template-columns: 1fr; } }
+    @media(max-width:700px){
+      .parents-grid { grid-template-columns: 1fr; }
+      .headline-text { font-size: 15px; }
+      .headlines-track { gap: 32px; }
+    }
 
     /* ─── FEATURE CAROUSEL (infinite marquee) ─── */
     .feature-carousel { overflow: hidden; position: relative; }
@@ -797,6 +874,97 @@
        style="width:100%;border-radius:16px">
 </div>
 
+
+<!-- IN THE HEADLINES -->
+<section class="headlines-section">
+  <div class="headlines-label reveal reveal-d1">In The Headlines</div>
+  <div class="headlines-track-wrapper">
+    <div class="headlines-track">
+      <!-- === 8 headlines === -->
+      <div class="headline-item">
+        <span class="headline-source">The Shade Room</span>
+        <span class="headline-text">"17-Year-Old Ohio Student Graduates College Before Finishing High School"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">Medium</span>
+        <span class="headline-text">"How I Graduated College in 1 Year"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">CU Denver News</span>
+        <span class="headline-text">"High School Students Are Earning College Credits Early — and Saving Thousands"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">Star Tribune</span>
+        <span class="headline-text">"Minnesota Teen Earns 3 Degrees by Age 18 for $6,000"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">WDRB News</span>
+        <span class="headline-text">"High School Students Can Earn Up to 34 College Credits Before Graduation"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">Natl Student Clearinghouse</span>
+        <span class="headline-text">"52,500 Students Under 18 Earned College Credentials — Nearly 4x a Decade Ago"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">College Board</span>
+        <span class="headline-text">"CLEP Can Shorten a Bachelor's Degree by Up to 10 Months"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">ABC News</span>
+        <span class="headline-text">"Teen Accepted to 60+ Colleges, Earns Over $1.1M in Scholarships"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <!-- === duplicate 8 for seamless loop === -->
+      <div class="headline-item">
+        <span class="headline-source">The Shade Room</span>
+        <span class="headline-text">"17-Year-Old Ohio Student Graduates College Before Finishing High School"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">Medium</span>
+        <span class="headline-text">"How I Graduated College in 1 Year"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">CU Denver News</span>
+        <span class="headline-text">"High School Students Are Earning College Credits Early — and Saving Thousands"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">Star Tribune</span>
+        <span class="headline-text">"Minnesota Teen Earns 3 Degrees by Age 18 for $6,000"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">WDRB News</span>
+        <span class="headline-text">"High School Students Can Earn Up to 34 College Credits Before Graduation"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">Natl Student Clearinghouse</span>
+        <span class="headline-text">"52,500 Students Under 18 Earned College Credentials — Nearly 4x a Decade Ago"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">College Board</span>
+        <span class="headline-text">"CLEP Can Shorten a Bachelor's Degree by Up to 10 Months"</span>
+      </div>
+      <div class="headline-sep"></div>
+      <div class="headline-item">
+        <span class="headline-source">ABC News</span>
+        <span class="headline-text">"Teen Accepted to 60+ Colleges, Earns Over $1.1M in Scholarships"</span>
+      </div>
+      <div class="headline-sep"></div>
+    </div>
+  </div>
+</section>
 
 <!-- PAIN SECTION -->
 <div class="pain-section">
