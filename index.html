@@ -335,13 +335,15 @@
       color: rgba(255,255,255,0.4);
       margin-bottom: 24px;
     }
-    .pain-inner h2 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 56px); font-weight: 400; line-height: 1.1; margin-bottom: 40px; letter-spacing: -0.02em; }
+    .pain-inner h2 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 56px); font-weight: 400; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
     .pain-inner h2 em { font-style: italic; color: var(--silver); }
-    .pain-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); margin: 56px 0; }
-    .pain-stat { background: var(--black); padding: 40px 24px; text-align: center; }
-    .pain-stat-num { font-family: var(--font-display); font-size: 40px; color: var(--white); margin-bottom: 8px; }
-    .pain-stat-label { font-size: 13px; color: var(--muted-silver); line-height: 1.5; }
-    .pain-stat-label::before { content: '\2014\00a0'; }
+    .pain-subtitle { font-size: 17px; color: rgba(255,255,255,0.5); font-weight: 300; line-height: 1.7; max-width: 680px; margin-bottom: 56px; }
+    .pain-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); margin: 0 0 56px; }
+    .pain-stat { background: var(--black); padding: 40px 24px; }
+    .pain-stat-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 12px; }
+    .pain-stat-eyebrow::before { content: '\2014\00a0'; }
+    .pain-stat-num { font-family: var(--font-display); font-size: 48px; color: var(--white); margin-bottom: 12px; line-height: 1; }
+    .pain-stat-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.65; font-weight: 300; }
     .pain-inner > p { font-size: 16px; color: var(--muted-silver); font-weight: 300; line-height: 1.8; max-width: 680px; }
 
     /* ─── BENTO GRID — WHAT'S INSIDE ─── */
@@ -371,6 +373,22 @@
     .bento-card.dark .card-desc { color: var(--muted-silver); }
     .card-tag { display: inline-block; background: var(--black); color: var(--white); padding: 5px 14px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 20px; }
     .bento-card.dark .card-tag { background: rgba(255,255,255,0.12); color: var(--silver); }
+    .card-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 20px; }
+    .card-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    .card-pill--primer { background: rgba(59,130,246,0.1); color: #3b82f6; }
+    .card-pill--mindset { background: rgba(168,85,247,0.1); color: #a855f7; }
+    .card-pill--clep { background: rgba(59,130,246,0.15); color: #60a5fa; }
+    .card-pill--ap { background: rgba(251,146,60,0.15); color: #fb923c; }
+    .card-pill--dsst { background: rgba(234,179,8,0.15); color: #eab308; }
+    .card-pill--dual { background: rgba(168,85,247,0.15); color: #a855f7; }
+    .card-pill--template { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .card-pill--study { background: rgba(6,182,212,0.15); color: #06b6d4; }
+    .card-pill--ai { background: rgba(168,85,247,0.15); color: #a855f7; }
+    .card-pill--calendar { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .card-pill--execution { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .card-pill--savings { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .card-pill--investment { background: rgba(59,130,246,0.15); color: #3b82f6; }
+    .bento-card.dark .card-pill { opacity: 0.85; }
 
     /* ─── THE MATH ─── */
     .math-section { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
@@ -408,6 +426,13 @@
     .parent-card p { font-size: 14px; color: var(--charcoal); line-height: 1.7; }
     .parent-card .source { font-size: 11px; color: var(--muted-silver); margin-top: 8px; }
     .parents-cta { text-align: center; font-size: 15px; color: var(--charcoal); line-height: 1.8; max-width: 680px; margin: 0 auto; }
+    .parent-qa { margin-bottom: 48px; }
+    .parent-qa-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted-silver); margin-bottom: 12px; }
+    .parent-qa-eyebrow::before { content: '\2014\00a0'; }
+    .parent-qa h3 { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); font-weight: 400; color: var(--black); margin-bottom: 12px; line-height: 1.25; }
+    .parent-qa h3 em { font-style: italic; }
+    .parent-qa p { font-size: 15px; color: var(--charcoal); font-weight: 300; line-height: 1.75; }
+    .parent-qa .source { font-size: 11px; color: var(--muted-silver); margin-top: 8px; }
     @media(max-width:700px){
       .parents-grid { grid-template-columns: 1fr; }
       .headline-text { font-size: 15px; }
@@ -635,7 +660,7 @@
     .final-cta-note { font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 20px; }
 
     /* ─── FOOTER ─── */
-    footer { padding: 48px 24px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--off-white); flex-wrap: wrap; gap: 16px; }
+    footer { padding: 48px 24px; }
     .footer-brand { font-family: var(--font-display); font-size: 18px; color: var(--black); }
     .footer-links { display: flex; gap: 28px; }
     .footer-links a { font-size: 13px; color: var(--muted-silver); text-decoration: none; transition: color 0.2s; }
@@ -864,7 +889,7 @@
 <!-- ═══════════════════════ UNIFIED NAV ═══════════════════════ -->
 <nav class="fga-unified-nav">
   <div class="nav-container">
-    <a href="/" class="nav-brand">Fast Grad Academy</a>
+    <a href="/" class="nav-brand">Fast Grad <em style="font-style:italic">Academy</em></a>
     <div class="nav-links">
       <a href="#inside" class="nav-link">What's Inside</a>
       <a href="#math" class="nav-link">The Math</a>
@@ -1072,18 +1097,22 @@
   <div class="pain-inner">
     <div class="pain-eyebrow reveal reveal-d1">&mdash; The System You Were Sold</div>
     <h2 class="reveal reveal-d1">The system was never<br/>designed for <em>your</em> benefit.</h2>
+    <p class="pain-subtitle reveal reveal-d1">The four-year degree is a billing cycle. These are the numbers nobody prints on the brochure.</p>
     <div class="pain-stats">
       <div class="pain-stat reveal reveal-d2">
+        <div class="pain-stat-eyebrow">average student debt</div>
         <div class="pain-stat-num">$39,633</div>
-        <div class="pain-stat-label">Average student debt per borrower</div>
+        <div class="pain-stat-desc">Carried by the average bachelor's recipient at graduation — before interest begins compounding.</div>
       </div>
       <div class="pain-stat reveal reveal-d3">
+        <div class="pain-stat-eyebrow">years to pay it back</div>
         <div class="pain-stat-num">10 yrs</div>
-        <div class="pain-stat-label">Average time to pay it back at $400/month</div>
+        <div class="pain-stat-desc">The median repayment timeline. A full decade of post-grad income routed toward a problem that was avoidable.</div>
       </div>
       <div class="pain-stat reveal reveal-d4">
+        <div class="pain-stat-eyebrow">life milestones delayed</div>
         <div class="pain-stat-num">84%</div>
-        <div class="pain-stat-label">Who delay buying a home or starting a family because of student loans</div>
+        <div class="pain-stat-desc">Of grads say student debt has delayed buying a home. Retirement, marriage, and family planning follow close behind.</div>
       </div>
     </div>
     <p class="reveal reveal-d1">Every extra semester on campus is tuition revenue. Every required class — whether relevant to your degree or not — is a credit hour they charge you for. Your high school counselor gets funding incentives to keep you on the traditional path. The incentives don't align with yours. When incentives don't align — you engineer your own path.</p>
@@ -1093,10 +1122,13 @@
 
 <!-- THE MATH -->
 <section class="math-section" id="math">
+  <div class="eyebrow reveal reveal-d1" style="text-align:center;color:var(--muted-silver)">— The math doesn't lie</div>
   <h2 class="reveal reveal-d1">The Math Doesn't Lie</h2>
+  <p class="reveal reveal-d1" style="text-align:center;font-size:16px;color:var(--charcoal);font-weight:300;max-width:600px;margin:0 auto 48px;line-height:1.7">Run the numbers once. Run them again. The arithmetic is not subtle.</p>
   <div class="math-compare">
     <div class="math-box them reveal reveal-d2">
       <div class="math-label">Traditional Path</div>
+      <h3 style="font-family:var(--font-display);font-size:clamp(24px,3vw,32px);font-weight:400;margin-bottom:24px;line-height:1.15">Four years.<br/><span style="font-weight:400">Full price.</span></h3>
       <div class="math-row">
         <span class="math-item">4 years tuition (avg in-state)</span>
         <span class="math-val" data-fga="costs.traditional_tuition_4yr">$108,584</span>
@@ -1120,6 +1152,7 @@
     </div>
     <div class="math-box you reveal reveal-d3">
       <div class="math-label">Fast Grad Path</div>
+      <h3 style="font-family:var(--font-display);font-size:clamp(24px,3vw,32px);font-weight:400;margin-bottom:24px;line-height:1.15;color:var(--white)">One year.<br/><em style="font-style:italic">Zero debt.</em></h3>
       <div class="math-row">
         <span class="math-item">CLEP exam fees</span>
         <span class="math-val">$960</span>
@@ -1142,12 +1175,25 @@
       </div>
     </div>
   </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px">
+    <div class="reveal reveal-d2" style="padding:24px;border-radius:12px;background:#f7f0e8;border:1px solid #e8ddd0">
+      <div style="font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#b08060;margin-bottom:8px">— Traditional Total Cost</div>
+      <div style="font-family:var(--font-display);font-size:36px;color:#8b5e3c;margin-bottom:4px">$268K+</div>
+      <div style="font-size:13px;color:var(--charcoal);font-weight:300">Tuition + opportunity cost + interest on debt.</div>
+    </div>
+    <div class="reveal reveal-d3" style="padding:24px;border-radius:12px;background:var(--black);border:1px solid rgba(255,255,255,0.1)">
+      <div style="font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--silver);margin-bottom:8px">— Your savings with Fast Grad</div>
+      <div style="font-family:var(--font-display);font-size:36px;color:var(--white);margin-bottom:4px">$85K+</div>
+      <div style="font-size:13px;color:var(--muted-silver);font-weight:300">Documented. Repeatable. Starts the week you read chapter one.</div>
+    </div>
+  </div>
 </section>
 
 
 <!-- LETTER FROM JOHN -->
 <section class="letter-section">
-  <div class="eyebrow reveal reveal-d1">A letter from John</div>
+  <div class="eyebrow reveal reveal-d1" style="color:var(--muted-silver)">— John · Founder · Graduated Harvard at 21</div>
+  <div class="eyebrow reveal reveal-d1" style="margin-bottom:32px">— A letter from the founder</div>
   <h2 class="reveal reveal-d2">I was terrified of student debt.<br/><em style="font-style:italic; color: var(--charcoal);">So I engineered a way out.</em></h2>
 
   <p class="reveal reveal-d3">As a freshman in high school, I knew college was going to be my path. But there was one thing I was terrified of: <strong>student debt.</strong> The average private university student borrows $35,000+ after they graduate — and those numbers keep climbing.</p>
@@ -1175,7 +1221,7 @@
 <!-- REVIEWS CAROUSEL -->
 <section class="proof-section" id="reviews">
   <div class="proof-header">
-    <div class="eyebrow reveal reveal-d1">This isn't just my story</div>
+    <div class="eyebrow reveal reveal-d1" style="color:rgba(255,255,255,0.5)">— The wall of proof</div>
     <h2 class="reveal reveal-d2">Thousands of people are doing this.</h2>
     <p class="reveal reveal-d3">CLEP, DSST, dual enrollment, competency-based degrees. The strategy is proven. These are real people, real numbers, real outcomes.</p>
   </div>
@@ -1516,9 +1562,9 @@
 <!-- WHAT'S INSIDE — BENTO GRID -->
 <section class="inside" id="inside">
   <div class="inside-header">
-    <div class="eyebrow reveal reveal-d1">What's inside</div>
+    <div class="eyebrow reveal reveal-d1">— The guide · 12 chapters · 186 pages</div>
     <h2 class="reveal reveal-d2">The Complete Acceleration System</h2>
-    <p class="reveal reveal-d3">12 chapters covering every strategy, tool, and shortcut — from CLEP exams to PSEO to AI-powered study methods.</p>
+    <p class="reveal reveal-d3">No filler. Each chapter ends with a template, worksheet, or script you'll use the same week you read it.</p>
   </div>
 
   <div class="bento">
@@ -1528,7 +1574,7 @@
         <div class="card-title">Foundations: Break the System</div>
         <div class="card-desc">The traditional path is broken — and the system's own rules let you exploit it. Build the mindset, understand the Emotional Cycle of Change, and learn the core credit stacking strategy that earns you the same degree for a fraction of the cost and time.</div>
       </div>
-      <span class="card-tag">Foundations</span>
+      <div class="card-pills"><span class="card-pill card-pill--primer">Primer</span><span class="card-pill card-pill--mindset">Mindset</span></div>
     </div>
     <div class="bento-card reveal reveal-d2">
       <div>
@@ -1536,7 +1582,7 @@
         <div class="card-title" data-fga="chapters.ch4_title">Mastering CLEP Exams</div>
         <div class="card-desc">34 exams, ~$97 each, accepted at 2,900+ schools. The highest-ROI credit pathway available — and free with Modern States.</div>
       </div>
-      <span class="card-tag">Up to 41 credits</span>
+      <div class="card-pills"><span class="card-pill card-pill--clep">CLEP</span></div>
     </div>
     <div class="bento-card reveal reveal-d3">
       <div>
@@ -1544,7 +1590,7 @@
         <div class="card-title" data-fga="chapters.ch5_title">DSST, AP & Other Credit Paths</div>
         <div class="card-desc">Fill the gaps CLEP can't cover. DSST, self-study AP, and the ACE providers like Sophia and Study.com that pre-load 60+ credits.</div>
       </div>
-      <span class="card-tag">+ 30 more credits</span>
+      <div class="card-pills"><span class="card-pill card-pill--ap">AP</span><span class="card-pill card-pill--dsst">DSST</span></div>
     </div>
     <div class="bento-card reveal reveal-d4">
       <div>
@@ -1552,7 +1598,7 @@
         <div class="card-title" data-fga="chapters.ch6_title">PSEO & Dual Enrollment</div>
         <div class="card-desc">Take real college courses in high school — often completely free, funded by the state. John's secret weapon that most students have never heard of.</div>
       </div>
-      <span class="card-tag">Free credits</span>
+      <div class="card-pills"><span class="card-pill card-pill--dual">Dual Enroll</span></div>
     </div>
     <div class="bento-card reveal reveal-d1">
       <div>
@@ -1560,7 +1606,7 @@
         <div class="card-title">Dissecting Your Degree</div>
         <div class="card-desc">Map every degree requirement to its exam equivalent, verify every credit transfers, and build your personalized credit stacking plan so nothing is wasted.</div>
       </div>
-      <span class="card-tag">Zero wasted credits</span>
+      <div class="card-pills"><span class="card-pill card-pill--template">Template</span></div>
     </div>
     <div class="bento-card wide reveal reveal-d2">
       <div>
@@ -1568,7 +1614,7 @@
         <div class="card-title">Study Science + AI Stack</div>
         <div class="card-desc">Evidence-based study techniques — Active Recall, Spaced Repetition, the Feynman Technique — combined with 7 copy-ready AI prompts using ChatGPT, Claude, and Anki to compress months of studying into weeks.</div>
       </div>
-      <span class="card-tag">Science-backed + AI</span>
+      <div class="card-pills"><span class="card-pill card-pill--study">Study</span><span class="card-pill card-pill--ai">AI</span></div>
     </div>
     <div class="bento-card dark reveal reveal-d3">
       <div>
@@ -1576,7 +1622,7 @@
         <div class="card-title" data-fga="chapters.ch10_title">Your Personalized Roadmap</div>
         <div class="card-desc">Find your starting point. The 52-week bachelor's degree timeline — and the two universities that make it possible.</div>
       </div>
-      <span class="card-tag">52-week plan</span>
+      <div class="card-pills"><span class="card-pill card-pill--calendar">Calendar</span><span class="card-pill card-pill--execution">Execution</span></div>
     </div>
     <div class="bento-card reveal reveal-d4">
       <div>
@@ -1584,7 +1630,7 @@
         <div class="card-title">Financial Strategy & College ROI</div>
         <div class="card-desc">The math that reveals $208,000+ in total lifetime advantage. Exam fees, scholarship stacking, FAFSA timing — plus what to do once you're on campus to maximize your degree.</div>
       </div>
-      <span class="card-tag">Save $85K+</span>
+      <div class="card-pills"><span class="card-pill card-pill--savings">Savings</span><span class="card-pill card-pill--investment">Investment</span></div>
     </div>
   </div>
 </section>
@@ -1616,36 +1662,42 @@
 
 <!-- FOR PARENTS -->
 <section class="parents-section" id="parents">
-  <div class="eyebrow reveal reveal-d1">For parents &amp; families</div>
+  <div class="eyebrow reveal reveal-d1">— For parents</div>
   <h2 class="reveal reveal-d2">Your questions, answered honestly.</h2>
   <p class="section-sub reveal reveal-d3">We know you're skeptical. You should be. Here's the proof that matters.</p>
 
-  <div class="parents-grid">
-    <div class="parent-card reveal reveal-d1">
+  <div>
+    <div class="parent-qa reveal reveal-d1">
+      <div class="parent-qa-eyebrow">Q1 · Employer Respect</div>
       <h3>Will employers respect this degree?</h3>
       <p>In a survey of 300 employers, <strong>98% said graduates from accelerated, competency-based programs met or exceeded expectations</strong>, and 96% said they would hire more. The average starting salary was $73,000.</p>
       <div class="source">Source: Harris Poll employer survey</div>
     </div>
-    <div class="parent-card reveal reveal-d2">
+    <div class="parent-qa reveal reveal-d2">
+      <div class="parent-qa-eyebrow">Q2 · Accreditation</div>
       <h3>Is the degree actually accredited?</h3>
       <p>Every university and exam program discussed in this guide carries <strong>regional accreditation</strong> — the same standard held by state flagship universities. CLEP is administered by the College Board, the same organization behind the SAT and AP exams.</p>
       <div class="source">Source: College Board; U.S. Department of Education</div>
     </div>
-    <div class="parent-card reveal reveal-d3">
+    <div class="parent-qa reveal reveal-d3">
+      <div class="parent-qa-eyebrow">Q3 · Grad School</div>
       <h3>Can they still go to graduate school?</h3>
       <p>Yes. Students who used accelerated pathways have been accepted to <strong>Harvard, Georgia Tech, Penn State, and LSU</strong> for graduate programs. Regional accreditation is the only requirement — not how long the degree took.</p>
       <div class="source">Documented grad school acceptances from accelerated-path students</div>
     </div>
-    <div class="parent-card reveal reveal-d4">
+    <div class="parent-qa reveal reveal-d4">
+      <div class="parent-qa-eyebrow">Q4 · Social Experience</div>
       <h3>What about the social experience?</h3>
       <p>Accelerating doesn't mean skipping campus life. Students who arrive with 60+ credits have <strong>more freedom</strong> — to join organizations, pursue internships, study abroad, or double major — without the financial pressure of extra tuition years.</p>
     </div>
-    <div class="parent-card reveal reveal-d1">
+    <div class="parent-qa reveal reveal-d1">
+      <div class="parent-qa-eyebrow">Q5 · Real Savings</div>
       <h3>How much can we actually save?</h3>
       <p>The maximum acceleration path costs <strong>$4,000–$8,200 total</strong> versus $268,000+ for the traditional 4-year path (tuition, opportunity cost, and average debt). Even moderate credit stacking saves $20,000–$50,000.</p>
       <div class="source">Source: NCES; College Board, Trends in College Pricing</div>
     </div>
-    <div class="parent-card reveal reveal-d2">
+    <div class="parent-qa reveal reveal-d2">
+      <div class="parent-qa-eyebrow">Q6 · Legitimacy</div>
       <h3>Is this a scam or get-rich-quick scheme?</h3>
       <p>No. Every strategy in this guide uses <strong>official, College Board-administered exams</strong> and accredited university programs. CLEP has existed since 1967. These aren't loopholes — they're the system's own rules, applied strategically.</p>
       <div class="source">CLEP established 1967; accepted at 2,900+ institutions</div>
@@ -1660,12 +1712,14 @@
 
 <!-- PRICING -->
 <section class="pricing" id="pricing">
-  <div class="eyebrow reveal reveal-d1">Simple pricing</div>
+  <div class="eyebrow reveal reveal-d1">— The offer</div>
   <h2 class="reveal reveal-d2">One guide.<br/>Decades of impact.</h2>
   <p class="pricing-sub reveal reveal-d3">Everything you need to compress your timeline, cut your debt, and start your real life years ahead of schedule.</p>
 
   <div class="price-card reveal reveal-d4">
-    <div class="price-eyebrow">Fast Grad Academy — Complete Guide</div>
+    <div style="font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted-silver);margin-bottom:16px">— Fast Grad Academy · Guide v2026</div>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.15);color:#22c55e;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;margin-bottom:24px">&#9679; Updated 2026</div>
+    <div style="font-family:var(--font-display);font-size:28px;color:var(--white);margin-bottom:20px">The Complete Guide</div>
     <div class="price-amount"><span>$</span>197</div>
     <p class="price-compare">One-time · Instant access · All sales final · Compare to <s>$108,000+ in tuition</s></p>
 
@@ -1689,7 +1743,9 @@
 
 <!-- FAQ -->
 <section class="faq" id="faq">
-  <h2 class="reveal reveal-d1">Common questions</h2>
+  <div class="eyebrow reveal reveal-d1">— Questions</div>
+  <h2 class="reveal reveal-d1" style="margin-bottom:16px">Common questions</h2>
+  <p class="reveal reveal-d1" style="font-size:15px;color:var(--charcoal);font-weight:300;margin-bottom:56px;line-height:1.7">Not below? Email hello@fastgradacademy.com — we read everything.</p>
   <div class="faq-item">
     <div class="faq-q reveal reveal-d2">Does CLEP actually work at my university?</div>
     <div class="faq-a">CLEP is accepted at 2,900+ accredited institutions. The guide includes a process for verifying acceptance at your specific school before you spend a dollar on exam fees — and alternative pathways if CLEP isn't accepted for your degree program.</div>
@@ -1717,24 +1773,47 @@
 <div class="final-cta">
   <h2 class="reveal reveal-d1">Stop paying for<br/><em>time you don't need.</em></h2>
   <p class="reveal reveal-d2">1,952 students have already used this system. The only question is whether you're next.</p>
-  <a href="#pricing" class="btn-white reveal reveal-d3">Get the Guide — <span data-fga="pricing.guide_price">$197</span></a>
-  <p class="final-cta-note reveal reveal-d4">Instant access · One-time payment · All sales final</p>
+  <a href="#pricing" class="btn-white reveal reveal-d3" style="background:transparent;border:2px solid rgba(255,255,255,0.6);color:var(--white)">Get the Guide — <span data-fga="pricing.guide_price">$197</span> &rarr;</a>
+  <p class="final-cta-note reveal reveal-d4">— Instant access · All sales final · Lifetime updates</p>
 </div>
 
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">Fast Grad Academy</div>
-  <div class="footer-links">
-    <a href="/contact">Contact</a>
-    <a href="/privacy">Privacy Policy</a>
-    <a href="/refund">Refund Policy</a>
-    <a href="/terms">Terms of Use</a>
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;justify-content:space-between">
+    <div>
+      <div class="footer-brand">Fast Grad <em style="font-style:italic">Academy</em></div>
+    </div>
+    <div class="footer-links">
+      <a href="#inside">What's Inside</a>
+      <a href="#math">The Math</a>
+      <a href="#reviews">Proof</a>
+      <a href="#parents">Parents</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-links">
+      <a href="https://instagram.com/fastgradacademy" target="_blank">Instagram</a>
+      <a href="https://youtube.com/@thejohnzheng" target="_blank">YouTube</a>
+      <a href="https://x.com/thejohnzheng" target="_blank">X</a>
+      <a href="https://tiktok.com/@thejohnzheng" target="_blank">TikTok</a>
+    </div>
   </div>
-  <p class="footer-legal">
-    Results are not typical and will vary based on individual effort, school policies, prior knowledge, and other factors. This course documents one person's experience and describes publicly available strategies. Nothing herein constitutes a guarantee of any academic or financial outcome. Educational content only. &mdash; <a href="/terms" style="color:inherit;text-decoration:underline">Full Terms &amp; Disclaimers</a><br/>
-    &copy; 2026 Executive Strategy Consulting LLC d.b.a. Fast Grad Academy. All rights reserved.
-  </p>
+  <div style="max-width:1100px;margin:24px auto 0;padding:0 24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;border-top:1px solid var(--off-white);padding-top:24px">
+    <p class="footer-legal">
+      &copy; 2026 Fast Grad Academy LLC
+      &nbsp;&middot;&nbsp; <a href="/terms" style="color:inherit;text-decoration:underline">Terms</a>
+      &nbsp;&middot;&nbsp; <a href="/privacy" style="color:inherit;text-decoration:underline">Privacy</a>
+      &nbsp;&middot;&nbsp; <a href="/terms" style="color:inherit;text-decoration:underline">Disclosures</a>
+    </p>
+    <p style="font-size:12px;color:var(--muted-silver);font-style:italic">Made for students who mean it.</p>
+  </div>
+  <div style="max-width:1100px;margin:16px auto 0;padding:0 24px">
+    <p class="footer-legal" style="font-size:10px;line-height:1.5">
+      Results are not typical and will vary based on individual effort, school policies, prior knowledge, and other factors. This course documents one person's experience and describes publicly available strategies. Nothing herein constitutes a guarantee of any academic or financial outcome. Educational content only. &mdash; <a href="/terms" style="color:inherit;text-decoration:underline">Full Terms &amp; Disclaimers</a><br/>
+      &copy; 2026 Executive Strategy Consulting LLC d.b.a. Fast Grad Academy. All rights reserved.
+    </p>
+  </div>
 </footer>
 
 <script>
