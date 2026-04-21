@@ -19,6 +19,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Fast Grad Academy — Graduate in 1 Year, Not 4.</title>
+<meta name="description" content="The exact system to finish your bachelor's in 12 months, save $85,000+ in tuition, and graduate debt-free. CLEP, DSST, PSEO, and credit stacking strategies — step by step.">
+<meta property="og:title" content="Fast Grad Academy — Graduate in 1 Year, Not 4.">
+<meta property="og:description" content="The exact system to finish your bachelor's in 12 months, save $85,000+ in tuition, and graduate debt-free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fastgradacademy.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fast Grad Academy — Graduate in 1 Year, Not 4.">
+<meta name="twitter:description" content="Finish your bachelor's in 12 months. Save $85,000+. Graduate debt-free.">
+<link rel="canonical" href="https://fastgradacademy.com">
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -568,7 +577,7 @@
   }
   .faq-item.open .faq-q .pm { transform: rotate(45deg); background: #0a0a0a; color: #fff; }
   .faq-a { max-height: 0; overflow: hidden; transition: max-height .5s cubic-bezier(.2,.7,.2,1), padding .4s; color: var(--ink-dim); font-size: 15px; line-height: 1.65; max-width: 68ch; }
-  .faq-item.open .faq-a { max-height: 280px; padding-top: 16px; }
+  .faq-item.open .faq-a { max-height: 500px; padding-top: 16px; }
 
   /* ——— final cta (dark) ——— */
   .final-cta { padding: 150px 0; text-align: center; position: relative; overflow: hidden; }
@@ -615,6 +624,23 @@
     .section { padding: 72px 0; }
     .hero { padding: 64px 0 50px; }
   }
+
+  /* ——— proof image ——— */
+  .proof-img-wrap img { box-shadow: 0 12px 40px -12px rgba(10,10,10,0.12); }
+
+  /* ——— mobile menu ——— */
+  .menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .menu-btn svg { width: 22px; height: 22px; stroke: #0a0a0a; stroke-width: 1.5; fill: none; }
+  @media (max-width: 880px) {
+    .menu-btn { display: block; }
+    .nav-links {
+      display: none; position: absolute; top: 70px; left: 0; right: 0;
+      background: #fff; border-bottom: 1px solid var(--line);
+      flex-direction: column; padding: 20px 28px; gap: 18px; z-index: 49;
+    }
+    .nav-links.open { display: flex; }
+    .nav .btn-outline { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -627,7 +653,7 @@
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#" class="logo">Fast Grad <em>Academy</em></a>
+    <a href="/" class="logo">Fast Grad <em>Academy</em></a>
     <div class="nav-links">
       <a href="#inside">What's Inside</a>
       <a href="#math">The Math</a>
@@ -636,6 +662,9 @@
       <a href="#faq">FAQ</a>
     </div>
     <a href="#pricing" class="btn-outline">Get The Guide <span>→</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -672,24 +701,32 @@
   <div class="wrap">
     <div class="stats-row">
       <div class="stat-cell reveal">
-        <div class="v">$85<span class="small">K+</span></div>
+        <div class="v" data-count="85" data-prefix="$" data-suffix="K+">$85<span class="small">K+</span></div>
         <div class="k">— tuition John saved</div>
       </div>
       <div class="stat-cell reveal">
-        <div class="v">41</div>
+        <div class="v" data-count="41" data-prefix="" data-suffix="">41</div>
         <div class="k">— credits via CLEP alone</div>
       </div>
       <div class="stat-cell reveal">
-        <div class="v">1,952</div>
+        <div class="v" data-count="1952" data-prefix="" data-suffix="" data-format="true">1,952</div>
         <div class="k">— students enrolled</div>
       </div>
       <div class="stat-cell reveal">
-        <div class="v">3 <span class="small">yrs</span></div>
+        <div class="v" data-count="3" data-prefix="" data-suffix=" yrs">3 <span class="small">yrs</span></div>
         <div class="k">— freed up for life</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ============ PROOF IMAGE ============ -->
+<div class="wrap" style="max-width:680px;margin:56px auto;padding:0 28px;text-align:center">
+  <img src="img/3-graduations.png"
+       alt="John Zheng — 3 graduations in 3 years: High school at 18, Bachelor's at 19, Harvard Master's at 21"
+       style="width:100%;border-radius:8px;border:1px solid var(--line)">
+  <p style="margin-top:12px;font-size:10.5px;color:var(--ink-mute);letter-spacing:0.14em;text-transform:uppercase;font-weight:600">— John Zheng · 3 graduations in 3 years</p>
+</div>
 
 <!-- ============ MARQUEE HEADLINES ============ -->
 <section class="marquee-sec">
@@ -781,15 +818,18 @@
         <div class="photo-cap">— John · Founder · Graduated Harvard at 21</div>
       </div>
       <div class="letter-body reveal">
-        <span class="eyebrow">— A letter from the founder</span>
-        <h2 style="margin-top:14px">I engineered my way out of <em>student debt</em>. Then I wrote it down.</h2>
-        <p class="big">At 18 I read the fine print on my financial aid package and did the math twice. Four years, $100K+, and a decade of payments — for a diploma I could legally earn in twelve months if I understood the system well enough.</p>
-        <p>So I learned the system. Not the brochure version — the real one. I took 41 credits through CLEP alone, another 24 through DSST and AP, finished the rest through a degree-completion program, and walked across the stage at 21 with a Harvard diploma and zero student debt.</p>
-        <p>Everything I used is legal. Everything is documented. Every single tactic exists on a university policy page that nobody links to. I spent the next three years turning my own spreadsheets into a system that works at 3,000+ colleges — and this guide is that system.</p>
-        <p>If you're paying full price for four years of college, you're not buying an education. You're buying a billing cycle. Read the guide. Run the math. Then decide.</p>
+        <span class="eyebrow">— A letter from John</span>
+        <h2 style="margin-top:14px">I was terrified of student debt. <em>So I engineered a way out.</em></h2>
+        <p>As a freshman in high school, I knew college was going to be my path. But there was one thing I was terrified of: <strong style="color:#0a0a0a">student debt.</strong> The average private university student borrows $35,000+ after they graduate — and those numbers keep climbing.</p>
+        <p>So I asked a different question. Not <em>"which college should I go to?"</em> — but <em>"how do I get this credential as fast, as cheaply, and as strategically as possible?"</em></p>
+        <p>While registering for sophomore classes, I found out you could earn college credits in high school through AP exams. Then I fell down the rabbit hole: CLEP exams, DSST exams, self-study options — and PSEO, where the state of Minnesota literally pays for you to take college courses while you're still in high school. <strong style="color:#0a0a0a">For free.</strong></p>
+        <p>I stacked every one of these. I used a tool called Transferology to make sure every single credit would transfer. I made a spreadsheet — one column with my degree requirements, one column with the exam or course that could satisfy each one.</p>
+        <p class="big">My graduating class was supposed to be 2023. I finished in 2020. I entered my freshman year as a college senior. I graduated with my BBA in ONE YEAR. I was 19. Then I graduated Harvard with my Master's at 21. Bought my first house at 20. Traveled to 18+ countries by 23.</p>
+        <p>Nobody handed me this. I had to fight my school counselor for PSEO enrollment. I had to personally request AP exams my school didn't even offer. I studied for most exams in 2–3 weeks each. I had to figure out every piece of this puzzle myself.</p>
+        <p>That ends with you. This guide is the map I didn't have. <strong style="color:#0a0a0a">Now you have it.</strong></p>
         <div class="signoff">
           <div class="sig">John</div>
-          <div class="who">— Founder, Fast Grad Academy</div>
+          <div class="who">— Youngest BBA Graduate in UMD History · Harvard Master's, Age 21 · Founder, Fast Grad Academy</div>
         </div>
       </div>
     </div>
@@ -805,14 +845,17 @@
       <p class="lead">The methods in this guide — credit-by-examination, competency-based transfer, degree-completion stacking — have been quietly used for decades. This is the first time they've been written down in one place.</p>
     </div>
     <div class="wall-counter">
-      <div class="cell reveal"><div class="v">800K+</div><div class="k">— learners using credit-by-exam</div></div>
-      <div class="cell reveal"><div class="v">$750M+</div><div class="k">— collectively saved, 2024</div></div>
-      <div class="cell reveal"><div class="v">3,000+</div><div class="k">— colleges that accept these credits</div></div>
+      <div class="cell reveal"><div class="v" data-count="800" data-prefix="" data-suffix="K+">800K+</div><div class="k">— learners using credit-by-exam</div></div>
+      <div class="cell reveal"><div class="v" data-count="750" data-prefix="$" data-suffix="M+">$750M+</div><div class="k">— collectively saved, 2024</div></div>
+      <div class="cell reveal"><div class="v" data-count="3000" data-prefix="" data-suffix="+" data-format="true">3,000+</div><div class="k">— colleges that accept these credits</div></div>
     </div>
   </div>
   <div class="wall-marquee-wrap" style="margin-top:64px">
     <div class="wall-marquee" id="wall1"></div>
     <div class="wall-marquee reverse" id="wall2"></div>
+  </div>
+  <div class="wrap" style="margin-top:48px">
+    <p style="font-size:11px;color:var(--dark-mute);max-width:680px;line-height:1.6">Real stories sourced from YouTube, Modern States, news outlets, personal blogs, and verified purchases. Stories represent individual outcomes. FGA teaches you the exact strategies these people used.</p>
   </div>
 </section>
 
@@ -889,33 +932,38 @@
     <div class="parents-grid">
       <div class="parent-card reveal">
         <div class="n">— Q1 · Employer Respect</div>
-        <h4>Will <em>employers</em> take my child seriously at 20?</h4>
-        <p>The diploma reads the same. Finishing in a year is a resume asset — it signals exactly the kind of initiative hiring managers screen for. Documented graduates are employed or in grad school within 90 days.</p>
+        <h4>Will <em>employers</em> respect this degree?</h4>
+        <p>In a survey of 300 employers, <strong>98% said graduates from accelerated, competency-based programs met or exceeded expectations</strong>, and 96% said they would hire more. The average starting salary was $73,000.</p>
+        <p style="font-size:11px;color:var(--ink-mute);margin-top:8px;letter-spacing:0.08em">Source: Harris Poll employer survey</p>
       </div>
       <div class="parent-card reveal">
         <div class="n">— Q2 · Accreditation</div>
-        <h4>Is any of this <em>accredited</em>?</h4>
-        <p>Every institution, credential, and exam in the guide is regionally accredited — the same accreditation Harvard, Stanford, and every flagship state school carry. Nothing off-shore, nothing provisional.</p>
+        <h4>Is the degree actually <em>accredited</em>?</h4>
+        <p>Every university and exam program discussed in this guide carries <strong>regional accreditation</strong> — the same standard held by state flagship universities. CLEP is administered by the College Board, the same organization behind the SAT and AP exams.</p>
+        <p style="font-size:11px;color:var(--ink-mute);margin-top:8px;letter-spacing:0.08em">Source: College Board; U.S. Department of Education</p>
       </div>
       <div class="parent-card reveal">
         <div class="n">— Q3 · Grad School</div>
         <h4>Can they still go to <em>graduate school</em>?</h4>
-        <p>Yes. Graduates from the program have been admitted to law, medical, MBA, and PhD programs at top-25 institutions. Admissions committees evaluate the transcript, not the hours-in-seat.</p>
+        <p>Yes. Students who used accelerated pathways have been accepted to <strong>Harvard, Georgia Tech, Penn State, and LSU</strong> for graduate programs. Regional accreditation is the only requirement — not how long the degree took.</p>
+        <p style="font-size:11px;color:var(--ink-mute);margin-top:8px;letter-spacing:0.08em">Documented grad school acceptances from accelerated-path students</p>
       </div>
       <div class="parent-card reveal">
         <div class="n">— Q4 · Social Experience</div>
         <h4>What about the <em>social</em> side of college?</h4>
-        <p>Students who want it can still attend residentially for the final semester, join clubs, and walk at graduation. Many prefer the alternative: three extra years of adulthood, income, and autonomy.</p>
+        <p>Accelerating doesn't mean skipping campus life. Students who arrive with 60+ credits have <strong>more freedom</strong> — to join organizations, pursue internships, study abroad, or double major — without the financial pressure of extra tuition years.</p>
       </div>
       <div class="parent-card reveal">
         <div class="n">— Q5 · Real Savings</div>
-        <h4>How real is the <em>$85,000</em> number?</h4>
-        <p>Documented across 312 reviews and 1,952 enrolled students. Average family savings: $52,400 per child. The highest we've verified: $97,200. Your mileage depends on starting school and state.</p>
+        <h4>How much can we <em>actually</em> save?</h4>
+        <p>The maximum acceleration path costs <strong>$4,000–$8,200 total</strong> versus $268,000+ for the traditional 4-year path (tuition, opportunity cost, and average debt). Even moderate credit stacking saves $20,000–$50,000.</p>
+        <p style="font-size:11px;color:var(--ink-mute);margin-top:8px;letter-spacing:0.08em">Source: NCES; College Board, Trends in College Pricing</p>
       </div>
       <div class="parent-card reveal">
         <div class="n">— Q6 · Legitimacy</div>
-        <h4>Is this a <em>gimmick</em>?</h4>
-        <p>Every method is on an official university policy page, buried under acronyms that nobody explains. 800,000 learners already use these methods quietly. This guide is the map — nothing more, nothing less.</p>
+        <h4>Is this a <em>scam</em>?</h4>
+        <p>No. Every strategy in this guide uses <strong>official, College Board-administered exams</strong> and accredited university programs. CLEP has existed since 1967. These aren't loopholes — they're the system's own rules, applied strategically.</p>
+        <p style="font-size:11px;color:var(--ink-mute);margin-top:8px;letter-spacing:0.08em">CLEP established 1967; accepted at 2,900+ institutions</p>
       </div>
     </div>
   </div>
@@ -968,24 +1016,24 @@
     </div>
     <div class="faq-list" id="faqlist">
       <div class="faq-item">
-        <div class="faq-q"><span class="q">Will my college actually accept CLEP credits?</span><span class="pm">+</span></div>
-        <div class="faq-a">2,900+ U.S. colleges accept CLEP credit, including every flagship state school and most private universities. The guide includes a full lookup table by institution, along with the exact minimum scores each school requires and how those scores map to your major's GenEd requirements.</div>
+        <div class="faq-q"><span class="q">Does CLEP actually work at my university?</span><span class="pm">+</span></div>
+        <div class="faq-a">CLEP is accepted at 2,900+ accredited institutions. The guide includes a process for verifying acceptance at your specific school before you spend a dollar on exam fees — and alternative pathways if CLEP isn't accepted for your degree program.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q">I'm already a current student. Can I still use this?</span><span class="pm">+</span></div>
-        <div class="faq-a">Yes. Roughly 40% of enrolled students start the guide after freshman or sophomore year. The "mid-program entry" playbook (chapter 10) shows you how to compress the remaining timeline even if you've already paid for several semesters.</div>
+        <div class="faq-q"><span class="q">I'm already in college. Is it too late?</span><span class="pm">+</span></div>
+        <div class="faq-a">No. Many students use this guide in their sophomore or junior year to cut one to two full semesters off the end of their degree. The guide covers strategies for students at every stage.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q">Is this for parents or for students?</span><span class="pm">+</span></div>
-        <div class="faq-a">Both. The guide is written for the student, but every section includes a short "for parents" sidebar with the financial math and the questions to ask a registrar. One purchase is licensed for unlimited household use.</div>
+        <div class="faq-q"><span class="q">I'm a parent buying this for my kid. Is it written for students?</span><span class="pm">+</span></div>
+        <div class="faq-a">Yes — it's written for high school students, current college students, and their parents. Parents consistently say the financial strategy chapters alone are worth the price.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q">How long does it take to implement?</span><span class="pm">+</span></div>
-        <div class="faq-a">You can read the guide in one sitting (about 4 hours). Building your 12-month plan using the templates takes a focused weekend. First CLEP exams can be scheduled within 30 days. Actual acceleration begins the semester you start applying the system.</div>
+        <div class="faq-q"><span class="q">How long does it take to read and implement?</span><span class="pm">+</span></div>
+        <div class="faq-a">Most students finish the guide in a weekend. Implementation — taking your first CLEP exam — can begin within 4–6 weeks with 30–40 hours of focused study using the methods in the guide.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><span class="q">What's the refund policy?</span><span class="pm">+</span></div>
-        <div class="faq-a">All sales final. This is a digital guide — we can't take it back once you've read it. To lower the risk, chapter one is available as a free sample. It's the same chapter that sold most of our customers. Read it first.</div>
+        <div class="faq-a">This is a digital product with instant access, so all sales are final. That said — if you follow even one strategy in this guide, you'll save thousands. A single CLEP exam saves $1,500+ in tuition for $197.</div>
       </div>
     </div>
   </div>
@@ -1004,7 +1052,7 @@
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <a href="#" class="logo">Fast Grad <em>Academy</em></a>
+      <a href="/" class="logo">Fast Grad <em>Academy</em></a>
       <div class="foot-links">
         <a href="#inside">What's Inside</a>
         <a href="#math">The Math</a>
@@ -1014,15 +1062,15 @@
         <a href="#faq">FAQ</a>
       </div>
       <div class="socials">
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></a>
-        <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
-        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 4v10a4 4 0 1 1-4-4"/><path d="M14 4c0 2.5 2 4.5 5 4.5"/></svg></a>
+        <a href="https://instagram.com/fastgradacademy" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
+        <a href="https://youtube.com/@fastgradacademy" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/fastgradacademy" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        <a href="https://tiktok.com/@fastgradacademy" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 4v10a4 4 0 1 1-4-4"/><path d="M14 4c0 2.5 2 4.5 5 4.5"/></svg></a>
       </div>
     </div>
     <div class="foot-bot">
-      <span>© 2026 Fast Grad Academy LLC</span>
-      <span>Terms · Privacy · Disclosures</span>
+      <span>© 2026 Executive Strategy Consulting LLC d.b.a. Fast Grad Academy. All rights reserved.</span>
+      <span><a href="/terms">Terms</a> · <a href="/privacy">Privacy</a> · <a href="/refund">Refund Policy</a> · <a href="/contact">Contact</a></span>
       <span>Made for students who mean it.</span>
     </div>
   </div>
@@ -1048,13 +1096,14 @@
   });
 
   const headlines = [
-    { src: "The Shade Room", txt: "Student Graduates College at 19" },
-    { src: "Medium", txt: "How One Student Finished His Bachelor's in 12 Months" },
-    { src: "CU Denver News", txt: "CLEP-Forward Degree Programs Gain Momentum" },
-    { src: "Star Tribune", txt: "Minnesota Students Are Fast-Tracking Degrees via PSEO" },
-    { src: "WDRB News", txt: "The Fast Graduate Movement Is Quietly Growing" },
-    { src: "College Board", txt: "Credit-by-Exam Usage Hits 800,000 Students a Year" },
-    { src: "ABC News", txt: "Growing Number Completing College in Under 3 Years" },
+    { src: "The Shade Room", txt: "\u201c17-Year-Old Ohio Student Graduates College Before Finishing High School\u201d" },
+    { src: "Medium", txt: "\u201cHow I Graduated College in 1 Year\u201d" },
+    { src: "CU Denver News", txt: "\u201cHigh School Students Are Earning College Credits Early \u2014 and Saving Thousands\u201d" },
+    { src: "Star Tribune", txt: "\u201cMinnesota Teen Earns 3 Degrees by Age 18 for $6,000\u201d" },
+    { src: "WDRB News", txt: "\u201cHigh School Students Can Earn Up to 34 College Credits Before Graduation\u201d" },
+    { src: "Natl Student Clearinghouse", txt: "\u201c52,500 Students Under 18 Earned College Credentials \u2014 Nearly 4\u00d7 a Decade Ago\u201d" },
+    { src: "College Board", txt: "\u201cCLEP Can Shorten a Bachelor\u2019s Degree by Up to 10 Months\u201d" },
+    { src: "ABC News", txt: "\u201cTeen Accepted to 60+ Colleges, Earns Over $1.1M in Scholarships\u201d" },
   ];
   const track = document.getElementById('mtrack');
   const renderH = (list) => list.map(h => `
@@ -1067,30 +1116,30 @@
 
   // Wall of proof marquees
   const proof = [
-    { tags:[["clep","CLEP"],["verified","Verified"]], txt:"Finished in three semesters. My advisor said it couldn't be done. My transcript says it did.", nm:"Jordan P.", sc:"UCSD · '25", out:"Saved $38K" },
-    { tags:[["wgu","WGU"],["sophia","Sophia"]], txt:"The CLEP chapter alone paid for the guide fifty times over. I double-counted 24 credits.", nm:"Sade O.", sc:"WGU · '24", out:"2× faster" },
-    { tags:[["dual","Dual Enroll"],["ap","AP"]], txt:"Showed up to orientation with 31 credits. Graduated at 20. Grad school a month later on a fellowship.", nm:"Theo L.", sc:"U of Minnesota · '23", out:"2 yrs ahead" },
-    { tags:[["studycom","Study.com"],["clep","CLEP"]], txt:"Three semesters of tuition I did not pay. Parents moved the money into a Roth and retired a year earlier.", nm:"Rachel V.", sc:"Thomas Edison · '25", out:"Saved $48K" },
-    { tags:[["verified","Verified"],["sophia","Sophia"]], txt:"I'm a first-gen student. This was the first thing I read that treated me like an adult with a calculator.", nm:"Marcus B.", sc:"Howard · '24", out:"Debt-free" },
-    { tags:[["clep","CLEP"],["dual","Dual Enroll"]], txt:"The CLEP maximizer chart saved me four courses. I didn't know you could take them in a single Saturday.", nm:"Priya S.", sc:"Rutgers · '25", out:"4 courses skipped" },
-    { tags:[["youtube","YouTube"],["verified","Verified"]], txt:"I negotiated a 21-credit overload with one email. John's script. Registrar said yes in two hours.", nm:"Evan T.", sc:"UT Austin · '23", out:"21 credits / sem" },
-    { tags:[["sophia","Sophia"],["wgu","WGU"]], txt:"Thought this was a gimmick. It's a spreadsheet. A very good, very honest spreadsheet.", nm:"Nia H.", sc:"Spelman · '24", out:"Graduated at 19" },
-    { tags:[["clep","CLEP"],["ap","AP"]], txt:"My brother used it first. Now the whole family uses it. It's the only gift I give at high-school graduations.", nm:"Caleb Y.", sc:"Michigan · '25", out:"Family-wide" },
-    { tags:[["studycom","Study.com"],["verified","Verified"]], txt:"Saved $67K versus what my sister paid for the same degree. Same university. Same transcript. Two years earlier.", nm:"Leah K.", sc:"Thomas Edison · '24", out:"Saved $67K" },
-    { tags:[["wgu","WGU"],["dual","Dual Enroll"]], txt:"Started my company at 20 with what would've been senior-year tuition. Revenue covers what student loans would've cost.", nm:"Ben M.", sc:"WGU · '23", out:"Founded at 20" },
-    { tags:[["clep","CLEP"],["youtube","YouTube"]], txt:"Passed seven CLEPs in one summer using the YouTube stack in chapter four. 21 credits in 90 days.", nm:"Imani W.", sc:"FAMU · '25", out:"21 credits / summer" },
-    { tags:[["dual","Dual Enroll"],["sophia","Sophia"]], txt:"Between PSEO and Sophia, I walked into freshman year already a junior. Graduated before my 21st birthday.", nm:"Hassan A.", sc:"ASU · '24", out:"Junior at 18" },
-    { tags:[["verified","Verified"]], txt:"Thirteen years in higher ed and I'd never seen the system explained this clearly. Gave it to every advisee since.", nm:"Dr. Petra N.", sc:"Former academic advisor", out:"Advisor gift" },
-    { tags:[["clep","CLEP"],["wgu","WGU"]], txt:"Dropped out twice before this. Finished in eleven months. The burnout chapter is what finally made it work.", nm:"Luis R.", sc:"WGU · '24", out:"Finished in 11 mo" },
-    { tags:[["ap","AP"],["sophia","Sophia"]], txt:"My GPA went up when I started going faster. The study-science chapter is worth the whole price.", nm:"Maya C.", sc:"Penn State · '25", out:"3.9 GPA" },
-    { tags:[["studycom","Study.com"],["dual","Dual Enroll"]], txt:"Used the registrar scripts verbatim. Three schools approved overloads in the same week.", nm:"Grace O.", sc:"Ohio State · '24", out:"3× overload" },
-    { tags:[["clep","CLEP"],["verified","Verified"]], txt:"Finished before my cousin, who started two years before me. Same family budget, two opposite outcomes.", nm:"Jonah D.", sc:"USF · '23", out:"Before cousin" },
-    { tags:[["youtube","YouTube"],["ap","AP"]], txt:"Watched John's YouTube, wasn't convinced. Read the guide, mapped my plan, finished in 14 months.", nm:"Sofia L.", sc:"UCLA · '25", out:"14 months" },
-    { tags:[["sophia","Sophia"],["studycom","Study.com"]], txt:"CPA-track, finished undergrad in one year, passed all four CPA sections by 23. The financial chapter was the unlock.", nm:"Chris K.", sc:"TESU · '23", out:"CPA at 23" },
-    { tags:[["clep","CLEP"],["dual","Dual Enroll"]], txt:"Skipped freshman year entirely. Would never have known that was possible without this.", nm:"Aria V.", sc:"UF · '25", out:"Skipped yr 1" },
-    { tags:[["wgu","WGU"],["verified","Verified"]], txt:"My employer reimbursed the $197 as professional development. It's the cheapest line item they'd ever approved.", nm:"Dana M.", sc:"WGU · '24", out:"Reimbursed" },
-    { tags:[["ap","AP"],["clep","CLEP"]], txt:"The template for the registrar email is the single most valuable page in the whole PDF.", nm:"Omar S.", sc:"UC Davis · '24", out:"Registrar script" },
-    { tags:[["dual","Dual Enroll"],["youtube","YouTube"]], txt:"Two younger siblings already enrolled. Our family's going to skip $250K of tuition total.", nm:"Zoë H.", sc:"U of Iowa · '25", out:"$250K saved" },
+    { tags:[["youtube","YouTube"],["clep","CLEP"]], txt:"Associates '22. Bachelor's '23. Masters '24. Followed the same accelerated path from Minnesota.", nm:"The Bald Coder", sc:"FGA Community", out:"3 degrees" },
+    { tags:[["clep","CLEP"],["sophia","Sophia"]], txt:"Bachelor's in 6 months for $2,500. Used 38 alternative credits, then blitzed a competency-based school.", nm:"Eric", sc:"College Hacked", out:"$2,500 total" },
+    { tags:[["clep","CLEP"],["dual","PSEO"]], txt:"3 degrees at age 18 for $6,000. High school diploma, associate's, and bachelor's — all earned simultaneously.", nm:"Matt Frame", sc:"Star Tribune", out:"3 degrees at 18" },
+    { tags:[["youtube","YouTube"]], txt:"$120 instead of $3,000. Went back to school at 42. Studied 24 hours, took the College Mathematics CLEP.", nm:"Airgunning Up", sc:"FGA Community", out:"$120 vs $3K" },
+    { tags:[["clep","CLEP"]], txt:"36 credits at age 16. Saved $50,000. Used Modern States free CLEP prep. Parents paid $0 in exam fees.", nm:"Adrian Hernandez Vega", sc:"Modern States", out:"Saved $50K" },
+    { tags:[["clep","CLEP"],["wgu","TESU"]], txt:"2 degrees in 18 months for $17,000. Banked 60 credits via CLEP, then knocked out a BA and AFA at Thomas Edison.", nm:"Julia Shingleton", sc:"Modern States", out:"2 degrees / 18mo" },
+    { tags:[["sophia","Sophia"]], txt:"90 credits via Sophia. Degree for $3,500. Completed bachelor's in 17 months. 90 of 120 credits at $99/month.", nm:"Cory", sc:"College Hacked", out:"$3,500 total" },
+    { tags:[["youtube","YouTube"]], txt:"Dropped out at 16. Got into ASU. Got GED and enrolled before the next semester started.", nm:"Financial Life", sc:"FGA Community", out:"GED → ASU" },
+    { tags:[["wgu","WGU"]], txt:"BS + MBA in 14 months. 120% income increase. Marketing degree in 8 months, MBA in 6.", nm:"Dan Sanchez", sc:"Personal Blog", out:"BS+MBA 14mo" },
+    { tags:[["clep","CLEP"],["dual","Dual Enroll"]], txt:"Both daughters graduated college before finishing high school. Saved $60,000.", nm:"Shelley Branine", sc:"WorthyNest", out:"Saved $60K" },
+    { tags:[["clep","CLEP"]], txt:"100+ CLEP credits. BA at 18. ~$6,000. Tested out of over 100 college credits in middle and high school.", nm:"Katie Frame", sc:"Star Tribune", out:"BA at 18" },
+    { tags:[["clep","CLEP"],["sophia","Study.com"]], txt:"Psychology degree in 8 months for $5,500. First in his family to graduate college.", nm:"Randy", sc:"College Hacked", out:"$5,500 total" },
+    { tags:[["wgu","WGU"]], txt:"CS degree in 3 months. Under $5,000. Completed 34 courses in a single WGU term. Went viral on Hacker News.", nm:"Miguel Rochefort", sc:"Hacker News", out:"CS in 3 months" },
+    { tags:[["clep","CLEP"]], txt:"BA in Psychology at 19. $8,000 total. Started earning credits at age 12 via CLEP, DSST, Sophia, Study.com.", nm:"Aviendha", sc:"HS4CC Blog", out:"BA at 19" },
+    { tags:[["youtube","YouTube"]], txt:"Retired AP teacher: 'Such a great way to beat the cost of higher Ed!' Confirmed the strategy works.", nm:"9Point8", sc:"FGA Community", out:"Teacher endorsed" },
+    { tags:[["clep","CLEP"],["sophia","StraighterLine"]], txt:"BS in Business for $8,200. Zero debt. Used AP, dual enrollment, StraighterLine, and CLEP.", nm:"Kara Prado", sc:"Money.com", out:"$8,200 total" },
+    { tags:[["clep","CLEP"]], txt:"Age 51. 66 CLEP exams. Saved $25,000+. Most CLEP exams passed in Modern States history.", nm:"Elliot Rosen", sc:"Modern States", out:"66 CLEPs" },
+    { tags:[["clep","CLEP"]], txt:"52 credits via exams. 5-year degree in 1 year. Started credit-by-exam at age 13.", nm:"Tayah", sc:"Peterson's", out:"5yr→1yr" },
+    { tags:[["verified","Verified"]], txt:"'Saved me a lot of time. I feel so fortunate.' Found the guide and immediately started shortening years.", nm:"Huyen N.", sc:"Verified Purchase", out:"Time saved" },
+    { tags:[["clep","CLEP"]], txt:"BA + Associate's for under $5,000. Graduated high school at 18 with both degrees. Zero loans.", nm:"Olivia's daughter", sc:"LinkedIn", out:"Under $5K" },
+    { tags:[["clep","CLEP"]], txt:"Entire freshman year for $0. Homeschooled, used Modern States free CLEP prep and vouchers.", nm:"Sean", sc:"HS4CC Blog", out:"$0 freshman yr" },
+    { tags:[["clep","CLEP"]], txt:"Honors in 17 months. $11,000. Accepted to Northwestern for a master's in clinical counseling.", nm:"Emerald L.", sc:"College Hacked", out:"→ Northwestern" },
+    { tags:[["clep","CLEP"]], txt:"4 exams. 8 weeks. $0. Got her diploma. Spanish, Sociology, Psychology, and Marketing CLEPs.", nm:"Brown", sc:"Modern States", out:"4 exams / $0" },
+    { tags:[["clep","CLEP"]], txt:"Military vet. 25 credits transferred. Saved $12,000. Entered Barry University as a sophomore.", nm:"Carlos Paillacar", sc:"League for Innovation", out:"Vet → $12K saved" },
   ];
   const renderP = (list) => list.map(p => `
     <div class="proof-card">
@@ -1156,6 +1205,41 @@
       btn.style.opacity = '';
     });
   }
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.querySelector('.nav-links');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav')) navLinks.classList.remove('open');
+    });
+  }
+
+  // Stat counter animation
+  document.querySelectorAll('[data-count]').forEach(el => {
+    let done = false;
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !done) {
+        done = true;
+        const target = parseInt(el.dataset.count);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const fmt = el.dataset.format === 'true';
+        const dur = 1500;
+        const start = Date.now();
+        (function tick() {
+          const p = Math.min((Date.now() - start) / dur, 1);
+          const ease = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+          const v = Math.floor(ease * target);
+          el.textContent = prefix + (fmt ? v.toLocaleString() : v) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })();
+        obs.unobserve(el);
+      }
+    }, { threshold: 0.5 });
+    obs.observe(el);
+  });
 </script>
 </body>
 </html>
