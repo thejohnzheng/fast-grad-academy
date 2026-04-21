@@ -20,200 +20,163 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Degree Progress Tracker | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="course.css">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+/* ── Tracker-specific tokens ── */
 :root{
-  --white:#ffffff;--off-white:#f5f5f5;--silver-light:#e8e8e8;
-  --silver:#c0c0c0;--muted:#a8a8a8;--charcoal:#3a3a3a;--dark:#1a1a1a;--black:#0a0a0a;
-  --glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);
-  --glow:rgba(192,192,192,0.12);
-  --font-d:'Instrument Serif',Georgia,serif;
-  --font-b:'Inter',-apple-system,sans-serif;
-  --font-m:'JetBrains Mono',monospace;
-  --max-w:1100px;
   --clep:#7B8CDE;--dsst:#6BAF8D;--ap:#D4A76A;--dual:#B07BAF;--transfer:#6AA8C9;--sophia:#C97B7B;
   --radius:20px;
+  --max-w:1100px;
 }
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--white);font-family:var(--font-b);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::selection{background:var(--silver);color:var(--black)}
-a{color:var(--silver);text-decoration:none;transition:color .2s}
-a:hover{color:var(--white)}
-
-/* NAV — unified */
-.fga-unified-nav{position:fixed;top:0;left:0;right:0;z-index:150;padding:0 24px;background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);height:56px;display:flex;align-items:center}
-.nav-container{display:flex;align-items:center;gap:32px;width:100%}
-.nav-brand{font-family:var(--font-d);font-size:17px;color:var(--white);text-decoration:none;font-weight:400;margin-right:auto}
-.nav-brand:hover{color:var(--silver)}
-.nav-links{display:flex;gap:24px}
-.nav-links .nav-link{font-size:13px;font-weight:500;color:rgba(255,255,255,0.5);text-decoration:none;letter-spacing:0.02em;transition:color 0.2s}
-.nav-links .nav-link:hover{color:#fff}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.nav-hamburger span{width:20px;height:1.5px;background:var(--white);border-radius:999px;display:block}
-.nav-mobile{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(10,10,10,0.98);padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);z-index:149}
-.nav-mobile.open{display:flex;flex-direction:column;gap:12px}
-.nav-mobile .mobile-link{font-size:14px;color:rgba(255,255,255,0.6);text-decoration:none;padding:8px 0}
-.nav-mobile .mobile-link:hover{color:#fff}
-@media(max-width:768px){.nav-links{display:none}.nav-hamburger{display:flex}}
-
-/* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
-
-/* GLASS CARD */
-.glass{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:32px;transition:border-color .3s}
-.glass:hover{border-color:rgba(255,255,255,0.14)}
 
 /* SECTION */
 .section{max-width:var(--max-w);margin:0 auto;padding:80px 24px}
 .section:first-of-type{padding-top:120px}
-.section-label{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:40px;display:flex;align-items:center;gap:16px}
-.section-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
-.section-title{font-family:var(--font-d);font-size:clamp(32px,5vw,48px);font-weight:400;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
-.section-title em{font-style:italic;color:var(--silver)}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:40px;display:flex;align-items:center;gap:16px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--line)}
+.section-title{font-family:var(--serif);font-size:clamp(32px,5vw,48px);font-weight:400;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;color:var(--ink)}
+.section-title em{font-style:italic;color:var(--ink-dim)}
+
+/* GLASS CARD → Light card */
+.glass{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:32px;transition:border-color .3s}
+.glass:hover{border-color:var(--line-2)}
 
 /* OVERVIEW DASHBOARD */
 .overview-grid{display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start}
 @media(max-width:768px){.overview-grid{grid-template-columns:1fr}}
 .progress-ring-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
 .progress-ring-wrap svg{width:200px;height:200px}
-.ring-text{font-family:var(--font-d);font-size:42px;fill:var(--white)}
-.ring-sub{font-size:12px;fill:var(--muted);font-family:var(--font-b)}
-.ring-label{font-size:13px;color:var(--muted);margin-top:16px;text-align:center}
+.ring-text{font-family:var(--serif);font-size:42px;fill:var(--ink)}
+.ring-sub{font-size:12px;fill:var(--ink-mute);font-family:var(--sans)}
+.ring-label{font-size:13px;color:var(--ink-mute);margin-top:16px;text-align:center}
 .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media(max-width:480px){.stats-grid{grid-template-columns:1fr}}
 .stat-card{text-align:center;padding:28px 16px}
-.stat-value{font-family:var(--font-d);font-size:36px;color:var(--white);line-height:1.1}
-.stat-value .unit{font-size:.5em;color:var(--silver)}
-.stat-name{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.stat-value{font-family:var(--serif);font-size:36px;color:var(--ink);line-height:1.1}
+.stat-value .unit{font-size:.5em;color:var(--ink-dim)}
+.stat-name{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mute);margin-top:6px}
 
 /* PATHWAY BARS */
 .pathway-list{display:flex;flex-direction:column;gap:16px}
 .pathway-item{display:grid;grid-template-columns:160px 1fr 60px;gap:16px;align-items:center}
 @media(max-width:600px){.pathway-item{grid-template-columns:1fr;gap:4px}}
-.pathway-name{font-size:14px;font-weight:500;color:var(--off-white)}
-.pathway-bar-bg{height:28px;background:rgba(255,255,255,0.04);border-radius:14px;overflow:hidden;position:relative}
+.pathway-name{font-size:14px;font-weight:500;color:var(--ink)}
+.pathway-bar-bg{height:28px;background:var(--bg-panel);border-radius:14px;overflow:hidden;position:relative}
 .pathway-bar-fill{height:100%;border-radius:14px;transition:width .8s cubic-bezier(.4,0,.2,1);min-width:0}
-.pathway-credits{font-family:var(--font-m);font-size:13px;color:var(--muted);text-align:right}
+.pathway-credits{font-family:var(--mono);font-size:13px;color:var(--ink-mute);text-align:right}
 
 /* GEN ED GRID */
 .gened-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .gened-card{padding:24px}
 .gened-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
-.gened-name{font-size:15px;font-weight:600;color:var(--white);line-height:1.3}
+.gened-name{font-size:15px;font-weight:600;color:var(--ink);line-height:1.3}
 .gened-status{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;white-space:nowrap}
-.gened-status.complete{background:rgba(107,175,141,0.15);color:#6BAF8D}
-.gened-status.in-progress{background:rgba(212,167,106,0.15);color:#D4A76A}
-.gened-status.not-started{background:rgba(168,168,168,0.1);color:var(--muted)}
+.gened-status.complete{background:rgba(107,175,141,0.15);color:#4a8a65}
+.gened-status.in-progress{background:rgba(212,167,106,0.15);color:#9a7530}
+.gened-status.not-started{background:var(--bg-panel);color:var(--ink-mute)}
 .gened-progress{display:flex;align-items:center;gap:12px;margin-top:8px}
-.gened-bar-bg{flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
-.gened-bar-fill{height:100%;background:var(--silver);border-radius:3px;transition:width .6s ease}
-.gened-fraction{font-family:var(--font-m);font-size:12px;color:var(--muted);white-space:nowrap}
-.gened-edit-btn{background:none;border:1px solid var(--glass-border);color:var(--muted);font-size:11px;padding:4px 10px;border-radius:8px;cursor:pointer;margin-top:10px;font-family:var(--font-b);transition:all .2s}
-.gened-edit-btn:hover{border-color:var(--silver);color:var(--white)}
+.gened-bar-bg{flex:1;height:6px;background:var(--bg-panel);border-radius:3px;overflow:hidden}
+.gened-bar-fill{height:100%;background:var(--ink-dim);border-radius:3px;transition:width .6s ease}
+.gened-fraction{font-family:var(--mono);font-size:12px;color:var(--ink-mute);white-space:nowrap}
+.gened-edit-btn{background:none;border:1px solid var(--line);color:var(--ink-mute);font-size:11px;padding:4px 10px;border-radius:8px;cursor:pointer;margin-top:10px;font-family:var(--sans);transition:all .2s}
+.gened-edit-btn:hover{border-color:var(--line-2);color:var(--ink)}
 
 /* CREDIT LOG TABLE */
 .table-controls{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;align-items:center}
-.search-input{background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:12px;padding:10px 16px;color:var(--white);font-size:14px;font-family:var(--font-b);outline:none;flex:1;min-width:200px;transition:border-color .2s}
-.search-input:focus{border-color:rgba(255,255,255,0.2)}
-.search-input::placeholder{color:rgba(255,255,255,0.25)}
-.filter-select{background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:12px;padding:10px 16px;color:var(--white);font-size:13px;font-family:var(--font-b);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23a8a8a8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-.filter-select option{background:#1a1a1a;color:var(--white)}
-.btn{padding:10px 20px;border:none;border-radius:12px;font-size:13px;font-weight:600;font-family:var(--font-b);cursor:pointer;transition:all .25s;letter-spacing:.02em}
-.btn-primary{background:var(--silver);color:var(--black)}
-.btn-primary:hover{background:var(--white)}
-.btn-ghost{background:transparent;border:1px solid var(--glass-border);color:var(--muted)}
-.btn-ghost:hover{border-color:var(--silver);color:var(--white)}
-.btn-danger{background:rgba(201,123,123,0.12);color:#C97B7B;border:1px solid rgba(201,123,123,0.2)}
-.btn-danger:hover{background:rgba(201,123,123,0.22)}
+.search-input{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 16px;color:var(--ink);font-size:14px;font-family:var(--sans);outline:none;flex:1;min-width:200px;transition:border-color .2s}
+.search-input:focus{border-color:var(--line-2)}
+.search-input::placeholder{color:var(--ink-mute)}
+.filter-select{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 16px;color:var(--ink);font-size:13px;font-family:var(--sans);outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a8a8a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.filter-select option{background:var(--bg);color:var(--ink)}
+.btn{padding:10px 20px;border:none;border-radius:12px;font-size:13px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all .25s;letter-spacing:.02em}
+.btn-primary{background:var(--ink);color:var(--bg)}
+.btn-primary:hover{background:#333}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink-mute)}
+.btn-ghost:hover{border-color:var(--line-2);color:var(--ink)}
+.btn-danger{background:rgba(201,123,123,0.1);color:#b04040;border:1px solid rgba(201,123,123,0.25)}
+.btn-danger:hover{background:rgba(201,123,123,0.2)}
 .btn-sm{padding:6px 14px;font-size:12px;border-radius:8px}
-.table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--glass-border)}
+.table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line)}
 table{width:100%;border-collapse:collapse;min-width:900px}
-thead{background:rgba(255,255,255,0.03)}
-th{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding:14px 16px;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;position:relative}
-th:hover{color:var(--silver)}
+thead{background:var(--bg-panel)}
+th{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mute);padding:14px 16px;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;position:relative}
+th:hover{color:var(--ink-dim)}
 th .sort-arrow{margin-left:4px;opacity:.4;font-size:9px}
 th.sorted .sort-arrow{opacity:1}
-td{padding:12px 16px;border-top:1px solid rgba(255,255,255,0.04);font-size:14px;color:var(--off-white);vertical-align:middle}
-tr:hover td{background:rgba(255,255,255,0.02)}
+td{padding:12px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--ink);vertical-align:middle}
+tr:hover td{background:var(--bg-soft)}
 .status-badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;display:inline-block}
-.status-badge.Passed{background:rgba(107,175,141,0.15);color:#6BAF8D}
-.status-badge.Studying{background:rgba(212,167,106,0.15);color:#D4A76A}
-.status-badge.Planned{background:rgba(168,168,168,0.1);color:var(--muted)}
-.status-badge.Transferred{background:rgba(123,140,222,0.15);color:#7B8CDE}
-.pathway-tag{font-family:var(--font-m);font-size:11px;padding:3px 8px;border-radius:6px;display:inline-block}
-.pathway-tag.CLEP{background:rgba(123,140,222,0.12);color:var(--clep)}
-.pathway-tag.DSST{background:rgba(107,175,141,0.12);color:var(--dsst)}
-.pathway-tag.AP{background:rgba(212,167,106,0.12);color:var(--ap)}
-.pathway-tag.Dual{background:rgba(176,123,175,0.12);color:var(--dual)}
-.pathway-tag.Transfer{background:rgba(106,168,201,0.12);color:var(--transfer)}
-.pathway-tag.Sophia{background:rgba(201,123,123,0.12);color:var(--sophia)}
+.status-badge.Passed{background:rgba(107,175,141,0.15);color:#4a8a65}
+.status-badge.Studying{background:rgba(212,167,106,0.15);color:#9a7530}
+.status-badge.Planned{background:var(--bg-panel);color:var(--ink-mute)}
+.status-badge.Transferred{background:rgba(123,140,222,0.15);color:#4a56a8}
+.pathway-tag{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:6px;display:inline-block}
+.pathway-tag.CLEP{background:rgba(123,140,222,0.1);color:var(--clep)}
+.pathway-tag.DSST{background:rgba(107,175,141,0.1);color:var(--dsst)}
+.pathway-tag.AP{background:rgba(212,167,106,0.1);color:var(--ap)}
+.pathway-tag.Dual{background:rgba(176,123,175,0.1);color:var(--dual)}
+.pathway-tag.Transfer{background:rgba(106,168,201,0.1);color:var(--transfer)}
+.pathway-tag.Sophia{background:rgba(201,123,123,0.1);color:var(--sophia)}
 .row-actions{display:flex;gap:6px}
-.empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-state{text-align:center;padding:60px 20px;color:var(--ink-mute)}
 .empty-state p{font-size:15px;margin-bottom:16px}
 
 /* COST SAVINGS */
 .savings-display{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px}
 @media(max-width:600px){.savings-display{grid-template-columns:1fr}}
 .savings-card{text-align:center;padding:28px 16px}
-.savings-label{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.savings-amount{font-family:var(--font-d);font-size:clamp(28px,4vw,40px);line-height:1.1}
+.savings-label{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px}
+.savings-amount{font-family:var(--serif);font-size:clamp(28px,4vw,40px);line-height:1.1}
 .savings-amount.traditional{color:var(--sophia)}
 .savings-amount.actual{color:var(--dsst)}
-.savings-amount.net{color:var(--silver)}
+.savings-amount.net{color:var(--ink)}
 .comparison-bar-wrap{margin-top:8px}
 .comparison-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.comparison-label{font-size:12px;color:var(--muted);width:80px;text-align:right;flex-shrink:0}
-.comparison-bar-bg{flex:1;height:24px;background:rgba(255,255,255,0.04);border-radius:12px;overflow:hidden}
+.comparison-label{font-size:12px;color:var(--ink-mute);width:80px;text-align:right;flex-shrink:0}
+.comparison-bar-bg{flex:1;height:24px;background:var(--bg-panel);border-radius:12px;overflow:hidden}
 .comparison-bar-fill{height:100%;border-radius:12px;transition:width .8s ease}
-.comparison-val{font-family:var(--font-m);font-size:12px;color:var(--muted);width:80px;flex-shrink:0}
+.comparison-val{font-family:var(--mono);font-size:12px;color:var(--ink-mute);width:80px;flex-shrink:0}
 
 /* TIMELINE */
-.timeline{position:relative;padding:20px 0 20px 40px}
-.timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:rgba(255,255,255,0.06)}
+.tracker-timeline{position:relative;padding:20px 0 20px 40px}
+.tracker-timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:var(--line)}
 .milestone{position:relative;margin-bottom:32px;opacity:0;transform:translateY(20px);transition:all .6s ease}
 .milestone.visible{opacity:1;transform:translateY(0)}
-.milestone-dot{position:absolute;left:-32px;top:4px;width:16px;height:16px;border-radius:50%;border:2px solid var(--glass-border);background:var(--black);transition:all .3s}
-.milestone.reached .milestone-dot{background:var(--silver);border-color:var(--silver);box-shadow:0 0 12px rgba(192,192,192,0.3)}
+.milestone-dot{position:absolute;left:-32px;top:4px;width:16px;height:16px;border-radius:50%;border:2px solid var(--line);background:var(--bg);transition:all .3s}
+.milestone.reached .milestone-dot{background:var(--ink);border-color:var(--ink);box-shadow:0 0 12px rgba(10,10,10,0.15)}
 .milestone-content{padding:2px 0 0 8px}
-.milestone-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:2px}
-.milestone-desc{font-size:13px;color:var(--muted)}
+.milestone-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.milestone-desc{font-size:13px;color:var(--ink-mute)}
 .milestone-credits{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.milestone-credit-tag{font-family:var(--font-m);font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,0.04);color:var(--muted)}
+.milestone-credit-tag{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:6px;background:var(--bg-panel);color:var(--ink-mute)}
 
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
 .modal-overlay.active{display:flex;opacity:1}
-.modal{background:#111;border:1px solid var(--glass-border);border-radius:var(--radius);padding:36px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;transform:scale(.95);transition:transform .3s}
+.modal{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:36px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;transform:scale(.95);transition:transform .3s;box-shadow:0 25px 60px rgba(0,0,0,0.15)}
 .modal-overlay.active .modal{transform:scale(1)}
-.modal-title{font-family:var(--font-d);font-size:28px;margin-bottom:24px}
+.modal-title{font-family:var(--serif);font-size:28px;margin-bottom:24px;color:var(--ink)}
 .form-group{margin-bottom:18px}
-.form-label{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.form-input,.form-select{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:12px;padding:10px 14px;color:var(--white);font-size:14px;font-family:var(--font-b);outline:none;transition:border-color .2s}
-.form-input:focus,.form-select:focus{border-color:rgba(255,255,255,0.25)}
-.form-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23a8a8a8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
-.form-select option{background:#1a1a1a}
+.form-label{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px}
+.form-input,.form-select{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 14px;color:var(--ink);font-size:14px;font-family:var(--sans);outline:none;transition:border-color .2s}
+.form-input:focus,.form-select:focus{border-color:var(--line-2)}
+.form-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a8a8a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+.form-select option{background:var(--bg)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
 .modal-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:28px}
 
 /* TOAST */
 .toast-container{position:fixed;bottom:32px;right:32px;z-index:300;display:flex;flex-direction:column;gap:8px;pointer-events:none}
-.toast{background:#1a1a1a;border:1px solid var(--glass-border);border-radius:12px;padding:12px 20px;font-size:13px;color:var(--off-white);opacity:0;transform:translateY(12px);transition:all .3s ease;pointer-events:auto;max-width:320px}
+.toast{background:var(--ink);border:1px solid var(--line-2);border-radius:12px;padding:12px 20px;font-size:13px;color:var(--bg);opacity:0;transform:translateY(12px);transition:all .3s ease;pointer-events:auto;max-width:320px}
 .toast.show{opacity:1;transform:translateY(0)}
 
 /* ACTION BAR */
-.action-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
-
-/* FOOTER */
-.footer{text-align:center;padding:60px 24px;border-top:1px solid rgba(255,255,255,0.06);margin-top:40px}
-.footer p{color:var(--muted);font-size:14px}
-.footer a{color:var(--silver);text-decoration:underline;text-underline-offset:3px}
+.action-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
 
 /* PRINT */
 @media print{
-  .fga-unified-nav,.action-bar,.modal-overlay,.toast-container,.btn,.row-actions,.table-controls,.gened-edit-btn{display:none!important}
+  .nav,.action-bar,.modal-overlay,.toast-container,.btn,.row-actions,.table-controls,.gened-edit-btn{display:none!important}
   body{background:#fff;color:#000}
   .glass{background:#f5f5f5;border:1px solid #ddd}
   .section{padding:20px 0}
@@ -223,7 +186,6 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  .fga-unified-nav{padding:14px 16px}
   .section{padding:60px 16px}
   .section:first-of-type{padding-top:100px}
   .glass{padding:20px;border-radius:16px}
@@ -231,8 +193,8 @@ tr:hover td{background:rgba(255,255,255,0.02)}
   .pathway-item{grid-template-columns:1fr}
   .gened-grid{grid-template-columns:1fr}
   .savings-display{gap:12px}
-  .timeline{padding-left:32px}
-  .timeline::before{left:12px}
+  .tracker-timeline{padding-left:32px}
+  .tracker-timeline::before{left:12px}
   .milestone-dot{left:-27px}
 }
 </style>
@@ -240,18 +202,18 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <body>
 
 <!-- NAV -->
-<nav class="fga-unified-nav">
-  <div class="nav-container">
-    <a href="/" class="nav-brand">Fast Grad Academy</a>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">Fast Grad <em>Academy</em></a>
     <div class="nav-links">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/guide" class="nav-link">The Guide</a>
+      <a href="/">Home</a>
+      <a href="/guide">Course</a>
+      <a href="/tracker">Tracker</a>
     </div>
-    <button class="nav-hamburger" id="navHamburger" onclick="document.getElementById('navMobile').classList.toggle('open')"><span></span><span></span><span></span></button>
-  </div>
-  <div class="nav-mobile" id="navMobile">
-    <a href="/" class="nav-link mobile-link">Home</a>
-    <a href="/guide" class="nav-link mobile-link">The Guide</a>
+    <a href="/guide" class="btn-outline">Dashboard <span>&rarr;</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -259,16 +221,16 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <section class="section" id="dashboard">
   <div class="section-label reveal">01 &mdash; Overview</div>
   <h2 class="section-title reveal reveal-d1">Your <em>Degree</em> Progress</h2>
-  <p style="color:var(--muted);margin-bottom:24px;max-width:560px" class="reveal reveal-d2">Track every credit, every dollar saved, every milestone on your path to graduating fast.</p>
-  <div style="background:rgba(192,192,192,0.08);border:1px solid rgba(192,192,192,0.15);border-radius:12px;padding:14px 20px;margin-bottom:40px;max-width:560px;font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6" class="reveal reveal-d3">
-    <strong style="color:rgba(255,255,255,0.7)">Your data is saved in this browser.</strong> If you switch devices or clear your cache, it'll be gone. Use <a href="#data" style="color:#c0c0c0;text-decoration:underline">Export JSON</a> at the bottom to download a backup anytime.
+  <p style="color:var(--ink-mute);margin-bottom:24px;max-width:560px" class="reveal reveal-d2">Track every credit, every dollar saved, every milestone on your path to graduating fast.</p>
+  <div style="background:var(--bg-panel);border:1px solid var(--line);border-radius:12px;padding:14px 20px;margin-bottom:40px;max-width:560px;font-size:13px;color:var(--ink-mute);line-height:1.6" class="reveal reveal-d3">
+    <strong style="color:var(--ink-dim)">Your data is saved in this browser.</strong> If you switch devices or clear your cache, it'll be gone. Use <a href="#data" style="color:var(--ink);text-decoration:underline">Export JSON</a> at the bottom to download a backup anytime.
   </div>
   <div class="overview-grid">
     <div class="glass progress-ring-wrap reveal reveal-d2">
       <svg viewBox="0 0 200 200" id="progressRing">
-        <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+        <circle cx="100" cy="100" r="85" fill="none" stroke="var(--line)" stroke-width="10"/>
         <circle cx="100" cy="100" r="85" fill="none" stroke="url(#ringGrad)" stroke-width="10" stroke-linecap="round" stroke-dasharray="534" stroke-dashoffset="534" transform="rotate(-90 100 100)" id="ringFill"/>
-        <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#c0c0c0"/><stop offset="100%" stop-color="#ffffff"/></linearGradient></defs>
+        <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#525252"/><stop offset="100%" stop-color="#0a0a0a"/></linearGradient></defs>
         <text x="100" y="95" text-anchor="middle" class="ring-text" id="ringPct">0%</text>
         <text x="100" y="118" text-anchor="middle" class="ring-sub" id="ringCredits">0 / 120 credits</text>
       </svg>
@@ -299,7 +261,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <section class="section" id="pathways">
   <div class="section-label reveal">02 &mdash; Pathways</div>
   <h2 class="section-title reveal reveal-d1">Credit <em>Pathways</em></h2>
-  <p style="color:var(--muted);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">See how your credits break down across each earning method.</p>
+  <p style="color:var(--ink-mute);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">See how your credits break down across each earning method.</p>
   <div class="glass reveal reveal-d2" style="padding:28px 32px">
     <div class="pathway-list" id="pathwayBars"></div>
   </div>
@@ -309,7 +271,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <section class="section" id="gened">
   <div class="section-label reveal">03 &mdash; Requirements</div>
   <h2 class="section-title reveal reveal-d1">General Education <em>Grid</em></h2>
-  <p style="color:var(--muted);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">Track each requirement category. Edit credit targets to match your school.</p>
+  <p style="color:var(--ink-mute);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">Track each requirement category. Edit credit targets to match your school.</p>
   <div class="gened-grid" id="genedGrid"></div>
 </section>
 
@@ -317,7 +279,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <section class="section" id="creditlog">
   <div class="section-label reveal">04 &mdash; Credit Log</div>
   <h2 class="section-title reveal reveal-d1">Individual <em>Credits</em></h2>
-  <p style="color:var(--muted);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">Add, edit, filter, and sort every credit you earn or plan to earn.</p>
+  <p style="color:var(--ink-mute);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">Add, edit, filter, and sort every credit you earn or plan to earn.</p>
   <div class="table-controls reveal">
     <input type="text" class="search-input" id="searchInput" placeholder="Search courses or exams...">
     <select class="filter-select" id="filterPathway">
@@ -366,7 +328,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <section class="section" id="savings">
   <div class="section-label reveal">05 &mdash; Savings</div>
   <h2 class="section-title reveal reveal-d1">Cost <em>Savings</em></h2>
-  <p style="color:var(--muted);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">See how much you are saving compared to traditional tuition.</p>
+  <p style="color:var(--ink-mute);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">See how much you are saving compared to traditional tuition.</p>
   <div class="savings-display">
     <div class="glass savings-card reveal reveal-d1">
       <div class="savings-label">Traditional Cost</div>
@@ -390,9 +352,9 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <section class="section" id="timeline">
   <div class="section-label reveal">06 &mdash; Timeline</div>
   <h2 class="section-title reveal reveal-d1">Milestones &amp; <em>Timeline</em></h2>
-  <p style="color:var(--muted);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">Your journey from start to graduation.</p>
+  <p style="color:var(--ink-mute);margin-bottom:40px;max-width:560px" class="reveal reveal-d2">Your journey from start to graduation.</p>
   <div class="glass reveal reveal-d2" style="padding:32px">
-    <div class="timeline" id="timelineEl"></div>
+    <div class="tracker-timeline" id="timelineEl"></div>
   </div>
 </section>
 
@@ -410,9 +372,10 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <p>&#x1F680; Fast Grad Academy &mdash; Track your progress, own your degree.</p>
-  <p style="margin-top:8px"><a href="/guide">Back to the guide</a></p>
+<footer>
+  <div class="f-brand">Fast Grad <em>Academy</em></div>
+  <div class="f-tagline">Graduate faster. Save more. Get ahead.</div>
+  <div class="f-copy">&copy; 2026 Fast Grad Academy. All rights reserved.</div>
 </footer>
 
 <!-- MODALS -->
@@ -508,7 +471,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 <div class="modal-overlay" id="confirmModal">
   <div class="modal" style="max-width:400px;text-align:center">
     <h3 class="modal-title">Reset All Data?</h3>
-    <p style="color:var(--muted);margin-bottom:24px">This will permanently delete all your tracked credits. This cannot be undone.</p>
+    <p style="color:var(--ink-mute);margin-bottom:24px">This will permanently delete all your tracked credits. This cannot be undone.</p>
     <div class="modal-actions" style="justify-content:center">
       <button class="btn btn-ghost" onclick="closeConfirmModal()">Cancel</button>
       <button class="btn btn-danger" onclick="resetAll()">Delete Everything</button>
@@ -640,7 +603,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
       html += '<div class="glass gened-card reveal reveal-d'+(i%4+1)+'">'
         + '<div class="gened-header"><div class="gened-name">'+cat+'</div><div class="gened-status '+statusClass+'">'+status+'</div></div>'
         + '<div class="gened-progress"><div class="gened-bar-bg"><div class="gened-bar-fill" style="width:'+pct+'%"></div></div><div class="gened-fraction">'+earned+' / '+needed+'</div></div>'
-        + '<button class="gened-edit-btn" onclick="openGenedModal(\''+cat.replace(/'/g,"\\'")+'\')">✏️ Edit Requirement</button>'
+        + '<button class="gened-edit-btn" onclick="openGenedModal(\''+cat.replace(/'/g,"\\'")+'\')">&#9998; Edit Requirement</button>'
         + '</div>';
     });
     el.innerHTML = html;
@@ -687,7 +650,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
     }
     empty.style.display='none';
     if(filtered.length===0){
-      tbody.innerHTML='<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:40px">No matching results.</td></tr>';
+      tbody.innerHTML='<tr><td colspan="9" style="text-align:center;color:var(--ink-mute);padding:40px">No matching results.</td></tr>';
       return;
     }
     var html = '';
@@ -696,12 +659,12 @@ tr:hover td{background:rgba(255,255,255,0.02)}
       html += '<tr style="animation:fadeIn .3s ease">'
         + '<td style="font-weight:500">'+esc(c.name)+'</td>'
         + '<td><span class="pathway-tag '+c.pathway+'">'+c.pathway+'</span></td>'
-        + '<td style="font-family:var(--font-m);font-size:13px">'+c.credits+'</td>'
-        + '<td style="font-size:13px;color:var(--muted)">'+esc(c.category)+'</td>'
+        + '<td style="font-family:var(--mono);font-size:13px">'+c.credits+'</td>'
+        + '<td style="font-size:13px;color:var(--ink-mute)">'+esc(c.category)+'</td>'
         + '<td><span class="status-badge '+c.status+'">'+c.status+'</span></td>'
-        + '<td style="font-family:var(--font-m);font-size:13px;color:var(--muted)">'+(c.score||'—')+'</td>'
-        + '<td style="font-family:var(--font-m);font-size:13px">'+fmt$(Number(c.cost)||0)+'</td>'
-        + '<td style="font-family:var(--font-m);font-size:12px;color:var(--muted)">'+(c.date||'—')+'</td>'
+        + '<td style="font-family:var(--mono);font-size:13px;color:var(--ink-mute)">'+(c.score||'—')+'</td>'
+        + '<td style="font-family:var(--mono);font-size:13px">'+fmt$(Number(c.cost)||0)+'</td>'
+        + '<td style="font-family:var(--mono);font-size:12px;color:var(--ink-mute)">'+(c.date||'—')+'</td>'
         + '<td><div class="row-actions"><button class="btn btn-ghost btn-sm" onclick="editCredit('+idx+')">Edit</button><button class="btn btn-danger btn-sm" onclick="deleteCredit('+idx+')">Del</button></div></td>'
         + '</tr>';
     });
@@ -744,7 +707,7 @@ tr:hover td{background:rgba(255,255,255,0.02)}
       html += '<div class="milestone '+(reached?'reached':'')+'">'
         + '<div class="milestone-dot"></div>'
         + '<div class="milestone-content">'
-        + '<div class="milestone-title">'+m.title+' <span style="font-family:var(--font-m);font-size:12px;color:var(--muted);font-weight:400">'+m.credits+' cr</span></div>'
+        + '<div class="milestone-title">'+m.title+' <span style="font-family:var(--mono);font-size:12px;color:var(--ink-mute);font-weight:400">'+m.credits+' cr</span></div>'
         + '<div class="milestone-desc">'+m.desc+'</div>';
       if(reached && m.credits > 0){
         var relevant = [];
@@ -981,5 +944,16 @@ tr:hover td{background:rgba(255,255,255,0.02)}
 })();
 </script>
 <style>@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}</style>
+<script>
+window.addEventListener('scroll', function() {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 24);
+});
+var menuBtn = document.getElementById('menuBtn');
+if (menuBtn) {
+  menuBtn.addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('open');
+  });
+}
+</script>
 </body>
 </html>
