@@ -567,7 +567,7 @@
   .faq-side p { color: var(--ink-dim); font-size: 14.5px; margin-top: 16px; max-width: 32ch; }
   .faq-list { border-top: 1px solid var(--line); }
   .faq-item { border-bottom: 1px solid var(--line); padding: 22px 0; cursor: pointer; }
-  .faq-q { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; gap: 24px; width: 100%; background: none; border: none; padding: 0; text-align: left; cursor: pointer; color: inherit; font: inherit; }
   .faq-q .q { font-family: var(--serif); font-size: 22px; letter-spacing: -0.005em; }
   .faq-item:hover .faq-q .q { color: #0a0a0a; }
   .faq-q .pm {
@@ -845,8 +845,8 @@
       <p class="lead">The methods in this guide (credit-by-examination, competency-based transfer, degree-completion stacking) have been quietly used for decades. This is the first time they've been written down in one place.</p>
     </div>
     <div class="wall-counter">
-      <div class="cell reveal"><div class="v" data-count="800" data-prefix="" data-suffix="K+">800K+</div><div class="k">Learners using credit-by-exam</div></div>
-      <div class="cell reveal"><div class="v" data-count="750" data-prefix="$" data-suffix="M+">$750M+</div><div class="k">Collectively saved, 2024</div></div>
+      <div class="cell reveal"><div class="v" data-count="800" data-prefix="" data-suffix="K+">800K+</div><div class="k">Learners using credit-by-exam (industry-wide)</div></div>
+      <div class="cell reveal"><div class="v" data-count="750" data-prefix="$" data-suffix="M+">$750M+</div><div class="k">Collectively saved, 2024 (industry-wide)</div></div>
       <div class="cell reveal"><div class="v" data-count="3000" data-prefix="" data-suffix="+" data-format="true">3,000+</div><div class="k">Colleges that accept these credits</div></div>
     </div>
   </div>
@@ -855,7 +855,7 @@
     <div class="wall-marquee reverse" id="wall2"></div>
   </div>
   <div class="wrap" style="margin-top:48px">
-    <p style="font-size:11px;color:var(--dark-mute);max-width:680px;line-height:1.6">Real stories sourced from YouTube, Modern States, news outlets, personal blogs, and verified purchases. Stories represent individual outcomes. FGA teaches you the exact strategies these people used.</p>
+    <p style="font-size:11px;color:var(--dark-mute);max-width:680px;line-height:1.6">Real stories sourced from YouTube, Modern States, news outlets, personal blogs, and verified purchases. Results are not typical and individual outcomes will vary based on effort, prior credits, and institution policies. These testimonials represent individual experiences and are not guarantees of specific results. Industry-wide statistics above reflect the broader credit-by-exam movement, not Fast Grad Academy students exclusively.</p>
   </div>
 </section>
 
@@ -908,7 +908,7 @@
       <div class="cell c-7 reveal">
         <div class="ch">Ch 10 · Roadmap</div>
         <h3>The <em>12-month</em> Roadmap.</h3>
-        <p>Week-by-week. No guessing. The exact calendar John used to finish Harvard at 21.</p>
+        <p>Week-by-week. No guessing. The exact calendar John used to finish his bachelor's in 12 months and reach Harvard by 21.</p>
         <div class="tags"><span class="pill verified">Calendar</span><span class="pill wgu">Execution</span></div>
       </div>
       <div class="cell c-8 reveal">
@@ -982,7 +982,7 @@
         <span class="tag">● Updated 2026</span>
       </div>
       <h3>The Complete Guide</h3>
-      <p class="p-sub">The exact 186-page system John used to graduate Harvard in one year, debt-free. Every exam, every strategy, every shortcut. Step by step.</p>
+      <p class="p-sub">The exact 186-page system John used to finish his bachelor's in one year, save $85,000+, and graduate Harvard with his Master's at 21. Every exam, every strategy, every shortcut.</p>
       <div class="price">
         <span class="c">$</span>
         <span class="a">197</span>
@@ -1016,24 +1016,24 @@
     </div>
     <div class="faq-list" id="faqlist">
       <div class="faq-item">
-        <div class="faq-q"><span class="q">Does CLEP actually work at my university?</span><span class="pm">+</span></div>
-        <div class="faq-a">CLEP is accepted at 2,900+ accredited institutions. The guide includes a process for verifying acceptance at your specific school before you spend a dollar on exam fees, and alternative pathways if CLEP isn't accepted for your degree program.</div>
+        <button class="faq-q" aria-expanded="false"><span class="q">Does CLEP actually work at my university?</span><span class="pm">+</span></button>
+        <div class="faq-a" role="region">CLEP is accepted at 2,900+ accredited institutions. The guide includes a process for verifying acceptance at your specific school before you spend a dollar on exam fees, and alternative pathways if CLEP isn't accepted for your degree program.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q">I'm already in college. Is it too late?</span><span class="pm">+</span></div>
-        <div class="faq-a">No. Many students use this guide in their sophomore or junior year to cut one to two full semesters off the end of their degree. The guide covers strategies for students at every stage.</div>
+        <button class="faq-q" aria-expanded="false"><span class="q">I'm already in college. Is it too late?</span><span class="pm">+</span></button>
+        <div class="faq-a" role="region">No. Many students use this guide in their sophomore or junior year to cut one to two full semesters off the end of their degree. The guide covers strategies for students at every stage.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q">I'm a parent buying this for my kid. Is it written for students?</span><span class="pm">+</span></div>
-        <div class="faq-a">Yes. It's written for high school students, current college students, and their parents. Parents consistently say the financial strategy chapters alone are worth the price.</div>
+        <button class="faq-q" aria-expanded="false"><span class="q">I'm a parent buying this for my kid. Is it written for students?</span><span class="pm">+</span></button>
+        <div class="faq-a" role="region">Yes. It's written for high school students, current college students, and their parents. Parents consistently say the financial strategy chapters alone are worth the price.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q">How long does it take to read and implement?</span><span class="pm">+</span></div>
-        <div class="faq-a">Most students finish the guide in a weekend. Implementation (taking your first CLEP exam) can begin within 4 to 6 weeks with 30 to 40 hours of focused study using the methods in the guide.</div>
+        <button class="faq-q" aria-expanded="false"><span class="q">How long does it take to read and implement?</span><span class="pm">+</span></button>
+        <div class="faq-a" role="region">Most students finish the guide in a weekend. Implementation (taking your first CLEP exam) can begin within 4 to 6 weeks with 30 to 40 hours of focused study using the methods in the guide.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q"><span class="q">What's the refund policy?</span><span class="pm">+</span></div>
-        <div class="faq-a">This is a digital product with instant access, so all sales are final. That said, if you follow even one strategy in this guide, you'll save thousands. A single CLEP exam saves $1,500+ in tuition for $197.</div>
+        <button class="faq-q" aria-expanded="false"><span class="q">What's the refund policy?</span><span class="pm">+</span></button>
+        <div class="faq-a" role="region">This is a digital product with instant access, so all sales are final. That said, if you follow even one strategy in this guide, you'll save thousands. A single CLEP exam saves $1,500+ in tuition for $197.</div>
       </div>
     </div>
   </div>
@@ -1157,7 +1157,11 @@
   document.getElementById('wall2').innerHTML = renderP(half2) + renderP(half2);
 
   document.querySelectorAll('#faqlist .faq-item').forEach(it => {
-    it.addEventListener('click', () => it.classList.toggle('open'));
+    const btn = it.querySelector('.faq-q');
+    btn.addEventListener('click', () => {
+      const open = it.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
   });
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {
