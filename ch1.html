@@ -39,6 +39,78 @@
 </head>
 <body>
 
+
+<nav class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <a href="/guide" class="sb-brand-name">Fast Grad Academy</a>
+    <div class="sb-tagline">The Complete Guide</div>
+  </div>
+  <div class="sb-prog-wrap">
+    <div class="sb-prog-row">
+      <span>Progress</span>
+      <span id="sb-pct">0 / 12</span>
+    </div>
+    <div class="sb-prog-track"><div class="sb-prog-fill" id="sbProgFill" style="width:0%"></div></div>
+  </div>
+  <div class="sb-nav">
+<div class="sb-group">FOUNDATIONS</div>
+<a href="/ch1" class="sb-item active" data-ch="1">
+  <div class="sb-dot" id="sbdot-1">01</div>
+  <span class="sb-title">Breaking the Education System</span>
+</a>
+<a href="/ch2" class="sb-item" data-ch="2">
+  <div class="sb-dot" id="sbdot-2">02</div>
+  <span class="sb-title">Vision &amp; Mental Fortitude</span>
+</a>
+<a href="/ch3" class="sb-item" data-ch="3">
+  <div class="sb-dot" id="sbdot-3">03</div>
+  <span class="sb-title">The Credit Stacking System</span>
+</a>
+<div class="sb-group">CREDIT PATHWAYS</div>
+<a href="/ch4" class="sb-item" data-ch="4">
+  <div class="sb-dot" id="sbdot-4">04</div>
+  <span class="sb-title">Mastering CLEP Exams</span>
+</a>
+<a href="/ch5" class="sb-item" data-ch="5">
+  <div class="sb-dot" id="sbdot-5">05</div>
+  <span class="sb-title">DSST, AP &amp; Other Credit Paths</span>
+</a>
+<a href="/ch6" class="sb-item" data-ch="6">
+  <div class="sb-dot" id="sbdot-6">06</div>
+  <span class="sb-title">PSEO &amp; Dual Enrollment</span>
+</a>
+<a href="/ch7" class="sb-item" data-ch="7">
+  <div class="sb-dot" id="sbdot-7">07</div>
+  <span class="sb-title">Dissecting Your Degree</span>
+</a>
+<div class="sb-group">EXECUTION</div>
+<a href="/ch8" class="sb-item" data-ch="8">
+  <div class="sb-dot" id="sbdot-8">08</div>
+  <span class="sb-title">Study Techniques That Work</span>
+</a>
+<a href="/ch9" class="sb-item" data-ch="9">
+  <div class="sb-dot" id="sbdot-9">09</div>
+  <span class="sb-title">The AI Study Stack</span>
+</a>
+<a href="/ch10" class="sb-item" data-ch="10">
+  <div class="sb-dot" id="sbdot-10">10</div>
+  <span class="sb-title">Your Personalized Roadmap</span>
+</a>
+<div class="sb-group">STRATEGY</div>
+<a href="/ch11" class="sb-item" data-ch="11">
+  <div class="sb-dot" id="sbdot-11">11</div>
+  <span class="sb-title">The Financial Strategy</span>
+</a>
+<a href="/ch12" class="sb-item" data-ch="12">
+  <div class="sb-dot" id="sbdot-12">12</div>
+  <span class="sb-title">Getting the Most Out of College</span>
+</a>
+</div>
+</nav>
+<div class="sb-overlay" id="sbOverlay"></div>
+<button class="sb-toggle" id="sbToggle"><span></span><span></span><span></span></button>
+
+<div class="main-content">
 <div id="access-gate" style="position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
   <div style="max-width:420px;width:100%;text-align:center">
     <div style="font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:#fff;margin-bottom:8px">Fast Grad Academy</div>
@@ -287,6 +359,13 @@ if(ham && mob){
 }
 
 // ── Sidebar toggle (mobile) ──
+var sbToggle = document.getElementById('sbToggle');
+var sidebar  = document.getElementById('sidebar');
+var sbOverlay = document.getElementById('sbOverlay');
+if(sbToggle && sidebar){
+  sbToggle.addEventListener('click', function(){ sidebar.classList.toggle('open'); });
+  if(sbOverlay) sbOverlay.addEventListener('click', function(){ sidebar.classList.remove('open'); });
+}
 </script>
 
 <script>
@@ -424,5 +503,6 @@ if (menuBtn) {
 }
 </script>
 
+</div><!-- /main-content -->
 </body>
 </html>
