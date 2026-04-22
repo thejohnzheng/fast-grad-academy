@@ -768,6 +768,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   list-style: none; padding: 0;
   counter-reset: ac-step;
 }
+.ac-items .ac-item,
 .ac-items li {
   display: flex; align-items: flex-start; gap: 18px;
   padding: 20px 0;
@@ -776,8 +777,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   counter-increment: ac-step;
   position: relative;
 }
+.ac-items .ac-item:last-child,
 .ac-items li:last-child { border-bottom: none; }
 /* Vertical connecting line between steps */
+.ac-items .ac-item::after,
 .ac-items li::after {
   content: '';
   position: absolute;
@@ -785,7 +788,9 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   width: 1.5px;
   background: var(--line);
 }
+.ac-items .ac-item:last-child::after,
 .ac-items li:last-child::after { display: none; }
+.ac-items .ac-item.checked::after,
 .ac-items li.checked::after { background: var(--ink); }
 .ac-checkbox {
   width: 32px; height: 32px; flex-shrink: 0;
@@ -821,9 +826,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   100% { transform: scale(1); }
 }
 .ac-checkbox.checked { animation: checkPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.ac-items .ac-item.checked .ac-item-title,
 .ac-items li.checked .ac-item-title {
   color: var(--ink-mute);
 }
+.ac-items .ac-item.checked .ac-item-desc,
 .ac-items li.checked .ac-item-desc { color: var(--ink-mute); }
 .ac-item-title {
   font-weight: 600; font-size: 15px; color: var(--ink);
