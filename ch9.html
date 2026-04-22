@@ -218,8 +218,40 @@ function unlockAccess(){
       </div>
     </div>
 
+    <div class="callout reveal" style="border-color:var(--line);background:var(--bg-soft)">
+      <div class="callout-icon">🔍</div>
+      <div class="callout-body">
+        <div class="callout-title">A Note on AI Detection</div>
+        <div class="callout-text">Many universities now use AI detection tools on written submissions. The prompts in this chapter are designed for <strong>exam preparation</strong> — generating practice questions, testing your knowledge, and building understanding. Never submit AI-generated text as your own work. For essay-based exams (like CLEP College Composition), use AI to practice writing and get feedback on <em>your</em> drafts, not to generate the writing itself.</div>
+      </div>
+    </div>
+
+    <div class="callout reveal" style="border-color:var(--line);background:var(--bg-soft)">
+      <div class="callout-icon">🎧</div>
+      <div class="callout-body">
+        <div class="callout-title">Game-Changer: Google NotebookLM</div>
+        <div class="callout-text">Before you dive into prompts, know this: <a href="https://notebooklm.google.com" target="_blank" rel="noopener" style="color:var(--ink);font-weight:600">Google NotebookLM</a> is a weapon most students don't know about. Upload your textbook PDFs, lecture notes, or study guides — and it generates AI-powered summaries, flashcards, and study guides from <em>your specific content</em>. The killer feature? It creates podcast-style audio reviews you can listen to while commuting, working out, or doing chores. That's passive study time most students waste. Upload your materials first, then come back and use the prompts below to fill the gaps.</div>
+      </div>
+    </div>
+
     <h3>7 AI Prompts for Exam Domination</h3>
     <p>Copy these prompts into Claude or ChatGPT. Replace the bracketed text with your specific exam.</p>
+
+    <div class="callout reveal" style="border-color:var(--line);background:var(--bg-soft)">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <div class="callout-title">5 Tips for Better AI Responses</div>
+        <div class="callout-text">
+          <ol style="margin:0;padding-left:1.2em;line-height:1.8">
+            <li><strong>Be specific</strong> — say "CLEP Introductory Psychology" not just "psychology." The more context you give, the better the output.</li>
+            <li><strong>Set the difficulty level</strong> — add "at CLEP exam difficulty, not intro level" so you're practicing at the right intensity.</li>
+            <li><strong>Ask for explanations of wrong answers</strong>, not just right ones. Understanding why distractors are wrong is half the battle.</li>
+            <li><strong>Use follow-up prompts</strong> to drill deeper on weak areas. Don't just move on — say "explain that concept again with a different example."</li>
+            <li><strong>Save your best prompts</strong> — reuse them for every exam. Build a personal prompt library so you're not starting from scratch each time.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div style="max-width:var(--max-w);margin:0 auto;padding:0 24px">
@@ -235,6 +267,29 @@ function unlockAccess(){
       <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
     </div>
 
+    <div class="callout reveal" style="border-color:var(--line);background:var(--bg-soft)">
+      <div class="callout-icon">📋</div>
+      <div class="callout-body">
+        <div class="callout-title">Sample Output — What to Expect</div>
+        <div class="callout-text">
+          Here's what the AI will generate when you use Prompt #2:<br/><br/>
+          <strong>Question 1:</strong> When the Federal Reserve increases the discount rate, what is the most likely short-term effect on the economy?<br/>
+          &nbsp;&nbsp;A) Increase in consumer spending<br/>
+          &nbsp;&nbsp;B) Decrease in the money supply<br/>
+          &nbsp;&nbsp;C) Decrease in unemployment<br/>
+          &nbsp;&nbsp;D) Increase in inflation<br/>
+          <em style="color:var(--ink-dim)">(Answer: B — Raising the discount rate makes borrowing more expensive for banks, which reduces lending and contracts the money supply.)</em><br/><br/>
+          <strong>Question 2:</strong> Open market operations refer to the Federal Reserve's purchase and sale of:<br/>
+          &nbsp;&nbsp;A) Foreign currencies<br/>
+          &nbsp;&nbsp;B) Corporate bonds<br/>
+          &nbsp;&nbsp;C) U.S. government securities<br/>
+          &nbsp;&nbsp;D) Gold reserves<br/>
+          <em style="color:var(--ink-dim)">(Answer: C — The Fed buys and sells Treasury securities to influence the federal funds rate and money supply.)</em><br/><br/>
+          The AI will walk you through all 20 questions like this, tracking your score and explaining every answer. It's like having a personal tutor who never gets tired.
+        </div>
+      </div>
+    </div>
+
     <div class="prompt-box reveal">
       <div class="prompt-label">🤖 Prompt 3 — Feynman Technique Partner</div>
       <div class="prompt-text">I'm going to try to explain [supply and demand curves] to you as if you're a smart 12-year-old. After I explain it, point out any gaps in my understanding, any inaccuracies, and any important concepts I missed. Then ask me follow-up questions to test my deeper understanding. Be rigorous but encouraging.</div>
@@ -245,6 +300,22 @@ function unlockAccess(){
       <div class="prompt-label">🤖 Prompt 4 — Anki Flashcard Generator</div>
       <div class="prompt-text">Generate 30 Anki-style flashcards for [CLEP American Government — Constitutional Amendments]. Format each as: Front: [question or term] | Back: [concise answer or definition]. Make the questions specific enough to test recall, not recognition. Include both definition cards and application cards (scenario-based questions).</div>
       <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+
+    <div class="callout reveal" style="border-color:var(--line);background:var(--bg-soft)">
+      <div class="callout-icon">📥</div>
+      <div class="callout-body">
+        <div class="callout-title">How to Import AI Flashcards into Anki</div>
+        <div class="callout-text">
+          Got your AI-generated flashcards? Here's how to get them into Anki in under 5 minutes:<br/><br/>
+          <strong>Step 1:</strong> Copy the AI output (all the Front/Back pairs).<br/>
+          <strong>Step 2:</strong> Paste into a spreadsheet (Google Sheets or Excel). Put the front of each card in <strong>Column A</strong> and the back in <strong>Column B</strong>.<br/>
+          <strong>Step 3:</strong> Export the spreadsheet as a <strong>.csv</strong> file (File &rarr; Download &rarr; CSV).<br/>
+          <strong>Step 4:</strong> Open Anki and go to <strong>File &rarr; Import</strong>. Select your CSV file.<br/>
+          <strong>Step 5:</strong> Map the columns: <strong>Field 1 = Front</strong>, <strong>Field 2 = Back</strong>. Choose your target deck and hit Import.<br/><br/>
+          That's it. You now have a custom deck built from AI-generated content tailored to your exact exam. Anki's spaced repetition algorithm will handle the rest — showing you cards right before you'd forget them.
+        </div>
+      </div>
     </div>
 
     <div class="prompt-box reveal">
@@ -263,6 +334,50 @@ function unlockAccess(){
       <div class="prompt-label">🤖 Prompt 7 — Night-Before Confidence Check</div>
       <div class="prompt-text">My [CLEP Principles of Macroeconomics] exam is tomorrow. Give me a rapid-fire review of the 20 most likely topics to appear on the exam. For each, give me a one-sentence summary of the key concept and one potential trick question to watch out for. Keep it fast and focused — this is a final confidence check, not a study session.</div>
       <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+
+    <div class="prompt-box reveal">
+      <div class="prompt-label">🤖 Prompt 8 — Weak Area Diagnosis</div>
+      <div class="prompt-text">I just took a practice exam for [CLEP Principles of Marketing] and scored 58/80. Here are the topics I got wrong: [list topics]. For each weak area: (1) explain the core concept I'm missing, (2) give me 3 practice questions targeting that specific weakness, and (3) suggest a mnemonic or memory trick to lock it in. Prioritize the topics with the most exam weight.</div>
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+  </div>
+
+  <div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 48px">
+    <h3 class="reveal" style="font-family:var(--serif);font-size:1.6rem;margin-bottom:24px">AI Study Workflow — Connecting Ch. 8 &amp; Ch. 9</h3>
+    <p class="reveal" style="color:var(--ink-dim);margin-bottom:32px;max-width:var(--max-w)">Here's how to combine the study techniques from Chapter 8 with the AI prompts from this chapter into a 4-week exam prep system. Each phase builds on the last.</p>
+
+    <div class="tool-grid reveal">
+      <div class="glass-card">
+        <div class="gc-icon">📅</div>
+        <div class="gc-title">Week 1: Map the Terrain</div>
+        <div class="gc-body">Start with <strong>Prompt #1</strong> (Syllabus Breakdown) to create your prioritized study plan. Identify the highest-weight topics and allocate your time accordingly. This is your roadmap for the next 3 weeks.</div>
+        <div class="gc-tag">Foundation</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-icon">🧠</div>
+        <div class="gc-title">Week 1–2: Build Understanding</div>
+        <div class="gc-body">Use <strong>Prompt #3</strong> (Feynman Technique) to explain concepts back to the AI and catch gaps. Then use <strong>Prompt #6</strong> (Concept Connector) to see how ideas link together. This is deep learning, not memorization.</div>
+        <div class="gc-tag">Comprehension</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-icon">🔁</div>
+        <div class="gc-title">Week 2–3: Active Recall Drilling</div>
+        <div class="gc-body">Generate quizzes with <strong>Prompt #2</strong> and flashcards with <strong>Prompt #4</strong>. Import cards into Anki and drill daily. This is where the Ch. 8 techniques (spaced repetition + active recall) combine with AI-generated content.</div>
+        <div class="gc-tag">Retention</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-icon">🎯</div>
+        <div class="gc-title">Week 3–4: Test &amp; Target</div>
+        <div class="gc-body">Take a full practice exam with <strong>Prompt #5</strong>. Use <strong>Prompt #8</strong> (Weak Area Diagnosis) on every topic you missed. Loop back to Weeks 1–2 for those areas. Repeat until you're hitting 70+ consistently.</div>
+        <div class="gc-tag">Precision</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-icon">🌙</div>
+        <div class="gc-title">Night Before: Confidence Check</div>
+        <div class="gc-body">Run <strong>Prompt #7</strong> for a rapid-fire review of the 20 most likely topics. No new learning — just confirmation that it's all locked in. Then get some sleep. You've earned it.</div>
+        <div class="gc-tag">Final Review</div>
+      </div>
     </div>
   </div>
 
