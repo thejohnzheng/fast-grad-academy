@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 07 — Dissecting Your Degree | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=6">
+<link rel="stylesheet" href="course.css?v=7">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -200,30 +200,11 @@ function unlockAccess(){
   <h2 class="ch-title reveal">Dissecting Your Degree &amp; <em>Credit Stacking</em></h2>
   <p class="ch-desc reveal">This is the operational backbone of the entire system. We've front-loaded the work for you — a pre-built spreadsheet, direct account links, and a complete cross-reference of every common college course to its exam equivalent.</p>
 
-  <div class="tool-strip reveal">
-    <div class="tool-strip-label">Tools in this chapter</div>
-    <div class="tool-strip-row">
-      <a class="tool-strip-card" href="https://www.transferology.com" target="_blank" rel="noopener">Transferology</a>
-      <a class="tool-strip-card" href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a>
-      <a class="tool-strip-card" href="https://modernstates.org" target="_blank" rel="noopener">Modern States</a>
-      <a class="tool-strip-card" href="https://getcollegecredit.com" target="_blank" rel="noopener">DSST</a>
-      <a class="tool-strip-card" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a>
-    </div>
-  </div>
-
-  <div class="ch-body">
+  <div class="ch-body reveal">
     <blockquote>"Without careful planning, you could waste countless hours on exams that don't help you, struggle to figure out what can transfer into college, and possibly forget a test you took."</blockquote>
 
     <h3>Step 1: Set Up Your Accounts (Do This Right Now)</h3>
     <p>Before you touch anything else, create accounts at these three services. This takes 10 minutes and front-loads 90% of the administrative work.</p>
-  </div>
-
-  <!-- Transferology screenshot -->
-  <div class="reveal in" style="max-width:var(--max-w);margin:0 auto 32px;padding:0 24px">
-    <a href="https://www.transferology.com" target="_blank" rel="noopener" style="display:block;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);max-width:600px;margin:0 auto">
-      <img src="img/screenshot-transferology.jpg" alt="Transferology — See how your credits transfer to 400+ schools" style="width:100%;display:block" loading="lazy">
-    </a>
-    <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:6px">transferology.com — Free tool to verify which credits your target school accepts</p>
   </div>
 
   <!-- STEP 1: ACCOUNT SETUP CARDS -->
@@ -258,7 +239,7 @@ function unlockAccess(){
   </div>
 
   <div class="chapter" style="padding-top:48px;padding-bottom:0">
-    <div class="ch-body">
+    <div class="ch-body reveal">
       <h3>Step 2: Download Your Credit Tracker</h3>
       <p>We've built the spreadsheet for you. It's pre-loaded with 30 common degree requirements, each one already cross-referenced to its CLEP, AP, DSST, and PSEO equivalent. Just open it, enter your target school, and start checking off what you can earn by exam instead of paying tuition.</p>
     </div>
@@ -297,11 +278,11 @@ function unlockAccess(){
   </div>
 
   <!-- ── MASTER CROSS-REFERENCE TABLE ── -->
-  <div class="reveal in" style="max-width:1100px;margin:32px auto;padding:0 24px;overflow-x:auto">
+  <div class="reveal" style="max-width:1100px;margin:32px auto;padding:0 24px;overflow-x:auto">
     <div style="font-family:var(--font-d);font-size:24px;color:var(--white);margin-bottom:16px">The Master Cross-Reference</div>
     <p style="font-size:14px;color:var(--muted);margin-bottom:24px">Every common college course → its exam equivalent. Use this to fill in your Degree Map spreadsheet. Dash (—) means no equivalent exists for that pathway.</p>
 
-    <table class="compare-table reveal" style="font-size:13px">
+    <table class="compare-table" style="font-size:13px">
       <thead>
         <tr>
           <th>College Course</th>
@@ -364,7 +345,7 @@ function unlockAccess(){
   </div>
 
   <div class="chapter" style="padding-top:40px;padding-bottom:0">
-    <div class="ch-body">
+    <div class="ch-body reveal">
       <h3>Step 4: Verify on Transferology</h3>
       <p>The table above shows the <em>general</em> equivalents. But every school has its own policies. Here's how to verify:</p>
       <ol>
@@ -414,23 +395,6 @@ function unlockAccess(){
             <li><strong>Health/PE requirements</strong> — most schools require these to be fulfilled in-person; no CLEP or DSST covers them</li>
           </ul>
           <p style="margin-top:16px;font-size:13px;color:var(--muted)">Rule of thumb: <strong>gen-ed requirements transfer almost everywhere.</strong> Major-specific upper-division courses rarely do. Use Transferology to verify every single credit before you study for the exam.</p>
-        </div>
-      </div>
-
-      <div class="callout reveal" style="border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.04);margin-top:32px">
-        <div class="callout-icon">🔄</div>
-        <div class="callout-body">
-          <div class="callout-title">Advanced: The "Credit Laundering" Technique</div>
-          <div class="callout-text">
-            Some universities don't accept CLEP directly — but they <em>do</em> accept transfer courses from community colleges. Here's the workaround:
-            <br/><br/><strong>Step 1:</strong> Pass a CLEP exam (e.g., Introductory Psychology).
-            <br/><strong>Step 2:</strong> Send your CLEP score to a community college that grants credit for it (most do).
-            <br/><strong>Step 3:</strong> The community college converts it into a course on your transcript (e.g., "PSY 101 — B").
-            <br/><strong>Step 4:</strong> Transfer that <em>course</em> (not the exam) to your target university. They see a community college transcript, not a CLEP score.
-            <br/><br/>This works because universities that reject "credit by exam" will still accept "transfer credit" from accredited schools. The credit is the same — the packaging is different.
-            <br/><br/><strong>Texas students:</strong> This technique can also achieve "Core Complete" status, which guarantees your general education credits transfer to any Texas public university. Search "CLEP Core Complete Texas" for details.
-            <br/><br/><em>Note: This is widely used in the accelerated-degree community (DegreeForum.net, HS4CC). Check that your community college grants CLEP credit before sending scores.</em>
-          </div>
         </div>
       </div>
 
