@@ -247,6 +247,7 @@
         <h2>Cookies & Local Storage</h2>
         <p>We use minimal tracking:</p>
         <ul>
+            <li><strong>fga_auth cookie</strong> — a first-party cookie used to manage access gating on the site. It stores only a session flag (no personal data), expires after 24 hours, and is set with <code>SameSite=Lax</code> to prevent cross-site use.</li>
             <li><strong>localStorage</strong> — stores session data (your access code, preferences) locally on your device for convenience. This data never leaves your device.</li>
             <li><strong>No third-party cookies</strong> — we do not use tracking cookies or analytics pixels that follow you across the web</li>
         </ul>

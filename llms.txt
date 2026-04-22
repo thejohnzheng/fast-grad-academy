@@ -1,0 +1,37 @@
+# Fast Grad Academy
+
+> Fast Grad Academy is an online educational guide that teaches students how to earn a bachelor's degree in 12 months instead of 4 years by strategically using credit-by-examination (CLEP, DSST, AP), dual enrollment (PSEO), and competency-based degree-completion programs. Founded by John Zheng, who graduated with his BBA in one year and completed a Harvard Master's at age 21.
+
+## Key Information
+
+- Price: $197 one-time payment for lifetime access
+- Format: 186-page digital guide (PDF + ePub) with 12 editable planning templates
+- Core strategy: "Credit stacking" — earning college credits through CLEP exams ($97 each, accepted at 2,900+ schools), DSST exams, AP exams, Sophia/Study.com courses, and PSEO/dual enrollment, then transferring them to degree-completion universities like WGU or UMPI
+- Founder: John Zheng — youngest BBA graduate in UMD history, Harvard Master's at 21
+- Claimed savings: $85,000+ in tuition vs. the traditional 4-year path
+- Target audience: High school students, current college students, and parents
+- Includes: CLEP Maximizer spreadsheet, degree-completion school ranking, registrar email/script library, 12-month roadmap calendar, AI study-prompt pack
+- Contact: hello@fastgradacademy.com
+- Legal entity: Executive Strategy Consulting LLC d.b.a. Fast Grad Academy
+
+## Pages
+
+- [Landing Page](https://fastgradacademy.com/): Main sales page with course overview, cost comparison, founder story, testimonials, pricing, and FAQ
+- [Course Dashboard](https://fastgradacademy.com/guide): Student dashboard with progress tracking and links to all 12 chapters (requires access code)
+- [Chapter 1: Breaking the Education System](https://fastgradacademy.com/ch1): Why the traditional 4-year college path is broken and the rules that allow you to graduate years ahead
+- [Chapter 2: Vision & Mental Fortitude](https://fastgradacademy.com/ch2): Mindset preparation, the Emotional Cycle of Change, and how to engineer motivation before starting exams
+- [Chapter 3: The Credit Stacking System](https://fastgradacademy.com/ch3): The core strategy explained — earning the same college credits for a fraction of the cost and time
+- [Chapter 4: Mastering CLEP Exams](https://fastgradacademy.com/ch4): 34 CLEP exams detailed — scoring, sequencing, and mapping credits to your major, with free prep via Modern States
+- [Chapter 5: DSST, AP & Other Credit Paths](https://fastgradacademy.com/ch5): Filling gaps CLEP cannot cover — DSST, self-study AP exams, and ACE-approved providers that pre-load 60+ credits
+- [Chapter 6: PSEO & Dual Enrollment](https://fastgradacademy.com/ch6): Taking real college courses in high school, often completely free, through post-secondary enrollment options
+- [Chapter 7: Dissecting Your Degree & Credit Stacking](https://fastgradacademy.com/ch7): Mapping every degree requirement to its exam equivalent and verifying every credit transfers using Transferology
+- [Chapter 8: Study Techniques That Actually Work](https://fastgradacademy.com/ch8): Evidence-based study techniques for passing college exams in 2-3 weeks of focused study
+- [Chapter 9: The AI Study Stack](https://fastgradacademy.com/ch9): 7 copy-ready AI prompts, 10 best study tools, and accountability communities
+- [Chapter 10: Your Personalized Roadmap](https://fastgradacademy.com/ch10): The 52-week bachelor's degree timeline and the degree-completion universities that make it possible
+- [Chapter 11: The Financial Strategy](https://fastgradacademy.com/ch11): The math behind $208,000+ in total lifetime financial advantage from credit stacking
+- [Chapter 12: Getting the Most Out of College](https://fastgradacademy.com/ch12): What to do once enrolled — why employers and grad schools respect accelerated degrees, with supporting data
+- [Progress Tracker](https://fastgradacademy.com/tracker): Student tool for tracking chapter completion and course progress
+- [Exam Resources](https://fastgradacademy.com/resources): Collection of tools, links, and resources for credit-by-exam preparation
+- [Terms of Service](https://fastgradacademy.com/terms): Terms of use for Fast Grad Academy
+- [Privacy Policy](https://fastgradacademy.com/privacy): Privacy policy
+- [Refund Policy](https://fastgradacademy.com/refund): Refund policy (digital product, all sales final)
