@@ -618,10 +618,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 /* ══════════ ACTION CHECKLIST ══════════ */
 .action-checklist {
+  max-width: var(--max-w);
+  margin: 48px auto 0;
   background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: 20px; padding: 32px;
-  margin: 48px 0;
 }
 .ac-label {
   font-size: 10px; font-weight: 700;
