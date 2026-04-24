@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 01 — Breaking the Education System | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -369,6 +369,56 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Exercise -->
+<div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 16px">
+  <div class="exercise-block reveal">
+    <div class="exercise-label">⚡ Stop. Do this now.</div>
+    <div class="exercise-title">Define Your Goal</div>
+    <div class="exercise-body">
+      Before you move on, write down answers to these three questions. Seriously — open a notes app or grab a piece of paper:
+      <ol>
+        <li><strong>What's your target graduation date?</strong> Not "as fast as possible" — pick an actual month and year.</li>
+        <li><strong>How many credits do you currently have?</strong> Check your transcript. Include AP, CLEP, PSEO — everything.</li>
+        <li><strong>How much are you (or your family) willing to spend on your degree?</strong> Be honest. This number changes your entire strategy.</li>
+      </ol>
+      These three numbers are the foundation of your plan. Every chapter after this one will reference them. If you don't know them yet, that's okay — but mark this page and come back once you do.
+    </div>
+  </div>
+</div>
+
+<!-- Knowledge Check -->
+<div class="quiz-wrap">
+  <div class="quiz-label">Knowledge Check — Chapter 1</div>
+  <div class="quiz-block" id="q1-1">
+    <div class="quiz-q">What is the average student loan debt for a bachelor's degree graduate in the US?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQ(this,'q1-1',false)">$15,000</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q1-1',true)">~$37,000</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q1-1',false)">$55,000</button>
+    </div>
+    <div class="quiz-feedback" id="q1-1-fb"></div>
+  </div>
+  <div class="quiz-block" id="q1-2">
+    <div class="quiz-q">A CLEP exam costs approximately how much?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQ(this,'q1-2',false)">$250</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q1-2',true)">~$97 (and free via Modern States)</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q1-2',false)">$500</button>
+    </div>
+    <div class="quiz-feedback" id="q1-2-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
   <!-- Mark complete -->
   <div class="mc-wrap">

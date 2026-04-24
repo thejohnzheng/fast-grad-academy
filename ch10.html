@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 10 — Your Personalized Roadmap | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -802,6 +802,52 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Draft Your 52-Week Acceleration Timeline</div>
+  <div class="exercise-body">
+    <p>You've learned every tool. Now put them into a timeline. Open your Study Schedule Planner and map out the next 12 months:</p>
+    <ol>
+      <li><strong>List every exam and course</strong> you plan to complete, in priority order (highest credit value + verified transfer first).</li>
+      <li><strong>Assign each one a target date.</strong> Space them 2–4 weeks apart for exams, or by semester for PSEO/Sophia courses.</li>
+      <li><strong>Block study time on your calendar.</strong> Not "I'll study when I have time" — actual calendar blocks. Treat them like classes you can't skip.</li>
+      <li><strong>Set milestone check-ins.</strong> At week 4, 12, 26, and 52 — are you on track? What needs to shift?</li>
+    </ol>
+    <p>A plan without dates is a wish. Put dates on every single item.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. What should you prioritize first in your acceleration timeline?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q10a',false)">The easiest exams to pass</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q10a',true)">High credit value exams that are verified to transfer at your school</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q10a',false)">The most expensive alternatives to replace</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q10a',false)">Whatever your friends are studying for</button>
+    <div class="quiz-feedback" id="q10a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. How often should you review and adjust your acceleration plan?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q10b',false)">Only at the beginning</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q10b',false)">Once a year</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q10b',true)">At regular milestones — every few months at minimum</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q10b',false)">Only when something goes wrong</button>
+    <div class="quiz-feedback" id="q10b-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
   <!-- Mark complete -->
   <div class="mc-wrap">

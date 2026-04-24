@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 07 — Dissecting Your Degree | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -560,6 +560,71 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Download -->
+<a class="dl-card reveal" href="/downloads/FGA_Study_Schedule_Planner.xlsx" download>
+  <div class="dl-icon">📅</div>
+  <div class="dl-info">
+    <div class="dl-title">Download: Study Schedule Planner</div>
+    <div class="dl-desc">Map out every exam, calculate how many study hours per day you need, and block out a Pomodoro-based daily schedule.</div>
+  </div>
+  <div class="dl-btn">Download .xlsx ↓</div>
+</a>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Dissect Your Actual Degree</div>
+  <div class="exercise-body">
+    <p>Pull up your degree audit or program requirements right now. You need all of them in front of you.</p>
+    <ol>
+      <li><strong>List every required course</strong> in your degree program. General education, major requirements, electives — all of them.</li>
+      <li><strong>Mark each one</strong> with the cheapest, fastest alternative: CLEP, DSST, Sophia, Saylor, Study.com, PSEO, or AP credit you already have.</li>
+      <li><strong>Use Transferology</strong> to verify each alternative will actually transfer for that specific requirement at your school.</li>
+      <li><strong>Calculate the gap.</strong> How many credits can you knock out through alternatives vs. how many you'll need to take at full tuition?</li>
+      <li><strong>Enter everything</strong> into your Credit Planning Tracker and Study Schedule Planner.</li>
+    </ol>
+    <p>This is the single most important exercise in the entire course. When you finish, you'll have a complete map of your degree with a dollar amount next to every course.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. What's the first step when dissecting your degree requirements?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q7a',false)">Sign up for the cheapest exams first</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q7a',true)">List every required course in your program</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q7a',false)">Call your advisor for a degree plan</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q7a',false)">Start with electives only</button>
+    <div class="quiz-feedback" id="q7a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. Why should you prioritize free credit options first?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q7b',false)">They're always easier exams</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q7b',false)">They look better on your transcript</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q7b',true)">You maximize savings by exhausting zero-cost credits before paying for anything</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q7b',false)">Your school requires it</button>
+    <div class="quiz-feedback" id="q7b-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">3. What tool should you use to verify each credit will transfer?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q7c',false)">Your school's course catalog</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q7c',true)">Transferology + a registrar confirmation call</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q7c',false)">Reddit forums</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q7c',false)">The CLEP website alone</button>
+    <div class="quiz-feedback" id="q7c-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
   <!-- Mark complete -->
   <div class="mc-wrap">

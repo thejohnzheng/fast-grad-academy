@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 02 — Vision & Mental Fortitude | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -355,6 +355,51 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Write Your Acceleration Statement</div>
+  <div class="exercise-body">
+    <p>Grab a piece of paper or open a notes app. Answer these three questions — don't overthink them, just write:</p>
+    <ol>
+      <li><strong>Why do I want to graduate early?</strong> Be specific. "Save money" isn't enough. How much money? What will you do with the extra years?</li>
+      <li><strong>What's the hardest thing someone will say to discourage me?</strong> Write it down. Now write your response to it.</li>
+      <li><strong>When I graduate early, the first thing I'll do is ___.</strong> Make it vivid. This is your fuel for the days when studying for the next exam feels pointless.</li>
+    </ol>
+    <p>Keep this somewhere you'll see it. When you hit a wall — and you will — read it again.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. What's the biggest mental barrier most students face when considering accelerated graduation?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q2a',false)">Not being smart enough</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q2a',true)">Believing the traditional timeline is the only option</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q2a',false)">Not having enough money</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q2a',false)">Their school won't allow it</button>
+    <div class="quiz-feedback" id="q2a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. Why is having a clear "why" important for this process?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q2b',false)">It looks good on scholarship applications</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q2b',false)">Your advisor needs to hear it</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q2b',true)">It keeps you motivated when the work gets hard and people doubt you</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q2b',false)">It's required to register for CLEP exams</button>
+    <div class="quiz-feedback" id="q2b-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
 <!-- Mark complete -->
   <div class="mc-wrap">

@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 05 — DSST, AP & Other Credit Paths | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -443,6 +443,52 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Identify Your Best Non-CLEP Credits</div>
+  <div class="exercise-body">
+    <p>CLEP isn't your only option. Spend 10 minutes researching which of these pathways fits your situation:</p>
+    <ol>
+      <li><strong>Check your AP scores.</strong> If you took AP exams in high school, look up whether your target school accepts them and for how many credits. Don't leave free credits on the table.</li>
+      <li><strong>Look up DSST exams.</strong> Go to <a href="https://www.getcollegecredit.com" target="_blank">getcollegecredit.com</a> and browse the DSST catalog. Are there exams that match courses in your degree plan that CLEP doesn't cover?</li>
+      <li><strong>Check Sophia and Saylor.</strong> These platforms offer self-paced courses accepted by many schools. Search for your degree requirements on each platform.</li>
+      <li><strong>Add everything</strong> to your Credit Planning Tracker with the cost, credit value, and transfer status.</li>
+    </ol>
+    <p>The students who save the most money don't rely on a single credit pathway — they stack all of them.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. What is a key advantage of DSST exams over CLEP?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q5a',false)">They're always free</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q5a',true)">They cover subjects that CLEP doesn't offer, like cybersecurity and ethics</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q5a',false)">Every school accepts them</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q5a',false)">They're easier to pass</button>
+    <div class="quiz-feedback" id="q5a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. Why does the course recommend against relying on IB credits for acceleration?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q5b',false)">IB credits are never accepted</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q5b',false)">IB is more expensive than CLEP</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q5b',true)">It takes two years to earn credits you could earn in weeks through exams</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q5b',false)">IB only covers electives</button>
+    <div class="quiz-feedback" id="q5b-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
 <!-- Mark complete -->
   <div class="mc-wrap">

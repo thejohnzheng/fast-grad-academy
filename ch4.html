@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 04 — Mastering CLEP Exams | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -753,6 +753,60 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Look Up Your School's CLEP Policy</div>
+  <div class="exercise-body">
+    <p>This takes 10 minutes and will save you weeks of guessing:</p>
+    <ol>
+      <li><strong>Go to your target school's website</strong> and search "CLEP policy" or "credit by examination." Find the official page listing which CLEP exams they accept and what score they require.</li>
+      <li><strong>Cross-reference with Transferology.</strong> Go to <a href="https://www.transferology.com" target="_blank">transferology.com</a>, enter your school, and search for every CLEP exam you're considering. Write down which ones transfer and for how many credits.</li>
+      <li><strong>Call the registrar.</strong> Yes, actually call. Ask: "Do you accept CLEP credit? Is there a cap on how many CLEP credits I can apply? Do any of these fulfill major requirements, or just electives?"</li>
+      <li><strong>Log your findings</strong> in your Credit Planning Tracker (download it in Chapter 3 if you haven't already). Mark each accepted exam with the score required and credits awarded.</li>
+    </ol>
+    <p>If you skip this step and study for an exam your school doesn't accept, that's weeks of your life wasted. Verify first — always.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. What is the minimum passing score for most CLEP exams?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q4a',false)">60</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q4a',true)">50</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q4a',false)">70</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q4a',false)">It varies by exam</button>
+    <div class="quiz-feedback" id="q4a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. What should you do BEFORE studying for any CLEP exam?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q4b',false)">Buy all the study materials</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q4b',false)">Schedule the test date immediately</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q4b',true)">Verify your school accepts that specific exam and score</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q4b',false)">Take a practice test</button>
+    <div class="quiz-feedback" id="q4b-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">3. How much does a CLEP exam cost?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q4c',false)">Free</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q4c',false)">$50</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q4c',true)">$93 (plus any test center fee)</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q4c',false)">$200</button>
+    <div class="quiz-feedback" id="q4c-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
 <!-- Mark complete -->
   <div class="mc-wrap">

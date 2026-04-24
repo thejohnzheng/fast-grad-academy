@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 09 — The AI Study Stack | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -524,6 +524,52 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Set Up Your AI Study Stack</div>
+  <div class="exercise-body">
+    <p>AI tools can cut your study time in half — but only if you actually set them up. Do this now:</p>
+    <ol>
+      <li><strong>Open ChatGPT or Claude.</strong> Paste this prompt: "I'm studying for the CLEP [exam name]. Create a study plan that covers all major topics in 14 days, with active recall questions for each topic."</li>
+      <li><strong>Generate practice questions.</strong> Ask: "Give me 20 multiple-choice practice questions for the CLEP [exam name] exam, with explanations for each answer."</li>
+      <li><strong>Create flashcards.</strong> Ask the AI to generate Anki-style flashcards for the hardest topics. Export them or copy them into your flashcard app.</li>
+      <li><strong>Set up a daily check-in.</strong> Each day, paste your notes and ask: "Quiz me on what I studied yesterday. Then tell me what I should focus on today."</li>
+    </ol>
+    <p>The students who use AI as a study partner consistently pass exams faster than those who study alone with textbooks.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. What's the most effective way to use AI for exam prep?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q9a',false)">Have it write your exam answers</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q9a',true)">Use it to generate practice questions and test your knowledge through active recall</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q9a',false)">Copy AI-generated study guides word for word</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q9a',false)">Only use it for math problems</button>
+    <div class="quiz-feedback" id="q9a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. Why should you still verify AI-generated study material?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q9b',false)">AI always gets things wrong</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q9b',true)">AI can occasionally produce inaccurate information, so cross-check key facts</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q9b',false)">Your school requires it</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q9b',false)">You don't need to — AI is always accurate for exam prep</button>
+    <div class="quiz-feedback" id="q9b-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
   <!-- Mark complete -->
   <div class="mc-wrap">

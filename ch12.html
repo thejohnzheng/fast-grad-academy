@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 12 — Getting the Most Out of College | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -472,6 +472,51 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Build Your Post-Acceleration Plan</div>
+  <div class="exercise-body">
+    <p>You're about to have something most graduates don't: extra years and extra money. Don't waste them. Answer these:</p>
+    <ol>
+      <li><strong>What will you do with the years you saved?</strong> Start a business? Get a head start on grad school? Travel? Work and invest? Write it down.</li>
+      <li><strong>What will you do with the money you saved?</strong> Be specific. If you saved $50,000 — that's seed money for a startup, a down payment, or two years of living expenses while you build something.</li>
+      <li><strong>Who will you help next?</strong> A younger sibling? A friend who's drowning in debt? Share what you've learned. The best way to lock in your knowledge is to teach it.</li>
+    </ol>
+    <p>You didn't just finish a course. You changed the trajectory of your life. Now make it count.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. What's the most important thing to do AFTER graduating early?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q12a',false)">Immediately start grad school</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q12a',false)">Take a gap year to relax</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q12a',true)">Have a clear plan for how you'll use the time and money you saved</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q12a',false)">Delete all your study materials</button>
+    <div class="quiz-feedback" id="q12a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. Why does the course emphasize sharing your acceleration strategy with others?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q12b',false)">To promote the course</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q12b',true)">Teaching reinforces your knowledge and helps others avoid the debt trap</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q12b',false)">Your school requires community service hours</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q12b',false)">It's not important — focus on yourself</button>
+    <div class="quiz-feedback" id="q12b-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
   <!-- Mark complete -->
   <div class="mc-wrap">

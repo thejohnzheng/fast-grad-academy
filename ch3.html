@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 03 — The Credit Stacking System | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -485,6 +485,79 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Download Tool -->
+<div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 16px">
+  <a class="dl-card reveal" href="/downloads/FGA_Credit_Planning_Tracker.xlsx" download>
+    <div class="dl-icon">📊</div>
+    <div class="dl-info">
+      <div class="dl-title">Download: Credit Planning Tracker</div>
+      <div class="dl-desc">Your personal spreadsheet to inventory every exam, track credits, costs, and calculate your total savings. Fill in your target school and build your custom plan.</div>
+    </div>
+    <div class="dl-btn">Download .xlsx ↓</div>
+  </a>
+</div>
+
+<!-- Exercise -->
+<div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 16px">
+  <div class="exercise-block reveal">
+    <div class="exercise-label">⚡ Stop. Do this now.</div>
+    <div class="exercise-title">Build Your Credit Inventory</div>
+    <div class="exercise-body">
+      Before you move to the next chapter, take 15 minutes to do this:
+      <ol>
+        <li>Open the Credit Planning Tracker you just downloaded.</li>
+        <li>Go to <a href="https://www.transferology.com" target="_blank" rel="noopener">Transferology.com</a> and create a free account.</li>
+        <li>Search for your target school. Look at which CLEP, DSST, and AP exams they accept.</li>
+        <li>Add every accepted exam to your Credit Inventory sheet — even if you're not sure you'll take it yet.</li>
+        <li>Note the credits and cost for each one. The spreadsheet will auto-calculate your totals.</li>
+      </ol>
+      This is the single most important action in this entire course. Everything after this chapter builds on this list. Do not skip it.
+    </div>
+  </div>
+</div>
+
+<!-- Knowledge Check -->
+<div class="quiz-wrap">
+  <div class="quiz-label">Knowledge Check — Chapter 3</div>
+  <div class="quiz-block" id="q3-1">
+    <div class="quiz-q">What is the core principle behind credit stacking?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQ(this,'q3-1',false)">Taking as many classes as possible each semester</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q3-1',true)">Combining multiple credit pathways (CLEP, DSST, AP, PSEO) to earn credits faster and cheaper than traditional courses</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q3-1',false)">Only using CLEP exams to replace college courses</button>
+    </div>
+    <div class="quiz-feedback" id="q3-1-fb"></div>
+  </div>
+  <div class="quiz-block" id="q3-2">
+    <div class="quiz-q">Which free tool lets you verify whether your credits will transfer to a specific school?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQ(this,'q3-2',false)">Modern States</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q3-2',true)">Transferology</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q3-2',false)">College Board</button>
+    </div>
+    <div class="quiz-feedback" id="q3-2-fb"></div>
+  </div>
+  <div class="quiz-block" id="q3-3">
+    <div class="quiz-q">Why did John skip the IB programme even though his school offered it?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQ(this,'q3-3',false)">IB credits don't transfer to any universities</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q3-3',false)">IB was too expensive</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q3-3',true)">Spending two years on a subject to earn credits you could earn in a month didn't align with speedrunning</button>
+    </div>
+    <div class="quiz-feedback" id="q3-3-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
 <!-- Mark complete -->
   <div class="mc-wrap">

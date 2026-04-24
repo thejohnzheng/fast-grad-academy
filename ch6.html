@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 06 — PSEO & Dual Enrollment | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -391,6 +391,52 @@ Sincerely,
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Check Your PSEO Eligibility</div>
+  <div class="exercise-body">
+    <p>PSEO (Post-Secondary Enrollment Options) lets high school students take college courses for free. This takes 5 minutes:</p>
+    <ol>
+      <li><strong>Search "[your state] + PSEO" or "[your state] + dual enrollment."</strong> Every state has a different name for it. Find your state's official program page.</li>
+      <li><strong>Check the eligibility requirements.</strong> Most programs require a minimum GPA (often 3.0) and junior or senior standing. Some allow sophomores.</li>
+      <li><strong>Find participating colleges.</strong> Which schools near you offer PSEO courses? Can you take them online?</li>
+      <li><strong>If you're eligible, calculate the impact.</strong> How many credits could you earn for free before you even start paying tuition? Add these to your Credit Planning Tracker.</li>
+    </ol>
+    <p>PSEO is the single most underused acceleration tool. If you're still in high school and your state offers it, this is free college. Don't sleep on it.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. What does PSEO stand for?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q6a',false)">Pre-Secondary Education Opportunity</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q6a',true)">Post-Secondary Enrollment Options</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q6a',false)">Public School Early Opportunity</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q6a',false)">Post-Secondary Exam Offering</button>
+    <div class="quiz-feedback" id="q6a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. What's the biggest advantage of PSEO over CLEP?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q6b',true)">PSEO courses are completely free — tuition, fees, and often textbooks</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q6b',false)">PSEO credits transfer to more schools</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q6b',false)">PSEO is available to all students regardless of age</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q6b',false)">PSEO courses are easier than CLEP exams</button>
+    <div class="quiz-feedback" id="q6b-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
 <!-- Mark complete -->
   <div class="mc-wrap">

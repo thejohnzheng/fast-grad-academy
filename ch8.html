@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 08 — Study Techniques That Work | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -468,6 +468,61 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Build Your First Study Session</div>
+  <div class="exercise-body">
+    <p>Don't just read about study techniques — set one up right now. This should take less than 15 minutes.</p>
+    <ol>
+      <li><strong>Pick your first exam.</strong> Open your Credit Planning Tracker. Choose the exam at the top of your priority list (highest credit value, verified to transfer).</li>
+      <li><strong>Find free study resources.</strong> Search for "free CLEP [exam name] study guide" — sites like Modern States, Khan Academy, and Peterson's have free prep material. Bookmark 2–3 resources.</li>
+      <li><strong>Set up your Pomodoro timer.</strong> Download a Pomodoro app or use a simple web timer. Set it to 25 minutes on, 5 minutes off.</li>
+      <li><strong>Do one full Pomodoro right now.</strong> Open your study material, start the timer, and study using active recall — close the material and try to write down everything you just learned from memory.</li>
+      <li><strong>Log it.</strong> Open your Study Schedule Planner and fill in today's block. You just started.</li>
+    </ol>
+    <p>The difference between someone who finishes this course and someone who actually graduates early is whether they do this step. Right now. Not tomorrow.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. Which study technique is most effective for exam prep?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q8a',false)">Re-reading the textbook multiple times</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q8a',false)">Highlighting key passages</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q8a',true)">Active recall — closing the book and testing yourself</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q8a',false)">Watching lecture videos at 2x speed</button>
+    <div class="quiz-feedback" id="q8a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. What is the Pomodoro technique?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q8b',false)">Study for 1 hour, take a 30-minute break</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q8b',true)">Study for 25 minutes, take a 5-minute break, repeat</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q8b',false)">Study until you finish a full chapter, then stop</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q8b',false)">Study for 45 minutes, take a 15-minute break</button>
+    <div class="quiz-feedback" id="q8b-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">3. What's the key difference between spaced repetition and cramming?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q8c',false)">Cramming covers more material in less time</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q8c',false)">There's no real difference for exam prep</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q8c',true)">Spaced repetition spreads review over days, building long-term retention</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q8c',false)">Spaced repetition only works for language learning</button>
+    <div class="quiz-feedback" id="q8c-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
   <!-- Mark complete -->
   <div class="mc-wrap">

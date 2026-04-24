@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 11 — The Financial Strategy | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=9">
+<link rel="stylesheet" href="course.css?v=10">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -543,6 +543,71 @@ function unlockAccess(){
   </div>
   <div class="ac-items" id="acItems"></div>
 </div>
+
+<!-- Download -->
+<a class="dl-card reveal" href="/downloads/FGA_Financial_Savings_Calculator.xlsx" download>
+  <div class="dl-icon">💰</div>
+  <div class="dl-info">
+    <div class="dl-title">Download: Financial Savings Calculator</div>
+    <div class="dl-desc">Plug in your tuition rates, credits, and exam costs to see exactly how much money and time you'll save compared to the traditional path.</div>
+  </div>
+  <div class="dl-btn">Download .xlsx ↓</div>
+</a>
+
+<!-- Exercise -->
+<div class="exercise-block reveal">
+  <div class="exercise-label">⚡ Stop. Do this now.</div>
+  <div class="exercise-title">Run Your Numbers</div>
+  <div class="exercise-body">
+    <p>This is where the strategy becomes real. Open the Financial Savings Calculator you just downloaded and fill it in.</p>
+    <ol>
+      <li><strong>Enter your school's tuition per credit hour.</strong> Check your school's bursar or tuition page for the exact number. Include fees.</li>
+      <li><strong>Enter your total credits required</strong> for your degree (usually 120).</li>
+      <li><strong>Enter the credits you plan to earn through alternatives</strong> — CLEP, DSST, Sophia, Saylor, PSEO, AP. Pull these from your Credit Planning Tracker.</li>
+      <li><strong>Enter the cost of each alternative method.</strong> CLEP = $93/exam, Sophia = $99/month, Saylor = free, PSEO = free, etc.</li>
+      <li><strong>Look at the result.</strong> The calculator will show you your total savings in dollars, semesters saved, and years saved. Write that number down. That's your motivation for the rest of this process.</li>
+    </ol>
+    <p>Most students who complete this exercise discover they can save $30,000–$80,000 and 1–3 years. If that doesn't light a fire, nothing will.</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="quiz-wrap reveal">
+  <div class="quiz-block">
+    <div class="quiz-q">1. Why should you delay sending CLEP scores to your school until after your first semester?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q11a',false)">CLEP scores expire after one semester</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q11a',true)">To protect freshman-year scholarships that require full-time enrollment status</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q11a',false)">Registrars won't accept them during the first semester</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q11a',false)">It doesn't matter when you send them</button>
+    <div class="quiz-feedback" id="q11a-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">2. What is the single most important thing to file every year for financial aid?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q11b',false)">Your school's financial aid appeal form</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q11b',true)">The FAFSA</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q11b',false)">Your state tax return</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q11b',false)">A scholarship application</button>
+    <div class="quiz-feedback" id="q11b-fb"></div>
+  </div>
+  <div class="quiz-block">
+    <div class="quiz-q">3. How do you calculate the true cost-per-credit of a CLEP exam worth 6 credits?</div>
+    <button class="quiz-opt" onclick="checkQ(this,'q11c',false)">$93 × 6 = $558 per credit</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q11c',true)">$93 ÷ 6 = ~$15.50 per credit</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q11c',false)">$93 per credit regardless</button>
+    <button class="quiz-opt" onclick="checkQ(this,'q11c',false)">You can't calculate it without knowing tuition</button>
+    <div class="quiz-feedback" id="q11c-fb"></div>
+  </div>
+</div>
+<script>
+function checkQ(btn,qId,correct){
+  var fb=document.getElementById(qId+'-fb');
+  var opts=btn.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
+  fb.className='quiz-feedback show '+(correct?'right':'nope');
+  fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
+}
+</script>
 
   <!-- Mark complete -->
   <div class="mc-wrap">
