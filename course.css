@@ -1664,6 +1664,276 @@ footer .f-disclaimer a { text-decoration: underline; text-underline-offset: 2px;
   animation: none;
 }
 
+/* ══════════ INTERACTIVE TOOLS ══════════ */
+
+/* Shared tool container */
+.fga-tool {
+  max-width: var(--max-w);
+  margin: 48px auto;
+  padding: 0 24px;
+}
+.fga-tool-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.fga-tool-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ink) 0%, var(--ink-mute) 100%);
+}
+.fga-tool-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-mute);
+  padding: 5px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+.fga-tool-title {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.5vw, 32px);
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.fga-tool-sub {
+  font-size: 14px; color: var(--ink-dim);
+  line-height: 1.7; margin-bottom: 32px;
+  max-width: 560px;
+}
+
+/* Input rows */
+.fga-input-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.fga-input-wrap {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.fga-input-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.fga-input {
+  font-family: var(--sans);
+  font-size: 15px; font-weight: 500;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+}
+.fga-input:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(10,10,10,0.06);
+}
+.fga-input::placeholder { color: var(--ink-mute); font-weight: 400; }
+select.fga-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%238a8a8a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* Result panels */
+.fga-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+.fga-result-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.fga-result-card.highlight {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+.fga-result-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.6;
+}
+.fga-result-card.highlight .fga-result-label { color: rgba(255,255,255,0.6); }
+.fga-result-val {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.fga-result-card.highlight .fga-result-val { color: #fff; }
+.fga-result-note {
+  font-size: 12px; margin-top: 6px;
+  opacity: 0.5;
+}
+.fga-result-card.highlight .fga-result-note { color: rgba(255,255,255,0.5); }
+
+/* Bar chart */
+.fga-bar-compare {
+  display: flex; align-items: flex-end;
+  gap: 24px; height: 180px;
+  margin: 32px 0 16px;
+  padding: 0 20px;
+}
+.fga-bar-col {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 8px; height: 100%;
+  justify-content: flex-end;
+}
+.fga-bar {
+  width: 100%; border-radius: 6px 6px 0 0;
+  transition: height 0.8s cubic-bezier(.2,.7,.2,1);
+  position: relative;
+  min-height: 4px;
+}
+.fga-bar.trad { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.25); border-bottom: none; }
+.fga-bar.fast { background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.25); border-bottom: none; }
+.fga-bar-amount {
+  font-family: var(--serif); font-size: 18px;
+  font-weight: 400; color: var(--ink);
+}
+.fga-bar-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* Timeline builder */
+.fga-timeline-output {
+  margin-top: 24px;
+}
+.fga-tl-phase {
+  display: flex; gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.fga-tl-phase:last-child { border-bottom: none; }
+.fga-tl-dot {
+  width: 32px; height: 32px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--bg-panel);
+  border: 2px solid var(--line-2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: var(--ink-dim);
+}
+.fga-tl-dot.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+.fga-tl-content { flex: 1; }
+.fga-tl-dates {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-mute); margin-bottom: 4px;
+}
+.fga-tl-phase-name {
+  font-weight: 700; font-size: 15px;
+  color: var(--ink); margin-bottom: 4px;
+}
+.fga-tl-desc {
+  font-size: 13px; color: var(--ink-dim); line-height: 1.6;
+}
+.fga-tl-credits {
+  display: inline-block; margin-top: 6px;
+  font-family: var(--mono); font-size: 11px;
+  font-weight: 600; color: #22c55e;
+  background: rgba(34,197,94,0.08);
+  padding: 3px 10px; border-radius: 999px;
+}
+
+/* Credit explorer */
+.fga-filter-row {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 20px;
+}
+.fga-filter-btn {
+  font-size: 12px; font-weight: 600;
+  padding: 6px 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.fga-filter-btn:hover { background: var(--bg-panel); }
+.fga-filter-btn.active {
+  background: var(--ink); color: #fff;
+  border-color: var(--ink);
+}
+.fga-credit-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 60px;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  font-size: 13px;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.fga-credit-row:hover { background: var(--bg-panel); }
+.fga-credit-row.selected { background: rgba(34,197,94,0.06); }
+.fga-credit-row-head {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 60px;
+  gap: 12px;
+  padding: 10px 16px;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-mute);
+  border-bottom: 2px solid var(--line-2);
+}
+.fga-credit-name { font-weight: 600; color: var(--ink); }
+.fga-credit-check {
+  width: 18px; height: 18px;
+  border: 2px solid var(--line-2);
+  border-radius: 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.fga-credit-row.selected .fga-credit-check {
+  background: #22c55e; border-color: #22c55e; color: #fff;
+}
+.fga-credit-tally {
+  position: sticky; bottom: 0;
+  background: var(--bg-soft);
+  border-top: 2px solid var(--line-2);
+  padding: 16px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-radius: 0 0 12px 12px;
+  margin: 0 -32px -40px;
+}
+.fga-tally-num {
+  font-family: var(--serif); font-size: 28px; color: var(--ink);
+}
+.fga-tally-label {
+  font-size: 12px; color: var(--ink-mute);
+  font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.fga-tally-savings {
+  font-family: var(--serif); font-size: 20px; color: #22c55e;
+}
+
 /* ── RESPONSIVE ADDITIONS ── */
 @media (max-width: 600px) {
   .section-ornament { margin: 48px auto; }
@@ -1671,4 +1941,11 @@ footer .f-disclaimer a { text-decoration: underline; text-underline-offset: 2px;
   .ch-num-float { display: none; }
   .ch-meta { gap: 12px; }
   .section-fade-in, .section-fade-out { height: 40px; margin: 0 -18px; }
+  .fga-input-group { grid-template-columns: 1fr; }
+  .fga-results { grid-template-columns: 1fr; }
+  .fga-bar-compare { height: 140px; gap: 16px; }
+  .fga-credit-row { grid-template-columns: 1fr 60px 60px 50px; gap: 8px; font-size: 12px; }
+  .fga-credit-row-head { grid-template-columns: 1fr 60px 60px 50px; gap: 8px; }
+  .fga-tool-card { padding: 28px 20px; }
+  .fga-credit-tally { margin: 0 -20px -28px; }
 }

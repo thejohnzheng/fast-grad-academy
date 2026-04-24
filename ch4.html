@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 04 — Mastering CLEP Exams | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=11">
+<link rel="stylesheet" href="course.css?v=12">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -749,6 +749,138 @@ function unlockAccess(){
   </div>
 </section>
 
+<!-- ═══ INTERACTIVE: CREDIT EXPLORER ═══ -->
+<div class="fga-tool reveal" id="credit-explorer">
+  <div class="fga-tool-card">
+    <div class="fga-tool-badge">⚡ Interactive Tool</div>
+    <div class="fga-tool-title">CLEP Credit Explorer</div>
+    <div class="fga-tool-sub">Browse all 34 CLEP exams. Click to select the ones you plan to take. Watch your credit total grow.</div>
+
+    <div class="fga-filter-row" id="ce-filters">
+      <button class="fga-filter-btn active" data-cat="all">All Exams</button>
+      <button class="fga-filter-btn" data-cat="history">History &amp; Social Sci</button>
+      <button class="fga-filter-btn" data-cat="business">Business</button>
+      <button class="fga-filter-btn" data-cat="science">Science &amp; Math</button>
+      <button class="fga-filter-btn" data-cat="composition">Composition</button>
+      <button class="fga-filter-btn" data-cat="humanities">Humanities</button>
+      <button class="fga-filter-btn" data-cat="languages">Languages</button>
+    </div>
+
+    <div class="fga-credit-row-head">
+      <span>Exam Name</span>
+      <span>Credits</span>
+      <span>Difficulty</span>
+      <span>Select</span>
+    </div>
+
+    <div id="ce-list" style="max-height:420px;overflow-y:auto"></div>
+
+    <div class="fga-credit-tally">
+      <div>
+        <div class="fga-tally-label">Credits Selected</div>
+        <div class="fga-tally-num" id="ce-total">0</div>
+      </div>
+      <div style="text-align:right">
+        <div class="fga-tally-label">Estimated Savings</div>
+        <div class="fga-tally-savings" id="ce-savings">$0</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var exams = [
+    {name:"College Algebra",credits:3,diff:"Easy-Med",cat:"science"},
+    {name:"College Mathematics",credits:3,diff:"Easy",cat:"science"},
+    {name:"Precalculus",credits:3,diff:"Med-Hard",cat:"science"},
+    {name:"Calculus",credits:4,diff:"Hard",cat:"science"},
+    {name:"Biology",credits:6,diff:"Med-Hard",cat:"science"},
+    {name:"Chemistry",credits:6,diff:"Hard",cat:"science"},
+    {name:"Natural Sciences",credits:6,diff:"Medium",cat:"science"},
+    {name:"Introductory Psychology",credits:3,diff:"Easy",cat:"history"},
+    {name:"Introductory Sociology",credits:3,diff:"Easy",cat:"history"},
+    {name:"American Government",credits:3,diff:"Easy",cat:"history"},
+    {name:"US History I",credits:3,diff:"Medium",cat:"history"},
+    {name:"US History II",credits:3,diff:"Medium",cat:"history"},
+    {name:"Western Civilization I",credits:3,diff:"Medium",cat:"history"},
+    {name:"Western Civilization II",credits:3,diff:"Medium",cat:"history"},
+    {name:"Human Growth & Development",credits:3,diff:"Easy-Med",cat:"history"},
+    {name:"Social Sciences & History",credits:6,diff:"Easy-Med",cat:"history"},
+    {name:"Intro to Educational Psychology",credits:3,diff:"Easy-Med",cat:"history"},
+    {name:"Principles of Macroeconomics",credits:3,diff:"Medium",cat:"history"},
+    {name:"Principles of Microeconomics",credits:3,diff:"Medium",cat:"history"},
+    {name:"Principles of Management",credits:3,diff:"Easy-Med",cat:"business"},
+    {name:"Principles of Marketing",credits:3,diff:"Easy",cat:"business"},
+    {name:"Financial Accounting",credits:3,diff:"Medium",cat:"business"},
+    {name:"Info Systems & Computer Apps",credits:3,diff:"Easy-Med",cat:"business"},
+    {name:"Introductory Business Law",credits:3,diff:"Medium",cat:"business"},
+    {name:"College Composition",credits:3,diff:"Medium",cat:"composition"},
+    {name:"College Composition Modular",credits:3,diff:"Medium",cat:"composition"},
+    {name:"American Literature",credits:3,diff:"Medium",cat:"humanities"},
+    {name:"English Literature",credits:3,diff:"Medium",cat:"humanities"},
+    {name:"Analyzing & Interpreting Literature",credits:6,diff:"Easy",cat:"humanities"},
+    {name:"Humanities",credits:3,diff:"Easy-Med",cat:"humanities"},
+    {name:"Spanish Language (Levels 1&2)",credits:6,diff:"Med-Hard",cat:"languages"},
+    {name:"French Language (Levels 1&2)",credits:6,diff:"Med-Hard",cat:"languages"},
+    {name:"German Language (Levels 1&2)",credits:6,diff:"Med-Hard",cat:"languages"},
+    {name:"Spanish with Writing (Levels 1&2)",credits:6,diff:"Hard",cat:"languages"}
+  ];
+  var selected = {};
+  var list = document.getElementById('ce-list');
+  var totalEl = document.getElementById('ce-total');
+  var savingsEl = document.getElementById('ce-savings');
+
+  function diffColor(d){
+    if(d==='Easy') return 'background:rgba(34,197,94,0.12);color:#22c55e';
+    if(d==='Easy-Med') return 'background:rgba(34,197,94,0.08);color:#22c55e';
+    if(d==='Medium') return 'background:rgba(234,179,8,0.12);color:#eab308';
+    if(d==='Med-Hard') return 'background:rgba(249,115,22,0.12);color:#f97316';
+    return 'background:rgba(239,68,68,0.12);color:#ef4444';
+  }
+
+  function render(cat){
+    var filtered = cat==='all' ? exams : exams.filter(function(e){return e.cat===cat});
+    list.innerHTML = filtered.map(function(e,i){
+      var idx = exams.indexOf(e);
+      var sel = selected[idx];
+      return '<div class="fga-credit-row'+(sel?' selected':'')+'" data-idx="'+idx+'">'+
+        '<span class="fga-credit-name">'+e.name+'</span>'+
+        '<span>'+e.credits+'</span>'+
+        '<span><span class="diff-badge" style="'+diffColor(e.diff)+'">'+e.diff+'</span></span>'+
+        '<span class="fga-credit-check">'+(sel?'✓':'')+'</span>'+
+      '</div>';
+    }).join('');
+    list.querySelectorAll('.fga-credit-row').forEach(function(row){
+      row.addEventListener('click',function(){
+        var idx = parseInt(row.getAttribute('data-idx'));
+        selected[idx] = !selected[idx];
+        updateTally();
+        render(document.querySelector('.fga-filter-btn.active').getAttribute('data-cat'));
+      });
+    });
+  }
+
+  function updateTally(){
+    var total = 0;
+    Object.keys(selected).forEach(function(k){
+      if(selected[k]) total += exams[k].credits;
+    });
+    totalEl.textContent = total;
+    savingsEl.textContent = '$' + (total * 500).toLocaleString();
+  }
+
+  document.getElementById('ce-filters').addEventListener('click',function(e){
+    var btn = e.target.closest('.fga-filter-btn');
+    if(!btn) return;
+    document.querySelectorAll('#ce-filters .fga-filter-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    render(btn.getAttribute('data-cat'));
+  });
+
+  render('all');
+})();
+</script>
+
 <div class="ch-takeaway reveal">
     <div class="ch-takeaway-label">Key Takeaway</div>
     <div class="ch-takeaway-text">Verify before you study &mdash; every single time. Use Transferology and call the registrar. Two weeks of prep wasted on a credit that won&rsquo;t transfer is two weeks you&rsquo;ll never get back.</div>
@@ -765,6 +897,19 @@ function unlockAccess(){
 </div>
 
 <!-- Exercise -->
+
+<!-- Download Tool -->
+<div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 16px">
+  <a class="dl-card reveal" href="/downloads/FGA_CLEP_Sequence_Planner.xlsx" download>
+    <div class="dl-icon">📋</div>
+    <div class="dl-info">
+      <div class="dl-title">Download: CLEP Exam Sequence Planner</div>
+      <div class="dl-desc">Pre-sorted by priority: easiest + highest credit value first. Add your target dates and track your scores as you go.</div>
+    </div>
+    <div class="dl-btn">Download .xlsx ↓</div>
+  </a>
+</div>
+
 <div class="exercise-block reveal">
   <div class="exercise-label">⚡ Stop. Do this now.</div>
   <div class="exercise-title">Look Up Your School's CLEP Policy</div>

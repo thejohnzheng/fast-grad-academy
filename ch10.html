@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 10 — Your Personalized Roadmap | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=11">
+<link rel="stylesheet" href="course.css?v=12">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -790,6 +790,164 @@ function unlockAccess(){
   </div>
 </section>
 
+<!-- ═══ INTERACTIVE: TIMELINE BUILDER ═══ -->
+<div class="fga-tool reveal" id="timeline-builder">
+  <div class="fga-tool-card">
+    <div class="fga-tool-badge">⚡ Interactive Tool</div>
+    <div class="fga-tool-title">Your Personal Timeline</div>
+    <div class="fga-tool-sub">Enter your start date and current credits. Get a personalized graduation roadmap.</div>
+
+    <div class="fga-input-group">
+      <div class="fga-input-wrap">
+        <label class="fga-input-label" for="tl-start">When do you want to start?</label>
+        <input class="fga-input" id="tl-start" type="month" value="2026-06">
+      </div>
+      <div class="fga-input-wrap">
+        <label class="fga-input-label" for="tl-credits">Credits you already have</label>
+        <select class="fga-input" id="tl-credits">
+          <option value="0" selected>0 credits (starting fresh)</option>
+          <option value="15">~15 credits (some AP/CLEP)</option>
+          <option value="30">~30 credits (one semester)</option>
+          <option value="45">~45 credits (one year done)</option>
+          <option value="60">~60 credits (associate's / 2 years)</option>
+        </select>
+      </div>
+      <div class="fga-input-wrap">
+        <label class="fga-input-label" for="tl-pace">Weekly study hours</label>
+        <select class="fga-input" id="tl-pace">
+          <option value="10">10 hrs/week (part-time)</option>
+          <option value="20" selected>20 hrs/week (moderate)</option>
+          <option value="30">30 hrs/week (aggressive)</option>
+          <option value="40">40+ hrs/week (full-time blitz)</option>
+        </select>
+      </div>
+      <div class="fga-input-wrap">
+        <label class="fga-input-label" for="tl-school">Target school type</label>
+        <select class="fga-input" id="tl-school">
+          <option value="wgu" selected>WGU (competency-based)</option>
+          <option value="tesu">TESU (lowest residency)</option>
+          <option value="umpi">UMPI YourPace</option>
+          <option value="traditional">Traditional university</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="fga-timeline-output" id="tl-output"></div>
+
+    <div class="fga-results" style="margin-top:24px">
+      <div class="fga-result-card highlight">
+        <div class="fga-result-label">Graduation Date</div>
+        <div class="fga-result-val" id="tl-grad-date">Dec 2026</div>
+      </div>
+      <div class="fga-result-card">
+        <div class="fga-result-label">Total Time</div>
+        <div class="fga-result-val" id="tl-total-time">7 months</div>
+      </div>
+      <div class="fga-result-card">
+        <div class="fga-result-label">Estimated Cost</div>
+        <div class="fga-result-val" id="tl-cost">$5,060</div>
+      </div>
+      <div class="fga-result-card">
+        <div class="fga-result-label">Credits to Earn</div>
+        <div class="fga-result-val" id="tl-creds-needed">120</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--ink-mute);margin-top:16px;line-height:1.5">
+      Timeline is estimated based on typical completion rates. Actual pace depends on your background, study consistency, and school requirements. WGU requires one 6-month term minimum. TESU requires 9 residency credits. All timelines assume prior verification that credits transfer.
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var $ = function(id){return document.getElementById(id)};
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function addMonths(date, n){
+    var d = new Date(date);
+    d.setMonth(d.getMonth() + n);
+    return d;
+  }
+  function fmtDate(d){ return months[d.getMonth()] + ' ' + d.getFullYear(); }
+  function fmtRange(start, end){ return fmtDate(start) + ' — ' + fmtDate(end); }
+
+  function calc(){
+    var startVal = $('tl-start').value.split('-');
+    var startDate = new Date(parseInt(startVal[0]), parseInt(startVal[1])-1, 1);
+    var existing = parseInt($('tl-credits').value);
+    var pace = parseInt($('tl-pace').value);
+    var school = $('tl-school').value;
+    var needed = 120 - existing;
+    var creditsPerMonth = pace <= 10 ? 6 : pace <= 20 ? 10 : pace <= 30 ? 14 : 18;
+    var residencyCredits = school === 'tesu' ? 9 : school === 'wgu' ? 30 : school === 'umpi' ? 24 : 30;
+    var residencyMonths = school === 'wgu' ? 6 : school === 'tesu' ? 3 : school === 'umpi' ? 4 : 6;
+    var preloadCredits = Math.max(0, needed - residencyCredits);
+    var preloadMonths = Math.ceil(preloadCredits / creditsPerMonth);
+    var totalMonths = preloadMonths + 1 + residencyMonths;
+    var gradDate = addMonths(startDate, totalMonths);
+
+    var sophiaCost = Math.min(preloadMonths, 3) * 99;
+    var studycomCost = Math.max(0, preloadMonths - 3) * 235;
+    var clepCost = Math.min(8, Math.floor(preloadCredits / 4)) * 25;
+    var residencyCost = school === 'wgu' ? 3998 : school === 'tesu' ? 3200 : school === 'umpi' ? 5000 : 8000;
+    var totalCost = sophiaCost + studycomCost + clepCost + residencyCost + 65;
+
+    var phases = [];
+    if(preloadMonths > 0){
+      phases.push({
+        num: 1, name: 'Pre-Load Sprint',
+        dates: fmtRange(startDate, addMonths(startDate, preloadMonths)),
+        desc: 'Sophia Learning + Study.com + CLEP exams. ' + creditsPerMonth + ' credits/month at your pace.',
+        credits: '+' + preloadCredits + ' credits',
+        active: true
+      });
+    }
+    phases.push({
+      num: phases.length + 1, name: 'Apply & Transfer',
+      dates: fmtDate(addMonths(startDate, preloadMonths)),
+      desc: 'Submit application to ' + school.toUpperCase() + '. Request all transcript evaluations.',
+      credits: 'Transfer ' + (existing + preloadCredits) + ' credits',
+      active: false
+    });
+    phases.push({
+      num: phases.length + 1, name: 'Residency',
+      dates: fmtRange(addMonths(startDate, preloadMonths + 1), gradDate),
+      desc: 'Complete ' + residencyCredits + ' credits at ' + school.toUpperCase() + '. Major-specific and capstone courses.',
+      credits: '+' + residencyCredits + ' credits → 120 total',
+      active: false
+    });
+    phases.push({
+      num: phases.length + 1, name: 'Graduate',
+      dates: fmtDate(gradDate),
+      desc: 'Bachelor\'s degree conferred. Zero debt. Years ahead of your peers.',
+      credits: '🎓 Done',
+      active: false
+    });
+
+    $('tl-output').innerHTML = phases.map(function(p){
+      return '<div class="fga-tl-phase">'+
+        '<div class="fga-tl-dot'+(p.active?' active':'')+'">'+p.num+'</div>'+
+        '<div class="fga-tl-content">'+
+          '<div class="fga-tl-dates">'+p.dates+'</div>'+
+          '<div class="fga-tl-phase-name">'+p.name+'</div>'+
+          '<div class="fga-tl-desc">'+p.desc+'</div>'+
+          '<div class="fga-tl-credits">'+p.credits+'</div>'+
+        '</div>'+
+      '</div>';
+    }).join('');
+
+    $('tl-grad-date').textContent = fmtDate(gradDate);
+    $('tl-total-time').textContent = totalMonths + ' mo';
+    $('tl-cost').textContent = '$' + totalCost.toLocaleString();
+    $('tl-creds-needed').textContent = needed;
+  }
+
+  ['tl-start','tl-credits','tl-pace','tl-school'].forEach(function(id){
+    $(id).addEventListener('change', calc);
+  });
+  calc();
+})();
+</script>
+
 <div class="ch-takeaway reveal">
     <div class="ch-takeaway-label">Key Takeaway</div>
     <div class="ch-takeaway-text">Graduating 2&ndash;3 years early means $150K&ndash;$200K in additional lifetime earnings &mdash; before factoring in the debt you never took on. Pick your path and start the 52-week clock.</div>
@@ -806,6 +964,29 @@ function unlockAccess(){
 </div>
 
 <!-- Exercise -->
+
+<!-- Download Tools -->
+<div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 16px">
+  <a class="dl-card reveal" href="/downloads/FGA_52_Week_Roadmap.xlsx" download>
+    <div class="dl-icon">📅</div>
+    <div class="dl-info">
+      <div class="dl-title">Download: 52-Week Roadmap Calendar</div>
+      <div class="dl-desc">Week-by-week calendar with phases, tasks, credit tracking, and running totals. Color-coded by phase. Fill in your target dates and track your progress.</div>
+    </div>
+    <div class="dl-btn">Download .xlsx ↓</div>
+  </a>
+</div>
+<div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 16px">
+  <a class="dl-card reveal" href="/downloads/FGA_School_Comparison_Matrix.xlsx" download>
+    <div class="dl-icon">🏫</div>
+    <div class="dl-info">
+      <div class="dl-title">Download: School Comparison Matrix</div>
+      <div class="dl-desc">WGU vs TESU vs UMPI vs Excelsior — side by side on 13 criteria. Tuition, transfer caps, Sophia acceptance, residency requirements, and more.</div>
+    </div>
+    <div class="dl-btn">Download .xlsx ↓</div>
+  </a>
+</div>
+
 <div class="exercise-block reveal">
   <div class="exercise-label">⚡ Stop. Do this now.</div>
   <div class="exercise-title">Draft Your 52-Week Acceleration Timeline</div>

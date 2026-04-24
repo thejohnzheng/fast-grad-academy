@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <title>Ch. 01 — Breaking the Education System | Fast Grad Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=11">
+<link rel="stylesheet" href="course.css?v=12">
 <style>
 /* Chapter-specific: reading progress + mark-complete */
 .mc-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px; }
@@ -366,6 +366,121 @@ function unlockAccess(){
     </div>
   </a>
 </section>
+
+<!-- ═══ INTERACTIVE: SAVINGS CALCULATOR ═══ -->
+<div class="fga-tool reveal" id="savings-calc">
+  <div class="fga-tool-card">
+    <div class="fga-tool-badge">⚡ Interactive Tool</div>
+    <div class="fga-tool-title">Your Savings Calculator</div>
+    <div class="fga-tool-sub">Enter your school's numbers. See exactly how much the fast-grad path saves you.</div>
+
+    <div class="fga-input-group">
+      <div class="fga-input-wrap">
+        <label class="fga-input-label" for="sc-tuition">Annual Tuition &amp; Fees</label>
+        <input class="fga-input" id="sc-tuition" type="text" placeholder="$25,000" value="$27,146">
+      </div>
+      <div class="fga-input-wrap">
+        <label class="fga-input-label" for="sc-years">Years in Traditional Path</label>
+        <select class="fga-input" id="sc-years">
+          <option value="4" selected>4 years (standard)</option>
+          <option value="5">5 years</option>
+          <option value="6">6 years (common for transfers)</option>
+        </select>
+      </div>
+      <div class="fga-input-wrap">
+        <label class="fga-input-label" for="sc-room">Annual Room &amp; Board</label>
+        <input class="fga-input" id="sc-room" type="text" placeholder="$12,000" value="$12,310">
+      </div>
+      <div class="fga-input-wrap">
+        <label class="fga-input-label" for="sc-salary">Expected Starting Salary</label>
+        <input class="fga-input" id="sc-salary" type="text" placeholder="$55,000" value="$59,000">
+      </div>
+    </div>
+
+    <div class="fga-bar-compare" id="sc-bars">
+      <div class="fga-bar-col">
+        <div class="fga-bar-amount" id="sc-trad-amt">$268K</div>
+        <div class="fga-bar trad" id="sc-trad-bar" style="height:90%"></div>
+        <div class="fga-bar-label">Traditional</div>
+      </div>
+      <div class="fga-bar-col">
+        <div class="fga-bar-amount" id="sc-fast-amt">$5K</div>
+        <div class="fga-bar fast" id="sc-fast-bar" style="height:3%"></div>
+        <div class="fga-bar-label">Fast Grad</div>
+      </div>
+    </div>
+
+    <div class="fga-results" id="sc-results">
+      <div class="fga-result-card highlight">
+        <div class="fga-result-label">Total Savings</div>
+        <div class="fga-result-val" id="sc-savings">$263,000</div>
+        <div class="fga-result-note">tuition + opportunity cost</div>
+      </div>
+      <div class="fga-result-card">
+        <div class="fga-result-label">Years Freed Up</div>
+        <div class="fga-result-val" id="sc-years-saved">3 yrs</div>
+        <div class="fga-result-note">earning instead of paying</div>
+      </div>
+      <div class="fga-result-card">
+        <div class="fga-result-label">Lifetime Wealth Gain</div>
+        <div class="fga-result-val" id="sc-wealth">$420K</div>
+        <div class="fga-result-note">savings + early earnings invested</div>
+      </div>
+      <div class="fga-result-card">
+        <div class="fga-result-label">Cost Per Credit</div>
+        <div class="fga-result-val" id="sc-percredit">$42</div>
+        <div class="fga-result-note">vs <span id="sc-trad-percredit">$904</span> traditional</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--ink-mute);margin-top:16px;line-height:1.5">
+      Estimates based on your inputs. Traditional total includes tuition, room &amp; board, and opportunity cost (years not earning). Fast-grad path assumes ~$5,000 in exam fees and one university term. Lifetime wealth gain assumes savings invested at 7% annual return over 30 years. Individual results vary by school, effort, and situation.
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var $ = function(id){return document.getElementById(id)};
+  var parse = function(v){return parseInt(v.replace(/[^0-9]/g,''),10)||0};
+  var fmt = function(n){
+    if(n>=1000000) return '$'+Math.round(n/1000)+'K';
+    if(n>=1000) return '$'+Math.round(n/1000)+'K';
+    return '$'+n.toLocaleString();
+  };
+  var fmtFull = function(n){return '$'+Math.round(n).toLocaleString()};
+  function calc(){
+    var tuition = parse($('sc-tuition').value);
+    var years = parseInt($('sc-years').value);
+    var room = parse($('sc-room').value);
+    var salary = parse($('sc-salary').value);
+    var tradTotal = (tuition + room) * years;
+    var oppCost = salary * (years - 1);
+    var tradFull = tradTotal + oppCost;
+    var fastCost = 5060;
+    var savings = tradTotal - fastCost;
+    var yearsSaved = years - 1;
+    var earlyEarnings = salary * yearsSaved;
+    var invested = (savings + earlyEarnings) * Math.pow(1.07, 30);
+    var tradPerCredit = Math.round(tradTotal / 120);
+    var fastPerCredit = Math.round(fastCost / 120);
+    var tradH = 90;
+    var fastH = Math.max(3, (fastCost / tradFull) * 90);
+    $('sc-trad-bar').style.height = tradH + '%';
+    $('sc-fast-bar').style.height = fastH + '%';
+    $('sc-trad-amt').textContent = fmt(tradFull);
+    $('sc-fast-amt').textContent = fmt(fastCost);
+    $('sc-savings').textContent = fmtFull(savings);
+    $('sc-years-saved').textContent = yearsSaved + ' yrs';
+    $('sc-wealth').textContent = fmt(Math.round(invested));
+    $('sc-percredit').textContent = '$' + fastPerCredit;
+    $('sc-trad-percredit').textContent = '$' + tradPerCredit;
+  }
+  ['sc-tuition','sc-room','sc-salary'].forEach(function(id){
+    $(id).addEventListener('input', calc);
+  });
+  $('sc-years').addEventListener('change', calc);
+  calc();
+})();
+</script>
 
 <div class="ch-takeaway reveal">
     <div class="ch-takeaway-label">Key Takeaway</div>
