@@ -201,6 +201,14 @@ function unlockAccess(){
   <div class="ch-body">
     <p>When I graduated, ChatGPT didn't exist. You have an unfair advantage that no previous generation of students has had: AI as a personal study partner, tutor, quiz master, and flashcard generator. Used correctly, AI can compress your study time by 50% or more — not by replacing the learning, but by making every study hour more effective.</p>
 
+    <p class="reveal">Before AI, students studying for CLEP exams had to rely on static study guides, pre-made flashcard sets, and practice exams with a limited question pool. You'd burn through Peterson's practice tests in a weekend and then what? You'd re-read the same material, hoping something new would stick. The problem was never motivation — it was running out of fresh material to practice with. AI changes this completely. You now have an infinite source of custom practice questions, explanations tailored to your specific weak areas, and feedback that adapts in real time. You will never run out of practice material again. That single fact changes the entire equation for self-study exam prep.</p>
+
+    <p class="reveal">Here's the mental model I want you to carry through this chapter: think of AI as a private tutor who never gets tired, never judges you for asking "dumb" questions, and can adapt to your exact level in real time. The best tutors don't just hand you the answer — they ask you questions until you figure it out yourself. They probe your understanding, find the cracks, and make you patch them. That's exactly what these prompts are designed to do. Each one puts you in the driver's seat, forcing you to actively engage with the material rather than passively consume it. You're not reading AI-generated notes. You're being quizzed, challenged, and corrected by an AI that has the patience of a saint and the knowledge base of a thousand textbooks.</p>
+
+    <p class="reveal">One critical warning before we dive in: AI makes it dangerously easy to <em>feel</em> like you're studying when you're actually just reading AI-generated content passively. You ask ChatGPT to "explain macroeconomics," it gives you a beautiful summary, you read it, and you feel smart. But you haven't learned anything — you've just consumed information. Consumption is not learning. The prompts in this chapter are specifically designed to force active engagement. You answer questions. You explain concepts in your own words. You identify your own weak areas. If you're not struggling during your AI study sessions, you're not learning. The struggle IS the learning. If every AI interaction feels easy and comfortable, you're doing it wrong. Lean into the discomfort — that's where the growth happens.</p>
+
+    <p class="reveal">With that foundation set, let's get into the actual prompts. I've organized these in the order you should use them during your study timeline — from initial planning all the way to the night before your exam. Each prompt serves a specific purpose, and together they form a complete AI-powered study system.</p>
+
     <div class="tool-strip">
       <div class="tool-strip-label">Tools in this chapter</div>
       <div class="tool-strip-row">
@@ -261,6 +269,8 @@ function unlockAccess(){
       <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
     </div>
 
+    <p class="reveal">Once you have your study plan from Prompt 1, the next step is testing what you already know. Don't study first — test first. This baseline tells you exactly where to focus. You'll be surprised how much you already know from life experience, especially on exams like Introductory Psychology, American Government, or Personal Finance. Why waste time studying material you can already pass? Prompt 2 gives you that diagnostic baseline.</p>
+
     <div class="prompt-box reveal">
       <div class="prompt-label">🤖 Prompt 2 — Active Recall Quiz Generator</div>
       <div class="prompt-text">Act as a strict exam proctor. Generate 20 multiple-choice questions on [topic: Principles of Macroeconomics — Monetary Policy] at the difficulty level of a CLEP exam. Include 4 answer choices per question. After I answer each question, tell me if I'm correct, explain why the right answer is right, and explain why each wrong answer is wrong. Track my score as we go.</div>
@@ -318,6 +328,8 @@ function unlockAccess(){
       </div>
     </div>
 
+    <p class="reveal">By now you should have 3-4 days of Anki cards built up. The magic of spaced repetition means your daily review takes only 10-15 minutes, but the retention compounds exponentially. While Anki handles memorization in the background, you're ready for a full practice run. Prompt 5 simulates the actual exam experience — timed questions, realistic difficulty, and a score at the end. This is where you find out if your preparation is actually working or if you've been fooling yourself.</p>
+
     <div class="prompt-box reveal">
       <div class="prompt-label">🤖 Prompt 5 — Practice Exam Simulator</div>
       <div class="prompt-text">Simulate a full [CLEP College Composition] practice exam. Give me questions one at a time, timed at 90 seconds per question. Include the same distribution of topics as the real exam. At the end, give me my score out of 80, identify my weakest topic areas, and create a targeted 3-day study plan to address those weaknesses before my exam on [date].</div>
@@ -329,6 +341,8 @@ function unlockAccess(){
       <div class="prompt-text">I'm studying for [CLEP Introductory Sociology]. Take these 5 concepts: [social stratification, deviance, socialization, symbolic interactionism, functionalism] and show me how they connect to each other. Create a concept map in text form. Then give me 3 exam questions that require understanding multiple concepts together.</div>
       <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
     </div>
+
+    <p class="reveal">If you've made it through Prompts 1-6 over 2-3 weeks, you've covered the material deeply enough for most CLEP exams. Prompt 7 isn't about learning new material — it's about building confidence and catching any last blind spots. Think of it as a pre-flight checklist. You're not building the plane anymore; you're making sure every bolt is tight before takeoff.</p>
 
     <div class="prompt-box reveal">
       <div class="prompt-label">🤖 Prompt 7 — Night-Before Confidence Check</div>
@@ -379,6 +393,18 @@ function unlockAccess(){
         <div class="gc-tag">Final Review</div>
       </div>
     </div>
+  </div>
+
+  <div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 48px">
+    <h3 class="reveal" style="font-family:var(--serif);font-size:1.6rem;margin-bottom:24px">How to Build Your AI Study Workflow</h3>
+
+    <p class="reveal">Let me walk you through exactly how a real 3-week CLEP study cycle looks when you're using these prompts. This isn't theoretical — this is the playbook that gets you from "I've never studied this subject" to "I just passed the exam" in 21 days. The key insight is that you're not doing all eight prompts in order and then sitting for the exam. You're layering them — some run in parallel, some build on results from others, and the whole system creates a feedback loop where each day's effort compounds on the last.</p>
+
+    <p class="reveal"><strong>Week 1 (Days 1-7):</strong> Start with Prompt 1 on Day 1 to get the full syllabus breakdown with topic weights. Spend Days 2-4 learning the two or three highest-weight topics using Khan Academy videos, your Modern States course, or NotebookLM audio summaries. Don't try to learn everything — focus on the topics worth the most points. By Day 4, use Prompt 3 (Feynman Technique) to test your understanding of those top topics. Explain them to the AI like you're teaching a smart kid. The gaps it finds will surprise you. Days 5-7, start generating Anki cards with Prompt 4 for everything you've covered so far. By the end of Week 1, you should have 40-60 flashcards in your Anki deck and a solid grasp of the highest-weight material.</p>
+
+    <p class="reveal"><strong>Week 2 (Days 8-14):</strong> Start each day with 15 minutes of Anki — this is non-negotiable. The spaced repetition algorithm is doing heavy lifting in the background, but only if you show up daily. Then take AI-generated quizzes (Prompt 2) on the topics you covered in Week 1. Your goal is to identify what you <em>think</em> you know versus what you <em>actually</em> know. Use Prompt 6 (Concept Connector) mid-week to see how the major topics relate to each other — CLEP loves questions that test connections between ideas, not just isolated facts. By the end of Week 2, you should be scoring 60-70% on AI-generated practice questions. If you're below 50%, extend Week 2 by a few days before moving on.</p>
+
+    <p class="reveal"><strong>Week 3 (Days 15-21):</strong> Take a full practice exam using Prompt 5 on Day 15. This is your reality check. Whatever you score, don't panic — you still have a week. Use Prompt 8 (Weak Area Diagnosis) on every topic you got wrong. This generates targeted practice for your specific weaknesses, not generic review. Days 17-19, cycle through Prompt 2 quizzes focused only on your weak areas. Take another full practice exam on Day 19. You should see a meaningful jump. Keep drilling until you're consistently scoring 75% or higher. Night before the exam: run Prompt 7 for the rapid-fire confidence check. Then close your laptop and get eight hours of sleep. The work is done.</p>
   </div>
 
   <div class="chapter" style="padding-top:48px;padding-bottom:0">
