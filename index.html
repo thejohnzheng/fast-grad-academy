@@ -333,6 +333,15 @@
   .pain-stat .num .small { font-size: 0.45em; color: var(--dark-mute); vertical-align: top; margin-left: 4px; }
   .pain-stat .lbl { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-mute); font-weight: 600; }
   .pain-stat p { color: var(--dark-dim); font-size: 14.5px; max-width: 32ch; line-height: 1.55; }
+  .pain-stat p strong { color: #e74c3c; }
+
+  /* ——— debt reality cards ——— */
+  .debt-card { background: var(--dark-1); border: 1px solid var(--dark-line); border-radius: 12px; padding: 24px; }
+  .debt-card-num { font-family: var(--serif); font-size: clamp(2.2rem,5vw,3rem); color: #e74c3c; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .debt-card-num .small { font-size: 0.45em; color: var(--dark-mute); vertical-align: top; margin-left: 3px; }
+  .debt-card-label { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--dark-mute); font-weight: 600; margin-bottom: 10px; }
+  .debt-card p { color: var(--dark-dim); font-size: 13.5px; line-height: 1.55; margin: 0; }
+  @media (max-width: 600px) { #debt-viz { padding: 20px !important; } #debt-viz > div:first-child { grid-template-columns: 1fr !important; } #debt-viz > div:nth-child(2) { grid-template-columns: 1fr !important; } }
 
   /* ——— math ——— */
   .math-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -741,26 +750,107 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">The system you were sold</span>
-      <h2 style="margin-top:14px">The system was never designed for <em>your</em> benefit.</h2>
-      <p class="lead">The four-year degree is a billing cycle. These are the numbers nobody prints on the brochure.</p>
+      <h2 style="margin-top:14px">$1.84 trillion. 42.8 million trapped.<br/><em>This is the system working as designed.</em></h2>
+      <p class="lead">Right now, someone defaults on a student loan every 9 seconds. 71% of borrowers regret their decision. 1 in 16 have considered ending their life over the debt. These aren't edge cases — they're the average outcome.</p>
     </div>
     <div class="pain-stats">
       <div class="pain-stat reveal">
         <div class="lbl">Average student debt</div>
         <div class="num">$39,633</div>
-        <p>Carried by the average bachelor's recipient at graduation, before interest begins compounding the next morning.</p>
+        <p>That's the average — and it takes <strong>20 years</strong> to pay off, not the 10 they tell you. At 6.39% interest, you'll pay back nearly double what you borrowed.</p>
       </div>
       <div class="pain-stat reveal">
-        <div class="lbl">Years to pay it back</div>
-        <div class="num">10<span class="small">yrs</span></div>
-        <p>The median repayment timeline. A full decade of post-grad income routed toward a problem that was avoidable.</p>
+        <div class="lbl">Defaults in 2025</div>
+        <div class="num">9.2<span class="small">M</span></div>
+        <p>9.2 million borrowers are currently in default. Delinquency jumped 18x in a single year. The government can garnish 15% of your paycheck and seize your tax refund.</p>
       </div>
       <div class="pain-stat reveal">
-        <div class="lbl">Life milestones delayed</div>
-        <div class="num">84<span class="small">%</span></div>
-        <p>Of grads say student debt has delayed buying a home. Retirement, marriage, and family planning follow close behind.</p>
+        <div class="lbl">Borrowers with regret</div>
+        <div class="num">71<span class="small">%</span></div>
+        <p>Of borrowers regret taking out loans. 63% of voters now say a four-year degree isn't worth the cost. The sentiment has shifted — the system hasn't.</p>
       </div>
     </div>
+
+    <!-- Debt Reality Expansion -->
+    <div class="debt-reality reveal" style="margin-top:64px;padding-top:48px;border-top:1px solid var(--dark-line)">
+      <h3 style="font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;text-align:center;margin-bottom:12px;font-weight:400">What student debt actually costs you</h3>
+      <p style="text-align:center;color:var(--dark-dim);max-width:52ch;margin:0 auto 40px;font-size:15px;line-height:1.65">It's not just the monthly payment. It's everything you can't do, can't start, can't build while that balance sits on your back.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:900px;margin:0 auto">
+        <div class="debt-card reveal">
+          <div class="debt-card-num">20<span class="small">yrs</span></div>
+          <div class="debt-card-label">Actual repayment time</div>
+          <p>Not 10. Twenty. That's your entire twenties and thirties spent paying for a decision you made at 18.</p>
+        </div>
+        <div class="debt-card reveal">
+          <div class="debt-card-num">10<span class="small">yrs</span></div>
+          <div class="debt-card-label">Homeownership delayed</div>
+          <p>27% of graduates say debt pushed back buying a home by a decade. You're renting while your debt-free peers build equity.</p>
+        </div>
+        <div class="debt-card reveal">
+          <div class="debt-card-num">2<span class="small">M</span></div>
+          <div class="debt-card-label">Businesses never started</div>
+          <p>An estimated 2 million businesses were never created because the founders were trapped under student loan payments.</p>
+        </div>
+        <div class="debt-card reveal">
+          <div class="debt-card-num">52<span class="small">%</span></div>
+          <div class="debt-card-label">Owe more than they borrowed</div>
+          <p>More than half of Black borrowers owe more than their original loan 12 years later. The debt literally grows while you "pay."</p>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--dark-mute);font-size:11px;margin-top:24px;line-height:1.5">Sources: Education Data Initiative (2025), Federal Reserve Q4 2025, Protect Borrowers, Philadelphia Fed, Urban Institute</p>
+    </div>
+
+    <!-- Debt Trap Visualizer -->
+    <div class="debt-visualizer reveal" style="margin-top:64px;padding-top:48px;border-top:1px solid var(--dark-line)">
+      <h3 style="font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,1.8rem);color:#fff;text-align:center;margin-bottom:8px;font-weight:400">See what the traditional path actually costs <em>you</em></h3>
+      <p style="text-align:center;color:var(--dark-dim);max-width:48ch;margin:0 auto 32px;font-size:14.5px;line-height:1.6">Enter your numbers. Watch the gap between two futures.</p>
+      <div id="debt-viz" style="max-width:700px;margin:0 auto;background:var(--dark-1);border:1px solid var(--dark-line);border-radius:16px;padding:32px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
+          <div>
+            <label style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dark-mute);font-weight:600;display:block;margin-bottom:6px">Annual Tuition</label>
+            <input type="number" id="dv-tuition" value="27146" style="width:100%;padding:10px 12px;background:var(--dark-2);border:1px solid var(--dark-line);border-radius:8px;color:#fff;font-size:16px;font-family:var(--mono)">
+          </div>
+          <div>
+            <label style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dark-mute);font-weight:600;display:block;margin-bottom:6px">Loan Interest Rate</label>
+            <input type="number" id="dv-rate" value="6.39" step="0.1" style="width:100%;padding:10px 12px;background:var(--dark-2);border:1px solid var(--dark-line);border-radius:8px;color:#fff;font-size:16px;font-family:var(--mono)">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px">
+          <div style="text-align:center;padding:20px;background:rgba(231,76,60,0.08);border:1px solid rgba(231,76,60,0.2);border-radius:12px">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#e74c3c;font-weight:600;margin-bottom:8px">Traditional Path</div>
+            <div id="dv-trad-total" style="font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.4rem);color:#e74c3c;font-weight:400">$108,584</div>
+            <div style="font-size:12px;color:var(--dark-mute);margin-top:4px">Total paid over <span id="dv-trad-years">20</span> years</div>
+          </div>
+          <div style="text-align:center;padding:20px;background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.2);border-radius:12px">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#2ecc71;font-weight:600;margin-bottom:8px">Fast Grad Path</div>
+            <div id="dv-fast-total" style="font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.4rem);color:#2ecc71;font-weight:400">$5,060</div>
+            <div style="font-size:12px;color:var(--dark-mute);margin-top:4px">One-time. Done. No debt.</div>
+          </div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--dark-2);border-radius:10px">
+          <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dark-mute);font-weight:600;margin-bottom:6px">Your lifetime wealth difference</div>
+          <div id="dv-wealth" style="font-family:var(--serif);font-size:clamp(2rem,5vw,3rem);color:#c4a97d;font-weight:400">$847,000+</div>
+          <div style="font-size:12px;color:var(--dark-dim);margin-top:4px">Savings invested at 7% over 30 years</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var ti=document.getElementById('dv-tuition'),ri=document.getElementById('dv-rate');
+      function calc(){
+        var t=parseFloat(ti.value)||27146,r=(parseFloat(ri.value)||6.39)/100;
+        var loan=t*4,monthly=loan*(r/12)/(1-Math.pow(1+r/12,-240)),totalPaid=monthly*240;
+        var fast=5060,savings=totalPaid-fast,earlyEarn=59000*3;
+        var invested=(savings+earlyEarn)*Math.pow(1.07,30);
+        document.getElementById('dv-trad-total').textContent='$'+Math.round(totalPaid).toLocaleString();
+        document.getElementById('dv-fast-total').textContent='$'+fast.toLocaleString();
+        document.getElementById('dv-wealth').textContent='$'+Math.round(invested).toLocaleString();
+      }
+      ti.addEventListener('input',calc);ri.addEventListener('input',calc);calc();
+    })();
+    </script>
+
   </div>
 </section>
 
