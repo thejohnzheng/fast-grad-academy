@@ -673,6 +673,41 @@
   /* ——— proof image ——— */
   .proof-img-wrap img { box-shadow: 0 12px 40px -12px rgba(10,10,10,0.12); }
 
+  /* ——— parent bridge ——— */
+  .parent-bridge {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(196,169,125,0.06);
+    border-top: 1px solid rgba(196,169,125,0.15);
+    border-bottom: 1px solid rgba(196,169,125,0.15);
+  }
+  .parent-bridge p:first-child {
+    font-size: 15px;
+    color: var(--ink-mute);
+    margin-bottom: 12px;
+  }
+  .parent-bridge a {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid #c4a97d;
+    border-radius: 8px;
+    color: #9b7b37;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .03em;
+    transition: background .2s, color .2s, transform .2s;
+  }
+  .parent-bridge a:hover {
+    background: #c4a97d;
+    color: #0a0a0a;
+    transform: translateY(-1px);
+  }
+  .parent-bridge p:last-child {
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 10px;
+  }
+
   /* ——— mobile menu ——— */
   body.nav-open { overflow: hidden; }
   .menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
@@ -1037,6 +1072,12 @@
     <p style="font-size:11px;color:var(--dark-mute);max-width:680px;line-height:1.6">Real stories sourced from YouTube, Modern States, news outlets, personal blogs, and verified purchases. Results are not typical and individual outcomes will vary based on effort, prior credits, and institution policies. These testimonials represent individual experiences and are not guarantees of specific results. Industry-wide statistics above reflect the broader credit-by-exam movement, not Fast Grad Academy students exclusively.</p>
   </div>
 </section>
+
+<div class="parent-bridge reveal">
+  <p>Not the one paying? This guide is for students, but parents make it happen.</p>
+  <a href="#parents">Send This to Your Parents <span>→</span></a>
+  <p>They'll want to see the math and savings, accreditation details, and refund policy.</p>
+</div>
 
 <!-- ============ WHAT'S INSIDE (BENTO) ============ -->
 <section class="section" id="inside" style="background:#fff">
