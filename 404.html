@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Fast Grad Academy</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="course.css?v=12">
+<style>
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .not-found-main {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 96px 28px;
+  }
+  .not-found-inner {
+    max-width: 680px;
+    text-align: center;
+  }
+  .not-found-code {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 22px;
+  }
+  .not-found-title {
+    font-family: var(--serif);
+    font-size: clamp(46px, 8vw, 84px);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin-bottom: 22px;
+  }
+  .not-found-title em {
+    color: var(--ink-dim);
+  }
+  .not-found-copy {
+    color: var(--ink-dim);
+    font-size: 17px;
+    line-height: 1.75;
+    max-width: 520px;
+    margin: 0 auto 34px;
+  }
+  .not-found-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .not-found-footer {
+    border-top: 1px solid var(--line);
+    padding: 24px 28px;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/guide">Course</a>
+      <a href="/tracker">Tracker</a>
+    </div>
+    <a href="/" class="btn-outline">Home <span>&rarr;</span></a>
+  </div>
+</nav>
+
+<main class="not-found-main">
+  <div class="not-found-inner">
+    <div class="not-found-code">404</div>
+    <h1 class="not-found-title">Page <em>not found.</em></h1>
+    <p class="not-found-copy">That page is not part of the Fast Grad Academy map. Head back to the homepage and restart from the current guide path.</p>
+    <div class="not-found-actions">
+      <a class="btn-primary" href="/">Back to homepage <span>&rarr;</span></a>
+      <a class="btn-outline" href="/contact">Contact support</a>
+    </div>
+  </div>
+</main>
+
+<footer class="not-found-footer">
+  &copy; 2026 Executive Strategy Consulting LLC d.b.a. Fast Grad Academy. All rights reserved.
+</footer>
+</body>
+</html>
