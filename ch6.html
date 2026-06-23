@@ -539,6 +539,11 @@ if(sbToggle && sidebar){
 (function(){
   try{
     var s = JSON.parse(localStorage.getItem('fga_course')||'{}');
+    // Beta reviewer bypass
+    if(new URLSearchParams(window.location.search).get('beta')==='fga2026'){
+      s.access=true;s.beta=true;
+      localStorage.setItem('fga_course',JSON.stringify(s));
+    }
     if(!s.access){ window.location.href='/guide'; return; }
     var completed = s.completed||[];
     var pct = Math.round(completed.length/12*100);
