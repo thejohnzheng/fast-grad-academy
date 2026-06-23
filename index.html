@@ -674,17 +674,54 @@
   .proof-img-wrap img { box-shadow: 0 12px 40px -12px rgba(10,10,10,0.12); }
 
   /* ——— mobile menu ——— */
+  body.nav-open { overflow: hidden; }
   .menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
   .menu-btn svg { width: 22px; height: 22px; stroke: #0a0a0a; stroke-width: 1.5; fill: none; }
+  .mobile-nav-panel {
+    position: fixed; inset: 0; z-index: 200;
+    background: #0a0a0a; color: #fff;
+    display: flex; flex-direction: column;
+    padding: 24px 28px 36px;
+    transform: translateX(100%);
+    opacity: 0; pointer-events: none;
+    transition: transform .36s cubic-bezier(.2,.7,.2,1), opacity .28s ease;
+  }
+  .mobile-nav-panel.open {
+    transform: translateX(0);
+    opacity: 1; pointer-events: auto;
+  }
+  .mobile-nav-head { display: flex; align-items: center; justify-content: space-between; }
+  .mobile-nav-head .logo { color: #fff; }
+  .mobile-nav-close {
+    width: 42px; height: 42px; border: 1px solid rgba(196,169,125,0.42); border-radius: 50%;
+    color: #c4a97d; display: grid; place-items: center;
+    font-size: 26px; line-height: 1;
+  }
+  .mobile-nav-links {
+    display: flex; flex-direction: column; gap: 24px;
+    margin-top: min(16vh, 120px);
+  }
+  .mobile-nav-links a {
+    font-family: var(--serif);
+    font-size: clamp(34px, 10vw, 58px);
+    line-height: 0.98; letter-spacing: -0.01em;
+    color: #fff;
+  }
+  .mobile-nav-links a:hover { color: #c4a97d; }
+  .mobile-nav-links .mobile-nav-cta {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: fit-content; margin-top: 14px;
+    padding: 14px 20px; border: 1px solid #c4a97d; border-radius: 4px;
+    font-family: var(--sans); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.14em; line-height: 1; text-transform: uppercase;
+    color: #c4a97d;
+  }
   @media (max-width: 880px) {
     .menu-btn { display: block; }
-    .nav-links {
-      display: none; position: absolute; top: 70px; left: 0; right: 0;
-      background: #fff; border-bottom: 1px solid var(--line);
-      flex-direction: column; padding: 20px 28px; gap: 18px; z-index: 49;
-    }
-    .nav-links.open { display: flex; }
     .nav .btn-outline { display: none; }
+  }
+  @media (min-width: 881px) {
+    .mobile-nav-panel { display: none; }
   }
 
   /* Sticky mobile CTA — always one tap away */
@@ -733,6 +770,21 @@
     </button>
   </div>
 </nav>
+
+<div class="mobile-nav-panel" id="mobileNavPanel" aria-hidden="true">
+  <div class="mobile-nav-head">
+    <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="mobile-nav-links">
+    <a href="/">Home</a>
+    <a href="#inside">What's Inside</a>
+    <a href="#math">The Math</a>
+    <a href="#parents">Parents</a>
+    <a href="#faq">FAQ</a>
+    <a href="#pricing" class="mobile-nav-cta">Get The Guide</a>
+  </div>
+</div>
 
 <!-- ============ HERO ============ -->
 <section class="hero">
@@ -1345,11 +1397,23 @@
 
   // Mobile menu
   const menuBtn = document.getElementById('menuBtn');
-  const navLinks = document.querySelector('.nav-links');
-  if (menuBtn && navLinks) {
-    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.nav')) navLinks.classList.remove('open');
+  const mobileNavPanel = document.getElementById('mobileNavPanel');
+  const mobileNavClose = document.getElementById('mobileNavClose');
+  function setMobileNav(open) {
+    if (!mobileNavPanel) return;
+    mobileNavPanel.classList.toggle('open', open);
+    mobileNavPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('nav-open', open);
+  }
+  if (menuBtn && mobileNavPanel) {
+    menuBtn.setAttribute('aria-controls', 'mobileNavPanel');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.addEventListener('click', () => setMobileNav(true));
+    if (mobileNavClose) mobileNavClose.addEventListener('click', () => setMobileNav(false));
+    mobileNavPanel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMobileNav(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setMobileNav(false);
     });
   }
 

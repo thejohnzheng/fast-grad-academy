@@ -175,6 +175,43 @@
   font-size:13px;
   line-height:1.65;
 }
+
+body.nav-open{overflow:hidden}
+.mobile-nav-panel{
+  position:fixed;inset:0;z-index:200;
+  background:#0a0a0a;color:#fff;
+  display:flex;flex-direction:column;
+  padding:24px 28px 36px;
+  transform:translateX(100%);
+  opacity:0;pointer-events:none;
+  transition:transform .36s cubic-bezier(.2,.7,.2,1),opacity .28s ease;
+}
+.mobile-nav-panel.open{transform:translateX(0);opacity:1;pointer-events:auto}
+.mobile-nav-head{display:flex;align-items:center;justify-content:space-between}
+.mobile-nav-head .logo{color:#fff}
+.mobile-nav-close{
+  width:42px;height:42px;border:1px solid rgba(196,169,125,0.42);
+  border-radius:50%;color:#c4a97d;display:grid;place-items:center;
+  font-size:26px;line-height:1;
+}
+.mobile-nav-links{
+  display:flex;flex-direction:column;gap:24px;
+  margin-top:min(16vh,120px);
+}
+.mobile-nav-links a{
+  font-family:var(--serif);
+  font-size:clamp(34px,10vw,58px);
+  line-height:.98;letter-spacing:-.01em;color:#fff;
+}
+.mobile-nav-links a:hover{color:#c4a97d}
+.mobile-nav-links .mobile-nav-cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:fit-content;margin-top:14px;padding:14px 20px;
+  border:1px solid #c4a97d;border-radius:4px;
+  font-family:var(--sans);font-size:12px;font-weight:700;
+  letter-spacing:.14em;line-height:1;text-transform:uppercase;color:#c4a97d;
+}
+@media(min-width:881px){.mobile-nav-panel{display:none}}
 </style>
 </head>
 <body>
@@ -301,6 +338,21 @@ function unlockAccess(){
     </button>
   </div>
 </nav>
+
+<div class="mobile-nav-panel" id="mobileNavPanel" aria-hidden="true">
+  <div class="mobile-nav-head">
+    <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="mobile-nav-links">
+    <a href="/">Home</a>
+    <a href="/#inside">What's Inside</a>
+    <a href="/#math">The Math</a>
+    <a href="/#parents">Parents</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#pricing" class="mobile-nav-cta">Get The Guide</a>
+  </div>
+</div>
 
   <!-- Dashboard hero -->
   <div class="dash-hero">
@@ -593,9 +645,25 @@ window.addEventListener('scroll', function() {
 });
 // Hamburger menu
 var menuBtn = document.getElementById('menuBtn');
-if (menuBtn) {
-  menuBtn.addEventListener('click', function() {
-    document.querySelector('.nav-links').classList.toggle('open');
+var mobileNavPanel = document.getElementById('mobileNavPanel');
+var mobileNavClose = document.getElementById('mobileNavClose');
+function setMobileNav(open) {
+  if (!mobileNavPanel) return;
+  mobileNavPanel.classList.toggle('open', open);
+  mobileNavPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
+  if (menuBtn) menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.classList.toggle('nav-open', open);
+}
+if (menuBtn && mobileNavPanel) {
+  menuBtn.setAttribute('aria-controls', 'mobileNavPanel');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  menuBtn.addEventListener('click', function() { setMobileNav(true); });
+  if (mobileNavClose) mobileNavClose.addEventListener('click', function() { setMobileNav(false); });
+  mobileNavPanel.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() { setMobileNav(false); });
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') setMobileNav(false);
   });
 }
 </script>
