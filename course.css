@@ -2177,3 +2177,17 @@ select.fga-input {
   .fga-tool-card { padding: 28px 20px; }
   .fga-credit-tally { margin: 0 -20px -28px; }
 }
+
+@media (max-width: 768px) {
+  .school-matrix,
+  .exam-directory,
+  .cross-ref-table {
+    font-size: 13px;
+  }
+  .school-matrix td,
+  .exam-directory td,
+  .cross-ref-table td {
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+}

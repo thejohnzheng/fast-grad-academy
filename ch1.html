@@ -225,7 +225,7 @@ function unlockAccess(){
 
     </div>
 
-    <!-- UNVERIFIED: Prior Harris Poll claims of 98% met/exceeded expectations, 96% would hire more, and $73K average salary could not be traced to a public source in June 2026. Replaced with verified NACE Job Outlook 2026 skills data. -->
+    <!-- Prior unverified employer outcome claims replaced with verified NACE Job Outlook 2026 skills data. -->
     <div class="ch-section-alt reveal">
     <div class="emp-stats reveal">
       <div class="emp-stat">
@@ -287,7 +287,7 @@ function unlockAccess(){
     <div class="dot-divider"><span></span><span></span><span></span></div>
 
     <h3 class="reveal">This Is Making National News — April 2026</h3>
-    <!-- UNVERIFIED: A referenced Boston Globe April 2026 article could not be located during the June 2026 audit. The verified national article is the Washington Post feature cited here. -->
+    <!-- Prior unverified local-news reference replaced with the verified national article cited here. -->
     <p class="reveal">If you still think accelerated degrees are some underground hack that only a handful of people know about, consider this: in April 2026, the <a href="https://www.washingtonpost.com/education/2026/04/19/accelerated-college-degree-hacking/" target="_blank" rel="noopener">Washington Post</a> published a major feature on Americans finishing college degrees in a fraction of the traditional timeline. These are not edge cases buried in Reddit threads anymore. The stories are remarkable, and the scrutiny is now national.</p>
 
     <p class="reveal">Christie Williams, a human resources executive in North Carolina, completed her bachelor's degree in three months and later earned a master's degree in five weeks. Her two degrees cost just over $4,000. Her daughter, Makayla Quackenbush, enrolled at the University of Maine at Presque Isle through its YourPace competency-based program and earned her bachelor's degree in a single eight-week session, graduating summa cum laude. The Washington Post reported that more than one in four YourPace bachelor's graduates in fall 2024 finished their entire degree course load in a single eight-week session.</p>
@@ -467,7 +467,7 @@ function unlockAccess(){
     STRAIGHTERLINE_MONTHLY: 99,
     AVG_CREDIT_COST: 500,
     AVG_STUDENT_DEBT: 39547,
-    AVG_INTEREST_RATE: 0.0653,
+    AVG_INTEREST_RATE: 0.059,
     FOUNDER_SAVINGS: 85000,
   };
 
@@ -514,7 +514,7 @@ function unlockAccess(){
     var fastH = Math.max(3, (fastCost / tradFull) * 90);
     $('sc-trad-bar').style.height = tradH + '%';
     $('sc-fast-bar').style.height = fastH + '%';
-    $('sc-trad-amt').textContent = fmt(tradFull);
+    $('sc-trad-amt').textContent = fmt(tradTotal);
     $('sc-fast-amt').textContent = fmt(fastCost);
     $('sc-savings').textContent = fmtFull(savings);
     $('sc-years-saved').textContent = yearsSaved + ' yrs';
