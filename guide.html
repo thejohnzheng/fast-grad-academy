@@ -144,6 +144,37 @@
 .ag-shake{animation:shake 0.5s ease}
 .ag-err-box{font-size:13px;color:#ff6b6b;margin-bottom:14px;display:none;background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.2);border-radius:10px;padding:12px 16px;text-align:left;line-height:1.6}
 .ag-err-box strong{color:#ff8a8a}
+.purchase-success-banner{
+  display:none;
+  background:linear-gradient(135deg,rgba(196,169,125,0.16),rgba(255,255,255,0.04));
+  border:1px solid rgba(196,169,125,0.35);
+  border-left:4px solid #c4a97d;
+  border-radius:14px;
+  padding:16px 18px;
+  margin-bottom:22px;
+  text-align:left;
+  box-shadow:0 18px 42px rgba(0,0,0,0.26);
+}
+.purchase-success-kicker{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:#c4a97d;
+  margin-bottom:6px;
+}
+.purchase-success-title{
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  line-height:1.45;
+  margin-bottom:6px;
+}
+.purchase-success-copy{
+  color:rgba(255,255,255,0.72);
+  font-size:13px;
+  line-height:1.65;
+}
 </style>
 </head>
 <body>
@@ -152,6 +183,12 @@
   <div id="ag-form-wrap" style="max-width:420px;width:100%;text-align:center">
     <div style="font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:#fff;margin-bottom:8px">Fast Grad Academy</div>
     <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#a8a8a8;margin-bottom:40px">Student Access Required</div>
+
+    <div id="purchase-success-banner" class="purchase-success-banner" role="status" aria-live="polite">
+      <div class="purchase-success-kicker">Checkout complete</div>
+      <div class="purchase-success-title">Payment confirmed! Check your email for your access code.</div>
+      <div class="purchase-success-copy">Your access code (FGA-XXXX-XXXX) was sent to the email you used at checkout. Check spam if you don't see it within 5 minutes.</div>
+    </div>
 
     <!-- Email hint box -->
     <div style="background:rgba(192,192,192,0.06);border:1px solid rgba(192,192,192,0.12);border-radius:12px;padding:14px 18px;margin-bottom:24px;text-align:left;">
@@ -185,6 +222,14 @@
   try{
     var s=JSON.parse(localStorage.getItem('fga_course')||'{}');
     if(s.access){document.getElementById('access-gate').style.display='none';return;}
+  }catch(e){}
+  try{
+    var params=new URLSearchParams(window.location.search);
+    var purchased=params.get('purchased');
+    if(purchased && purchased.toLowerCase()==='true'){
+      var banner=document.getElementById('purchase-success-banner');
+      if(banner) banner.style.display='block';
+    }
   }catch(e){}
   document.body.style.overflow='hidden';
 })();
