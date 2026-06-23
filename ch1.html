@@ -441,9 +441,9 @@ function unlockAccess(){
   var $ = function(id){return document.getElementById(id)};
   var parse = function(v){return parseInt(v.replace(/[^0-9]/g,''),10)||0};
   var fmt = function(n){
-    if(n>=1000000) return '$'+Math.round(n/1000)+'K';
-    if(n>=1000) return '$'+Math.round(n/1000)+'K';
-    return '$'+n.toLocaleString();
+    if(n>=1000000) return '$'+(Math.round(n/100000)/10).toFixed(1)+'M';
+    if(n>=10000) return '$'+Math.round(n/1000).toLocaleString()+'K';
+    return '$'+Math.round(n).toLocaleString();
   };
   var fmtFull = function(n){return '$'+Math.round(n).toLocaleString()};
   function calc(){
@@ -470,8 +470,8 @@ function unlockAccess(){
     $('sc-savings').textContent = fmtFull(savings);
     $('sc-years-saved').textContent = yearsSaved + ' yrs';
     $('sc-wealth').textContent = fmt(Math.round(invested));
-    $('sc-percredit').textContent = '$' + fastPerCredit;
-    $('sc-trad-percredit').textContent = '$' + tradPerCredit;
+    $('sc-percredit').textContent = '$' + fastPerCredit.toLocaleString();
+    $('sc-trad-percredit').textContent = '$' + tradPerCredit.toLocaleString();
   }
   ['sc-tuition','sc-room','sc-salary'].forEach(function(id){
     $(id).addEventListener('input', calc);
