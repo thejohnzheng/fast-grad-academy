@@ -21,9 +21,17 @@
 }
 .mc-btn:hover { background: var(--bg-panel); border-color: var(--line-2); color: var(--ink); }
 .mc-btn.done { background: var(--ink); border-color: var(--ink); color: #fff; }
+@media (max-width: 768px) {
+  .table-scroll { margin: 16px -12px; padding: 0 12px; }
+  .table-scroll table { font-size: 13px; }
+  .table-scroll td, .table-scroll th { padding: 8px 10px; }
+}
 </style>
 </head>
 <body>
+<div class="chapter-progress" style="position:fixed;top:0;left:0;right:0;z-index:100;height:3px;background:rgba(255,255,255,0.05);">
+  <div class="chapter-progress__fill" id="progressFill" style="height:100%;background:#6db88a;width:0;transition:width 0.1s linear;"></div>
+</div>
 
 
 <nav class="sidebar" id="sidebar">
@@ -271,6 +279,7 @@ function unlockAccess(){
 
       <!-- COMPOSITION & LITERATURE -->
       <div class="dir-section-label">Composition &amp; Literature</div>
+      <div class="table-scroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px -16px;padding:0 16px;">
       <table class="dir-table">
         <thead>
           <tr>
@@ -319,9 +328,11 @@ function unlockAccess(){
           </tr>
         </tbody>
       </table>
+      </div>
 
       <!-- HISTORY & SOCIAL SCIENCES -->
       <div class="dir-section-label">History &amp; Social Sciences</div>
+      <div class="table-scroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px -16px;padding:0 16px;">
       <table class="dir-table">
         <thead>
           <tr>
@@ -405,9 +416,11 @@ function unlockAccess(){
           </tr>
         </tbody>
       </table>
+      </div>
 
       <!-- SCIENCE & MATH -->
       <div class="dir-section-label">Science &amp; Math</div>
+      <div class="table-scroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px -16px;padding:0 16px;">
       <table class="dir-table">
         <thead>
           <tr>
@@ -470,9 +483,11 @@ function unlockAccess(){
           </tr>
         </tbody>
       </table>
+      </div>
 
       <!-- BUSINESS -->
       <div class="dir-section-label">Business</div>
+      <div class="table-scroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px -16px;padding:0 16px;">
       <table class="dir-table">
         <thead>
           <tr>
@@ -535,9 +550,11 @@ function unlockAccess(){
           </tr>
         </tbody>
       </table>
+      </div>
 
       <!-- WORLD LANGUAGES -->
       <div class="dir-section-label">World Languages</div>
+      <div class="table-scroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px -16px;padding:0 16px;">
       <table class="dir-table">
         <thead>
           <tr>
@@ -572,6 +589,7 @@ function unlockAccess(){
           </tr>
         </tbody>
       </table>
+      </div>
 
       <p style="font-size:12px;color:var(--ink-mute);margin-top:16px;padding-bottom:8px">Difficulty ratings based on community pass rate data. Study hours are estimates for students with no prior background. Prices verified 2025–2026.</p>
     </div>
@@ -1186,5 +1204,15 @@ if (menuBtn) {
 </script>
 
 </div><!-- /main-content -->
+<script>
+(function(){
+  var fill = document.getElementById('progressFill');
+  if (!fill) return;
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    fill.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+  }, {passive: true});
+})();
+</script>
 </body>
 </html>

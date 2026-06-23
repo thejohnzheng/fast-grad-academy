@@ -1,4 +1,199 @@
 /* ══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Comprehensive CSS custom properties system
+   Canonical source of truth for colors, typography, spacing, etc.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Color tokens */
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --accent: #1a5632;
+  --accent-light: #e8f0eb;
+  --success: #2d8a4e;
+  --alert: #c23b22;
+  --muted: rgba(0,0,0,0.45);
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.15);
+
+  /* Dark mode (chapter pages use dark bg) */
+  --dark-ink: #ffffff;
+  --dark-paper: #0a0a0a;
+  --dark-muted: rgba(255,255,255,0.45);
+  --dark-border: rgba(255,255,255,0.08);
+  --dark-accent: #6db88a;
+
+  /* Typography */
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 16px;
+  --text-md: 18px;
+  --text-lg: 22px;
+  --text-xl: 28px;
+  --text-2xl: 36px;
+  --text-display: clamp(36px, 8vw, 64px);
+  --line-height-tight: 1.1;
+  --line-height-body: 1.7;
+  --line-height-relaxed: 1.9;
+  --measure: 68ch;
+
+  /* Spacing (8pt grid) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   COMPONENT CLASSES — Standardized reusable UI components
+   ══════════════════════════════════════════════════════════════ */
+
+/* Callout boxes */
+.callout { border-radius: var(--radius-lg); padding: var(--space-lg) var(--space-xl); margin: var(--space-xl) 0; }
+.callout-info { background: rgba(26,86,50,0.06); border-left: 3px solid var(--accent); }
+.callout-warning { background: rgba(255,193,7,0.06); border-left: 3px solid #ffc107; }
+.callout-action { background: rgba(0,0,0,0.03); border-left: 3px solid var(--ink); }
+.callout-takeaway { background: rgba(26,86,50,0.04); border: 1px solid rgba(26,86,50,0.12); }
+
+/* Dark theme callouts (chapter pages) */
+.dark .callout-info, [data-theme="dark"] .callout-info { background: rgba(109,184,138,0.06); border-left-color: var(--dark-accent); }
+.dark .callout-warning, [data-theme="dark"] .callout-warning { background: rgba(255,193,7,0.08); }
+.dark .callout-action, [data-theme="dark"] .callout-action { background: rgba(255,255,255,0.03); border-left-color: var(--dark-ink); }
+
+/* Stat cards */
+.stat-card {
+  background: rgba(0,0,0,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  text-align: center;
+}
+.stat-card__number {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: var(--line-height-tight);
+}
+.stat-card__label {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin-top: var(--space-sm);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--ink); color: var(--paper);
+  font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 14px 32px; border-radius: var(--radius-pill);
+  text-decoration: none; border: none; cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; color: var(--ink);
+  font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 14px 32px; border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  text-decoration: none; cursor: pointer;
+  transition: border-color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--ink); }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Mobile table wrapper */
+.table-scroll {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  margin: 20px -16px; padding: 0 16px;
+}
+@media (max-width: 768px) {
+  .table-scroll table { font-size: 13px; }
+  .table-scroll td, .table-scroll th { padding: 8px 10px; white-space: nowrap; }
+}
+
+/* Prompt copy card */
+.prompt-card {
+  position: relative;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin: var(--space-md) 0;
+}
+.prompt-card .copy-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: var(--radius-sm);
+  cursor: pointer; transition: all 0.2s;
+}
+.prompt-card .copy-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.prompt-card .copy-toast {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--success); color: #fff;
+  font-size: 11px; font-weight: 600; padding: 6px 14px;
+  border-radius: var(--radius-sm); opacity: 0; transition: opacity 0.3s;
+  pointer-events: none;
+}
+.prompt-card .copy-toast.show { opacity: 1; }
+
+/* Sticky progress bar */
+.chapter-progress {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 3px; background: rgba(0,0,0,0.05);
+}
+.chapter-progress__fill {
+  height: 100%; background: var(--accent);
+  width: 0; transition: width 0.1s linear;
+}
+.dark .chapter-progress { background: rgba(255,255,255,0.05); }
+.dark .chapter-progress__fill { background: var(--dark-accent); }
+
+/* Trust block */
+.trust-block {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-lg); padding: var(--space-2xl) 0;
+}
+.trust-item {
+  display: flex; align-items: flex-start; gap: var(--space-md);
+  padding: var(--space-lg); background: rgba(0,0,0,0.02);
+  border-radius: var(--radius-lg); border: 1px solid var(--border);
+}
+.trust-item svg { flex-shrink: 0; width: 24px; height: 24px; color: var(--accent); }
+.trust-item strong { display: block; font-size: var(--text-base); margin-bottom: 2px; }
+.trust-item span { font-size: var(--text-sm); color: var(--muted); line-height: 1.5; }
+
+/* ══════════════════════════════════════════════════════════════
    COURSE.CSS — Premium design system for FGA course pages
    Inspired by HN Team design mockup language.
    Used by: guide.html, ch1-ch12.html, tracker.html, resources.html
@@ -1747,6 +1942,39 @@ select.fga-input {
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 36px;
+}
+
+/* Range sliders */
+.fga-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line, rgba(0,0,0,0.08));
+  outline: none;
+  margin-top: 4px;
+  cursor: pointer;
+}
+.fga-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink, #0a0a0a);
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.fga-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink, #0a0a0a);
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
 /* Result panels */

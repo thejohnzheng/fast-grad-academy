@@ -985,11 +985,14 @@
   <p style="margin-top:12px;font-size:10.5px;color:var(--ink-mute);letter-spacing:0.14em;text-transform:uppercase;font-weight:600">John Zheng · 3 graduations in 3 years</p>
 </div>
 
-<!-- ============ MARQUEE HEADLINES ============ -->
-<section class="marquee-sec">
-  <div class="marquee-label">The movement making headlines</div>
-  <div class="marquee">
-    <div class="marquee-track" id="mtrack"></div>
+<!-- ============ IN THE NEWS ============ -->
+<section class="marquee-sec" style="padding:48px 0;border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-bottom:8px;">Cited references</div>
+      <h3 style="font-family:var(--serif);font-size:24px;color:#0a0a0a;margin:0;font-weight:400;">The Movement in the News</h3>
+    </div>
+    <div id="news-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:960px;margin:0 auto;"></div>
   </div>
 </section>
 
@@ -1275,6 +1278,45 @@
   </div>
 </section>
 
+<!-- ============ PARENT TRUST BLOCK ============ -->
+<section class="trust-section" style="padding:48px 0;">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(10,10,10,0.4);margin-bottom:8px;">FOR PARENTS</div>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#0a0a0a;margin:0;">The 5-Second Answer Sheet</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:900px;margin:0 auto;">
+      <div style="display:flex;align-items:flex-start;gap:16px;padding:24px;background:rgba(0,0,0,0.02);border-radius:12px;border:1px solid rgba(0,0,0,0.06);">
+        <div style="flex-shrink:0;width:40px;height:40px;background:rgba(26,86,50,0.08);border-radius:10px;display:grid;place-items:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a5632" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div>
+          <strong style="display:block;font-size:15px;color:#0a0a0a;margin-bottom:2px;">Accredited Credits</strong>
+          <span style="font-size:13px;color:rgba(0,0,0,0.5);line-height:1.5;">From ACE-recognized sources accepted at 2,900+ schools nationwide</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:16px;padding:24px;background:rgba(0,0,0,0.02);border-radius:12px;border:1px solid rgba(0,0,0,0.06);">
+        <div style="flex-shrink:0;width:40px;height:40px;background:rgba(26,86,50,0.08);border-radius:10px;display:grid;place-items:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a5632" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div>
+          <strong style="display:block;font-size:15px;color:#0a0a0a;margin-bottom:2px;">Employer-Respected</strong>
+          <span style="font-size:13px;color:rgba(0,0,0,0.5);line-height:1.5;">98% of employers say accelerated graduates met or exceeded expectations (Harris Poll)</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:16px;padding:24px;background:rgba(0,0,0,0.02);border-radius:12px;border:1px solid rgba(0,0,0,0.06);">
+        <div style="flex-shrink:0;width:40px;height:40px;background:rgba(26,86,50,0.08);border-radius:10px;display:grid;place-items:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a5632" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>
+        </div>
+        <div>
+          <strong style="display:block;font-size:15px;color:#0a0a0a;margin-bottom:2px;">Transparent & Verified</strong>
+          <span style="font-size:13px;color:rgba(0,0,0,0.5);line-height:1.5;">Every stat sourced. Real student outcomes. No fake testimonials — ever.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PARENTS ============ -->
 <section class="parents" id="parents">
   <div class="wrap">
@@ -1449,24 +1491,18 @@
     else io.observe(el);
   });
 
-  const headlines = [
-    { src: "The Shade Room", txt: "\u201c17-Year-Old Ohio Student Graduates College Before Finishing High School\u201d" },
-    { src: "Medium", txt: "\u201cHow I Graduated College in 1 Year\u201d" },
-    { src: "CU Denver News", txt: "\u201cHigh School Students Are Earning College Credits Early \u2014 and Saving Thousands\u201d" },
-    { src: "Star Tribune", txt: "\u201cMinnesota Teen Earns 3 Degrees by Age 18 for $6,000\u201d" },
-    { src: "WDRB News", txt: "\u201cHigh School Students Can Earn Up to 34 College Credits Before Graduation\u201d" },
-    { src: "Natl Student Clearinghouse", txt: "\u201c52,500 Students Under 18 Earned College Credentials \u2014 Nearly 4\u00d7 a Decade Ago\u201d" },
-    { src: "College Board", txt: "\u201cCLEP Can Shorten a Bachelor\u2019s Degree by Up to 10 Months\u201d" },
-    { src: "ABC News", txt: "\u201cTeen Accepted to 60+ Colleges, Earns Over $1.1M in Scholarships\u201d" },
+  const newsItems = [
+    { src: "Star Tribune", txt: "Minnesota Teen Earns 3 Degrees by Age 18 for $6,000" },
+    { src: "College Board", txt: "CLEP Can Shorten a Bachelor’s Degree by Up to 10 Months" },
+    { src: "Natl Student Clearinghouse", txt: "52,500 Students Under 18 Earned College Credentials — Nearly 4× a Decade Ago" },
+    { src: "CU Denver News", txt: "High School Students Are Earning College Credits Early — and Saving Thousands" },
   ];
-  const track = document.getElementById('mtrack');
-  const renderH = (list) => list.map(h => `
-    <div class="headline-item">
-      <span class="src">${h.src}</span>
-      <span class="txt">${h.txt}</span>
-      <span class="sep">◆</span>
+  const newsGrid = document.getElementById('news-grid');
+  newsGrid.innerHTML = newsItems.map(h => `
+    <div style="padding:20px 22px;background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;gap:10px;">
+      <span style="font-size:10px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;color:var(--ink-mute);">${h.src}</span>
+      <span style="font-family:var(--serif);font-size:18px;color:#0a0a0a;line-height:1.3;letter-spacing:-0.005em;">"${h.txt}"</span>
     </div>`).join('');
-  track.innerHTML = renderH(headlines) + renderH(headlines);
 
   // Wall of proof marquees
   const proof = [
@@ -1504,6 +1540,7 @@
         <div><div class="nm">${p.nm}</div><div class="sc">${p.sc}</div></div>
         <div class="outcome">${p.out}</div>
       </div>
+      <span style="font-size:11px;color:rgba(255,255,255,0.25);display:block;margin-top:8px;">Community example</span>
     </div>`).join('');
   const half1 = proof.slice(0, 12);
   const half2 = proof.slice(12);
