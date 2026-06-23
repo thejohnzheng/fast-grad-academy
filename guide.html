@@ -23,7 +23,7 @@
 <title>Fast Grad Academy — Course Dashboard</title>
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="course.css?v=14">
+<link rel="stylesheet" href="course.css?v=16">
 <style>
 /* ── Dashboard-only styles (light mode) ── */
 .dash-hero{
@@ -379,6 +379,25 @@ function unlockAccess(){
     <button class="resume-btn" id="resumeBtn" onclick="resumeCourse()">Start Chapter 1</button>
   </div>
 
+  <!-- Summer Sprint Challenge -->
+  <section class="ch-cards-section" style="padding-top:24px;padding-bottom:10px">
+    <div style="background:linear-gradient(135deg,rgba(196,169,125,0.16),rgba(255,255,255,0.04));border:1px solid rgba(196,169,125,0.28);border-radius:8px;padding:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;align-items:center">
+      <div>
+        <div style="font-size:11px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px">Summer Sprint Challenge</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(26px,4vw,40px);line-height:1.05;font-weight:400;margin:0 0 10px;color:var(--ink)">Bank 9-12 credits before fall.</h2>
+        <p style="margin:0;color:var(--ink-dim);font-size:15px;line-height:1.65;max-width:62ch">A 10-week CLEP-first sprint: choose 3-4 exams, finish the Modern States courses, verify transfer, and schedule one test every 2-3 weeks. For Summer 2026, College Board is also advertising a 50% next-exam promo; verify the current terms at checkout.</p>
+      </div>
+      <div style="display:grid;gap:10px">
+        <a href="/ch10#summer-sprint" class="resume-btn" style="display:inline-flex;justify-content:center;text-decoration:none">Open Sprint Plan</a>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center">
+          <div style="border:1px solid var(--line);border-radius:8px;padding:10px 8px;background:var(--bg-panel)"><strong style="display:block;font-family:var(--serif);font-size:22px;color:var(--ink)">10</strong><span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute)">Weeks</span></div>
+          <div style="border:1px solid var(--line);border-radius:8px;padding:10px 8px;background:var(--bg-panel)"><strong style="display:block;font-family:var(--serif);font-size:22px;color:var(--ink)">3-4</strong><span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute)">Exams</span></div>
+          <div style="border:1px solid var(--line);border-radius:8px;padding:10px 8px;background:var(--bg-panel)"><strong style="display:block;font-family:var(--serif);font-size:22px;color:var(--ink)">9-12</strong><span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute)">Credits</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Chapter cards -->
   <div class="ch-cards-section">
     <div class="ch-cards-group-label">FOUNDATIONS</div>
@@ -423,7 +442,7 @@ function unlockAccess(){
   <div class="ch-card-check">&#10003;</div>
   <div class="ch-card-num">Chapter 04</div>
   <div class="ch-card-title" data-fga="chapters.ch4_title">Mastering CLEP Exams</div>
-  <div class="ch-card-desc" data-fga="chapters.ch4_desc">34 exams, ~$97 each, accepted at 2,900+ schools. The highest-ROI credit pathway available — free with Modern States.</div>
+  <div class="ch-card-desc" data-fga="chapters.ch4_desc">30+ current exams, $97 before fees, accepted at 2,900+ schools. The highest-ROI credit pathway available — often covered with Modern States.</div>
   <div class="ch-card-meta">
     <span>📖 10 min</span>
     <span class="dot"></span>
