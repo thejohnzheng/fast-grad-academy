@@ -41,6 +41,13 @@
 .stat-value{font-family:var(--serif);font-size:36px;color:var(--ink);line-height:1.1}
 .stat-value .unit{font-size:.5em;color:var(--ink-dim)}
 .stat-name{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mute);margin-top:6px}
+.profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:40px;max-width:720px}
+.profile-field{padding:18px 20px}
+.profile-field label{display:block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px}
+.profile-input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:var(--ink);font-size:14px;font-family:var(--sans);outline:none;transition:border-color .2s}
+.profile-input:focus{border-color:var(--line-2)}
+.profile-input::placeholder{color:var(--ink-mute)}
+@media(max-width:640px){.profile-grid{grid-template-columns:1fr}}
 
 /* PATHWAY BARS */
 .pathway-list{display:flex;flex-direction:column;gap:16px}
@@ -81,6 +88,8 @@
 .btn-ghost:hover{border-color:var(--line-2);color:var(--ink)}
 .btn-danger{background:rgba(201,123,123,0.1);color:#b04040;border:1px solid rgba(201,123,123,0.25)}
 .btn-danger:hover{background:rgba(201,123,123,0.2)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:disabled:hover{border-color:var(--line);color:var(--ink-mute);background:transparent}
 .btn-sm{padding:6px 14px;font-size:12px;border-radius:8px}
 .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line)}
 table{width:100%;border-collapse:collapse;min-width:900px}
@@ -137,9 +146,9 @@ tr:hover td{background:var(--bg-soft)}
 .milestone-credit-tag{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:6px;background:var(--bg-panel);color:var(--ink-mute)}
 
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.62);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
 .modal-overlay.active{display:flex;opacity:1}
-.modal{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:36px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;transform:scale(.95);transition:transform .3s;box-shadow:0 25px 60px rgba(0,0,0,0.15)}
+.modal{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:36px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;transform:scale(.95);transition:transform .3s;box-shadow:0 25px 60px rgba(0,0,0,0.25)}
 .modal-overlay.active .modal{transform:scale(1)}
 .modal-title{font-family:var(--serif);font-size:28px;margin-bottom:24px;color:var(--ink)}
 .form-group{margin-bottom:18px}
@@ -160,14 +169,47 @@ tr:hover td{background:var(--bg-soft)}
 /* ACTION BAR */
 .action-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
 
+/* PROGRESS REPORT */
+.progress-report{display:none}
+.report-page{font-family:var(--sans);color:#111;background:#fff}
+.report-header{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;border-bottom:2px solid #111;padding-bottom:16px;margin-bottom:18px}
+.report-kicker{font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#666;margin-bottom:5px}
+.report-title{font-family:var(--serif);font-size:28px;line-height:1.05;font-weight:400;color:#111}
+.report-meta{text-align:right;font-size:10px;color:#555;line-height:1.5}
+.report-summary{display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:8px;margin:18px 0}
+.report-metric{border:1px solid #ddd;background:#f7f7f5;border-radius:8px;padding:10px}
+.report-metric strong{display:block;font-family:var(--serif);font-size:24px;line-height:1.05;color:#111}
+.report-metric span{display:block;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#666;margin-top:4px}
+.report-section{margin-top:18px;break-inside:avoid}
+.report-section h3{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#111;margin-bottom:8px}
+.report-gened{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.report-gened-card{border:1px solid #ddd;border-radius:8px;padding:8px;break-inside:avoid}
+.report-gened-name{font-size:10px;font-weight:700;line-height:1.2;margin-bottom:6px}
+.report-gened-line{height:5px;background:#e5e5e5;border-radius:999px;overflow:hidden;margin-bottom:5px}
+.report-gened-fill{height:100%;background:#111;border-radius:999px}
+.report-gened-meta{font-size:9px;color:#555}
+.report-table{width:100%;min-width:0;border:1px solid #ddd;border-collapse:collapse}
+.report-table th,.report-table td{border-top:1px solid #ddd;padding:6px 7px;font-size:8.5px;color:#111;vertical-align:top;word-break:break-word}
+.report-table th{background:#f0f0ee;border-top:0;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase}
+.report-savings{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.report-footer{border-top:1px solid #ddd;margin-top:18px;padding-top:10px;font-size:8.5px;line-height:1.45;color:#555}
+
 /* PRINT */
 @media print{
+  @page{size:letter;margin:.45in}
   .nav,.action-bar,.modal-overlay,.toast-container,.btn,.row-actions,.table-controls,.gened-edit-btn{display:none!important}
   body{background:#fff;color:#000}
   .glass{background:#f5f5f5;border:1px solid #ddd}
   .section{padding:20px 0}
   .table-wrap{border:1px solid #ddd}
   th,td{color:#000}
+  body.print-report{font-size:10pt;line-height:1.35}
+  body.print-report > :not(#progressReport){display:none!important}
+  body.print-report #progressReport{display:block!important}
+  body.print-report .report-page{display:block;width:100%;max-width:none;margin:0;padding:0}
+  body.print-report table{min-width:0!important;table-layout:fixed}
+  body.print-report tr,body.print-report .report-section,body.print-report .report-gened-card,body.print-report .report-metric{break-inside:avoid;page-break-inside:avoid}
+  body.print-report .report-header{break-after:avoid}
 }
 
 /* RESPONSIVE */
@@ -210,6 +252,16 @@ tr:hover td{background:var(--bg-soft)}
   <p style="color:var(--ink-mute);margin-bottom:24px;max-width:560px" class="reveal reveal-d2">Track every credit, every dollar saved, every milestone on your path to graduating fast.</p>
   <div style="background:var(--bg-panel);border:1px solid var(--line);border-radius:12px;padding:14px 20px;margin-bottom:40px;max-width:560px;font-size:13px;color:var(--ink-mute);line-height:1.6" class="reveal reveal-d3">
     <strong style="color:var(--ink-dim)">Your data is saved in this browser.</strong> If you switch devices or clear your cache, it'll be gone. Use <a href="#actions" style="color:var(--ink);text-decoration:underline">Export JSON</a> at the bottom to download a backup anytime.
+  </div>
+  <div class="profile-grid reveal reveal-d3" aria-label="Report profile fields">
+    <div class="glass profile-field">
+      <label for="studentName">Student Name</label>
+      <input type="text" class="profile-input" id="studentName" placeholder="Optional for reports">
+    </div>
+    <div class="glass profile-field">
+      <label for="targetSchool">Target School</label>
+      <input type="text" class="profile-input" id="targetSchool" placeholder="Optional for reports">
+    </div>
   </div>
   <div class="overview-grid">
     <div class="glass progress-ring-wrap reveal reveal-d2">
@@ -350,12 +402,17 @@ tr:hover td{background:var(--bg-soft)}
   <h2 class="section-title reveal reveal-d1">Export &amp; <em>Settings</em></h2>
   <div class="action-bar reveal reveal-d1">
     <button class="btn btn-ghost" onclick="exportJSON()">Export JSON</button>
+    <button class="btn btn-ghost" id="downloadCsvBtn" onclick="exportCSV()">Download CSV</button>
     <button class="btn btn-ghost" onclick="importJSON()">Import JSON</button>
-    <button class="btn btn-ghost" onclick="window.print()">Print View</button>
+    <button class="btn btn-ghost" id="downloadPdfBtn" onclick="printProgressReport()">Download PDF</button>
+    <button class="btn btn-ghost" id="downloadIcsBtn" onclick="exportICS()">Add Exam Dates to Calendar (.ics)</button>
     <button class="btn btn-danger" onclick="confirmReset()">Reset All Data</button>
   </div>
   <input type="file" id="importFile" accept=".json" style="display:none">
 </section>
+
+<!-- PRINT/PDF REPORT -->
+<section class="progress-report" id="progressReport" aria-hidden="true"></section>
 
 <!-- FOOTER -->
 <footer>
@@ -504,17 +561,24 @@ tr:hover td{background:var(--bg-soft)}
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
       if(raw){
-        var d = JSON.parse(raw);
-        if(!d.genEdReqs) d.genEdReqs = JSON.parse(JSON.stringify(defaultGenEd));
-        if(!d.credits) d.credits = [];
-        return d;
+        return normalizeState(JSON.parse(raw));
       }
     } catch(e){}
-    return { credits: [], genEdReqs: JSON.parse(JSON.stringify(defaultGenEd)) };
+    return normalizeState({});
   }
 
   function saveState(){
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function normalizeState(d){
+    d = d && typeof d === 'object' ? d : {};
+    d.credits = Array.isArray(d.credits) ? d.credits : [];
+    d.genEdReqs = Object.assign(JSON.parse(JSON.stringify(defaultGenEd)), d.genEdReqs || {});
+    d.profile = d.profile && typeof d.profile === 'object' ? d.profile : {};
+    d.profile.studentName = d.profile.studentName || '';
+    d.profile.targetSchool = d.profile.targetSchool || '';
+    return d;
   }
 
   /* ── TOAST ── */
@@ -528,10 +592,52 @@ tr:hover td{background:var(--bg-soft)}
   }
 
   /* ── HELPERS ── */
-  function earnedCredits(){ return state.credits.filter(function(c){ return c.status==='Passed'||c.status==='Transferred'; }); }
-  function totalEarned(){ return earnedCredits().reduce(function(s,c){ return s+Number(c.credits); },0); }
-  function totalCost(){ return state.credits.reduce(function(s,c){ return s+Number(c.cost||0); },0); }
+  function isEarnedCredit(c){ return c.status==='Passed'||c.status==='Transferred'; }
+  function earnedCredits(){ return state.credits.filter(isEarnedCredit); }
+  function totalEarned(){ return getTrackerMetrics().totalEarned; }
+  function totalCost(){ return getTrackerMetrics().actualCost; }
   function fmt$(n){ return '$'+n.toLocaleString(); }
+  function todayStamp(){ return new Date().toISOString().split('T')[0]; }
+  function displayDate(d){
+    if(!d) return '';
+    var parts = String(d).split('-');
+    if(parts.length===3) return parts[1]+'/'+parts[2]+'/'+parts[0];
+    return String(d);
+  }
+  function getTrackerMetrics(){
+    var credits = state.credits || [];
+    var earnedList = credits.filter(isEarnedCredit);
+    var earned = earnedList.reduce(function(s,c){ return s + Number(c.credits || 0); },0);
+    var actual = credits.reduce(function(s,c){ return s + Number(c.cost || 0); },0);
+    var traditional = earned * COST_PER_CREDIT_TRADITIONAL;
+    var pathwayTotals = {};
+    pathwayDefs.forEach(function(p){ pathwayTotals[p.key] = 0; });
+    earnedList.forEach(function(c){
+      if(pathwayTotals[c.pathway] === undefined) pathwayTotals[c.pathway] = 0;
+      pathwayTotals[c.pathway] += Number(c.credits || 0);
+    });
+    var genEdProgress = Object.keys(state.genEdReqs || {}).map(function(cat){
+      var needed = Number(state.genEdReqs[cat]) || 0;
+      var catEarned = earnedList.filter(function(c){ return c.category===cat; }).reduce(function(s,c){ return s + Number(c.credits || 0); },0);
+      var pct = needed>0 ? Math.min(100, Math.round((catEarned/needed)*100)) : 0;
+      var status = catEarned>=needed && needed>0 ? 'Complete' : (catEarned>0 ? 'In Progress' : 'Not Started');
+      var statusClass = status==='Complete' ? 'complete' : (status==='In Progress' ? 'in-progress' : 'not-started');
+      return { category:cat, needed:needed, earned:catEarned, pct:pct, status:status, statusClass:statusClass };
+    });
+    return {
+      credits: credits,
+      earnedCredits: earnedList,
+      totalEarned: earned,
+      creditsRemaining: Math.max(0, TOTAL_CREDITS_NEEDED - earned),
+      completionPct: Math.min(100, Math.round((earned/TOTAL_CREDITS_NEEDED)*100)),
+      passedCount: credits.filter(function(c){ return c.status==='Passed'; }).length,
+      traditionalCost: traditional,
+      actualCost: actual,
+      netSavings: traditional - actual,
+      pathwayTotals: pathwayTotals,
+      genEdProgress: genEdProgress
+    };
+  }
 
   /* ── PATHWAY DATA ── */
   var pathwayDefs = [
@@ -545,38 +651,49 @@ tr:hover td{background:var(--bg-soft)}
 
   /* ── RENDER ALL ── */
   function render(){
+    renderProfileInputs();
     renderOverview();
     renderPathways();
     renderGenEd();
     renderTable();
     renderSavings();
     renderTimeline();
+    renderReport();
+    updateActionStates();
     saveState();
+  }
+
+  function renderProfileInputs(){
+    var nameInput = document.getElementById('studentName');
+    var schoolInput = document.getElementById('targetSchool');
+    if(nameInput && document.activeElement !== nameInput) nameInput.value = state.profile.studentName || '';
+    if(schoolInput && document.activeElement !== schoolInput) schoolInput.value = state.profile.targetSchool || '';
   }
 
   /* ── OVERVIEW ── */
   function renderOverview(){
-    var earned = totalEarned();
-    var pct = Math.min(100, Math.round((earned/TOTAL_CREDITS_NEEDED)*100));
+    var metrics = getTrackerMetrics();
+    var earned = metrics.totalEarned;
+    var pct = metrics.completionPct;
     var circumference = 2 * Math.PI * 85;
     var offset = circumference - (circumference * pct / 100);
     document.getElementById('ringFill').setAttribute('stroke-dashoffset', offset);
     document.getElementById('ringPct').textContent = pct + '%';
     document.getElementById('ringCredits').textContent = earned + ' / ' + TOTAL_CREDITS_NEEDED + ' credits';
     document.getElementById('statCredits').textContent = earned;
-    document.getElementById('statRemaining').textContent = Math.max(0, TOTAL_CREDITS_NEEDED - earned);
-    var savings = (earned * COST_PER_CREDIT_TRADITIONAL) - totalCost();
-    document.getElementById('statSaved').innerHTML = '$' + Math.max(0,savings).toLocaleString();
-    document.getElementById('statPassed').textContent = state.credits.filter(function(c){ return c.status==='Passed'; }).length;
+    document.getElementById('statRemaining').textContent = metrics.creditsRemaining;
+    document.getElementById('statSaved').innerHTML = '$' + Math.max(0,metrics.netSavings).toLocaleString();
+    document.getElementById('statPassed').textContent = metrics.passedCount;
   }
 
   /* ── PATHWAYS ── */
   function renderPathways(){
     var el = document.getElementById('pathwayBars');
-    var maxCredits = Math.max(30, totalEarned());
+    var metrics = getTrackerMetrics();
+    var maxCredits = Math.max(30, metrics.totalEarned);
     var html = '';
     pathwayDefs.forEach(function(p){
-      var creds = state.credits.filter(function(c){ return c.pathway===p.key && (c.status==='Passed'||c.status==='Transferred'); }).reduce(function(s,c){ return s+Number(c.credits); },0);
+      var creds = metrics.pathwayTotals[p.key] || 0;
       var pct = maxCredits>0? (creds/maxCredits)*100 : 0;
       html += '<div class="pathway-item"><div class="pathway-name" style="color:'+p.color+'">'+p.label+'</div><div class="pathway-bar-bg"><div class="pathway-bar-fill" style="width:'+pct+'%;background:'+p.color+';opacity:.7"></div></div><div class="pathway-credits">'+creds+' cr</div></div>';
     });
@@ -586,20 +703,13 @@ tr:hover td{background:var(--bg-soft)}
   /* ── GEN ED ── */
   function renderGenEd(){
     var el = document.getElementById('genedGrid');
+    var metrics = getTrackerMetrics();
     var html = '';
-    var cats = Object.keys(state.genEdReqs);
-    cats.forEach(function(cat, i){
-      var needed = state.genEdReqs[cat];
-      var earned = state.credits.filter(function(c){ return c.category===cat && (c.status==='Passed'||c.status==='Transferred'); }).reduce(function(s,c){ return s+Number(c.credits); },0);
-      var pct = needed>0? Math.min(100,Math.round((earned/needed)*100)):0;
-      var status, statusClass;
-      if(earned>=needed && needed>0){ status='Complete'; statusClass='complete'; }
-      else if(earned>0){ status='In Progress'; statusClass='in-progress'; }
-      else { status='Not Started'; statusClass='not-started'; }
+    metrics.genEdProgress.forEach(function(item, i){
       html += '<div class="glass gened-card reveal reveal-d'+(i%4+1)+'">'
-        + '<div class="gened-header"><div class="gened-name">'+cat+'</div><div class="gened-status '+statusClass+'">'+status+'</div></div>'
-        + '<div class="gened-progress"><div class="gened-bar-bg"><div class="gened-bar-fill" style="width:'+pct+'%"></div></div><div class="gened-fraction">'+earned+' / '+needed+'</div></div>'
-        + '<button class="gened-edit-btn" onclick="openGenedModal(\''+cat.replace(/'/g,"\\'")+'\')">&#9998; Edit Requirement</button>'
+        + '<div class="gened-header"><div class="gened-name">'+item.category+'</div><div class="gened-status '+item.statusClass+'">'+item.status+'</div></div>'
+        + '<div class="gened-progress"><div class="gened-bar-bg"><div class="gened-bar-fill" style="width:'+item.pct+'%"></div></div><div class="gened-fraction">'+item.earned+' / '+item.needed+'</div></div>'
+        + '<button class="gened-edit-btn" onclick="openGenedModal(\''+item.category.replace(/'/g,"\\'")+'\')">&#9998; Edit Requirement</button>'
         + '</div>';
     });
     el.innerHTML = html;
@@ -671,10 +781,10 @@ tr:hover td{background:var(--bg-soft)}
 
   /* ── SAVINGS ── */
   function renderSavings(){
-    var earned = totalEarned();
-    var traditional = earned * COST_PER_CREDIT_TRADITIONAL;
-    var actual = totalCost();
-    var net = traditional - actual;
+    var metrics = getTrackerMetrics();
+    var traditional = metrics.traditionalCost;
+    var actual = metrics.actualCost;
+    var net = metrics.netSavings;
     document.getElementById('savTraditional').textContent = fmt$(traditional);
     document.getElementById('savActual').textContent = fmt$(actual);
     document.getElementById('savNet').textContent = fmt$(Math.max(0,net));
@@ -818,7 +928,7 @@ tr:hover td{background:var(--bg-soft)}
   window.confirmReset = function(){ showModal('confirmModal'); };
   window.closeConfirmModal = function(){ hideModal('confirmModal'); };
   window.resetAll = function(){
-    state = { credits: [], genEdReqs: JSON.parse(JSON.stringify(defaultGenEd)) };
+    state = normalizeState({});
     saveState();
     closeConfirmModal();
     toast('All data has been reset.');
@@ -826,14 +936,189 @@ tr:hover td{background:var(--bg-soft)}
   };
 
   /* ── EXPORT / IMPORT ── */
-  window.exportJSON = function(){
-    var blob = new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  function downloadBlob(content, type, filename){
+    var blob = content instanceof Blob ? content : new Blob([content],{type:type});
+    var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'fga-tracker-'+new Date().toISOString().split('T')[0]+'.json';
+    a.href = url;
+    a.download = filename;
+    a.style.display = 'none';
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(a.href);
+    setTimeout(function(){
+      URL.revokeObjectURL(url);
+      a.remove();
+    },0);
+  }
+
+  window.exportJSON = function(){
+    downloadBlob(JSON.stringify(state,null,2),'application/json;charset=utf-8','fga-tracker-'+todayStamp()+'.json');
     toast('Data exported.');
+  };
+
+  function csvCell(value){
+    var s = value === null || value === undefined ? '' : String(value);
+    if(/[",\r\n]/.test(s)) return '"' + s.replace(/"/g,'""') + '"';
+    return s;
+  }
+
+  window.exportCSV = function(){
+    if(state.credits.length===0){ toast('No credits to export.'); return; }
+    var rows = [['Course/Exam','Pathway','Credits','Category','Status','Score','Cost','Date']];
+    state.credits.forEach(function(c){
+      rows.push([c.name,c.pathway,c.credits,c.category,c.status,c.score||'',c.cost||0,c.date||'']);
+    });
+    var csv = rows.map(function(row){ return row.map(csvCell).join(','); }).join('\r\n') + '\r\n';
+    downloadBlob('\ufeff'+csv,'text/csv;charset=utf-8','fast-grad-tracker_'+todayStamp()+'.csv');
+    toast('CSV downloaded.');
+  };
+
+  function getCalendarCredits(){
+    return state.credits.filter(function(c){
+      return (c.status==='Planned'||c.status==='Studying') && /^\d{4}-\d{2}-\d{2}$/.test(c.date||'');
+    });
+  }
+
+  function escapeIcsText(s){
+    return String(s || '').replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');
+  }
+
+  function foldIcsLine(line){
+    var out = '';
+    while(line.length > 73){
+      out += line.slice(0,73) + '\r\n ';
+      line = line.slice(73);
+    }
+    return out + line;
+  }
+
+  function stableHash(s){
+    var hash = 2166136261;
+    for(var i=0;i<s.length;i++){
+      hash ^= s.charCodeAt(i);
+      hash += (hash<<1) + (hash<<4) + (hash<<7) + (hash<<8) + (hash<<24);
+    }
+    return (hash>>>0).toString(36);
+  }
+
+  function buildICS(){
+    var stamp = new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/,'Z');
+    var lines = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Fast Grad Academy//Degree Progress Tracker//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH'
+    ];
+    getCalendarCredits().forEach(function(c){
+      var uid = stableHash([c.name,c.pathway,c.category,c.date].join('|')) + '@fastgradacademy.com';
+      lines.push(
+        'BEGIN:VEVENT',
+        'UID:'+uid,
+        'DTSTAMP:'+stamp,
+        'DTSTART;VALUE=DATE:'+String(c.date).replace(/-/g,''),
+        'SUMMARY:'+escapeIcsText(c.pathway + ': ' + c.name + ' (target)'),
+        'DESCRIPTION:'+escapeIcsText((c.credits||0) + ' credits. Category: ' + (c.category||'') + '. Created with Fast Grad Academy tracker.'),
+        'END:VEVENT'
+      );
+    });
+    lines.push('END:VCALENDAR');
+    return lines.map(foldIcsLine).join('\r\n') + '\r\n';
+  }
+
+  window.exportICS = function(){
+    if(getCalendarCredits().length===0){ toast('No planned or studying credits with dates.'); return; }
+    downloadBlob(buildICS(),'text/calendar;charset=utf-8','fast-grad-exam-dates_'+todayStamp()+'.ics');
+    toast('Calendar file downloaded.');
+  };
+
+  function updateActionStates(){
+    var csvBtn = document.getElementById('downloadCsvBtn');
+    var icsBtn = document.getElementById('downloadIcsBtn');
+    if(csvBtn){
+      csvBtn.disabled = state.credits.length===0;
+      csvBtn.title = csvBtn.disabled ? 'No credits to export yet' : 'Download your full credit log as CSV';
+    }
+    if(icsBtn){
+      icsBtn.disabled = getCalendarCredits().length===0;
+      icsBtn.title = icsBtn.disabled ? 'Add Planned or Studying credits with dates first' : 'Download target dates as an .ics calendar file';
+    }
+  }
+
+  function renderReport(){
+    var report = document.getElementById('progressReport');
+    if(!report) return;
+    var metrics = getTrackerMetrics();
+    var generated = new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+    var meta = [];
+    if(state.profile.studentName) meta.push('Student: '+esc(state.profile.studentName));
+    if(state.profile.targetSchool) meta.push('Target school: '+esc(state.profile.targetSchool));
+    meta.push('Generated: '+generated);
+
+    var genEdHtml = metrics.genEdProgress.map(function(item){
+      return '<div class="report-gened-card">'
+        + '<div class="report-gened-name">'+esc(item.category)+'</div>'
+        + '<div class="report-gened-line"><div class="report-gened-fill" style="width:'+item.pct+'%"></div></div>'
+        + '<div class="report-gened-meta">'+item.earned+' / '+item.needed+' credits - '+item.status+'</div>'
+        + '</div>';
+    }).join('');
+
+    var creditRows = state.credits.length ? state.credits.map(function(c){
+      return '<tr>'
+        + '<td>'+esc(c.name)+'</td>'
+        + '<td>'+esc(c.pathway)+'</td>'
+        + '<td>'+esc(c.credits)+'</td>'
+        + '<td>'+esc(c.category)+'</td>'
+        + '<td>'+esc(c.status)+'</td>'
+        + '<td>'+esc(c.score||'')+'</td>'
+        + '<td>'+fmt$(Number(c.cost)||0)+'</td>'
+        + '<td>'+esc(displayDate(c.date))+'</td>'
+        + '</tr>';
+    }).join('') : '<tr><td colspan="8" style="text-align:center;color:#666">No credits logged yet.</td></tr>';
+
+    report.innerHTML = '<div class="report-page">'
+      + '<div class="report-header">'
+      + '<div><div class="report-kicker">Fast Grad Academy</div><div class="report-title">Degree Progress Report</div></div>'
+      + '<div class="report-meta">'+meta.join('<br>')+'</div>'
+      + '</div>'
+      + '<div class="report-summary">'
+      + '<div class="report-metric"><strong>'+metrics.completionPct+'%</strong><span>Completion</span></div>'
+      + '<div class="report-metric"><strong>'+metrics.totalEarned+'</strong><span>Credits Earned</span></div>'
+      + '<div class="report-metric"><strong>'+metrics.creditsRemaining+'</strong><span>Remaining</span></div>'
+      + '<div class="report-metric"><strong>'+fmt$(Math.max(0,metrics.netSavings))+'</strong><span>Estimated Savings</span></div>'
+      + '<div class="report-metric"><strong>'+metrics.passedCount+'</strong><span>Exams Passed</span></div>'
+      + '</div>'
+      + '<div class="report-section"><h3>General Education Grid</h3><div class="report-gened">'+genEdHtml+'</div></div>'
+      + '<div class="report-section"><h3>Credit Log</h3><table class="report-table"><thead><tr><th>Course/Exam</th><th>Pathway</th><th>Credits</th><th>Category</th><th>Status</th><th>Score</th><th>Cost</th><th>Date</th></tr></thead><tbody>'+creditRows+'</tbody></table></div>'
+      + '<div class="report-section"><h3>Cost Savings</h3><div class="report-savings">'
+      + '<div class="report-metric"><strong>'+fmt$(metrics.traditionalCost)+'</strong><span>Traditional Cost</span></div>'
+      + '<div class="report-metric"><strong>'+fmt$(metrics.actualCost)+'</strong><span>Your Cost</span></div>'
+      + '<div class="report-metric"><strong>'+fmt$(Math.max(0,metrics.netSavings))+'</strong><span>Net Savings</span></div>'
+      + '</div></div>'
+      + '<div class="report-footer"><strong>Results Disclaimer:</strong> This course describes the personal experience of John Zheng and publicly available credit-by-exam strategies. Results are not typical and vary by individual. Nothing herein is a guarantee of graduation, cost savings, or any academic outcome. Educational content only.<br>Site: https://fastgradacademy.com/tracker</div>'
+      + '</div>';
+  }
+
+  window.printProgressReport = function(){
+    renderReport();
+    var originalTitle = document.title;
+    var cleaned = false;
+    document.title = 'Fast-Grad-Progress-Report_'+todayStamp();
+    document.body.classList.add('print-report');
+    function cleanup(){
+      if(cleaned) return;
+      cleaned = true;
+      document.body.classList.remove('print-report');
+      document.title = originalTitle;
+      window.removeEventListener('afterprint',cleanup);
+      window.removeEventListener('focus',focusCleanup);
+    }
+    function focusCleanup(){
+      setTimeout(cleanup,250);
+    }
+    window.addEventListener('afterprint',cleanup);
+    window.addEventListener('focus',focusCleanup);
+    setTimeout(function(){ window.print(); },50);
   };
 
   window.importJSON = function(){
@@ -848,8 +1133,7 @@ tr:hover td{background:var(--bg-soft)}
       try {
         var d = JSON.parse(ev.target.result);
         if(d.credits){
-          state = d;
-          if(!state.genEdReqs) state.genEdReqs = JSON.parse(JSON.stringify(defaultGenEd));
+          state = normalizeState(d);
           saveState();
           render();
           toast('Data imported successfully.');
@@ -904,6 +1188,17 @@ tr:hover td{background:var(--bg-soft)}
   document.getElementById('filterStatus').addEventListener('change',function(e){
     filterStatus = e.target.value;
     renderTable();
+  });
+
+  document.getElementById('studentName').addEventListener('input',function(e){
+    state.profile.studentName = e.target.value;
+    saveState();
+    renderReport();
+  });
+  document.getElementById('targetSchool').addEventListener('input',function(e){
+    state.profile.targetSchool = e.target.value;
+    saveState();
+    renderReport();
   });
 
   /* ── SCROLL REVEAL ── */
