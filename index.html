@@ -538,6 +538,62 @@
     .c-1 h3 { font-size: 36px; }
   }
 
+  /* ——— fit qualifier ——— */
+  .fit-check {
+    padding: 96px 0;
+    background: var(--bg-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .fit-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 32px;
+  }
+  .fit-card h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: #0a0a0a;
+    margin-bottom: 22px;
+  }
+  .fit-card ul { list-style: none; display: grid; gap: 14px; }
+  .fit-card li {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    align-items: start;
+    color: var(--ink-dim);
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .fit-mark {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .fit-mark.yes { background: rgba(34,197,94,0.12); color: #16a34a; }
+  .fit-mark.no { background: rgba(239,68,68,0.12); color: #dc2626; }
+  @media (max-width: 780px) {
+    .fit-check { padding: 72px 0; }
+    .fit-grid { grid-template-columns: 1fr; }
+    .fit-card { padding: 28px 24px; }
+    .fit-card h3 { font-size: 30px; }
+  }
+
   /* ——— parents ——— */
   .parents { padding: 110px 0; background: var(--bg-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .parents-grid {
@@ -1136,6 +1192,37 @@
         <h3>Financial Strategy</h3>
         <p>How to redirect the savings (Roth, HYSA, down payment) so your 1 year becomes a 10-year head start.</p>
         <div class="tags"><span class="pill clep">Savings</span><span class="pill dual">Investment</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO THIS IS FOR ============ -->
+<section class="fit-check" id="fit">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin:0 auto 48px">
+      <span class="eyebrow">Who this is for</span>
+      <h2 style="margin-top:14px">Be honest before you <em>buy</em>.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">This works best for people who want the outcome more than the traditional college script.</p>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-card reveal">
+        <h3>This is for you if...</h3>
+        <ul>
+          <li><span class="fit-mark yes">&check;</span><span>You're a high school student in 9th-12th grade who wants to skip years of college.</span></li>
+          <li><span class="fit-mark yes">&check;</span><span>You're a parent looking for a smarter path for your child.</span></li>
+          <li><span class="fit-mark yes">&check;</span><span>You're a self-directed learner who would rather test out than sit through lectures.</span></li>
+          <li><span class="fit-mark yes">&check;</span><span>You're coming back to finish a degree and want the fastest route.</span></li>
+          <li><span class="fit-mark yes">&check;</span><span>You care more about the outcome than the "college experience."</span></li>
+        </ul>
+      </div>
+      <div class="fit-card reveal" data-delay="1">
+        <h3>This is not for you if...</h3>
+        <ul>
+          <li><span class="fit-mark no">&times;</span><span>You want the traditional 4-year campus experience at a name-brand school.</span></li>
+          <li><span class="fit-mark no">&times;</span><span>You're pursuing a field where specific school prestige is the point, like pre-med at Johns Hopkins or CS at MIT.</span></li>
+          <li><span class="fit-mark no">&times;</span><span>You're looking for free CLEP study materials. This is a strategy guide, not a test bank.</span></li>
+        </ul>
       </div>
     </div>
   </div>
