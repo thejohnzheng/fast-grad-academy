@@ -7,12 +7,6 @@ import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
-
 // Generate a clean, premium-feeling access code: FGA-XXXX-XXXX
 function generateAccessCode() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // No 0/O/1/I confusion
@@ -24,6 +18,10 @@ function generateAccessCode() {
 }
 
 async function sendAccessEmail(email, accessCode) {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error('Missing RESEND_API_KEY');
+  }
+
   const firstName = email.split('@')[0].replace(/[+._\d]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).trim() || 'there';
 
   const res = await fetch('https://api.resend.com/emails', {
@@ -119,8 +117,13 @@ async function sendAccessEmail(email, accessCode) {
 }
 
 async function sendSaleNotification(email, accessCode) {
+  if (!process.env.RESEND_API_KEY) {
+    console.error('Sale notification skipped: missing RESEND_API_KEY');
+    return;
+  }
+
   try {
-    await fetch('https://api.resend.com/emails', {
+    const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
@@ -149,6 +152,12 @@ async function sendSaleNotification(email, accessCode) {
         `,
       }),
     });
+
+    if (!res.ok) {
+      console.error('Sale notification failed:', await res.text());
+      return;
+    }
+
     console.log('Sale notification sent to johnzhengmn@gmail.com');
   } catch (err) {
     console.error('Sale notification failed (non-critical):', err);
@@ -160,17 +169,31 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  if (!secretKey || !webhookSecret) {
+    console.error('Webhook configuration missing Stripe credentials');
+    return res.status(503).json({ error: 'Webhook is not configured' });
+  }
+
   // Verify Stripe webhook signature
   const sig = req.headers['stripe-signature'];
   let event;
 
+  if (!sig) {
+    console.error('Webhook signature header missing');
+    return res.status(400).json({ error: 'Missing Stripe signature' });
+  }
+
   try {
     // For raw body access in Vercel, we need the raw buffer
     const rawBody = await getRawBody(req);
+    const stripe = new Stripe(secretKey);
     event = stripe.webhooks.constructEvent(
       rawBody,
       sig,
-      process.env.STRIPE_WEBHOOK_SECRET
+      webhookSecret
     );
   } catch (err) {
     console.error('Webhook signature verification failed:', err.message);
@@ -179,70 +202,101 @@ export default async function handler(req, res) {
 
   // Handle checkout.session.completed event
   if (event.type === 'checkout.session.completed') {
-    const session = event.data.object;
-    const email = session.customer_details?.email || session.customer_email;
-    const paymentId = session.payment_intent;
-    const customerId = session.customer;
-
-    if (!email) {
-      console.error('No email found in checkout session');
-      return res.status(400).json({ error: 'No customer email' });
-    }
-
-    // Check if this payment already has an access code (idempotency)
-    const { data: existing } = await supabase
-      .from('access_codes')
-      .select('access_code')
-      .eq('stripe_payment_id', paymentId)
-      .single();
-
-    if (existing) {
-      console.log('Access code already exists for this payment:', existing.access_code);
-      return res.status(200).json({ received: true, code: existing.access_code });
-    }
-
-    // Generate unique access code
-    let accessCode;
-    let attempts = 0;
-    while (attempts < 5) {
-      accessCode = generateAccessCode();
-      const { data: collision } = await supabase
-        .from('access_codes')
-        .select('id')
-        .eq('access_code', accessCode)
-        .single();
-      if (!collision) break;
-      attempts++;
-    }
-
-    // Store in Supabase
-    const { error: insertError } = await supabase
-      .from('access_codes')
-      .insert({
-        email,
-        access_code: accessCode,
-        stripe_payment_id: paymentId,
-        stripe_customer_id: customerId,
-      });
-
-    if (insertError) {
-      console.error('Supabase insert error:', insertError);
-      return res.status(500).json({ error: 'Failed to store access code' });
-    }
-
-    // Send branded welcome email to customer
     try {
-      await sendAccessEmail(email, accessCode);
-      console.log(`Access code ${accessCode} sent to ${email}`);
-    } catch (emailErr) {
-      console.error('Email send failed (code still stored):', emailErr);
-      // Don't fail the webhook — the code is stored, we can resend manually
+      const session = event.data.object;
+      const email = session.customer_details?.email || session.customer_email;
+      const paymentId = typeof session.payment_intent === 'string' ? session.payment_intent : session.id;
+      const customerId = typeof session.customer === 'string' ? session.customer : null;
+
+      if (!email) {
+        console.error('No email found in checkout session');
+        return res.status(400).json({ error: 'No customer email' });
+      }
+
+      if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+        console.error('Webhook configuration missing Supabase credentials');
+        return res.status(503).json({ error: 'Access code storage is not configured' });
+      }
+
+      const supabase = createClient(
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_SERVICE_ROLE_KEY
+      );
+
+      // Check if this payment already has an access code (idempotency)
+      const { data: existing, error: existingError } = await supabase
+        .from('access_codes')
+        .select('access_code')
+        .eq('stripe_payment_id', paymentId)
+        .maybeSingle();
+
+      if (existingError) {
+        console.error('Supabase idempotency lookup error:', existingError);
+        return res.status(500).json({ error: 'Failed to check existing access code' });
+      }
+
+      if (existing) {
+        console.log('Access code already exists for this payment:', existing.access_code);
+        return res.status(200).json({ received: true, code: existing.access_code });
+      }
+
+      // Generate unique access code
+      let accessCode;
+      for (let attempts = 0; attempts < 5; attempts++) {
+        const candidate = generateAccessCode();
+        const { data: collision, error: collisionError } = await supabase
+          .from('access_codes')
+          .select('id')
+          .eq('access_code', candidate)
+          .maybeSingle();
+
+        if (collisionError) {
+          console.error('Supabase collision lookup error:', collisionError);
+          return res.status(500).json({ error: 'Failed to check access code uniqueness' });
+        }
+
+        if (!collision) {
+          accessCode = candidate;
+          break;
+        }
+      }
+
+      if (!accessCode) {
+        console.error('Access code generation exhausted collision attempts');
+        return res.status(500).json({ error: 'Failed to generate unique access code' });
+      }
+
+      // Store in Supabase
+      const { error: insertError } = await supabase
+        .from('access_codes')
+        .insert({
+          email,
+          access_code: accessCode,
+          stripe_payment_id: paymentId,
+          stripe_customer_id: customerId,
+        });
+
+      if (insertError) {
+        console.error('Supabase insert error:', insertError);
+        return res.status(500).json({ error: 'Failed to store access code' });
+      }
+
+      // Send branded welcome email to customer. Do not fail the webhook if this fails.
+      try {
+        await sendAccessEmail(email, accessCode);
+        console.log(`Access code ${accessCode} sent to ${email}`);
+      } catch (emailErr) {
+        console.error('Email send failed (code still stored):', emailErr);
+      }
+
+      // Send sale notification to John. This is also non-critical.
+      await sendSaleNotification(email, accessCode);
+
+      return res.status(200).json({ received: true });
+    } catch (err) {
+      console.error('Webhook processing failed:', err);
+      return res.status(500).json({ error: 'Webhook processing failed' });
     }
-
-    // Send sale notification to John
-    await sendSaleNotification(email, accessCode);
-
-    return res.status(200).json({ received: true });
   }
 
   // Acknowledge other event types
