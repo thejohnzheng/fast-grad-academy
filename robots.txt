@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /guide
+Disallow: /ch*
+Disallow: /tracker
+Disallow: /resources
+
+Sitemap: https://fastgradacademy.com/sitemap.xml

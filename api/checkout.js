@@ -20,12 +20,24 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { email } = req.body || {};
+    const { email, tracking } = req.body || {};
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fastgradacademy.com';
+
+    // Build metadata with tracking params for attribution
+    const metadata = { product: 'fast_grad_academy_guide' };
+    if (tracking) {
+      ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid'].forEach(k => {
+        if (tracking[k]) metadata[k] = tracking[k];
+      });
+    }
+
+    // Append tracking params to success URL for conversion tag
+    const successParams = new URLSearchParams({ purchased: 'true' });
+    if (tracking && tracking.gclid) successParams.set('gclid', tracking.gclid);
 
     const sessionParams = {
       mode: 'payment',
-            allow_promotion_codes: true,
+      allow_promotion_codes: true,
       payment_method_types: ['card'],
       line_items: [
         {
@@ -33,11 +45,9 @@ export default async function handler(req, res) {
           quantity: 1,
         },
       ],
-      success_url: `${siteUrl}/guide?purchased=true`,
+      success_url: `${siteUrl}/guide?${successParams.toString()}`,
       cancel_url: `${siteUrl}/#pricing`,
-      metadata: {
-        product: 'fast_grad_academy_guide',
-      },
+      metadata,
     };
 
     // Pre-fill email if provided
