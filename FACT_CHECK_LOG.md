@@ -23,8 +23,8 @@ Blocked: `FGA_Source_of_Truth_Exams_Facts.xlsx` was not found anywhere under `/U
   - Study.com: College Saver starts at `$95/month`; College Saver Pro is `$235/month`.
   - StraighterLine: `$99/month + course fee`; bundle plans available.
   - Saylor: free courses with low-cost proctored credit exams; exact fee/course acceptance should be verified live.
-- Corrected April 2026 news copy to rely on the verified Washington Post article and removed the unverified Boston Globe reference from visible copy.
-- Corrected Makayla Quackenbush pathway from WGU to University of Maine at Presque Isle YourPace where referenced in the April 2026 story.
+- Replaced older narrative news copy with verified press citations. Current source of truth: `VERIFIED_PRESS.md`.
+- Removed named-student retellings from the public press sections so citation blocks rely only on publication, headline, date, URL, and short attributed quotes.
 - Added Summer Sprint Challenge content to `guide.html`, `index.html`, and `ch10.html`.
 - Added a 2026 AI study stack callout to `ch9.html`.
 - Bumped `course.css` cache references from `v13` to `v15`.
