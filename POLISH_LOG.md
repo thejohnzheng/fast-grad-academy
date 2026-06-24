@@ -173,5 +173,25 @@ roadmap line) were left as contextually appropriate per instruction.
 4. `polish: promote key founder quote as pull quote`
 5. (Task 3 produced no changes — audit only, documented above.)
 6. `docs: add POLISH_LOG.md` (this file)
-</content>
-</invoke>
+7. `fix: restore em dash in JSON-LD refund policy + rebase onto post-revert main` (see addendum)
+
+---
+
+## Addendum — 2026-06-24 (post-review rebase)
+
+Coordinator review found the branch was cut from `main` before a revert landed.
+
+- **Rebase:** `git rebase origin/main` onto `1f6e0f2` ("revert CLEP school count to 2,900+").
+  Clean — **no conflicts**. My edits and the revert touched disjoint lines (the revert changed only
+  the school-count figures; my em-dash edits were elsewhere, and the one reverted line carrying an em
+  dash — the `data-fga` ch4 chapter description — was in my deliberate "leave untouched" set).
+- **CLEP school count:** now `2,900+` everywhere (the canonical College Board / `fga-truths.json`
+  figure). `grep -rn "3,000+" --include="*.html"` → 0 results. `grep -rn "2,900+" --include="*.html"`
+  → 10. `data-count="2900"` confirmed on the animated counter (index.html). Unrelated `$3,000`
+  dollar amounts (course-cost examples in ch6/ch10/index) were correctly left alone.
+- **JSON-LD correction:** the Task 1 `replace_all` for the guarantee line had also caught the
+  protected JSON-LD refund-policy string (index.html line 105). The em dash there has been **restored**
+  (`full refund — no forms, no hoops`), since JSON-LD structured data was in the do-not-touch zone.
+  The three visible-copy occurrences (hero guarantee, checklist item, FAQ answer) remain commas as
+  intended.
+
