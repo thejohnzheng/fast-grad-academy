@@ -91,7 +91,6 @@ fast-grad-academy/
 ├── robots.txt                  # Robots exclusion
 ├── vercel.json                 # Vercel config (rewrites, headers, functions)
 ├── package.json                # Node dependencies (stripe, @supabase/supabase-js)
-├── middleware.js                # Vercel middleware
 ├── schema.sql                  # DB schema reference
 ├── supabase-schema.sql         # Supabase-specific schema
 ├── fga-truths.json             # Single source of truth data (prices, stats)

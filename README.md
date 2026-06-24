@@ -1,1 +1,3 @@
-# Pre-launch: site is password protected via middleware.js (password: fga2026)
+# Fast Grad Academy
+
+Static course site plus Vercel API routes for checkout, webhook handling, and access-code verification.
