@@ -102,7 +102,7 @@
           "name": "What's the refund policy?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "This is a digital product with instant access, so all sales are final. That said, if you follow even one strategy in this guide, you can potentially save thousands. A single CLEP exam can save $1,500+ in tuition, depending on your school's credit acceptance policy."
+            "text": "Our guarantee: Go through the guide and take one CLEP exam. If it didn't save you money or move you forward, email hello@fastgradacademy.com within 30 days for a full refund — no forms, no hoops."
           }
         }
       ]
@@ -948,7 +948,12 @@
       <span>Instant digital access</span>
       <span class="sep"></span>
       <span>Lifetime updates</span>
+      <span class="sep"></span>
+      <span>30-day guarantee</span>
     </div>
+    <p class="reveal" style="margin-top:12px;color:var(--ink-mute);font-size:13px;line-height:1.6;max-width:720px">
+      <strong style="color:#0a0a0a">Our guarantee:</strong> Go through the guide and take one CLEP exam. If it didn't save you money or move you forward, email hello@fastgradacademy.com within 30 days for a full refund — no forms, no hoops.
+    </p>
   </div>
 </section>
 
@@ -992,6 +997,7 @@
       <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-bottom:8px;">Cited references</div>
       <h3 style="font-family:var(--serif);font-size:24px;color:#0a0a0a;margin:0;font-weight:400;">The movement making headlines</h3>
     </div>
+    <!-- All articles verified 2026-06-24. URLs confirmed live. -->
     <div id="news-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:960px;margin:0 auto;"></div>
   </div>
 </section>
@@ -1395,10 +1401,11 @@
         <div class="it"><span class="chk">✓</span>52-week roadmap calendar</div>
         <div class="it"><span class="chk">✓</span>AI study-prompt pack (8 core prompts + bonuses)</div>
         <div class="it"><span class="chk">✓</span>Lifetime updates, every year</div>
+        <div class="it"><span class="chk">✓</span>Our guarantee: Go through the guide and take one CLEP exam. If it didn't save you money or move you forward, email hello@fastgradacademy.com within 30 days for a full refund — no forms, no hoops.</div>
       </div>
       <div class="buy-row">
         <a href="#" onclick="startCheckout(event)" class="btn-primary" id="checkout-btn">Get The Guide · $197 <span>→</span></a>
-        <span class="meta"><span class="d"></span>Instant · All sales final</span>
+        <span class="meta"><span class="d"></span>Instant · 30-day guarantee</span>
       </div>
     </div>
   </div>
@@ -1431,7 +1438,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span class="q">What's the refund policy?</span><span class="pm">+</span></button>
-        <div class="faq-a" role="region">This is a digital product with instant access, so all sales are final. That said, if you follow even one strategy in this guide, you can potentially save thousands. A single CLEP exam can save $1,500+ in tuition, depending on your school's credit acceptance policy.</div>
+        <div class="faq-a" role="region">Our guarantee: Go through the guide and take one CLEP exam. If it didn't save you money or move you forward, email <a href="mailto:hello@fastgradacademy.com">hello@fastgradacademy.com</a> within 30 days for a full refund — no forms, no hoops.</div>
       </div>
     </div>
   </div>
@@ -1469,7 +1476,7 @@
   <div class="wrap">
     <h2 class="reveal">Stop paying for <em>time</em> you don't need.</h2>
     <a href="#pricing" class="btn-primary reveal">Get The Guide · $197 <span>→</span></a>
-    <div class="sub reveal">Instant access · All sales final · Lifetime updates</div>
+    <div class="sub reveal">Instant access · 30-day guarantee · Lifetime updates</div>
   </div>
 </section>
 
@@ -1521,16 +1528,17 @@
   });
 
   const newsItems = [
-    { src: "Star Tribune", txt: "Minnesota Teen Earns 3 Degrees by Age 18 for $6,000" },
-    { src: "College Board", txt: "CLEP Can Shorten a Bachelor’s Degree by Up to 10 Months" },
-    { src: "Natl Student Clearinghouse", txt: "52,500 Students Under 18 Earned College Credentials — Nearly 4× a Decade Ago" },
-    { src: "CU Denver News", txt: "High School Students Are Earning College Credits Early — and Saving Thousands" },
+    { src: "The 74", date: "June 3, 2026", title: "Beyond AP: The College Credit Opportunity Few People Know About", url: "https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/", quote: "CLEP provides a highly-accessible pathway" },
+    { src: "Fortune", date: "March 31, 2026", title: "This billionaire is quietly giving away free college to 800,000 people", url: "https://fortune.com/2026/03/31/finance-steve-klinsky-new-mountain-capital-modern-states-free-college/", quote: "25,000 free years of college credit" },
+    { src: "The Washington Post", date: "August 24, 2017", title: "Making a dent in student debt with 'Freshman Year for Free'", url: "https://www.washingtonpost.com/news/get-there/wp/2017/08/24/making-a-dent-in-student-debt-with-freshman-year-for-free/", quote: "This program is a game-changer." },
+    { src: "WIRED", date: "January 30, 2015", title: "The Grand Plan to Give Everyone a Free Year of Online College", url: "https://www.wired.com/2015/01/freshman-year-for-free/", quote: "students can get real college credit" },
   ];
   const newsGrid = document.getElementById('news-grid');
   newsGrid.innerHTML = newsItems.map(h => `
-    <div style="padding:20px 22px;background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;gap:10px;">
-      <span style="font-size:10px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;color:var(--ink-mute);">${h.src}</span>
-      <span style="font-family:var(--serif);font-size:18px;color:#0a0a0a;line-height:1.3;letter-spacing:-0.005em;">"${h.txt}"</span>
+    <div style="padding:12px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:7px;">
+      <span style="font-size:10px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;color:var(--ink-mute);">${h.src} · ${h.date}</span>
+      <a href="${h.url}" target="_blank" rel="noopener" style="font-family:var(--serif);font-size:17px;color:#0a0a0a;line-height:1.3;text-decoration:none;">${h.title}</a>
+      <span style="font-size:13px;color:var(--ink-mute);line-height:1.5;">&ldquo;${h.quote}&rdquo;</span>
     </div>`).join('');
 
   // Wall of proof marquees
