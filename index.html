@@ -1431,6 +1431,36 @@
   &ldquo;I entered my freshman year as a college senior.&rdquo;
 </blockquote>
 
+<!-- LIVE DATA: CLEP savings calculator -->
+<div class="clep-calculator" style="max-width:480px;margin:2.5rem auto;padding:1.5rem 2rem;background:#0a0a0a;border:1px solid rgba(196,169,125,0.25);border-radius:12px;">
+  <h3 style="text-align:center;font-family:'Instrument Serif',serif;font-size:1.3rem;color:#fff;margin:0 0 1rem;">How Much Could You Save?</h3>
+
+  <label style="display:block;font-size:0.85rem;color:#ccc;margin-bottom:0.5rem;">
+    Number of CLEP exams: <strong id="clep-exam-display" style="color:#c4a97d;">5</strong>
+  </label>
+  <input type="range" id="clep-exam-count" min="1" max="20" value="5"
+    style="width:100%;accent-color:#c4a97d;margin-bottom:1rem;">
+
+  <label style="display:block;font-size:0.85rem;color:#ccc;margin-bottom:0.5rem;">School type:</label>
+  <select id="clep-school-type" style="width:100%;padding:0.5rem;background:#1a1a1a;color:#fff;border:1px solid rgba(196,169,125,0.2);border-radius:6px;margin-bottom:1.25rem;font-size:0.9rem;">
+    <option value="public">Public university (in-state)</option>
+    <option value="private">Private university</option>
+  </select>
+
+  <div style="text-align:center;padding:1rem 0;">
+    <p style="margin:0;font-size:0.85rem;color:#999;">Your estimated savings</p>
+    <p id="clep-savings-result" style="margin:0.25rem 0 0;font-family:'Instrument Serif',serif;font-size:2.25rem;color:#c4a97d;font-weight:400;">$5,515</p>
+    <p style="margin:0.25rem 0 0;font-size:0.8rem;color:#999;">
+      <span id="clep-credits-display">15</span> credits at $97/exam instead of tuition rates
+    </p>
+  </div>
+
+  <p style="text-align:center;font-size:0.75rem;color:#666;margin-top:0.75rem;">
+    Based on College Board exam fees ($97, 2025-26) vs. average per-credit tuition costs. CLEP exam cost does not include Modern States free prep courses.
+  </p>
+</div>
+<script src="js/clep-calculator.js" defer></script>
+
 <!-- ============ PRICING ============ -->
 <section class="pricing" id="pricing">
   <div class="wrap">
