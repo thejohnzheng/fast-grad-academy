@@ -625,14 +625,6 @@ function checkQ(btn,qId,correct){
 
 
 <script>
-// ── Progress bar ──
-var rpFill = document.querySelector('.reading-progress-fill');
-window.addEventListener('scroll', function(){
-  var h = document.documentElement;
-  var pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
-  if(rpFill) rpFill.style.transform = 'scaleX(' + pct + ')';
-});
-
 // ── Scroll reveal ──
 var ro = new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });

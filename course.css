@@ -1458,9 +1458,7 @@ footer .f-disclaimer a { text-decoration: underline; text-underline-offset: 2px;
 
 /* ══════════ RESPONSIVE ══════════ */
 @media (max-width: 600px) {
-  :root {
-    --section-pad: 72px 18px;
-  }
+  body { --section-pad: 72px 18px; }
   body { font-size: 16px; }
   .chapter, .chapter-wide { padding: 72px 18px; }
   .ch-title { margin-bottom: 24px; }

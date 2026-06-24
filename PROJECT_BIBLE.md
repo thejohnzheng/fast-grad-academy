@@ -235,7 +235,7 @@ fast-grad-academy/
 
 ### P2 — Improve After Launch
 9. **Number inconsistencies** — CLEP price, debt figures, cost ranges vary across chapters (Codex prompt written)
-10. **Freshman Scholarship Hack** — Needs reframing as "Strategic Score Timing" with warning
+10. **Freshman scholarship timing** — Reframed as a written-confirmation warning in Chapter 11
 11. **YouTube/Medium links** — Update descriptions to point to fastgradacademy.com
 12. **Vercel 2FA** — Was prompted, skipped. Should set up.
 

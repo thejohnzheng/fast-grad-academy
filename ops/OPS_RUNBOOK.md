@@ -232,8 +232,8 @@ Use `FGA_Source_of_Truth_Exams_Facts.xlsx` as the master reference. It contains:
 |------|-----------------|---------------|
 | CLEP exams | https://clep.collegeboard.org | Check each exam fee |
 | DSST exams | https://getcollegecredit.com | Check each exam fee |
-| Sophia Learning | https://sophia.org | $79/month |
-| Study.com | https://study.com | $199/month |
+| Sophia Learning | https://sophia.org | $99/month |
+| Study.com | https://study.com | College Saver starts at $95/month; Pro is $235/month |
 | StraighterLine | https://straighterline.com | $99/month |
 | Saylor Academy | https://saylor.org | Free |
 

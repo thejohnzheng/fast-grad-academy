@@ -764,7 +764,7 @@ function unlockAccess(){
   <div class="fga-tool-card">
     <div class="fga-tool-badge">⚡ Interactive Tool</div>
     <div class="fga-tool-title"><a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> Credit Explorer</div>
-    <div class="fga-tool-sub">Browse all 34 <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> exams. Click to select the ones you plan to take. Watch your credit total grow.</div>
+    <div class="fga-tool-sub">Browse 30+ current <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> exams. Click to select the ones you plan to take. Watch your credit total grow.</div>
 
     <div class="fga-filter-row" id="ce-filters">
       <button class="fga-filter-btn active" data-cat="all">All Exams</button>
@@ -1009,14 +1009,6 @@ function checkQ(btn,qId,correct){
 
 
 <script>
-// ── Progress bar ──
-var rpFill = document.querySelector('.reading-progress-fill');
-window.addEventListener('scroll', function(){
-  var h = document.documentElement;
-  var pct = h.scrollTop / (h.scrollHeight - h.clientHeight);
-  if(rpFill) rpFill.style.transform = 'scaleX(' + pct + ')';
-});
-
 // ── Scroll reveal ──
 var ro = new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
