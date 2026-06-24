@@ -7,12 +7,16 @@ CREATE TABLE IF NOT EXISTS access_codes (
   access_code TEXT NOT NULL UNIQUE,
   stripe_payment_id TEXT UNIQUE,
   stripe_customer_id TEXT,
+  name TEXT,
   created_at TIMESTAMPTZ DEFAULT now(),
   first_accessed_at TIMESTAMPTZ,
   access_count INTEGER DEFAULT 0,
   is_active BOOLEAN DEFAULT true,
   notes TEXT
 );
+
+-- For existing deployments (idempotent): buyer name for personalized emails + recovery.
+ALTER TABLE access_codes ADD COLUMN IF NOT EXISTS name TEXT;
 
 CREATE INDEX idx_access_codes_code ON access_codes(access_code);
 CREATE INDEX idx_access_codes_email ON access_codes(email);
