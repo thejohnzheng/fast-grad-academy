@@ -339,7 +339,7 @@ function unlockAccess(){
         <li><strong>Step 1: Do you need gen-ed credits?</strong> &rarr; Start with <strong><a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a></strong> (free via Modern States).</li>
         <li><strong>Step 2: <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> doesn't cover the subject?</strong> &rarr; Check <strong><a href="https://www.getcollegecredit.com" target="_blank" rel="noopener">DSST</a></strong> (verify the current exam and sitting fees).</li>
         <li><strong>Step 3: Need to stack credits fast (10+ in a month)?</strong> &rarr; <strong><a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a></strong> ($99/mo, complete courses in 3–7 days).</li>
-        <li><strong>Step 4: Need upper-division or specialized courses?</strong> &rarr; <strong><a href="https://study.com" target="_blank" rel="noopener">Study.com</a></strong> (plans start around $95/month; Pro is higher) or <strong><a href="https://www.straighterline.com" target="_blank" rel="noopener">StraighterLine</a></strong> ($99/mo + course fee; bundles available).</li>
+        <li><strong>Step 4: Need upper-division or specialized courses?</strong> &rarr; <strong><a href="https://study.com" target="_blank" rel="noopener">Study.com</a></strong> (College Saver starts at $95/mo; Pro is $235/mo) or <strong><a href="https://www.straighterline.com" target="_blank" rel="noopener">StraighterLine</a></strong> ($99/mo + course fee; bundles available).</li>
         <li><strong>Step 5: Still in high school?</strong> &rarr; <strong>PSEO/Dual Enrollment first</strong> — it's free.</li>
         <li><strong>Step 6: Have work/military experience?</strong> &rarr; Look into <strong>Prior Learning Assessment</strong> (Chapter 10).</li>
         <li><strong>Step 7: Want the absolute cheapest credits?</strong> &rarr; <strong><a href="https://www.saylor.org" target="_blank" rel="noopener">Saylor Academy</a></strong> (free open courses with low-cost proctored credit exams).</li>
@@ -411,7 +411,7 @@ function unlockAccess(){
         <div class="callout-icon">🔥</div>
         <div class="callout-body">
           <div class="callout-title">The Pre-Loading Strategy</div>
-          <div class="callout-text">The most aggressive degree hackers earn 60-90 credits through <a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a> + <a href="https://study.com" target="_blank" rel="noopener">Study.com</a> + <a href="https://www.straighterline.com" target="_blank" rel="noopener">StraighterLine</a> + <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> <strong>before ever enrolling</strong> at a university. Then they enter a school like <a href="https://www.wgu.edu" target="_blank" rel="noopener">WGU</a>, TESU, <a href="https://www.excelsior.edu" target="_blank" rel="noopener">Excelsior</a>, or <a href="https://www.umpi.edu/yourpace/" target="_blank" rel="noopener">UMPI</a>, transfer everything in, and finish their remaining credits in one term. Total out-of-pocket: as low as <strong>$3,000-$8,000</strong> for an entire bachelor's degree. This is the strategy detailed in Chapter 10.</div>
+          <div class="callout-text">The most aggressive credit stackers earn 60-90 credits through <a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a> + <a href="https://study.com" target="_blank" rel="noopener">Study.com</a> + <a href="https://www.straighterline.com" target="_blank" rel="noopener">StraighterLine</a> + <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> <strong>before ever enrolling</strong> at a university. Then they enter a school like <a href="https://www.wgu.edu" target="_blank" rel="noopener">WGU</a>, TESU, <a href="https://www.excelsior.edu" target="_blank" rel="noopener">Excelsior</a>, or <a href="https://www.umpi.edu/yourpace/" target="_blank" rel="noopener">UMPI</a>, transfer everything in, and finish their remaining credits in one term. Total out-of-pocket: roughly <strong>$4,000-$8,200</strong> for an entire bachelor's degree. This is the strategy detailed in Chapter 10.</div>
         </div>
       </div>
 
@@ -428,7 +428,7 @@ function unlockAccess(){
 
 <div class="ch-takeaway reveal">
     <div class="ch-takeaway-label">Key Takeaway</div>
-    <div class="ch-takeaway-text">The most aggressive degree hackers earn 60&ndash;90 credits through <a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a>, <a href="https://study.com" target="_blank" rel="noopener">Study.com</a>, <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a>, and <a href="https://www.straighterline.com" target="_blank" rel="noopener">StraighterLine</a> before ever enrolling &mdash; then transfer everything in and finish for as little as $3,000&ndash;$8,000 total.</div>
+    <div class="ch-takeaway-text">The most aggressive credit stackers earn 60&ndash;90 credits through <a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a>, <a href="https://study.com" target="_blank" rel="noopener">Study.com</a>, <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a>, and <a href="https://www.straighterline.com" target="_blank" rel="noopener">StraighterLine</a> before ever enrolling &mdash; then transfer everything in and finish for roughly $4,000&ndash;$8,200 total.</div>
   </div>
 
 <div class="action-checklist reveal">
@@ -480,7 +480,7 @@ function unlockAccess(){
 function checkQ(btn,qId,correct){
   var fb=document.getElementById(qId+'-fb');
   var opts=btn.parentElement.querySelectorAll('.quiz-opt');
-  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  opts.forEach(function(o){o.disabled=true;if(o===btn)o.classList.add(correct?'correct':'wrong');});
   if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
   fb.className='quiz-feedback show '+(correct?'right':'nope');
   fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
@@ -664,7 +664,7 @@ if(mcBtn){
     {title:'Check AP Exam Score Requirements', desc:'If you have old AP scores, check your school\'s minimum score for credit. Many accept 3+.', links:[{label:'AP Credit Policy Search', url:'https://apstudents.collegeboard.org/getting-credit-placement/search-policies'}]},
     {title:'Explore Sophia Learning Courses', desc:'Sophia offers ~$99/month unlimited ACE-recommended courses. Many students complete 3 credits in 3-5 days.', links:[{label:'Sophia Learning', url:'https://www.sophia.org'}]},
     {title:'Review Your School\'s Prior Learning Assessment Policy', desc:'Some schools award credit for work or military experience through portfolio-based assessments.', links:[]},
-    {title:'Calculate Cost-Per-Credit for Each Pathway', desc:'CLEP is $97 before any sitting/proctoring fee, Sophia is about $99/mo, and Study.com plan pricing varies by tier. Compare to your school\'s per-credit tuition.', links:[]},
+    {title:'Calculate Cost-Per-Credit for Each Pathway', desc:'CLEP is $97 before vouchers/fees, Sophia is $99/mo, Study.com starts at $95/mo and Pro is $235/mo. Compare each path to your school\'s per-credit tuition.', links:[]},
     {title:'Choose Your Next 2 Exams Based on Cost Efficiency', desc:'Pick the pathway that gives you the most credits for the least money for your specific degree plan.', links:[]}
   ];
   var state = {};

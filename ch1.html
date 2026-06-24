@@ -418,12 +418,12 @@ function unlockAccess(){
 
     <div class="fga-bar-compare" id="sc-bars">
       <div class="fga-bar-col">
-        <div class="fga-bar-amount" id="sc-trad-amt">$268K</div>
+        <div class="fga-bar-amount" id="sc-trad-amt">$334,824</div>
         <div class="fga-bar trad" id="sc-trad-bar" style="height:90%"></div>
         <div class="fga-bar-label">Traditional</div>
       </div>
       <div class="fga-bar-col">
-        <div class="fga-bar-amount" id="sc-fast-amt">$5K</div>
+        <div class="fga-bar-amount" id="sc-fast-amt">$5,060</div>
         <div class="fga-bar fast" id="sc-fast-bar" style="height:3%"></div>
         <div class="fga-bar-label">Fast Grad</div>
       </div>
@@ -432,7 +432,7 @@ function unlockAccess(){
     <div class="fga-results" id="sc-results">
       <div class="fga-result-card highlight">
         <div class="fga-result-label">Total Savings</div>
-        <div class="fga-result-val" id="sc-savings">$263,000</div>
+        <div class="fga-result-val" id="sc-savings">$152,764</div>
         <div class="fga-result-note">tuition + opportunity cost</div>
       </div>
       <div class="fga-result-card">
@@ -442,13 +442,13 @@ function unlockAccess(){
       </div>
       <div class="fga-result-card">
         <div class="fga-result-label">Lifetime Wealth Gain</div>
-        <div class="fga-result-val" id="sc-wealth">$420K</div>
+        <div class="fga-result-val" id="sc-wealth">$2.5M</div>
         <div class="fga-result-note">savings + early earnings invested</div>
       </div>
       <div class="fga-result-card">
         <div class="fga-result-label">Cost Per Credit</div>
         <div class="fga-result-val" id="sc-percredit">$42</div>
-        <div class="fga-result-note">vs <span id="sc-trad-percredit">$904</span> traditional</div>
+        <div class="fga-result-note">vs <span id="sc-trad-percredit">$1,315</span> traditional</div>
       </div>
     </div>
     <div style="font-size:11px;color:var(--ink-mute);margin-top:16px;line-height:1.5">
@@ -462,11 +462,11 @@ function unlockAccess(){
   var FGA = {
     CLEP_FEE: 97,
     SITTING_FEE: 25,
-    SOPHIA_MONTHLY: 79,
-    STUDY_COM_MONTHLY: 199,
+    SOPHIA_MONTHLY: 99,
+    STUDY_COM_MONTHLY: 95,
     STRAIGHTERLINE_MONTHLY: 99,
     AVG_CREDIT_COST: 500,
-    AVG_STUDENT_DEBT: 37574,
+    AVG_STUDENT_DEBT: 39547,
     AVG_INTEREST_RATE: 0.0653,
     FOUNDER_SAVINGS: 85000,
   };
@@ -576,7 +576,7 @@ function unlockAccess(){
     <div class="quiz-q">What is the average student loan debt for a bachelor's degree graduate in the US?</div>
     <div class="quiz-options">
       <button class="quiz-opt" onclick="checkQ(this,'q1-1',false)">$15,000</button>
-      <button class="quiz-opt" onclick="checkQ(this,'q1-1',true)">~$37,000</button>
+      <button class="quiz-opt" onclick="checkQ(this,'q1-1',true)">About $39,547</button>
       <button class="quiz-opt" onclick="checkQ(this,'q1-1',false)">$55,000</button>
     </div>
     <div class="quiz-feedback" id="q1-1-fb"></div>
@@ -595,7 +595,7 @@ function unlockAccess(){
 function checkQ(btn,qId,correct){
   var fb=document.getElementById(qId+'-fb');
   var opts=btn.parentElement.querySelectorAll('.quiz-opt');
-  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  opts.forEach(function(o){o.disabled=true;if(o===btn)o.classList.add(correct?'correct':'wrong');});
   if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
   fb.className='quiz-feedback show '+(correct?'right':'nope');
   fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';

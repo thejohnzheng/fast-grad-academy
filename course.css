@@ -199,8 +199,8 @@
    Used by: guide.html, ch1-ch12.html, tracker.html, resources.html
    ══════════════════════════════════════════════════════════════ */
 
-/* ── TOKENS ── */
-:root {
+/* ── LEGACY TOKENS ── */
+html {
   --bg: #ffffff;
   --bg-soft: #fafafa;
   --bg-panel: #f4f3f0;

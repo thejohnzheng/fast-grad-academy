@@ -531,7 +531,7 @@ function unlockAccess(){
       <div class="tool-card">
         <div class="tool-name"><a href="https://study.com" target="_blank" rel="noopener">Study.com</a></div>
         <div class="tool-url"><a href="https://study.com" target="_blank" style="color:var(--silver)">study.com</a></div>
-        <div class="tool-desc">~$200/month, 200+ ACE courses including upper-division. Proctored exams. Broader catalog than <a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a> — covers courses <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> doesn't reach.</div>
+        <div class="tool-desc">College Saver starts at $95/month; Pro is $235/month for broader ACE-recommended coursework and proctored exams. Broader catalog than <a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a> — covers courses <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> doesn't reach.</div>
         <div class="tool-badge">Upper-Division</div>
       </div>
       <div class="tool-card">
@@ -640,7 +640,7 @@ function unlockAccess(){
 function checkQ(btn,qId,correct){
   var fb=document.getElementById(qId+'-fb');
   var opts=btn.parentElement.querySelectorAll('.quiz-opt');
-  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  opts.forEach(function(o){o.disabled=true;if(o===btn)o.classList.add(correct?'correct':'wrong');});
   if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
   fb.className='quiz-feedback show '+(correct?'right':'nope');
   fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';

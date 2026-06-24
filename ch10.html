@@ -770,7 +770,7 @@ function unlockAccess(){
     <div class="ch-body">
       <h3 class="reveal">The Pre-Load Math: Dollar by Dollar</h3>
 
-      <p class="reveal">People hear "$5,000 bachelor's degree" and assume it's marketing hype. Let me break down an illustrative spending plan, month by month, so you can see where the leverage comes from. Your final number depends on transfer acceptance, provider pricing, transcript fees, proctoring fees, and how quickly you finish residency.</p>
+      <p class="reveal">People hear "$4,000-$8,200 bachelor's degree" and assume it's marketing hype. Let me break down an illustrative spending plan, month by month, so you can see where the leverage comes from. Your final number depends on transfer acceptance, provider pricing, transcript fees, proctoring fees, and how quickly you finish residency.</p>
 
       <p class="reveal"><strong>Months 1-3: <a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia Learning</a> ($99/month x 3 = $297).</strong> This is where many students earn the bulk of their lower-division credits. At <a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a>'s self-paced model, strong accelerators can complete multiple courses per month when their target school accepts them. The courses are self-paced with quizzes and touchstone assignments, and your per-credit cost drops as you finish more courses inside the same subscription window. <strong>Months 4-5: <a href="https://study.com" target="_blank" rel="noopener">Study.com</a> gap fill.</strong> <a href="https://study.com" target="_blank" rel="noopener">Study.com</a> fills courses that <a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a> doesn't cover, including some upper-division or program-specific requirements. College Saver starts at $95/month, while College Saver Pro is $235/month; choose based on whether your target courses and proctored exams require the higher plan. These transfer as <a href="https://www.acenet.edu/National-Guide/Pages/default.aspx" target="_blank" rel="noopener">ACE-recommended</a> credit only when your degree plan accepts them.</p>
 
@@ -855,7 +855,7 @@ function unlockAccess(){
     <div class="callout reveal">
       <div class="callout-icon">💰</div>
       <div class="callout-body">
-        <div class="callout-title">Total Cost: $5,000 - $8,000</div>
+        <div class="callout-title">Total Cost: $4,000 - $8,200</div>
         <div class="callout-text"><a href="https://www.sophia.org" target="_blank" rel="noopener">Sophia</a> (~$99/month), <a href="https://study.com" target="_blank" rel="noopener">Study.com</a> depending on plan and pace (College Saver starts at $95/month; Pro is $235/month), <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> exams (exam fee can be covered via <a href="https://modernstates.org" target="_blank" rel="noopener">Modern States</a>; budget for test center or remote-proctoring fees), then one fast competency-based term or another low-residency finish. Compare that to $100,000+ for a traditional 4-year degree. Same accreditation. Same diploma. Fraction of the cost.</div>
       </div>
     </div>
@@ -1120,7 +1120,7 @@ function unlockAccess(){
 function checkQ(btn,qId,correct){
   var fb=document.getElementById(qId+'-fb');
   var opts=btn.parentElement.querySelectorAll('.quiz-opt');
-  opts.forEach(function(o){o.disabled=true;o.classList.add(o===btn?(correct?'correct':'wrong'):'');});
+  opts.forEach(function(o){o.disabled=true;if(o===btn)o.classList.add(correct?'correct':'wrong');});
   if(!correct){opts.forEach(function(o){if(o!==btn){var isRight=o.getAttribute('onclick').includes('true');if(isRight)o.classList.add('correct');}});}
   fb.className='quiz-feedback show '+(correct?'right':'nope');
   fb.textContent=correct?'Correct! You\'re getting this.':'Not quite. Review the section above and try to internalize the right answer.';
