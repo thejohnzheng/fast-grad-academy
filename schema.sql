@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS public.access_codes (
     access_code TEXT NOT NULL UNIQUE,
     stripe_payment_id TEXT UNIQUE,
     stripe_customer_id TEXT,
+    name TEXT,
     created_at TIMESTAMPTZ DEFAULT now(),
     first_accessed_at TIMESTAMPTZ,
     last_accessed_at TIMESTAMPTZ,
@@ -17,6 +18,10 @@ CREATE TABLE IF NOT EXISTS public.access_codes (
     is_active BOOLEAN DEFAULT true,
     notes TEXT
 );
+
+-- For existing deployments (idempotent): add the buyer-name column used by the
+-- webhook (personalized email greeting) and the access-recovery endpoint.
+ALTER TABLE public.access_codes ADD COLUMN IF NOT EXISTS name TEXT;
 
 -- 2. INDEXES
 CREATE INDEX IF NOT EXISTS idx_access_codes_code ON public.access_codes(access_code);

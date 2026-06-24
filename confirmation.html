@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="robots" content="noindex"/>
+<!-- Google Ads Global Site Tag — replace AW-CONVERSION_ID with your real ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-CONVERSION_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-CONVERSION_ID');
+  // Fire purchase conversion when arriving from Stripe checkout
+  if (new URLSearchParams(window.location.search).has('purchased')) {
+    gtag('event', 'conversion', {
+      'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+      'value': 197.00,
+      'currency': 'USD',
+      'transaction_id': Date.now().toString()
+    });
+  }
+</script>
+<title>You're in! — Fast Grad Academy</title>
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --black:#0a0a0a;
+    --white:#ffffff;
+    --silver:#c0c0c0;
+    --muted:#a8a8a8;
+    --gold:#c4a97d;
+    --glass:rgba(255,255,255,0.04);
+    --glass-border:rgba(255,255,255,0.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--black);color:var(--white);
+    font-family:'Inter',-apple-system,sans-serif;
+    line-height:1.6;font-weight:400;
+    min-height:100vh;display:flex;flex-direction:column;
+  }
+  a{color:inherit;}
+  .logo-bar{padding:28px 24px;text-align:center;}
+  .logo-bar .logo{
+    font-family:'Instrument Serif',Georgia,serif;font-size:22px;
+    color:var(--white);letter-spacing:-0.01em;text-decoration:none;
+  }
+  .wrap{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    padding:24px 24px 64px;
+  }
+  .card{
+    max-width:560px;width:100%;text-align:center;
+  }
+  .badge{
+    width:72px;height:72px;border-radius:50%;margin:0 auto 28px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(196,169,125,0.12);border:1px solid rgba(196,169,125,0.35);
+  }
+  .badge svg{width:34px;height:34px;}
+  .kicker{
+    font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:14px;
+  }
+  h1{
+    font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+    font-size:clamp(40px,7vw,60px);line-height:1.05;letter-spacing:-0.02em;
+    margin-bottom:16px;
+  }
+  .sub{
+    font-size:17px;color:rgba(255,255,255,0.78);line-height:1.7;
+    max-width:460px;margin:0 auto 36px;
+  }
+  .instruction{
+    background:var(--glass);border:1px solid var(--glass-border);
+    border-radius:16px;padding:28px 26px;text-align:left;margin-bottom:28px;
+  }
+  .instruction-step{display:flex;gap:14px;align-items:flex-start;}
+  .instruction-step + .instruction-step{margin-top:18px;padding-top:18px;border-top:1px solid var(--glass-border);}
+  .step-num{
+    flex-shrink:0;width:26px;height:26px;border-radius:50%;
+    background:rgba(255,255,255,0.06);border:1px solid var(--glass-border);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Inter',monospace;font-size:12px;font-weight:600;color:var(--gold);
+  }
+  .step-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:3px;}
+  .step-copy{font-size:13.5px;color:rgba(255,255,255,0.6);line-height:1.6;}
+  .step-copy code{
+    font-family:'JetBrains Mono','Courier New',monospace;font-size:12.5px;
+    color:var(--silver);background:rgba(255,255,255,0.05);
+    padding:1px 6px;border-radius:5px;
+  }
+  .spam-note{
+    font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:32px;
+  }
+  .spam-note strong{color:rgba(255,255,255,0.72);}
+  .btn-primary{
+    display:inline-block;width:100%;max-width:340px;
+    padding:15px 28px;background:var(--white);color:var(--black);
+    font-family:'Inter',sans-serif;font-size:13px;font-weight:700;
+    letter-spacing:0.1em;text-transform:uppercase;
+    border-radius:10px;text-decoration:none;transition:opacity 0.2s;
+  }
+  .btn-primary:hover{opacity:0.88;}
+  .links{margin-top:22px;display:flex;flex-direction:column;gap:12px;font-size:13.5px;}
+  .links a{color:rgba(255,255,255,0.55);text-decoration:underline;text-underline-offset:2px;}
+  .links a:hover{color:var(--white);}
+  footer{
+    text-align:center;padding:28px 24px 36px;
+    font-size:12px;color:rgba(255,255,255,0.3);line-height:1.7;
+  }
+  footer a{color:rgba(255,255,255,0.45);text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <a href="/" class="logo">Fast Grad Academy</a>
+</div>
+
+<div class="wrap">
+  <div class="card">
+    <div class="badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#c4a97d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+
+    <div class="kicker">Payment confirmed</div>
+    <h1>You're in.</h1>
+    <p class="sub">Welcome to Fast Grad Academy. Your purchase is complete and your access code is on its way to your inbox.</p>
+
+    <div class="instruction">
+      <div class="instruction-step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Check your email inbox</div>
+          <div class="step-copy">We just emailed your personal access code (<code>FGA-XXXX-XXXX</code>) to the address you used at checkout. It usually arrives within a couple of minutes.</div>
+        </div>
+      </div>
+      <div class="instruction-step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Enter your email + code at the login</div>
+          <div class="step-copy">Head to the student login, enter the same email and your access code, and the full guide unlocks for life.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="spam-note"><strong>Don't see it?</strong> Check your spam or promotions folder for an email from Fast Grad Academy. Give it about 5 minutes before worrying.</p>
+
+    <a href="/guide" class="btn-primary">Already have your code? Log in &rarr;</a>
+
+    <div class="links">
+      <a href="/recover.html">Didn't receive your access code? Recover it here</a>
+      <a href="mailto:hello@fastgradacademy.com">Still stuck? Email hello@fastgradacademy.com</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 Fast Grad Academy. Your access code grants lifetime access to the complete guide.<br/>
+  Questions? <a href="mailto:hello@fastgradacademy.com">hello@fastgradacademy.com</a>
+</footer>
+
+</body>
+</html>

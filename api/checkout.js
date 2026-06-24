@@ -181,7 +181,7 @@ export default async function handler(req, res) {
           quantity: 1,
         },
       ],
-      success_url: `${siteUrl.replace(/\/$/, '')}/guide?${successParams.toString()}`,
+      success_url: `${siteUrl.replace(/\/$/, '')}/confirmation.html?${successParams.toString()}`,
       cancel_url: `${siteUrl.replace(/\/$/, '')}/#pricing`,
       metadata,
     };

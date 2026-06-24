@@ -80,12 +80,15 @@ async function readRawBody(req) {
   return Buffer.alloc(0);
 }
 
-async function sendAccessEmail(email, accessCode) {
+export async function sendAccessEmail(email, accessCode, providedName) {
   if (!process.env.RESEND_API_KEY) {
     throw new Error('Missing RESEND_API_KEY');
   }
 
-  const firstName = email.split('@')[0].replace(/[+._\d]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).trim() || 'there';
+  // Prefer the customer's name from Stripe; fall back to a name derived from the email prefix.
+  const firstName = (providedName && providedName.trim())
+    || email.split('@')[0].replace(/[+._\d]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).trim()
+    || 'there';
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -114,7 +117,7 @@ async function sendAccessEmail(email, accessCode) {
     <div style="font-size:16px;color:rgba(255,255,255,0.85);line-height:1.9;margin-bottom:32px;">
       <p style="margin:0 0 16px;">Hey ${firstName},</p>
       <p style="margin:0 0 16px;">I want you to know — what you just did takes guts. Most people talk about wanting to get ahead. You actually did something about it.</p>
-      <p style="margin:0 0 16px;">I built this guide because I wish someone had shown me the playbook when I started. I graduated college at 20, saved over $85,000, and got a 3-year head start on my career — not because I'm smarter than anyone else, but because I found the system's own rules and used them.</p>
+      <p style="margin:0 0 16px;">I built this guide because I wish someone had shown me the playbook when I started. I graduated college at 19, saved over $85,000, and got a 3-year head start on my career — not because I'm smarter than anyone else, but because I found the system's own rules and used them.</p>
       <p style="margin:0 0 16px;">Now you have the same playbook. Every strategy, every shortcut, every resource — it's all yours.</p>
     </div>
 
@@ -287,6 +290,9 @@ export default async function handler(req, res) {
     // back to the session id, which is still unique for idempotency.
     const paymentId = typeof session.payment_intent === 'string' ? session.payment_intent : session.id;
     const customerId = typeof session.customer === 'string' ? session.customer : null;
+    // Stripe Checkout collects the buyer's name; use it for a personal greeting + storage.
+    const customerName = (session.customer_details?.name || '').trim();
+    const firstName = customerName.split(' ')[0] || (email ? email.split('@')[0] : '');
 
     if (!email) {
       console.error(`${LOG} No email found in checkout session ${session.id}`);
@@ -348,15 +354,24 @@ export default async function handler(req, res) {
       return res.status(200).json({ received: true, error: 'code_generation_failed' });
     }
 
-    // Store the access code.
-    const { error: insertError } = await supabase
+    // Store the access code (include the customer name). If the optional `name`
+    // column doesn't exist yet, retry without it so fulfillment never breaks.
+    // To enable storage, run: ALTER TABLE access_codes ADD COLUMN IF NOT EXISTS name text;
+    const baseRow = {
+      email,
+      access_code: accessCode,
+      stripe_payment_id: paymentId,
+      stripe_customer_id: customerId,
+    };
+
+    let { error: insertError } = await supabase
       .from('access_codes')
-      .insert({
-        email,
-        access_code: accessCode,
-        stripe_payment_id: paymentId,
-        stripe_customer_id: customerId,
-      });
+      .insert({ ...baseRow, name: customerName || null });
+
+    if (insertError && (insertError.code === '42703' || /name/i.test(insertError.message || ''))) {
+      console.warn(`${LOG} Insert with name column failed (${insertError.message}); retrying without it. Run: ALTER TABLE access_codes ADD COLUMN IF NOT EXISTS name text;`);
+      ({ error: insertError } = await supabase.from('access_codes').insert(baseRow));
+    }
 
     if (insertError) {
       // Log full recovery context: the code was generated but not stored.
@@ -372,7 +387,7 @@ export default async function handler(req, res) {
 
     // Send the branded welcome email. Non-critical: the code is already stored.
     try {
-      await sendAccessEmail(email, accessCode);
+      await sendAccessEmail(email, accessCode, firstName);
       console.log(`${LOG} Access code ${accessCode} sent to ${email}`);
     } catch (emailErr) {
       console.error(`${LOG} Email send failed (code still stored, code=${accessCode}, email=${email}):`, emailErr.message);
