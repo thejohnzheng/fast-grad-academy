@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Credit Stacking Playbook | Fast Grad Academy</title>
+  <meta name="description" content="A step-by-step playbook for mapping a degree, matching requirements to exams, verifying transfer credit, and stacking college credits in the right order." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070706;
+      --bg-panel: #11100e;
+      --bg-soft: #181611;
+      --ink: #f8f4ec;
+      --ink-dim: #c7beb0;
+      --ink-mute: #8d8273;
+      --gold: #c4a97d;
+      --gold-strong: #e0c58e;
+      --line: rgba(196, 169, 125, 0.22);
+      --line-soft: rgba(255, 255, 255, 0.09);
+      --danger: #d96a5b;
+      --success: #a8c78b;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      letter-spacing: 0;
+    }
+
+    body.locked {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    body.locked .site-shell {
+      display: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .gate {
+      min-height: 100vh;
+      display: none;
+      place-items: center;
+      padding: 32px 16px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(196, 169, 125, 0.15), transparent 38%),
+        var(--bg);
+    }
+
+    body.locked .gate {
+      display: grid;
+    }
+
+    .gate-card {
+      width: min(460px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(17, 16, 14, 0.94);
+      padding: 28px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.44);
+    }
+
+    .gate-kicker,
+    .kicker {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .gate-card h1 {
+      margin: 10px 0 10px;
+      font-family: var(--serif);
+      font-size: 38px;
+      line-height: 1.02;
+      font-weight: 400;
+    }
+
+    .gate-card p {
+      margin: 0 0 18px;
+      color: var(--ink-dim);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .gate-field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .gate-field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-dim);
+    }
+
+    .gate-field input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #090908;
+      color: var(--ink);
+      font: inherit;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    .gate-field input:focus {
+      border-color: var(--gold);
+    }
+
+    .gate-error {
+      min-height: 18px;
+      color: var(--danger);
+      font-size: 13px;
+      margin: 4px 0 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      background: var(--gold);
+      color: #12100d;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 0 18px;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--gold-strong);
+      border-color: var(--gold-strong);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .btn.secondary:hover {
+      border-color: var(--gold);
+      background: rgba(196, 169, 125, 0.08);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7, 7, 6, 0.86);
+      border-bottom: 1px solid var(--line-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .logo em {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--ink-dim);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--ink);
+    }
+
+    .menu-btn,
+    .mobile-nav-panel {
+      display: none;
+    }
+
+    .hero {
+      padding: 74px 0 38px;
+      border-bottom: 1px solid var(--line-soft);
+      background:
+        linear-gradient(180deg, rgba(196, 169, 125, 0.09), transparent 58%),
+        var(--bg);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+      gap: 44px;
+      align-items: end;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .hero h1 {
+      margin-top: 12px;
+      font-size: clamp(56px, 8vw, 102px);
+      line-height: 0.92;
+    }
+
+    .hero h1 em,
+    h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      max-width: 680px;
+      margin: 24px 0 0;
+      color: var(--ink-dim);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(196, 169, 125, 0.14), rgba(17, 16, 14, 0.96));
+      padding: 22px;
+    }
+
+    .hero-card strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 400;
+      color: var(--gold);
+    }
+
+    .hero-card span {
+      display: block;
+      margin-top: 8px;
+      color: var(--ink-dim);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .progress-shell {
+      position: sticky;
+      top: 72px;
+      z-index: 40;
+      background: rgba(7, 7, 6, 0.9);
+      border-bottom: 1px solid var(--line-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .progress-bar {
+      height: 2px;
+      width: 0;
+      background: var(--gold);
+      transition: width 120ms linear;
+    }
+
+    .step-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: none;
+    }
+
+    .step-nav::-webkit-scrollbar { display: none; }
+
+    .step-nav a {
+      flex: 0 0 auto;
+      border: 1px solid var(--line-soft);
+      border-radius: 999px;
+      color: var(--ink-dim);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 9px 12px;
+      white-space: nowrap;
+    }
+
+    .step-nav a.active {
+      color: #12100d;
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    main {
+      padding: 58px 0 86px;
+    }
+
+    .section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--line-soft);
+      scroll-margin-top: 150px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 28px;
+    }
+
+    .step-num {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 36px;
+    }
+
+    .section h2 {
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 0.98;
+    }
+
+    .section-intro {
+      max-width: 780px;
+      margin: 14px 0 0;
+      color: var(--ink-dim);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: var(--bg-panel);
+      padding: 22px;
+    }
+
+    .panel.gold {
+      border-color: var(--line);
+      background: linear-gradient(180deg, rgba(196, 169, 125, 0.12), rgba(17, 16, 14, 0.96));
+    }
+
+    .panel h3 {
+      margin-bottom: 10px;
+      color: var(--ink);
+      font-size: 26px;
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--ink-dim);
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
+    .panel p:last-child,
+    .panel ul:last-child,
+    .panel ol:last-child {
+      margin-bottom: 0;
+    }
+
+    .panel ul,
+    .panel ol {
+      margin: 12px 0 0;
+      padding-left: 20px;
+    }
+
+    .official-links {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .official-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: 6px;
+      padding: 12px 14px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .official-links a span {
+      color: var(--gold);
+    }
+
+    .audit-demo {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .audit-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(150px, 0.8fr) 90px minmax(160px, 1fr);
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line-soft);
+      border-radius: 6px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .audit-row::before {
+      content: attr(data-note);
+      position: absolute;
+      right: 12px;
+      top: -10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #211d16;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+    }
+
+    .audit-row b {
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .audit-row span {
+      color: var(--ink-dim);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 8px;
+      text-transform: uppercase;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: var(--bg-panel);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line-soft);
+      padding: 13px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(196, 169, 125, 0.08);
+    }
+
+    td {
+      color: var(--ink-dim);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .script-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #0d0c0a;
+      padding: 20px;
+      color: var(--ink-dim);
+      font-size: 15px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .callout {
+      border-left: 3px solid var(--gold);
+      background: rgba(196, 169, 125, 0.1);
+      padding: 18px 20px;
+      color: var(--ink-dim);
+      line-height: 1.7;
+      margin: 22px 0;
+    }
+
+    .cheatsheet {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbf6ec;
+      color: #17130f;
+      padding: 24px;
+    }
+
+    .cheatsheet h3 {
+      color: #17130f;
+      font-size: 32px;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 11px;
+      margin-top: 18px;
+    }
+
+    .check-item {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #17130f;
+      border-radius: 3px;
+      margin-top: 1px;
+    }
+
+    .placeholder {
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      color: var(--ink-mute);
+      padding: 22px;
+      background: rgba(196, 169, 125, 0.04);
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line-soft);
+      padding: 36px 0;
+      color: var(--ink-mute);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links,
+      .nav .btn {
+        display: none;
+      }
+
+      .menu-btn {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--line-soft);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .menu-btn svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+      }
+
+      .mobile-nav-panel {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        display: none;
+        background: rgba(7, 7, 6, 0.98);
+        padding: 22px;
+      }
+
+      .mobile-nav-panel.open {
+        display: block;
+      }
+
+      .mobile-nav-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .mobile-nav-close {
+        border: 1px solid var(--line-soft);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--ink);
+        font-size: 28px;
+        line-height: 1;
+        width: 44px;
+        height: 44px;
+      }
+
+      .mobile-nav-links {
+        display: grid;
+        gap: 12px;
+      }
+
+      .mobile-nav-links a {
+        border-bottom: 1px solid var(--line-soft);
+        padding: 14px 0;
+        color: var(--ink);
+        font-size: 20px;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .audit-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body,
+      html {
+        background: #fff;
+        color: #111;
+      }
+
+      .gate,
+      .nav,
+      .hero,
+      .progress-shell,
+      footer,
+      .hero-actions,
+      .btn,
+      .placeholder {
+        display: none !important;
+      }
+
+      .site-shell,
+      body.locked .site-shell {
+        display: block;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      .wrap {
+        width: 100%;
+      }
+
+      .section {
+        page-break-inside: avoid;
+        border-bottom: 1px solid #ddd;
+        padding: 24px 0;
+      }
+
+      .panel,
+      .table-wrap,
+      .cheatsheet {
+        border-color: #bbb;
+        background: #fff;
+        color: #111;
+      }
+
+      .panel p,
+      .panel li,
+      td {
+        color: #222;
+      }
+
+      h1,
+      h2,
+      h3,
+      th {
+        color: #111;
+      }
+    }
+  </style>
+</head>
+<body class="locked">
+  <div class="gate" id="gate">
+    <form class="gate-card" id="unlockForm">
+      <div class="gate-kicker">Student Access</div>
+      <h1>Unlock the playbook.</h1>
+      <p>Use the same email and access code you use for the Fast Grad Academy course dashboard. Do not paste payment or Stripe information here.</p>
+      <div class="gate-field">
+        <label for="unlockEmail">Email</label>
+        <input id="unlockEmail" name="email" type="email" autocomplete="email" required />
+      </div>
+      <div class="gate-field">
+        <label for="unlockCode">Access code</label>
+        <input id="unlockCode" name="code" type="password" autocomplete="one-time-code" required />
+      </div>
+      <div class="gate-error" id="gateError" role="alert"></div>
+      <button class="btn" type="submit">Continue to Playbook</button>
+      <a class="btn secondary" href="/guide" style="width:100%;margin-top:10px">Back to Dashboard</a>
+    </form>
+  </div>
+
+  <div class="site-shell">
+    <nav class="nav" id="nav">
+      <div class="wrap nav-inner">
+        <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/guide">Dashboard</a>
+          <a href="/credit-stacking" class="active">Credit Stacking</a>
+          <a href="/tracker">Tracker</a>
+        </div>
+        <a href="#cheatsheet" class="btn">Print Cheatsheet</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-nav-panel" id="mobileNavPanel" aria-hidden="true">
+      <div class="mobile-nav-head">
+        <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="/">Home</a>
+        <a href="/guide">Dashboard</a>
+        <a href="/credit-stacking">Credit Stacking</a>
+        <a href="/tracker">Tracker</a>
+        <a href="#cheatsheet">Print Cheatsheet</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker">Core How-To Section</div>
+          <h1>Credit stacking, <em>step by step.</em></h1>
+          <p class="hero-sub">This is the operating manual: pull the degree map, translate every requirement into a cheaper credit source, verify transfer before spending money, then stack credits in the order that keeps the finish line open.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#step-1">Start the Map</a>
+            <button class="btn secondary" type="button" onclick="window.print()">Print / Save PDF</button>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Playbook summary">
+          <strong>6 moves</strong>
+          <span>Map degree requirements, choose credit sources, match exams, verify with the registrar, sequence the stack, and print the checklist.</span>
+        </aside>
+      </div>
+    </header>
+
+    <div class="progress-shell">
+      <div class="progress-bar" id="progressBar"></div>
+      <div class="wrap">
+        <div class="step-nav" id="stepNav" aria-label="Credit stacking steps">
+          <a href="#step-1">1. Degree Map</a>
+          <a href="#step-2">2. Options</a>
+          <a href="#step-3">3. Match Courses</a>
+          <a href="#step-4">4. Verify</a>
+          <a href="#step-5">5. Stack Order</a>
+          <a href="#cheatsheet">6. Cheatsheet</a>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div class="wrap">
+        <section class="section" id="step-1">
+          <div class="section-head">
+            <div class="step-num">01</div>
+            <div>
+              <div class="kicker">Find Your Degree Map</div>
+              <h2>Start with the <em>finish line.</em></h2>
+              <p class="section-intro">Do not begin by asking, "Which CLEP should I take?" Begin by asking, "What exact credits does my target degree require?" The degree map is the master blueprint. Every cheap credit is only useful if it lands inside that blueprint.</p>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <article class="panel gold">
+              <h3>Where to find it</h3>
+              <p>Search your school site for the degree name plus one of these phrases: <strong>degree requirements</strong>, <strong>program plan</strong>, <strong>catalog year</strong>, <strong>academic plan</strong>, or <strong>degree audit</strong>. Save the PDF or webpage before you make any exam decisions.</p>
+              <ul>
+                <li>Confirm the catalog year you are using.</li>
+                <li>Separate general education, major, elective, residency, and capstone rules.</li>
+                <li>Highlight every requirement that says "must be completed at this institution."</li>
+              </ul>
+              <div class="official-links">
+                <a href="https://www.tesu.edu/academics/catalog" target="_blank" rel="noopener">Thomas Edison State University Catalog <span>&rarr;</span></a>
+                <a href="https://www.excelsior.edu/policies/academic-policies/" target="_blank" rel="noopener">Excelsior University Academic Policies <span>&rarr;</span></a>
+                <a href="https://www.charteroak.edu/catalog/current/" target="_blank" rel="noopener">Charter Oak State College Catalog <span>&rarr;</span></a>
+              </div>
+            </article>
+
+            <article class="panel">
+              <h3>Annotated sample degree audit</h3>
+              <p>When you look at an audit, treat it like a puzzle board. You are not trying to be clever; you are trying to identify which boxes can be filled externally and which boxes are locked.</p>
+              <div class="audit-demo" aria-label="Annotated sample degree audit">
+                <div class="audit-row" data-note="External OK">
+                  <b>Written Communication</b>
+                  <span class="pill">3 cr</span>
+                  <span>Can often be satisfied through CLEP College Composition or transfer English Comp.</span>
+                </div>
+                <div class="audit-row" data-note="Check level">
+                  <b>Social Sciences</b>
+                  <span class="pill">6 cr</span>
+                  <span>Use CLEP Psychology, Sociology, or History if the school accepts those exams.</span>
+                </div>
+                <div class="audit-row" data-note="Locked">
+                  <b>Capstone</b>
+                  <span class="pill">3 cr</span>
+                  <span>Usually must be taken at the degree-granting school. Do not try to replace it.</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="callout">
+            John's rule: if a credit does not map to a requirement, it is not progress yet. It might still be useful as an elective, but you do not count it until you know exactly where it lands.
+          </div>
+        </section>
+
+        <section class="section" id="step-2">
+          <div class="placeholder">Section 2 placeholder: Know Your Options.</div>
+        </section>
+
+        <section class="section" id="step-3">
+          <div class="placeholder">Section 3 placeholder: Match Every Course to an Exam.</div>
+        </section>
+
+        <section class="section" id="step-4">
+          <div class="placeholder">Section 4 placeholder: Verify Before You Spend a Dollar.</div>
+        </section>
+
+        <section class="section" id="step-5">
+          <div class="placeholder">Section 5 placeholder: Stack Smart - The Order Matters.</div>
+        </section>
+
+        <section class="section" id="cheatsheet">
+          <div class="placeholder">Section 6 placeholder: Credit Stacking Cheatsheet.</div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <strong>Fast Grad Academy</strong><br />
+        Educational content only. Always verify current transfer rules, exam policies, residency requirements, and graduation requirements with your target institution before spending money or enrolling.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      var body = document.body;
+      var form = document.getElementById('unlockForm');
+      var gateError = document.getElementById('gateError');
+      var params = new URLSearchParams(window.location.search);
+
+      function remember(email) {
+        localStorage.setItem('fga_course', JSON.stringify({
+          access: true,
+          email: email || '',
+          unlockedAt: new Date().toISOString()
+        }));
+      }
+
+      function hasAccess() {
+        if (params.get('beta') === 'fga2026') {
+          remember('beta-reviewer');
+          return true;
+        }
+        try {
+          var saved = JSON.parse(localStorage.getItem('fga_course') || '{}');
+          return !!saved.access;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      function openPage() {
+        body.classList.remove('locked');
+      }
+
+      if (hasAccess()) {
+        openPage();
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var email = document.getElementById('unlockEmail').value.trim();
+        var code = document.getElementById('unlockCode').value.trim();
+        gateError.textContent = '';
+
+        fetch('/api/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, code: code })
+        })
+        .then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
+        .then(function(result){
+          if (!result.ok || !result.data.valid) {
+            gateError.textContent = result.data.error || 'That code did not work. Check the email and code, then try again.';
+            return;
+          }
+          remember(email);
+          openPage();
+        })
+        .catch(function(){
+          gateError.textContent = 'Could not verify right now. Use the dashboard login, then return to this page.';
+        });
+      });
+    })();
+
+    (function(){
+      var menuBtn = document.getElementById('menuBtn');
+      var panel = document.getElementById('mobileNavPanel');
+      var closeBtn = document.getElementById('mobileNavClose');
+
+      function closeMenu() {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+
+      menuBtn.addEventListener('click', function(){
+        panel.classList.add('open');
+        panel.setAttribute('aria-hidden', 'false');
+      });
+
+      closeBtn.addEventListener('click', closeMenu);
+      panel.querySelectorAll('a').forEach(function(link){
+        link.addEventListener('click', closeMenu);
+      });
+    })();
+
+    (function(){
+      var progress = document.getElementById('progressBar');
+      var links = Array.prototype.slice.call(document.querySelectorAll('#stepNav a'));
+      var targets = links.map(function(link){ return document.querySelector(link.getAttribute('href')); });
+
+      function updateProgress() {
+        var height = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = height > 0 ? (window.scrollY / height) * 100 : 0;
+        progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+
+        var activeIndex = 0;
+        targets.forEach(function(target, index){
+          if (target && target.getBoundingClientRect().top < 180) activeIndex = index;
+        });
+        links.forEach(function(link, index){
+          link.classList.toggle('active', index === activeIndex);
+        });
+      }
+
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
