@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- Google Ads Global Site Tag — replace AW-CONVERSION_ID with your real ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-CONVERSION_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-CONVERSION_ID');
+</script>
+<title>Verify Before You Test — The #1 Rule of Credit Stacking</title>
+<meta name="description" content="A standalone Fast Grad Academy module teaching students how to verify CLEP, DSST, AP, and transfer credits before paying for exams."/>
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --black:#0a0a0a;
+    --white:#ffffff;
+    --gold:#c4a97d;
+    --muted:#aaa;
+    --panel:#121212;
+    --panel-2:#181818;
+    --line:rgba(255,255,255,.1);
+    --gold-line:rgba(196,169,125,.35);
+    --serif:'Instrument Serif',Georgia,serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--black);color:var(--white);font-family:var(--sans);line-height:1.65;letter-spacing:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1120px,calc(100% - 32px));margin:0 auto}
+  .nav{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.88);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+  .nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .logo{font-weight:800;font-size:18px;letter-spacing:-.02em}
+  .logo em{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--gold)}
+  .nav-links{display:flex;align-items:center;gap:22px;color:rgba(255,255,255,.72);font-size:14px;font-weight:700}
+  .nav-links a:hover{color:var(--white)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--gold);border-radius:999px;background:var(--gold);color:var(--black);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;min-height:44px;padding:0 20px}
+  .btn.secondary{background:transparent;color:var(--white);border-color:var(--line)}
+  .hero{padding:84px 0 46px;border-bottom:1px solid var(--line);background:radial-gradient(circle at 50% 0%,rgba(196,169,125,.18),transparent 44%),var(--black)}
+  .kicker{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:0}
+  h1{font-size:clamp(48px,8vw,92px);line-height:.95;max-width:980px}
+  h1 em,h2 em{color:var(--gold);font-style:italic}
+  .sub{max-width:760px;color:rgba(255,255,255,.74);font-size:18px;line-height:1.75;margin-top:22px}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .warning{border:1px solid var(--gold-line);border-radius:8px;background:rgba(196,169,125,.1);padding:22px;color:rgba(255,255,255,.84)}
+  .warning strong{color:var(--gold)}
+  main{padding:54px 0 82px}
+  .steps{display:grid;gap:18px;margin-top:28px}
+  .step{display:grid;grid-template-columns:92px minmax(0,1fr);gap:20px;border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:24px}
+  .step-num{width:68px;height:68px;border-radius:50%;border:1px solid var(--gold-line);display:grid;place-items:center;color:var(--gold);font-family:var(--serif);font-size:34px}
+  .step h2{font-size:clamp(30px,4vw,46px);line-height:1.05;margin-bottom:10px}
+  .step p,.step li{color:rgba(255,255,255,.74);font-size:15.5px}
+  .step ul{padding-left:20px;margin-top:12px}
+  .step a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+  .script-box{border:1px solid var(--gold-line);border-radius:8px;background:#0d0d0d;color:rgba(255,255,255,.78);font-size:14px;line-height:1.7;white-space:pre-wrap;padding:20px;margin-top:16px}
+  .trap-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
+  .trap{border:1px solid var(--line);border-radius:8px;background:var(--panel-2);padding:14px;color:rgba(255,255,255,.72);font-size:13px;line-height:1.5}
+  .trap strong{display:block;color:var(--gold);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+  footer{border-top:1px solid var(--line);padding:38px 0;color:rgba(255,255,255,.5);font-size:13px;line-height:1.7;text-align:center}
+  footer a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+  @media(max-width:900px){
+    .nav-links,.nav .btn{display:none}
+    .step{grid-template-columns:1fr}
+    .trap-grid{grid-template-columns:1fr}
+  }
+  @media print{
+    .nav,.hero-actions,footer{display:none}
+    body{background:#fff;color:#111}
+    .hero{padding:0 0 20px;border-bottom:1px solid #ddd;background:#fff}
+    .sub,.step p,.step li,.script-box,.trap,.warning{color:#222}
+    .step,.trap,.warning,.script-box{break-inside:avoid;border-color:#ccc;background:#fff}
+    h1,h2,h3,.kicker,.step-num,.step a,.trap strong{color:#111}
+  }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/guide">Course</a>
+      <a href="/credit-stacking">Credit Stacking</a>
+      <a href="/first-7-days.html">First 7 Days</a>
+    </div>
+    <a href="/guide" class="btn secondary">Student Login</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Standalone Verification Module</div>
+    <h1>Verify Before You Test — <em>The #1 Rule of Credit Stacking.</em></h1>
+    <p class="sub">Before you schedule a single exam, before you spend a dollar on test prep, before you tell anyone your plan — verify. The fastest way to waste time and money is to pass an exam your school does not accept.</p>
+    <div class="hero-actions">
+      <a href="#process" class="btn">Start Verification</a>
+      <button class="btn secondary" type="button" onclick="window.print()">Print Module</button>
+    </div>
+  </div>
+</header>
+
+<main id="process">
+  <div class="wrap">
+    <div class="warning"><strong>Non-negotiable:</strong> do not schedule any CLEP, DSST, AP, Sophia, StraighterLine, or other alternative credit until you have a written answer showing how it applies to your degree.</div>
+
+    <section class="steps" aria-label="The 5-step verification process">
+      <article class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h2>Check Transferology.</h2>
+          <p>Go to <a href="https://www.transferology.com/" target="_blank" rel="noopener">transferology.org</a>. Search your school. Look up each exam you are considering. If it shows as accepted, proceed to Step 2. If it does not show up, that does not mean it is rejected. It means you need to ask directly.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h2>Check your school's website.</h2>
+          <p>Search <strong>"[your school name] CLEP policy"</strong> or <strong>"credit by examination"</strong>. Many schools publish a table of accepted exams with minimum scores. Save or screenshot this page because policies change and you want proof of what was posted when you checked.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h2>Email your academic advisor.</h2>
+          <p>Use this script. Copy, paste, and customize it with your school, major, student ID, and the exact exams or courses you are considering.</p>
+          <div class="script-box">Subject: CLEP/DSST Credit Policy — [Your Name], [Student ID]
+
+Dear [Advisor Name],
+
+I'm exploring CLEP and DSST exams to fulfill general education requirements 
+in my [Major] program. Before I register for any exams, I want to confirm:
+
+1. Does [School Name] accept CLEP credit for [specific course]?
+2. What is the minimum score required?
+3. Are there any limits on how many exam credits I can apply?
+4. Will these credits appear on my transcript the same as traditional courses?
+5. Are there any major-specific restrictions I should know about?
+
+I want to make sure I'm following the correct process. Thank you for your time.
+
+Best,
+[Your Name]
+[Student ID]
+[Phone/Email]</div>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h2>Get it in writing.</h2>
+          <p>Do not rely on verbal confirmation. If your advisor tells you something in person or on the phone, follow up with an email: "Just to confirm our conversation today — you said [X exam] is accepted for [Y course] with a minimum score of [Z]. Is that correct?"</p>
+          <p>Save every email. Screenshot every policy page. This is your paper trail.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div class="step-num">5</div>
+        <div>
+          <h2>Check for restrictions.</h2>
+          <p>Before you celebrate, look for the traps that can ruin an otherwise good plan:</p>
+          <div class="trap-grid">
+            <div class="trap"><strong>Credit limits</strong>Some schools cap exam credits at 30-60 hours.</div>
+            <div class="trap"><strong>Residency</strong>You may still need credits taken at the school.</div>
+            <div class="trap"><strong>Major blocks</strong>Nursing, engineering, and education may restrict exam credit.</div>
+            <div class="trap"><strong>GPA impact</strong>Exam credits are often pass/fail. Confirm how yours posts.</div>
+            <div class="trap"><strong>Financial aid</strong>Taking fewer traditional courses can affect aid eligibility.</div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="warning" style="margin-top:26px"><strong>Once you have written confirmation, you are clear to study and schedule. Not before.</strong> This one step separates students who save thousands from students who waste hundreds on exams that go nowhere.</div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Fast Grad Academy. Educational content only. Always confirm policies with your school before spending money.<br/>
+  Questions? <a href="mailto:hello@fastgradacademy.com">hello@fastgradacademy.com</a>
+</footer>
+</body>
+</html>
