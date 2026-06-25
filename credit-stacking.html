@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Credit Stacking Playbook | Fast Grad Academy</title>
+  <meta name="description" content="A step-by-step playbook for mapping a degree, matching requirements to exams, verifying transfer credit, and stacking college credits in the right order." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070706;
+      --bg-panel: #11100e;
+      --bg-soft: #181611;
+      --ink: #f8f4ec;
+      --ink-dim: #c7beb0;
+      --ink-mute: #8d8273;
+      --gold: #c4a97d;
+      --gold-strong: #e0c58e;
+      --line: rgba(196, 169, 125, 0.22);
+      --line-soft: rgba(255, 255, 255, 0.09);
+      --danger: #d96a5b;
+      --success: #a8c78b;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      letter-spacing: 0;
+    }
+
+    body.locked {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    body.locked .site-shell {
+      display: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .gate {
+      min-height: 100vh;
+      display: none;
+      place-items: center;
+      padding: 32px 16px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(196, 169, 125, 0.15), transparent 38%),
+        var(--bg);
+    }
+
+    body.locked .gate {
+      display: grid;
+    }
+
+    .gate-card {
+      width: min(460px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(17, 16, 14, 0.94);
+      padding: 28px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.44);
+    }
+
+    .gate-kicker,
+    .kicker {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .gate-card h1 {
+      margin: 10px 0 10px;
+      font-family: var(--serif);
+      font-size: 38px;
+      line-height: 1.02;
+      font-weight: 400;
+    }
+
+    .gate-card p {
+      margin: 0 0 18px;
+      color: var(--ink-dim);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .gate-field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .gate-field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-dim);
+    }
+
+    .gate-field input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #090908;
+      color: var(--ink);
+      font: inherit;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    .gate-field input:focus {
+      border-color: var(--gold);
+    }
+
+    .gate-error {
+      min-height: 18px;
+      color: var(--danger);
+      font-size: 13px;
+      margin: 4px 0 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      background: var(--gold);
+      color: #12100d;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 0 18px;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--gold-strong);
+      border-color: var(--gold-strong);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .btn.secondary:hover {
+      border-color: var(--gold);
+      background: rgba(196, 169, 125, 0.08);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7, 7, 6, 0.86);
+      border-bottom: 1px solid var(--line-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .logo em {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--ink-dim);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--ink);
+    }
+
+    .menu-btn,
+    .mobile-nav-panel {
+      display: none;
+    }
+
+    .hero {
+      padding: 74px 0 38px;
+      border-bottom: 1px solid var(--line-soft);
+      background:
+        linear-gradient(180deg, rgba(196, 169, 125, 0.09), transparent 58%),
+        var(--bg);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+      gap: 44px;
+      align-items: end;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .hero h1 {
+      margin-top: 12px;
+      font-size: clamp(56px, 8vw, 102px);
+      line-height: 0.92;
+    }
+
+    .hero h1 em,
+    h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      max-width: 680px;
+      margin: 24px 0 0;
+      color: var(--ink-dim);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(196, 169, 125, 0.14), rgba(17, 16, 14, 0.96));
+      padding: 22px;
+    }
+
+    .hero-card strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 400;
+      color: var(--gold);
+    }
+
+    .hero-card span {
+      display: block;
+      margin-top: 8px;
+      color: var(--ink-dim);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .progress-shell {
+      position: sticky;
+      top: 72px;
+      z-index: 40;
+      background: rgba(7, 7, 6, 0.9);
+      border-bottom: 1px solid var(--line-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .progress-bar {
+      height: 2px;
+      width: 0;
+      background: var(--gold);
+      transition: width 120ms linear;
+    }
+
+    .step-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: none;
+    }
+
+    .step-nav::-webkit-scrollbar { display: none; }
+
+    .step-nav a {
+      flex: 0 0 auto;
+      border: 1px solid var(--line-soft);
+      border-radius: 999px;
+      color: var(--ink-dim);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 9px 12px;
+      white-space: nowrap;
+    }
+
+    .step-nav a.active {
+      color: #12100d;
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    main {
+      padding: 58px 0 86px;
+    }
+
+    .section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--line-soft);
+      scroll-margin-top: 150px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 28px;
+    }
+
+    .step-num {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 36px;
+    }
+
+    .section h2 {
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 0.98;
+    }
+
+    .section-intro {
+      max-width: 780px;
+      margin: 14px 0 0;
+      color: var(--ink-dim);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: var(--bg-panel);
+      padding: 22px;
+    }
+
+    .panel.gold {
+      border-color: var(--line);
+      background: linear-gradient(180deg, rgba(196, 169, 125, 0.12), rgba(17, 16, 14, 0.96));
+    }
+
+    .panel h3 {
+      margin-bottom: 10px;
+      color: var(--ink);
+      font-size: 26px;
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--ink-dim);
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
+    .panel p:last-child,
+    .panel ul:last-child,
+    .panel ol:last-child {
+      margin-bottom: 0;
+    }
+
+    .panel ul,
+    .panel ol {
+      margin: 12px 0 0;
+      padding-left: 20px;
+    }
+
+    .official-links {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .official-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: 6px;
+      padding: 12px 14px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .official-links a span {
+      color: var(--gold);
+    }
+
+    .audit-demo {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .audit-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(150px, 0.8fr) 90px minmax(160px, 1fr);
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line-soft);
+      border-radius: 6px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .audit-row::before {
+      content: attr(data-note);
+      position: absolute;
+      right: 12px;
+      top: -10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #211d16;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+    }
+
+    .audit-row b {
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .audit-row span {
+      color: var(--ink-dim);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 8px;
+      text-transform: uppercase;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: var(--bg-panel);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line-soft);
+      padding: 13px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(196, 169, 125, 0.08);
+    }
+
+    td {
+      color: var(--ink-dim);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .script-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #0d0c0a;
+      padding: 20px;
+      color: var(--ink-dim);
+      font-size: 15px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .search-chip {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(196, 169, 125, 0.1);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 5px 10px;
+      margin: 4px 4px 4px 0;
+      white-space: nowrap;
+    }
+
+    .gold-check {
+      display: inline-grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #17130f;
+      font-weight: 900;
+      font-size: 13px;
+      margin-right: 6px;
+    }
+
+    .callout {
+      border-left: 3px solid var(--gold);
+      background: rgba(196, 169, 125, 0.1);
+      padding: 18px 20px;
+      color: var(--ink-dim);
+      line-height: 1.7;
+      margin: 22px 0;
+    }
+
+    .cheatsheet {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbf6ec;
+      color: #17130f;
+      padding: 24px;
+    }
+
+    .cheatsheet h3 {
+      color: #17130f;
+      font-size: 32px;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 11px;
+      margin-top: 18px;
+    }
+
+    .check-item {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #17130f;
+      border-radius: 3px;
+      margin-top: 1px;
+    }
+
+    .placeholder {
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      color: var(--ink-mute);
+      padding: 22px;
+      background: rgba(196, 169, 125, 0.04);
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line-soft);
+      padding: 36px 0;
+      color: var(--ink-mute);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links,
+      .nav .btn {
+        display: none;
+      }
+
+      .menu-btn {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--line-soft);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .menu-btn svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+      }
+
+      .mobile-nav-panel {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        display: none;
+        background: rgba(7, 7, 6, 0.98);
+        padding: 22px;
+      }
+
+      .mobile-nav-panel.open {
+        display: block;
+      }
+
+      .mobile-nav-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .mobile-nav-close {
+        border: 1px solid var(--line-soft);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--ink);
+        font-size: 28px;
+        line-height: 1;
+        width: 44px;
+        height: 44px;
+      }
+
+      .mobile-nav-links {
+        display: grid;
+        gap: 12px;
+      }
+
+      .mobile-nav-links a {
+        border-bottom: 1px solid var(--line-soft);
+        padding: 14px 0;
+        color: var(--ink);
+        font-size: 20px;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .audit-row {
+        grid-template-columns: 1fr;
+      }
+
+      .stack-table table,
+      .stack-table thead,
+      .stack-table tbody,
+      .stack-table tr,
+      .stack-table th,
+      .stack-table td {
+        display: block;
+        min-width: 0;
+      }
+
+      .stack-table thead {
+        display: none;
+      }
+
+      .stack-table tr {
+        border-bottom: 1px solid var(--line-soft);
+        padding: 10px 0;
+      }
+
+      .stack-table tr:last-child {
+        border-bottom: 0;
+      }
+
+      .stack-table td {
+        display: grid;
+        grid-template-columns: minmax(120px, 0.42fr) minmax(0, 1fr);
+        gap: 12px;
+        border-bottom: 0;
+        padding: 8px 14px;
+      }
+
+      .stack-table td::before {
+        content: attr(data-label);
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+    }
+
+    @media print {
+      body,
+      html {
+        background: #fff;
+        color: #111;
+      }
+
+      .gate,
+      .nav,
+      .hero,
+      .progress-shell,
+      footer,
+      .hero-actions,
+      .btn,
+      .placeholder {
+        display: none !important;
+      }
+
+      .site-shell,
+      body.locked .site-shell {
+        display: block;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      .wrap {
+        width: 100%;
+      }
+
+      .section {
+        page-break-inside: avoid;
+        border-bottom: 1px solid #ddd;
+        padding: 24px 0;
+      }
+
+      .panel,
+      .table-wrap,
+      .cheatsheet {
+        border-color: #bbb;
+        background: #fff;
+        color: #111;
+      }
+
+      .panel p,
+      .panel li,
+      td {
+        color: #222;
+      }
+
+      h1,
+      h2,
+      h3,
+      th {
+        color: #111;
+      }
+    }
+  </style>
+</head>
+<body class="locked">
+  <div class="gate" id="gate">
+    <form class="gate-card" id="unlockForm">
+      <div class="gate-kicker">Student Access</div>
+      <h1>Unlock the playbook.</h1>
+      <p>Use the same email and access code you use for the Fast Grad Academy course dashboard. Do not paste payment or Stripe information here.</p>
+      <div class="gate-field">
+        <label for="unlockEmail">Email</label>
+        <input id="unlockEmail" name="email" type="email" autocomplete="email" required />
+      </div>
+      <div class="gate-field">
+        <label for="unlockCode">Access code</label>
+        <input id="unlockCode" name="code" type="password" autocomplete="one-time-code" required />
+      </div>
+      <div class="gate-error" id="gateError" role="alert"></div>
+      <button class="btn" type="submit">Continue to Playbook</button>
+      <a class="btn secondary" href="/guide" style="width:100%;margin-top:10px">Back to Dashboard</a>
+    </form>
+  </div>
+
+  <div class="site-shell">
+    <nav class="nav" id="nav">
+      <div class="wrap nav-inner">
+        <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/guide">Dashboard</a>
+          <a href="/credit-stacking" class="active">Credit Stacking</a>
+          <a href="/tracker">Tracker</a>
+        </div>
+        <a href="#cheatsheet" class="btn">Print Cheatsheet</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-nav-panel" id="mobileNavPanel" aria-hidden="true">
+      <div class="mobile-nav-head">
+        <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="/">Home</a>
+        <a href="/guide">Dashboard</a>
+        <a href="/credit-stacking">Credit Stacking</a>
+        <a href="/tracker">Tracker</a>
+        <a href="#cheatsheet">Print Cheatsheet</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker">Core How-To Section</div>
+          <h1>Credit stacking, <em>step by step.</em></h1>
+          <p class="hero-sub">This is the operating manual: pull the degree map, translate every requirement into a cheaper credit source, verify transfer before spending money, then stack credits in the order that keeps the finish line open.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#step-1">Start the Map</a>
+            <button class="btn secondary" type="button" onclick="window.print()">Print / Save PDF</button>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Playbook summary">
+          <strong>6 moves</strong>
+          <span>Map degree requirements, choose credit sources, match exams, verify with the registrar, sequence the stack, and print the checklist.</span>
+        </aside>
+      </div>
+    </header>
+
+    <div class="progress-shell">
+      <div class="progress-bar" id="progressBar"></div>
+      <div class="wrap">
+        <div class="step-nav" id="stepNav" aria-label="Credit stacking steps">
+          <a href="#step-1">1. Degree Map</a>
+          <a href="#step-2">2. Options</a>
+          <a href="#step-3">3. Match Courses</a>
+          <a href="#step-4">4. Verify</a>
+          <a href="#step-5">5. Stack Order</a>
+          <a href="#cheatsheet">6. Cheatsheet</a>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div class="wrap">
+        <section class="section" id="step-1">
+          <div class="section-head">
+            <div class="step-num">01</div>
+            <div>
+              <div class="kicker">Find Your Degree Map</div>
+              <h2>Step 1: Find Your <em>Degree Map.</em></h2>
+              <p class="section-intro">Every university publishes a complete list of courses required for each degree. This is your treasure map. Once you have it, you can see exactly which courses can be replaced with exam credits and which ones you actually need to sit in a classroom for.</p>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <article class="panel gold">
+              <h3>1a. Find the academic catalog</h3>
+              <p>Open your university's website and search for any of these terms. Different schools use different labels, but they all point to the same source of truth:</p>
+              <p>
+                <span class="search-chip">Academic Catalog</span>
+                <span class="search-chip">Course Catalog</span>
+                <span class="search-chip">University Catalog</span>
+                <span class="search-chip">Degree Requirements</span>
+                <span class="search-chip">Program Requirements</span>
+                <span class="search-chip">Degree Audit</span>
+                <span class="search-chip">Curriculum Guide</span>
+              </p>
+              <p><strong>Fastest path:</strong> Google this exact pattern: <code>site:yourschool.edu academic catalog [your major]</code>.</p>
+              <p>Save the catalog page as a PDF or screenshot before you keep going. This becomes your working document.</p>
+            </article>
+
+            <article class="panel">
+              <h3>1b. Navigate to your major</h3>
+              <p>Inside the catalog, drill down in this order:</p>
+              <ol>
+                <li>College or school, like "College of Business."</li>
+                <li>Department, like "Department of Marketing."</li>
+                <li>Degree program, like "B.S. in Marketing - Required Courses."</li>
+              </ol>
+              <p>You are looking for the page that lists every course needed to graduate, usually grouped into general education, major core, major electives, and free electives.</p>
+            </article>
+          </div>
+
+          <div class="grid-2" style="margin-top:18px">
+            <article class="panel">
+              <h3>Label the four buckets</h3>
+              <ul>
+                <li><span class="gold-check">✓</span><strong>General Education:</strong> English, math, history, science, social science, humanities.</li>
+                <li><span class="gold-check">✓</span><strong>Major Core:</strong> required courses specific to the degree.</li>
+                <li><span class="gold-check">✓</span><strong>Major Electives:</strong> approved choices inside the major.</li>
+                <li><span class="gold-check">✓</span><strong>Free Electives:</strong> any college-level credit that fills the remaining total.</li>
+              </ul>
+            </article>
+
+            <article class="panel">
+              <h3>Annotated sample degree audit</h3>
+              <p>Use the audit like a puzzle board. Your first pass is not to pick exams. It is to label which boxes are flexible and which boxes are locked.</p>
+              <div class="audit-demo" aria-label="Annotated sample degree audit">
+                <div class="audit-row" data-note="Gen Ed">
+                  <b>Written Communication</b>
+                  <span class="pill">3 cr</span>
+                  <span>Possible CLEP College Composition match. Verify minimum score.</span>
+                </div>
+                <div class="audit-row" data-note="Major Core">
+                  <b>Principles of Marketing</b>
+                  <span class="pill">3 cr</span>
+                  <span>Business majors should check CLEP Principles of Marketing first.</span>
+                </div>
+                <div class="audit-row" data-note="Locked">
+                  <b>Capstone Seminar</b>
+                  <span class="pill">3 cr</span>
+                  <span>Usually must be taken at the degree-granting school. Do not replace it.</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="callout">
+            Your next action: open Google, search <strong>site:yourschool.edu academic catalog [your major]</strong>, save the requirement page, and highlight every general education, major core, major elective, and free elective line.
+          </div>
+        </section>
+
+        <section class="section" id="step-2">
+          <div class="section-head">
+            <div class="step-num">02</div>
+            <div>
+              <div class="kicker">The Credit Stacking Menu</div>
+              <h2>Step 2: Know Your <em>Options.</em></h2>
+              <p class="section-intro">You do not just have CLEP. There is a whole menu of ways to earn college credit without taking college classes. Here are the options, ranked by bang-for-your-buck and usefulness.</p>
+            </div>
+          </div>
+
+          <div class="table-wrap stack-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Cost per exam/course</th>
+                  <th>Credits</th>
+                  <th>Available</th>
+                  <th>Best for</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Method"><strong>CLEP</strong></td>
+                  <td data-label="Cost">$93 exam fee</td>
+                  <td data-label="Credits">3-12 per exam</td>
+                  <td data-label="Available">34 exams</td>
+                  <td data-label="Best for">Gen Ed and business courses. Highest ROI. Accepted at 2,900+ schools.</td>
+                </tr>
+                <tr>
+                  <td data-label="Method"><strong>AP</strong></td>
+                  <td data-label="Cost">About $98 per exam</td>
+                  <td data-label="Credits">3-8 per exam</td>
+                  <td data-label="Available">38 exams</td>
+                  <td data-label="Best for">High school students. Harder than CLEP, but widely recognized.</td>
+                </tr>
+                <tr>
+                  <td data-label="Method"><strong>DSST (DANTES)</strong></td>
+                  <td data-label="Cost">About $100 per exam</td>
+                  <td data-label="Credits">Usually 3</td>
+                  <td data-label="Available">30+ exams</td>
+                  <td data-label="Best for">Niche subjects CLEP does not cover, like ethics, computing, and organizational behavior.</td>
+                </tr>
+                <tr>
+                  <td data-label="Method"><strong>PSEO / Dual Enrollment</strong></td>
+                  <td data-label="Cost">Often free if state-funded</td>
+                  <td data-label="Credits">3-4 per class</td>
+                  <td data-label="Available">Varies by state</td>
+                  <td data-label="Best for">High school juniors and seniors who can take real college courses before graduation.</td>
+                </tr>
+                <tr>
+                  <td data-label="Method"><strong>StraighterLine</strong></td>
+                  <td data-label="Cost">About $59/month plus course fee</td>
+                  <td data-label="Credits">Usually 3</td>
+                  <td data-label="Available">60+ courses</td>
+                  <td data-label="Best for">Courses CLEP does not cover. Strongest when your target school is a partner.</td>
+                </tr>
+                <tr>
+                  <td data-label="Method"><strong>Sophia.org</strong></td>
+                  <td data-label="Cost">$99/month unlimited</td>
+                  <td data-label="Credits">Usually 3</td>
+                  <td data-label="Available">60+ courses</td>
+                  <td data-label="Best for">Fast self-paced ACE credit when your school accepts Sophia transfer credit.</td>
+                </tr>
+                <tr>
+                  <td data-label="Method"><strong>Modern States</strong></td>
+                  <td data-label="Cost">Free</td>
+                  <td data-label="Credits">Prep only</td>
+                  <td data-label="Available">33+ CLEP prep courses</td>
+                  <td data-label="Best for">Free CLEP prep plus exam voucher. Use before every CLEP attempt.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid-2" style="margin-top:18px">
+            <article class="panel gold">
+              <h3>The $93 vs. $1,200 math</h3>
+              <p>A single 3-credit college course can cost $400 to $1,500 depending on the school. A CLEP exam covering the same 3 credits costs about $93. If you complete Modern States first and receive a voucher, the exam fee may be covered.</p>
+              <p><strong>5 CLEP exams = 15 credits = one full semester you may be able to skip.</strong></p>
+            </article>
+
+            <article class="panel">
+              <h3>Official starting URLs</h3>
+              <div class="official-links">
+                <a href="https://clep.collegeboard.org/clep-exams" target="_blank" rel="noopener">CLEP Exam List <span>&rarr;</span></a>
+                <a href="https://apstudents.collegeboard.org/courses" target="_blank" rel="noopener">AP Course and Exam List <span>&rarr;</span></a>
+                <a href="https://getcollegecredit.com/exam-catalog/" target="_blank" rel="noopener">DSST Exam Catalog <span>&rarr;</span></a>
+                <a href="https://www.sophia.org/" target="_blank" rel="noopener">Sophia.org <span>&rarr;</span></a>
+                <a href="https://www.straighterline.com/" target="_blank" rel="noopener">StraighterLine <span>&rarr;</span></a>
+                <a href="https://modernstates.org/" target="_blank" rel="noopener">Modern States <span>&rarr;</span></a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="step-3">
+          <div class="section-head">
+            <div class="step-num">03</div>
+            <div>
+              <div class="kicker">Match Every Course to an Exam</div>
+              <h2>Step 3: Match Every Course to <em>an Exam.</em></h2>
+              <p class="section-intro">Now comes the fun part. Take your degree requirements list and go course by course. For each one, ask: "Can I test out of this instead of taking the class?"</p>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <article class="panel gold">
+              <h3>For each Gen Ed course</h3>
+              <ol>
+                <li><strong>Read the course name and description.</strong> Example: "Introduction to Psychology (3 credits)."</li>
+                <li><strong>Check CLEP first.</strong> Go to <a href="https://clep.collegeboard.org/clep-exams" target="_blank" rel="noopener">clep.collegeboard.org/clep-exams</a>. Intro to Psychology maps to CLEP Introductory Psychology.</li>
+                <li><strong>If no CLEP match, check DSST.</strong> Go to <a href="https://getcollegecredit.com/exam-catalog/" target="_blank" rel="noopener">getcollegecredit.com/exam-catalog</a>.</li>
+                <li><strong>If no exam match, check Sophia or StraighterLine.</strong> These self-paced courses may transfer faster and cheaper than a classroom course.</li>
+                <li><strong>If none work, mark "Must Take."</strong> Do not force a bad match. Move on.</li>
+              </ol>
+            </article>
+
+            <article class="panel">
+              <h3>For each Major Core course</h3>
+              <p>Major courses are harder to replace. Many departments require them in-house. But some intro-level major courses do have exam equivalents:</p>
+              <ul>
+                <li><strong>Business:</strong> Marketing, Management, Financial Accounting, Business Law.</li>
+                <li><strong>Liberal Arts:</strong> American Literature, Analyzing and Interpreting Literature.</li>
+                <li><strong>Science:</strong> Biology, Chemistry, Natural Sciences.</li>
+                <li><strong>Math:</strong> College Algebra, College Mathematics, Precalculus.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="table-wrap stack-table" style="margin-top:18px">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Course name</th>
+                  <th>Credits</th>
+                  <th>Category</th>
+                  <th>CLEP match?</th>
+                  <th>DSST match?</th>
+                  <th>Alt credit?</th>
+                  <th>Must take?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="#">1</td>
+                  <td data-label="Course">Intro to Psychology</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>Introductory Psychology</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
+                </tr>
+                <tr>
+                  <td data-label="#">2</td>
+                  <td data-label="Course">English Composition I</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>College Composition</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
+                </tr>
+                <tr>
+                  <td data-label="#">3</td>
+                  <td data-label="Course">College Algebra</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>College Algebra</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
+                </tr>
+                <tr>
+                  <td data-label="#">4</td>
+                  <td data-label="Course">Intro to Sociology</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>Introductory Sociology</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
+                </tr>
+                <tr>
+                  <td data-label="#">5</td>
+                  <td data-label="Course">U.S. History I</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>History of the United States I</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
+                </tr>
+                <tr>
+                  <td data-label="#">6</td>
+                  <td data-label="Course">Financial Accounting</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Major</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>Financial Accounting</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
+                </tr>
+                <tr>
+                  <td data-label="#">7</td>
+                  <td data-label="Course">Organic Chemistry II</td>
+                  <td data-label="Credits">4</td>
+                  <td data-label="Category">Major</td>
+                  <td data-label="CLEP">No</td>
+                  <td data-label="DSST">No</td>
+                  <td data-label="Alt">No</td>
+                  <td data-label="Must take"><span class="pill">Must take</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout">
+            John's real example: "I mapped out my entire BBA degree at the University of Minnesota Duluth. Out of about 120 credits, I knocked out 45+ with CLEP and transfer credits. That's more than a full year of coursework gone, for under $500 in exam fees instead of $15,000+ in tuition."
+          </div>
+        </section>
+
+        <section class="section" id="step-4">
+          <div class="section-head">
+            <div class="step-num">04</div>
+            <div>
+              <div class="kicker">Verify Before You Spend a Dollar</div>
+              <h2>Step 4: Verify Before You <em>Test.</em></h2>
+              <p class="section-intro"><strong>Do not take a single exam until you have confirmed your school will accept the credit.</strong> Not every school accepts every exam, and credit policies vary wildly. Your standard is written confirmation before payment whenever the answer is not obvious from an official equivalency chart.</p>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <article class="panel gold">
+              <h3>4a. Check the policy online</h3>
+              <p>Search your school's website for these exact phrases:</p>
+              <p>
+                <span class="search-chip">CLEP credit policy</span>
+                <span class="search-chip">credit by examination</span>
+                <span class="search-chip">transfer credit evaluation</span>
+                <span class="search-chip">AP/CLEP equivalency chart</span>
+              </p>
+              <p><strong>Google shortcut:</strong> <code>site:yourschool.edu CLEP credit policy</code></p>
+              <p>If the table says "CLEP Introductory Psychology = PSY 1001 (3 credits)," you have a strong starting point. Still save the page as proof.</p>
+            </article>
+
+            <article class="panel">
+              <h3>4b. Use Transferology</h3>
+              <p>Go to <a href="https://www.transferology.com/" target="_blank" rel="noopener">transferology.com</a> and create a free account. Enter your target school and the exam/course you want to take. It may show whether the credit transfers and what it counts as.</p>
+              <p><strong>Important:</strong> Transferology is a good starting point, but it is not always current. Always confirm with the school.</p>
+              <div class="official-links">
+                <a href="https://www.transferology.com/" target="_blank" rel="noopener">Transferology <span>&rarr;</span></a>
+                <a href="https://clep.collegeboard.org/scores/send-scores-transcripts" target="_blank" rel="noopener">Send CLEP Scores <span>&rarr;</span></a>
+                <a href="https://getcollegecredit.com/scores_transcripts/" target="_blank" rel="noopener">DSST Scores and Transcripts <span>&rarr;</span></a>
+                <a href="https://www.credly.com/" target="_blank" rel="noopener">ACE / Credly Transcript Path <span>&rarr;</span></a>
+              </div>
+            </article>
+          </div>
+
+          <div class="grid-2" style="margin-top:18px">
+            <article class="panel gold">
+              <h3>4c. Call the registrar</h3>
+              <div class="script-box">Hi, I'm a [current/incoming] student in the [your major] program. I'm looking at taking CLEP exams to fulfill some of my general education requirements. Can you tell me:
+
+1. Does [school name] accept CLEP credits?
+2. What's the minimum score required?
+3. Is there a limit on how many CLEP credits I can apply to my degree?
+4. Specifically, would the CLEP [exam name] satisfy [course name] in my degree program?
+
+Could you send me an email confirming this, or point me to the page where this is documented?</div>
+            </article>
+
+            <article class="panel">
+              <h3>4d. Talk to your advisor</h3>
+              <div class="script-box">I've mapped out which CLEP/AP/DSST exams align with my degree requirements. Can we go through this together to make sure I'm not missing anything and that these credits will actually count toward my degree?</div>
+              <p style="margin-top:16px">Bring your worksheet from Step 3. Advisors often know department-specific rules, upcoming policy changes, and which credits technically transfer but do not help your exact degree.</p>
+            </article>
+          </div>
+
+          <div class="grid-3" style="margin-top:18px">
+            <article class="panel">
+              <h3>Ask about caps</h3>
+              <p>Some schools limit how many credits can come from CLEP, DSST, ACE, AP, transfer courses, or lower-level sources. A plan that works at 30 credits may fail at 90 credits if you miss the cap.</p>
+            </article>
+
+            <article class="panel">
+              <h3>Ask about level</h3>
+              <p>Lower-level elective credit may not satisfy an upper-level major requirement. When the degree map says 300/400-level, ask directly whether the external source awards upper-level credit.</p>
+            </article>
+
+            <article class="panel">
+              <h3>Ask about residency</h3>
+              <p>Every school has some credits you must complete through them. Usually capstone, cornerstone, or final residency credits cannot be replaced with exams.</p>
+            </article>
+          </div>
+
+          <div class="callout">
+            Do not ask, "Will this transfer?" Ask, "Will this specific exam/course transfer as this specific requirement in this specific degree under this specific catalog?" Precision is what protects the plan.
+          </div>
+        </section>
+
+        <section class="section" id="step-5">
+          <div class="section-head">
+            <div class="step-num">05</div>
+            <div>
+              <div class="kicker">Stack Smart</div>
+              <h2>Step 5: Stack Smart &mdash; The Order <em>Matters.</em></h2>
+              <p class="section-intro">You've got your list of matchable courses. Now attack them in the right order so you save the most money and time without wasting credits on the wrong requirements.</p>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <article class="panel gold">
+              <h3>Rule 1: Start with high-pass-rate exams</h3>
+              <p>Build confidence and momentum first. These CLEP exams have historically been among the friendlier first wins:</p>
+              <ul>
+                <li>Spanish Language</li>
+                <li>Introductory Sociology</li>
+                <li>Principles of Marketing</li>
+                <li>Principles of Management</li>
+                <li>Introductory Psychology</li>
+              </ul>
+              <p>Do not pick blindly. Match them to your degree map first, then use them as quick wins.</p>
+            </article>
+
+            <article class="panel">
+              <h3>Rule 2: Use Modern States first</h3>
+              <p>Before every CLEP exam, go to <a href="https://modernstates.org/" target="_blank" rel="noopener">modernstates.org</a> and complete the free prep course. When you finish, Modern States may issue a voucher that covers the CLEP exam fee.</p>
+              <p>This is how a $93 exam can become a $0 exam. Use the free prep before you pay.</p>
+            </article>
+          </div>
+
+          <div class="grid-3" style="margin-top:18px">
+            <article class="panel">
+              <h3>Rule 3: Don't waste useful classes</h3>
+              <p>Some classes are worth taking because they create professor relationships, lab experience, portfolio work, or internship leads. Save exam credits for boring prerequisite boxes, not classes that can open doors.</p>
+            </article>
+
+            <article class="panel">
+              <h3>Rule 4: Stack methods</h3>
+              <p>Your Gen Ed might need 42 credits. CLEP covers 25, DSST covers 6, and Sophia picks up 9. Now you have replaced 40 of 42 Gen Ed credits without sitting in a classroom.</p>
+            </article>
+
+            <article class="panel">
+              <h3>Rule 5: Front-load credits</h3>
+              <p>Take exams before your first semester if possible. You can register with credits already banked, skip freshman-level classes, and move toward sophomore or junior standing faster.</p>
+            </article>
+          </div>
+
+          <div class="grid-2" style="margin-top:18px">
+            <article class="panel gold">
+              <h3>The stacking order</h3>
+              <ol>
+                <li><strong>CLEP first:</strong> cheapest, most widely accepted, strongest general education ROI.</li>
+                <li><strong>DSST second:</strong> fills gaps CLEP does not cover.</li>
+                <li><strong>Sophia / StraighterLine third:</strong> remaining courses with no exam equivalent.</li>
+                <li><strong>PSEO / dual enrollment:</strong> if you are still in high school, use free state-funded college courses.</li>
+                <li><strong>School-only credits last:</strong> capstone, cornerstone, residency, and department-locked requirements.</li>
+              </ol>
+            </article>
+
+            <article class="panel">
+              <h3>John's example</h3>
+              <p>"I took 8 CLEP exams the summer before I started at UMN Duluth. That gave me 24 credits on day one. I was technically a sophomore before I ever attended a class. By the time my friends were signing up for Intro to Business, I was already in upper-division courses."</p>
+            </article>
+          </div>
+
+          <div class="callout">
+            John's sequencing rule: cheap, obvious, published-credit wins first; ambiguous credits second; school-only credits last. Speed comes from reducing uncertainty, not from rushing the wrong exam.
+          </div>
+        </section>
+
+        <section class="section" id="cheatsheet">
+          <div class="section-head">
+            <div class="step-num">06</div>
+            <div>
+              <div class="kicker">Credit Stacking Cheatsheet</div>
+              <h2>Your Credit Stacking <em>Cheatsheet.</em></h2>
+              <p class="section-intro">Print this quick reference before you start. The goal is simple: no orphan credits, no surprise electives, no wasted exams.</p>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <article class="cheatsheet">
+              <h3>The 5-step process</h3>
+              <div class="check-list">
+                <div class="check-item"><span class="box"></span><span><strong>Step 1: Find requirements.</strong><br />Google: <code>site:yourschool.edu academic catalog [your major]</code>. Save the full course list.</span></div>
+                <div class="check-item"><span class="box"></span><span><strong>Step 2: Know options.</strong><br />CLEP ($93), DSST (~$100), Sophia ($99/month), StraighterLine, PSEO, and Modern States.</span></div>
+                <div class="check-item"><span class="box"></span><span><strong>Step 3: Match courses.</strong><br />Use the worksheet: Course &rarr; CLEP? &rarr; DSST? &rarr; Alt credit? &rarr; Must take?</span></div>
+                <div class="check-item"><span class="box"></span><span><strong>Step 4: Verify.</strong><br />Check school policy, use Transferology, call registrar, and get confirmation in writing.</span></div>
+                <div class="check-item"><span class="box"></span><span><strong>Step 5: Stack smart.</strong><br />CLEP &rarr; DSST &rarr; Sophia/StraighterLine &rarr; PSEO, with high-confidence credits first.</span></div>
+              </div>
+            </article>
+
+            <article class="panel gold">
+              <h3>Action URLs</h3>
+              <ol>
+                <li><strong>CLEP:</strong> clep.collegeboard.org/clep-exams</li>
+                <li><strong>DSST:</strong> getcollegecredit.com/exam-catalog</li>
+                <li><strong>Sophia:</strong> sophia.org</li>
+                <li><strong>StraighterLine:</strong> straighterline.com</li>
+                <li><strong>Modern States:</strong> modernstates.org</li>
+                <li><strong>Transferology:</strong> transferology.com</li>
+              </ol>
+              <p>After the worksheet is verified, you do not need more motivation. You need one approved row, one study block, and one completed credit at a time.</p>
+              <div class="hero-actions" style="margin-top:18px">
+                <button class="btn" type="button" onclick="window.print()">Print Cheatsheet</button>
+                <a class="btn secondary" href="/guide">Return to Dashboard</a>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <strong>Fast Grad Academy</strong><br />
+        Educational content only. Always verify current transfer rules, exam policies, residency requirements, and graduation requirements with your target institution before spending money or enrolling.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      var body = document.body;
+      var form = document.getElementById('unlockForm');
+      var gateError = document.getElementById('gateError');
+      var params = new URLSearchParams(window.location.search);
+
+      function remember(email) {
+        localStorage.setItem('fga_course', JSON.stringify({
+          access: true,
+          email: email || '',
+          unlockedAt: new Date().toISOString()
+        }));
+      }
+
+      function hasAccess() {
+        if (params.get('beta') === 'fga2026') {
+          remember('beta-reviewer');
+          return true;
+        }
+        try {
+          var saved = JSON.parse(localStorage.getItem('fga_course') || '{}');
+          return !!saved.access;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      function openPage() {
+        body.classList.remove('locked');
+      }
+
+      if (hasAccess()) {
+        openPage();
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var email = document.getElementById('unlockEmail').value.trim();
+        var code = document.getElementById('unlockCode').value.trim();
+        gateError.textContent = '';
+
+        fetch('/api/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, code: code })
+        })
+        .then(function(res){ return res.json().then(function(data){ return { ok: res.ok, data: data }; }); })
+        .then(function(result){
+          if (!result.ok || !result.data.valid) {
+            gateError.textContent = result.data.error || 'That code did not work. Check the email and code, then try again.';
+            return;
+          }
+          remember(email);
+          openPage();
+        })
+        .catch(function(){
+          gateError.textContent = 'Could not verify right now. Use the dashboard login, then return to this page.';
+        });
+      });
+    })();
+
+    (function(){
+      var menuBtn = document.getElementById('menuBtn');
+      var panel = document.getElementById('mobileNavPanel');
+      var closeBtn = document.getElementById('mobileNavClose');
+
+      function closeMenu() {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+
+      menuBtn.addEventListener('click', function(){
+        panel.classList.add('open');
+        panel.setAttribute('aria-hidden', 'false');
+      });
+
+      closeBtn.addEventListener('click', closeMenu);
+      panel.querySelectorAll('a').forEach(function(link){
+        link.addEventListener('click', closeMenu);
+      });
+    })();
+
+    (function(){
+      var progress = document.getElementById('progressBar');
+      var links = Array.prototype.slice.call(document.querySelectorAll('#stepNav a'));
+      var targets = links.map(function(link){ return document.querySelector(link.getAttribute('href')); });
+
+      function updateProgress() {
+        var height = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = height > 0 ? (window.scrollY / height) * 100 : 0;
+        progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+
+        var activeIndex = 0;
+        targets.forEach(function(target, index){
+          if (target && target.getBoundingClientRect().top < 180) activeIndex = index;
+        });
+        links.forEach(function(link, index){
+          link.classList.toggle('active', index === activeIndex);
+        });
+      }
+
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
