@@ -117,7 +117,7 @@ export async function sendAccessEmail(email, accessCode, providedName) {
     <div style="font-size:16px;color:rgba(255,255,255,0.85);line-height:1.9;margin-bottom:32px;">
       <p style="margin:0 0 16px;">Hey ${firstName},</p>
       <p style="margin:0 0 16px;">I want you to know — what you just did takes guts. Most people talk about wanting to get ahead. You actually did something about it.</p>
-      <p style="margin:0 0 16px;">I built this guide because I wish someone had shown me the playbook when I started. I graduated college at 19, saved over $85,000, and got a 3-year head start on my career — not because I'm smarter than anyone else, but because I found the system's own rules and used them.</p>
+      <p style="margin:0 0 16px;">I built this guide because I wish someone had shown me the playbook when I started. I graduated college at 19, saved over $84,000, and got a 3-year head start on my career — not because I'm smarter than anyone else, but because I found the system's own rules and used them.</p>
       <p style="margin:0 0 16px;">Now you have the same playbook. Every strategy, every shortcut, every resource — it's all yours.</p>
     </div>
 
