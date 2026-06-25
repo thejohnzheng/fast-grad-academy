@@ -1108,89 +1108,126 @@
             <div class="step-num">03</div>
             <div>
               <div class="kicker">Match Every Course to an Exam</div>
-              <h2>Build the <em>credit worksheet.</em></h2>
-              <p class="section-intro">Now translate the degree map into an execution worksheet. Each row should answer one question: "What is the cheapest confirmed way to fill this requirement?" If you cannot answer that yet, the row stays unapproved.</p>
+              <h2>Step 3: Match Every Course to <em>an Exam.</em></h2>
+              <p class="section-intro">Now comes the fun part. Take your degree requirements list and go course by course. For each one, ask: "Can I test out of this instead of taking the class?"</p>
             </div>
           </div>
 
           <div class="grid-2">
             <article class="panel gold">
-              <h3>The matching rule</h3>
-              <p>A match is not just "this exam sounds similar." A real match has four parts:</p>
+              <h3>For each Gen Ed course</h3>
               <ol>
-                <li>The requirement name from the degree map.</li>
-                <li>The credit source and exact course or exam title.</li>
-                <li>The equivalency your school awards.</li>
-                <li>Written proof from the catalog, transfer guide, or registrar.</li>
+                <li><strong>Read the course name and description.</strong> Example: "Introduction to Psychology (3 credits)."</li>
+                <li><strong>Check CLEP first.</strong> Go to <a href="https://clep.collegeboard.org/clep-exams" target="_blank" rel="noopener">clep.collegeboard.org/clep-exams</a>. Intro to Psychology maps to CLEP Introductory Psychology.</li>
+                <li><strong>If no CLEP match, check DSST.</strong> Go to <a href="https://getcollegecredit.com/exam-catalog/" target="_blank" rel="noopener">getcollegecredit.com/exam-catalog</a>.</li>
+                <li><strong>If no exam match, check Sophia or StraighterLine.</strong> These self-paced courses may transfer faster and cheaper than a classroom course.</li>
+                <li><strong>If none work, mark "Must Take."</strong> Do not force a bad match. Move on.</li>
               </ol>
             </article>
 
             <article class="panel">
-              <h3>Use exact language</h3>
-              <p>Schools often treat similar-looking credits differently. "Intro to Psychology" may map cleanly to PSYC 101, while "Educational Psychology" may land as an elective. Exact titles, credit levels, and course numbers matter.</p>
-              <p>If the audit says <strong>upper-level</strong>, <strong>lab required</strong>, <strong>writing intensive</strong>, or <strong>resident credit</strong>, slow down and verify before choosing an external option.</p>
+              <h3>For each Major Core course</h3>
+              <p>Major courses are harder to replace. Many departments require them in-house. But some intro-level major courses do have exam equivalents:</p>
+              <ul>
+                <li><strong>Business:</strong> Marketing, Management, Financial Accounting, Business Law.</li>
+                <li><strong>Liberal Arts:</strong> American Literature, Analyzing and Interpreting Literature.</li>
+                <li><strong>Science:</strong> Biology, Chemistry, Natural Sciences.</li>
+                <li><strong>Math:</strong> College Algebra, College Mathematics, Precalculus.</li>
+              </ul>
             </article>
           </div>
 
-          <div class="table-wrap" style="margin-top:18px">
+          <div class="table-wrap stack-table" style="margin-top:18px">
             <table>
               <thead>
                 <tr>
-                  <th>Degree requirement</th>
+                  <th>#</th>
+                  <th>Course name</th>
                   <th>Credits</th>
-                  <th>Proposed credit source</th>
-                  <th>Expected equivalency</th>
-                  <th>Status</th>
-                  <th>Proof needed</th>
+                  <th>Category</th>
+                  <th>CLEP match?</th>
+                  <th>DSST match?</th>
+                  <th>Alt credit?</th>
+                  <th>Must take?</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Written Communication I</td>
-                  <td>3</td>
-                  <td>CLEP College Composition</td>
-                  <td>ENG 101 / composition requirement</td>
-                  <td><span class="pill">Verify</span></td>
-                  <td>School CLEP chart and minimum score</td>
+                  <td data-label="#">1</td>
+                  <td data-label="Course">Intro to Psychology</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>Introductory Psychology</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
                 </tr>
                 <tr>
-                  <td>Social Science elective</td>
-                  <td>3</td>
-                  <td>CLEP Introductory Psychology</td>
-                  <td>PSYC 101 or lower-level social science</td>
-                  <td><span class="pill">Likely</span></td>
-                  <td>Catalog or registrar confirmation</td>
+                  <td data-label="#">2</td>
+                  <td data-label="Course">English Composition I</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>College Composition</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
                 </tr>
                 <tr>
-                  <td>Natural Science with lab</td>
-                  <td>4</td>
-                  <td>Community college biology with lab</td>
-                  <td>BIO 101 + lab</td>
-                  <td><span class="pill">Careful</span></td>
-                  <td>Transfer equivalency and lab acceptance</td>
+                  <td data-label="#">3</td>
+                  <td data-label="Course">College Algebra</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>College Algebra</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
                 </tr>
                 <tr>
-                  <td>Business elective</td>
-                  <td>3</td>
-                  <td>DSST Principles of Supervision</td>
-                  <td>MAN elective or free elective</td>
-                  <td><span class="pill">Verify</span></td>
-                  <td>DSST acceptance by exact exam title</td>
+                  <td data-label="#">4</td>
+                  <td data-label="Course">Intro to Sociology</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>Introductory Sociology</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
                 </tr>
                 <tr>
-                  <td>Free elective</td>
-                  <td>3</td>
-                  <td>Sophia / Study.com ACE course</td>
-                  <td>Lower-level elective</td>
-                  <td><span class="pill">Park</span></td>
-                  <td>ACE partner transfer list</td>
+                  <td data-label="#">5</td>
+                  <td data-label="Course">U.S. History I</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Gen Ed</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>History of the United States I</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
+                </tr>
+                <tr>
+                  <td data-label="#">6</td>
+                  <td data-label="Course">Financial Accounting</td>
+                  <td data-label="Credits">3</td>
+                  <td data-label="Category">Major</td>
+                  <td data-label="CLEP"><span class="gold-check">✓</span>Financial Accounting</td>
+                  <td data-label="DSST">-</td>
+                  <td data-label="Alt">-</td>
+                  <td data-label="Must take">-</td>
+                </tr>
+                <tr>
+                  <td data-label="#">7</td>
+                  <td data-label="Course">Organic Chemistry II</td>
+                  <td data-label="Credits">4</td>
+                  <td data-label="Category">Major</td>
+                  <td data-label="CLEP">No</td>
+                  <td data-label="DSST">No</td>
+                  <td data-label="Alt">No</td>
+                  <td data-label="Must take"><span class="pill">Must take</span></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <div class="callout">
-            The worksheet becomes your anti-waste system. If a row does not have proof, do not schedule the exam yet. Put it in the "verify" lane and keep mapping.
+            John's real example: "I mapped out my entire BBA degree at the University of Minnesota Duluth. Out of about 120 credits, I knocked out 45+ with CLEP and transfer credits. That's more than a full year of coursework gone, for under $500 in exam fees instead of $15,000+ in tuition."
           </div>
         </section>
 
@@ -1199,44 +1236,55 @@
             <div class="step-num">04</div>
             <div>
               <div class="kicker">Verify Before You Spend a Dollar</div>
-              <h2>Get the transfer answer <em>in writing.</em></h2>
-              <p class="section-intro">This is where most people lose time. They take a cheap exam, celebrate too early, and later discover it transferred as the wrong elective or did not count at all. Your standard is written confirmation before payment whenever the answer is not obvious from an official equivalency chart.</p>
+              <h2>Step 4: Verify Before You <em>Test.</em></h2>
+              <p class="section-intro"><strong>Do not take a single exam until you have confirmed your school will accept the credit.</strong> Not every school accepts every exam, and credit policies vary wildly. Your standard is written confirmation before payment whenever the answer is not obvious from an official equivalency chart.</p>
             </div>
           </div>
 
           <div class="grid-2">
             <article class="panel gold">
-              <h3>The registrar email</h3>
-              <div class="script-box">Subject: Transfer credit verification for [degree/program]
-
-Hi [Registrar/Advisor Name],
-
-I am planning my remaining credits for the [exact degree name] under the [catalog year] catalog. Before I register or pay for any external exams/courses, I want to confirm how the following credits would apply to my degree audit:
-
-1. [Provider + exact exam/course title]
-2. [Credit recommendation or exam score requirement]
-3. [Requirement I believe it satisfies]
-
-Can you confirm whether this credit will apply to [specific requirement], whether there is a minimum score/grade, and whether there are any limits on transfer, exam, ACE, DSST, or CLEP credits for my program?
-
-Thank you,
-[Your Name]
-[Student ID, if enrolled]</div>
+              <h3>4a. Check the policy online</h3>
+              <p>Search your school's website for these exact phrases:</p>
+              <p>
+                <span class="search-chip">CLEP credit policy</span>
+                <span class="search-chip">credit by examination</span>
+                <span class="search-chip">transfer credit evaluation</span>
+                <span class="search-chip">AP/CLEP equivalency chart</span>
+              </p>
+              <p><strong>Google shortcut:</strong> <code>site:yourschool.edu CLEP credit policy</code></p>
+              <p>If the table says "CLEP Introductory Psychology = PSY 1001 (3 credits)," you have a strong starting point. Still save the page as proof.</p>
             </article>
 
             <article class="panel">
-              <h3>What proof counts</h3>
-              <ul>
-                <li><strong>Best:</strong> official school equivalency chart or catalog language that names the exam/course.</li>
-                <li><strong>Strong:</strong> email from registrar, transfer office, or assigned academic advisor.</li>
-                <li><strong>Useful:</strong> degree audit showing the transfer credit in the correct requirement slot.</li>
-                <li><strong>Weak:</strong> forum posts, old Reddit threads, AI answers, or "my friend did this in 2021."</li>
-              </ul>
+              <h3>4b. Use Transferology</h3>
+              <p>Go to <a href="https://www.transferology.com/" target="_blank" rel="noopener">transferology.com</a> and create a free account. Enter your target school and the exam/course you want to take. It may show whether the credit transfers and what it counts as.</p>
+              <p><strong>Important:</strong> Transferology is a good starting point, but it is not always current. Always confirm with the school.</p>
               <div class="official-links">
+                <a href="https://www.transferology.com/" target="_blank" rel="noopener">Transferology <span>&rarr;</span></a>
                 <a href="https://clep.collegeboard.org/scores/send-scores-transcripts" target="_blank" rel="noopener">Send CLEP Scores <span>&rarr;</span></a>
                 <a href="https://getcollegecredit.com/scores_transcripts/" target="_blank" rel="noopener">DSST Scores and Transcripts <span>&rarr;</span></a>
                 <a href="https://www.credly.com/" target="_blank" rel="noopener">ACE / Credly Transcript Path <span>&rarr;</span></a>
               </div>
+            </article>
+          </div>
+
+          <div class="grid-2" style="margin-top:18px">
+            <article class="panel gold">
+              <h3>4c. Call the registrar</h3>
+              <div class="script-box">Hi, I'm a [current/incoming] student in the [your major] program. I'm looking at taking CLEP exams to fulfill some of my general education requirements. Can you tell me:
+
+1. Does [school name] accept CLEP credits?
+2. What's the minimum score required?
+3. Is there a limit on how many CLEP credits I can apply to my degree?
+4. Specifically, would the CLEP [exam name] satisfy [course name] in my degree program?
+
+Could you send me an email confirming this, or point me to the page where this is documented?</div>
+            </article>
+
+            <article class="panel">
+              <h3>4d. Talk to your advisor</h3>
+              <div class="script-box">I've mapped out which CLEP/AP/DSST exams align with my degree requirements. Can we go through this together to make sure I'm not missing anything and that these credits will actually count toward my degree?</div>
+              <p style="margin-top:16px">Bring your worksheet from Step 3. Advisors often know department-specific rules, upcoming policy changes, and which credits technically transfer but do not help your exact degree.</p>
             </article>
           </div>
 
