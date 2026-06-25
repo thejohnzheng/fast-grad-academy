@@ -122,8 +122,8 @@
 
 /* Scroll reveal */
 .reveal {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 1; transform: none;
+  transition: none;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
@@ -274,9 +274,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .video-card.reveal,
 .ch-label.reveal,
 .ch-title.reveal {
-  opacity: 0; transform: translateY(28px);
-  transition: opacity var(--reveal-duration) var(--reveal-curve),
-              transform var(--reveal-duration) var(--reveal-curve);
+  opacity: 1; transform: none;
+  transition: none;
 }
 .reveal.in, .reveal.visible { opacity: 1; transform: none; }
 .reveal[data-delay="1"] { transition-delay: .12s; }
