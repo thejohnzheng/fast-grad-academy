@@ -33,6 +33,10 @@
       "destination": "/credit-stacking.html"
     },
     {
+      "source": "/degree-anatomy",
+      "destination": "/degree-anatomy.html"
+    },
+    {
       "source": "/contact",
       "destination": "/contact.html"
     },
