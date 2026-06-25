@@ -928,7 +928,15 @@
   </div>
 </div>
 
-<!-- HERO -->
+<!-- LIVE DATA: National student debt counter -->
+<div class="debt-counter-bar" style="background:linear-gradient(90deg,#1a0a0a,#2a0a0a);padding:1rem;text-align:center;border-bottom:1px solid rgba(196,169,125,0.2);">
+  <p style="margin:0;font-size:0.85rem;color:#c4a97d;letter-spacing:0.05em;text-transform:uppercase;">Total U.S. Student Loan Debt Right Now</p>
+  <p id="debt-counter-value" style="margin:0.25rem 0 0;font-family:'Instrument Serif',serif;font-size:2.5rem;color:#e74c3c;font-weight:400;letter-spacing:0.02em;">$1,841,000,000,000</p>
+  <p style="margin:0.25rem 0 0;font-size:0.75rem;color:#999;">Source: Federal Reserve &middot; seeded from Q4 2025 data, live projection</p>
+</div>
+<script src="js/debt-counter.js" defer></script>
+
+<!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-badges reveal">
@@ -1165,7 +1173,49 @@
   </div>
 </section>
 
-<!-- FOUNDER LETTER -->
+<!-- LIVE DATA: BLS Education Pays table -->
+<div class="earnings-table-section" style="background:#0a0a0a;max-width:680px;margin:2.5rem auto;padding:2.5rem 1.5rem 2rem;border-radius:16px;">
+  <h3 style="text-align:center;font-family:'Instrument Serif',serif;font-size:1.5rem;color:#fff;margin-bottom:0.5rem;">What Your Degree Is Actually Worth</h3>
+  <p style="text-align:center;font-size:0.9rem;color:#999;margin-bottom:1.5rem;">Median weekly earnings by education level (2024)</p>
+  <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+    <thead>
+      <tr style="border-bottom:2px solid rgba(196,169,125,0.3);">
+        <th style="text-align:left;padding:0.75rem 0.5rem;color:#ccc;font-weight:500;">Education</th>
+        <th style="text-align:right;padding:0.75rem 0.5rem;color:#ccc;font-weight:500;">Weekly Earnings</th>
+        <th style="text-align:right;padding:0.75rem 0.5rem;color:#ccc;font-weight:500;">Annual</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+        <td style="padding:0.6rem 0.5rem;color:#fff;">Master's degree</td>
+        <td style="text-align:right;padding:0.6rem 0.5rem;color:#c4a97d;font-weight:600;">$1,840</td>
+        <td style="text-align:right;padding:0.6rem 0.5rem;color:#c4a97d;">$95,680</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(196,169,125,0.08);">
+        <td style="padding:0.6rem 0.5rem;color:#fff;font-weight:600;">Bachelor's degree &larr; You</td>
+        <td style="text-align:right;padding:0.6rem 0.5rem;color:#c4a97d;font-weight:700;font-size:1rem;">$1,543</td>
+        <td style="text-align:right;padding:0.6rem 0.5rem;color:#c4a97d;font-weight:700;">$80,236</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+        <td style="padding:0.6rem 0.5rem;color:#999;">Some college</td>
+        <td style="text-align:right;padding:0.6rem 0.5rem;color:#999;">$1,020</td>
+        <td style="text-align:right;padding:0.6rem 0.5rem;color:#999;">$53,040</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+        <td style="padding:0.6rem 0.5rem;color:#999;">High school diploma</td>
+        <td style="text-align:right;padding:0.6rem 0.5rem;color:#999;">$930</td>
+        <td style="text-align:right;padding:0.6rem 0.5rem;color:#999;">$48,360</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="text-align:center;font-size:0.95rem;color:#fff;margin-top:1.25rem;line-height:1.5;">
+    A bachelor's degree earns <strong style="color:#c4a97d;">$31,876 more per year</strong> than a high school diploma.<br>
+    <span style="color:#999;">Get there 2 years faster. Keep 2 extra years of that salary.</span>
+  </p>
+  <p style="text-align:center;font-size:0.7rem;color:#666;margin-top:0.5rem;">Source: U.S. Bureau of Labor Statistics, "Education pays, 2024" (Current Population Survey)</p>
+</div>
+
+<!-- ============ FOUNDER LETTER ============ -->
 <section class="letter">
   <div class="wrap">
     <div class="letter-grid">
@@ -1447,7 +1497,37 @@
   &ldquo;I entered my freshman year as a college senior.&rdquo;
 </blockquote>
 
-<!-- PRICING -->
+<!-- LIVE DATA: CLEP savings calculator -->
+<div class="clep-calculator" style="max-width:480px;margin:2.5rem auto;padding:1.5rem 2rem;background:#0a0a0a;border:1px solid rgba(196,169,125,0.25);border-radius:12px;">
+  <h3 style="text-align:center;font-family:'Instrument Serif',serif;font-size:1.3rem;color:#fff;margin:0 0 1rem;">How Much Could You Save?</h3>
+
+  <label style="display:block;font-size:0.85rem;color:#ccc;margin-bottom:0.5rem;">
+    Number of CLEP exams: <strong id="clep-exam-display" style="color:#c4a97d;">5</strong>
+  </label>
+  <input type="range" id="clep-exam-count" min="1" max="20" value="5"
+    style="width:100%;accent-color:#c4a97d;margin-bottom:1rem;">
+
+  <label style="display:block;font-size:0.85rem;color:#ccc;margin-bottom:0.5rem;">School type:</label>
+  <select id="clep-school-type" style="width:100%;padding:0.5rem;background:#1a1a1a;color:#fff;border:1px solid rgba(196,169,125,0.2);border-radius:6px;margin-bottom:1.25rem;font-size:0.9rem;">
+    <option value="public">Public university (in-state)</option>
+    <option value="private">Private university</option>
+  </select>
+
+  <div style="text-align:center;padding:1rem 0;">
+    <p style="margin:0;font-size:0.85rem;color:#999;">Your estimated savings</p>
+    <p id="clep-savings-result" style="margin:0.25rem 0 0;font-family:'Instrument Serif',serif;font-size:2.25rem;color:#c4a97d;font-weight:400;">$5,515</p>
+    <p style="margin:0.25rem 0 0;font-size:0.8rem;color:#999;">
+      <span id="clep-credits-display">15</span> credits at $97/exam instead of tuition rates
+    </p>
+  </div>
+
+  <p style="text-align:center;font-size:0.75rem;color:#666;margin-top:0.75rem;">
+    Based on College Board exam fees ($97, 2025-26) vs. average per-credit tuition costs. CLEP exam cost does not include Modern States free prep courses.
+  </p>
+</div>
+<script src="js/clep-calculator.js" defer></script>
+
+<!-- ============ PRICING ============ -->
 <section class="pricing" id="pricing">
   <div class="wrap">
     <div class="section-head center reveal" style="margin:0 auto 48px">
