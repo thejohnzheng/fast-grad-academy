@@ -6,8 +6,8 @@
 //   1. Verify the Stripe signature (raw body required).
 //   2. On checkout.session.completed: extract buyer email, generate an access
 //      code, store it in Supabase (idempotent on stripe_payment_id), email it.
-//   3. ALWAYS return 200 once the signature is verified — even if a downstream
-//      step (Supabase / Resend) fails — so Stripe does not pile up retries.
+//   3. ALWAYS return 200 once the signature is verified, even if a downstream
+//      step (Supabase / Resend) fails, so Stripe does not pile up retries.
 //      Every failure is logged with full recovery context, and the Supabase
 //      write is idempotent, so a manual "Resend" from the Stripe dashboard is
 //      safe if a transient failure ever needs to be replayed.
@@ -52,7 +52,7 @@ function generateAccessCode() {
 // Read the raw request body for Stripe signature verification.
 //
 // Stripe signs the EXACT bytes it sent, so we must hand constructEvent the raw
-// payload — not a re-parsed/re-serialized object. Vercel's Node runtime may or
+// payload, not a re-parsed/re-serialized object. Vercel's Node runtime may or
 // may not have already consumed/parsed the stream depending on the bodyParser
 // config, so this is defensive across every case:
 //   - Buffer already provided      → use it
@@ -115,10 +115,11 @@ export async function sendAccessEmail(email, accessCode, providedName) {
 
     <!-- Personal welcome -->
     <div style="font-size:16px;color:rgba(255,255,255,0.85);line-height:1.9;margin-bottom:32px;">
-      <p style="margin:0 0 16px;">Hey ${firstName},</p>
-      <p style="margin:0 0 16px;">I want you to know — what you just did takes guts. Most people talk about wanting to get ahead. You actually did something about it.</p>
-      <p style="margin:0 0 16px;">I built this guide because I wish someone had shown me the playbook when I started. I graduated college at 19, saved over $84,000, and got a 3-year head start on my career — not because I'm smarter than anyone else, but because I found the system's own rules and used them.</p>
-      <p style="margin:0 0 16px;">Now you have the same playbook. Every strategy, every shortcut, every resource — it's all yours.</p>
+      <p style="margin:0 0 16px;">Hey, it's John.</p>
+      <p style="margin:0 0 16px;">You're in. Here's your access code and everything you need to get started.</p>
+      <p style="margin:0 0 16px;">I built this guide because I graduated college at 19 and saved $84K doing it. Not because I'm some genius. I just figured out how the system works and used it.</p>
+      <p style="margin:0 0 16px;">You've got the same playbook.</p>
+      <p style="margin:0 0 16px;">Start here: open the course dashboard and hit Chapter 1. If you want the fast track, check out the First 7 Days checklist.</p>
     </div>
 
     <!-- Access Code Box -->
@@ -142,14 +143,14 @@ export async function sendAccessEmail(email, accessCode, providedName) {
       <strong style="color:#ffffff;">Getting started is simple:</strong><br/>
       1. Go to <a href="https://fastgradacademy.com/guide" style="color:#c0c0c0;">fastgradacademy.com/guide</a><br/>
       2. Enter your email and access code: <strong style="color:#ffffff;">${accessCode}</strong><br/>
-      3. Dive into Chapter 1 — it'll change how you think about college forever
+      3. Dive into Chapter 1. it'll change how you think about college forever
     </div>
 
     <!-- Closing note -->
     <div style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:8px;">
       You're about to save yourself years of time and tens of thousands of dollars. I'm genuinely excited for you.
     </div>
-    <div style="font-size:15px;color:rgba(255,255,255,0.75);margin-bottom:4px;">— John</div>
+    <div style="font-size:15px;color:rgba(255,255,255,0.75);margin-bottom:4px;">John</div>
     <div style="font-size:12px;color:rgba(255,255,255,0.35);">Founder, Fast Grad Academy</div>
 
     <!-- Divider -->
@@ -158,7 +159,7 @@ export async function sendAccessEmail(email, accessCode, providedName) {
     <!-- Footer -->
     <div style="text-align:center;">
       <div style="font-size:13px;color:#a8a8a8;margin-bottom:8px;">
-        Questions? Just reply to this email — I read every one.
+        Questions? Just reply to this email. I read every one.
       </div>
       <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:24px;">
         &copy; 2026 Fast Grad Academy. All rights reserved.<br/>
@@ -212,7 +213,7 @@ async function sendSaleNotification(email, accessCode) {
     <div style="font-size:13px;color:#a8a8a8;margin-bottom:4px;">Time</div>
     <div style="font-size:14px;color:#ffffff;">${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })}</div>
   </div>
-  <div style="text-align:center;margin-top:24px;font-size:13px;color:rgba(255,255,255,0.4);">Fast Grad Academy — Automated sale notification</div>
+  <div style="text-align:center;margin-top:24px;font-size:13px;color:rgba(255,255,255,0.4);">Fast Grad Academy - Automated sale notification</div>
 </div>
 </body>
         `,
@@ -376,7 +377,7 @@ export default async function handler(req, res) {
     if (insertError) {
       // Log full recovery context: the code was generated but not stored.
       console.error(
-        `${LOG} Supabase insert error — RECOVERY CONTEXT code=${accessCode} email=${email} ` +
+        `${LOG} Supabase insert error - RECOVERY CONTEXT code=${accessCode} email=${email} ` +
           `payment=${paymentId} session=${session.id}:`,
         insertError
       );
