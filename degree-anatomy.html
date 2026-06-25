@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Degree Anatomy | Fast Grad Academy</title>
+<meta name="description" content="Learn the six layers of a bachelor's degree before you start credit stacking: Gen Ed, College Core, Major Core, Major Electives, Free Electives, and University Requirements.">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="course.css?v=18">
+<style>
+:root {
+  --bg: #070707;
+  --panel: #101010;
+  --panel-2: #171717;
+  --ink: #ffffff;
+  --ink-dim: #cfcfcf;
+  --ink-muted: #8f8f8f;
+  --line: rgba(255,255,255,0.12);
+  --line-2: rgba(255,255,255,0.22);
+  --gold: #c4a97d;
+  --green: #4ade80;
+  --yellow: #facc15;
+  --red: #f87171;
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+body { line-height: 1.65; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+.topbar { position: sticky; top: 0; z-index: 10; background: rgba(7,7,7,0.86); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
+.topbar-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { font-family: var(--serif); font-size: 26px; letter-spacing: -0.01em; }
+.brand em { color: var(--gold); font-style: italic; }
+.nav-links { display: flex; align-items: center; gap: 22px; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
+.nav-links a:hover { color: var(--ink); }
+.hero { padding: 94px 0 54px; border-bottom: 1px solid var(--line); background: radial-gradient(circle at 50% 0%, rgba(196,169,125,0.18), transparent 46%); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr); gap: 46px; align-items: center; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--gold); font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 22px; }
+.eyebrow:before { content: ""; width: 28px; height: 1px; background: var(--gold); }
+h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(56px, 8vw, 112px); line-height: 0.9; letter-spacing: -0.035em; margin-bottom: 28px; }
+h1 em { color: var(--gold); font-style: italic; }
+.lead { max-width: 680px; color: var(--ink-dim); font-size: 19px; line-height: 1.8; font-weight: 300; }
+.hero-note { margin-top: 28px; display: flex; gap: 10px; flex-wrap: wrap; }
+.pill { display: inline-flex; align-items: center; border: 1px solid var(--line-2); border-radius: 999px; padding: 7px 12px; color: var(--ink-dim); font-family: var(--mono); font-size: 11px; }
+.stack-summary { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025)); border-radius: 10px; padding: 24px; }
+.stack-summary h2 { font-family: var(--serif); font-weight: 400; font-size: 31px; line-height: 1.1; margin-bottom: 18px; }
+.mini-row { display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center; padding: 13px 0; border-top: 1px solid var(--line); }
+.mini-row:first-of-type { border-top: 0; }
+.mini-num { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: rgba(196,169,125,0.12); color: var(--gold); font-family: var(--mono); font-size: 12px; }
+.mini-title { font-weight: 750; }
+.mini-credits { color: var(--ink-muted); font-size: 12px; font-family: var(--mono); white-space: nowrap; }
+.section { padding: 76px 0; border-bottom: 1px solid var(--line); }
+.section-head { max-width: 760px; margin-bottom: 34px; }
+.section-kicker { color: var(--gold); font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px; }
+h2 { font-family: var(--serif); font-size: clamp(34px, 5vw, 62px); font-weight: 400; line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 18px; }
+.section-head p { color: var(--ink-dim); font-size: 17px; line-height: 1.75; }
+.layers { display: grid; gap: 16px; }
+.layer-card { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); padding: 24px; display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 26px; }
+.layer-meta { border-right: 1px solid var(--line); padding-right: 22px; }
+.layer-number { font-family: var(--mono); color: var(--gold); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; }
+.layer-credits { font-family: var(--serif); font-size: 32px; color: var(--ink); line-height: 1; margin-bottom: 14px; }
+.replace { display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 10px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.replace.high { color: #052e16; background: var(--green); }
+.replace.medium { color: #422006; background: var(--yellow); }
+.replace.low { color: #450a0a; background: var(--red); }
+.layer-body h3 { font-family: var(--serif); font-size: clamp(27px, 3vw, 40px); font-weight: 400; line-height: 1.12; margin-bottom: 12px; }
+.layer-body p { color: var(--ink-dim); margin-bottom: 14px; }
+.layer-body ul { color: var(--ink-dim); padding-left: 20px; }
+.layer-body li { margin: 7px 0; }
+.insight { margin-top: 16px; border-left: 3px solid var(--gold); padding: 12px 16px; background: rgba(196,169,125,0.08); color: var(--ink); }
+footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
+@media (max-width: 820px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .topbar-inner { height: auto; min-height: 68px; align-items: flex-start; flex-direction: column; padding: 16px 0; }
+  .nav-links { flex-wrap: wrap; gap: 14px; }
+  .layer-card { grid-template-columns: 1fr; }
+  .layer-meta { border-right: 0; border-bottom: 1px solid var(--line); padding-right: 0; padding-bottom: 18px; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/">Fast Grad <em>Academy</em></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/guide">Course</a>
+      <a href="/ch7">Credit Mapping</a>
+      <a href="/tracker">Tracker</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Degree Anatomy</div>
+        <h1>The 120-credit <em>stack</em>.</h1>
+        <p class="lead">Before you can replace college courses with CLEP, DSST, Sophia, Study.com, or transfer credits, you need to know what a bachelor's degree is made of. Most students see one giant wall. Fast Grads see six layers.</p>
+        <div class="hero-note">
+          <span class="pill">~120 credits total</span>
+          <span class="pill">6 requirement layers</span>
+          <span class="pill">verify before studying</span>
+        </div>
+      </div>
+      <aside class="stack-summary" aria-label="Six-layer degree summary">
+        <h2>Six layers, different rules.</h2>
+        <div class="mini-row"><div class="mini-num">01</div><div class="mini-title">General Education</div><div class="mini-credits">30-45</div></div>
+        <div class="mini-row"><div class="mini-num">02</div><div class="mini-title">College / School Core</div><div class="mini-credits">24-36</div></div>
+        <div class="mini-row"><div class="mini-num">03</div><div class="mini-title">Major Core</div><div class="mini-credits">15-24</div></div>
+        <div class="mini-row"><div class="mini-num">04</div><div class="mini-title">Major Electives</div><div class="mini-credits">6-15</div></div>
+        <div class="mini-row"><div class="mini-num">05</div><div class="mini-title">Free Electives</div><div class="mini-credits">6-18</div></div>
+        <div class="mini-row"><div class="mini-num">06</div><div class="mini-title">University Requirements</div><div class="mini-credits">3-9</div></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">The Framework</div>
+        <h2>Every layer has a different replacement strategy.</h2>
+        <p>A credit-stacking plan fails when you treat every requirement the same. Gen Eds and Free Electives are usually flexible. Major Core and University Requirements are usually not. College Core and Major Electives are the judgment calls.</p>
+      </div>
+      <div class="layers">
+        <article class="layer-card">
+          <div class="layer-meta">
+            <div class="layer-number">Layer 01</div>
+            <div class="layer-credits">30-45</div>
+            <div class="replace high">High replaceability</div>
+          </div>
+          <div class="layer-body">
+            <h3>General Education</h3>
+            <p>Courses required of all students regardless of major: writing, math, science, social science, humanities, history, government, arts, and sometimes language or diversity requirements.</p>
+            <div class="insight">This layer alone is roughly a full year of college. If you only attack one layer, attack this one.</div>
+          </div>
+        </article>
+
+        <article class="layer-card">
+          <div class="layer-meta">
+            <div class="layer-number">Layer 02</div>
+            <div class="layer-credits">24-36</div>
+            <div class="replace medium">Medium replaceability</div>
+          </div>
+          <div class="layer-body">
+            <h3>College or School Core</h3>
+            <p>Courses required by the broader college inside the university. Business majors share business core classes. Engineering majors share engineering core classes. Education majors share education core classes.</p>
+            <div class="insight">Exams often exist for the content, but some schools require these courses in-house. Verify first.</div>
+          </div>
+        </article>
+
+        <article class="layer-card">
+          <div class="layer-meta">
+            <div class="layer-number">Layer 03</div>
+            <div class="layer-credits">15-24</div>
+            <div class="replace low">Low replaceability</div>
+          </div>
+          <div class="layer-body">
+            <h3>Major Core</h3>
+            <p>The courses specific to your declared major. These are usually upper-division, department-owned, and taught by the faculty who control your major.</p>
+            <div class="insight">Plan to take these at the university. Credit stacking works because you clear everything around them.</div>
+          </div>
+        </article>
+
+        <article class="layer-card">
+          <div class="layer-meta">
+            <div class="layer-number">Layer 04</div>
+            <div class="layer-credits">6-15</div>
+            <div class="replace medium">Medium replaceability</div>
+          </div>
+          <div class="layer-body">
+            <h3>Major Electives</h3>
+            <p>Flexible courses inside your department: "pick 3-5 from this list." Some intro-level or adjacent subjects can map to DSST, CLEP, or ACE-recommended credit.</p>
+            <div class="insight">Treat these case by case. The course title matters less than the official equivalency.</div>
+          </div>
+        </article>
+
+        <article class="layer-card">
+          <div class="layer-meta">
+            <div class="layer-number">Layer 05</div>
+            <div class="layer-credits">6-18</div>
+            <div class="replace high">High replaceability</div>
+          </div>
+          <div class="layer-body">
+            <h3>Free Electives</h3>
+            <p>The wildcard bucket. Any college-level credit can fill these slots: leftover CLEP credits, AP scores, Sophia courses, Study.com courses, community-college transfer credits, or military credit.</p>
+            <div class="insight">This is the overflow bucket. If a credit does not satisfy Gen Ed, it may still count toward your 120 here.</div>
+          </div>
+        </article>
+
+        <article class="layer-card">
+          <div class="layer-meta">
+            <div class="layer-number">Layer 06</div>
+            <div class="layer-credits">3-9</div>
+            <div class="replace low">Low replaceability</div>
+          </div>
+          <div class="layer-body">
+            <h3>University-Specific Requirements</h3>
+            <p>Requirements unique to your school: first-year seminar, senior capstone, writing-intensive designations, diversity rules, internship requirements, or experiential learning.</p>
+            <div class="insight">These are usually weird, local, and non-replaceable. Ask your advisor which ones transfer students can waive.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Fast Grad Academy - Degree Anatomy</div>
+</footer>
+</body>
+</html>
