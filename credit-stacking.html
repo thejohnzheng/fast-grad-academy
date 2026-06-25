@@ -566,6 +566,33 @@
       white-space: pre-wrap;
     }
 
+    .search-chip {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(196, 169, 125, 0.1);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 5px 10px;
+      margin: 4px 4px 4px 0;
+      white-space: nowrap;
+    }
+
+    .gold-check {
+      display: inline-grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #17130f;
+      font-weight: 900;
+      font-size: 13px;
+      margin-right: 6px;
+    }
+
     .callout {
       border-left: 3px solid var(--gold);
       background: rgba(196, 169, 125, 0.1);
@@ -714,6 +741,46 @@
 
       .audit-row {
         grid-template-columns: 1fr;
+      }
+
+      .stack-table table,
+      .stack-table thead,
+      .stack-table tbody,
+      .stack-table tr,
+      .stack-table th,
+      .stack-table td {
+        display: block;
+        min-width: 0;
+      }
+
+      .stack-table thead {
+        display: none;
+      }
+
+      .stack-table tr {
+        border-bottom: 1px solid var(--line-soft);
+        padding: 10px 0;
+      }
+
+      .stack-table tr:last-child {
+        border-bottom: 0;
+      }
+
+      .stack-table td {
+        display: grid;
+        grid-template-columns: minmax(120px, 0.42fr) minmax(0, 1fr);
+        gap: 12px;
+        border-bottom: 0;
+        padding: 8px 14px;
+      }
+
+      .stack-table td::before {
+        content: attr(data-label);
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
       }
     }
 
@@ -867,52 +934,76 @@
             <div class="step-num">01</div>
             <div>
               <div class="kicker">Find Your Degree Map</div>
-              <h2>Start with the <em>finish line.</em></h2>
-              <p class="section-intro">Do not begin by asking, "Which CLEP should I take?" Begin by asking, "What exact credits does my target degree require?" The degree map is the master blueprint. Every cheap credit is only useful if it lands inside that blueprint.</p>
+              <h2>Step 1: Find Your <em>Degree Map.</em></h2>
+              <p class="section-intro">Every university publishes a complete list of courses required for each degree. This is your treasure map. Once you have it, you can see exactly which courses can be replaced with exam credits and which ones you actually need to sit in a classroom for.</p>
             </div>
           </div>
 
           <div class="grid-2">
             <article class="panel gold">
-              <h3>Where to find it</h3>
-              <p>Search your school site for the degree name plus one of these phrases: <strong>degree requirements</strong>, <strong>program plan</strong>, <strong>catalog year</strong>, <strong>academic plan</strong>, or <strong>degree audit</strong>. Save the PDF or webpage before you make any exam decisions.</p>
+              <h3>1a. Find the academic catalog</h3>
+              <p>Open your university's website and search for any of these terms. Different schools use different labels, but they all point to the same source of truth:</p>
+              <p>
+                <span class="search-chip">Academic Catalog</span>
+                <span class="search-chip">Course Catalog</span>
+                <span class="search-chip">University Catalog</span>
+                <span class="search-chip">Degree Requirements</span>
+                <span class="search-chip">Program Requirements</span>
+                <span class="search-chip">Degree Audit</span>
+                <span class="search-chip">Curriculum Guide</span>
+              </p>
+              <p><strong>Fastest path:</strong> Google this exact pattern: <code>site:yourschool.edu academic catalog [your major]</code>.</p>
+              <p>Save the catalog page as a PDF or screenshot before you keep going. This becomes your working document.</p>
+            </article>
+
+            <article class="panel">
+              <h3>1b. Navigate to your major</h3>
+              <p>Inside the catalog, drill down in this order:</p>
+              <ol>
+                <li>College or school, like "College of Business."</li>
+                <li>Department, like "Department of Marketing."</li>
+                <li>Degree program, like "B.S. in Marketing - Required Courses."</li>
+              </ol>
+              <p>You are looking for the page that lists every course needed to graduate, usually grouped into general education, major core, major electives, and free electives.</p>
+            </article>
+          </div>
+
+          <div class="grid-2" style="margin-top:18px">
+            <article class="panel">
+              <h3>Label the four buckets</h3>
               <ul>
-                <li>Confirm the catalog year you are using.</li>
-                <li>Separate general education, major, elective, residency, and capstone rules.</li>
-                <li>Highlight every requirement that says "must be completed at this institution."</li>
+                <li><span class="gold-check">✓</span><strong>General Education:</strong> English, math, history, science, social science, humanities.</li>
+                <li><span class="gold-check">✓</span><strong>Major Core:</strong> required courses specific to the degree.</li>
+                <li><span class="gold-check">✓</span><strong>Major Electives:</strong> approved choices inside the major.</li>
+                <li><span class="gold-check">✓</span><strong>Free Electives:</strong> any college-level credit that fills the remaining total.</li>
               </ul>
-              <div class="official-links">
-                <a href="https://www.tesu.edu/academics/catalog" target="_blank" rel="noopener">Thomas Edison State University Catalog <span>&rarr;</span></a>
-                <a href="https://www.excelsior.edu/policies/academic-policies/" target="_blank" rel="noopener">Excelsior University Academic Policies <span>&rarr;</span></a>
-                <a href="https://www.charteroak.edu/catalog/current/" target="_blank" rel="noopener">Charter Oak State College Catalog <span>&rarr;</span></a>
-              </div>
             </article>
 
             <article class="panel">
               <h3>Annotated sample degree audit</h3>
-              <p>When you look at an audit, treat it like a puzzle board. You are not trying to be clever; you are trying to identify which boxes can be filled externally and which boxes are locked.</p>
+              <p>Use the audit like a puzzle board. Your first pass is not to pick exams. It is to label which boxes are flexible and which boxes are locked.</p>
               <div class="audit-demo" aria-label="Annotated sample degree audit">
-                <div class="audit-row" data-note="External OK">
+                <div class="audit-row" data-note="Gen Ed">
                   <b>Written Communication</b>
                   <span class="pill">3 cr</span>
-                  <span>Can often be satisfied through CLEP College Composition or transfer English Comp.</span>
+                  <span>Possible CLEP College Composition match. Verify minimum score.</span>
                 </div>
-                <div class="audit-row" data-note="Check level">
-                  <b>Social Sciences</b>
-                  <span class="pill">6 cr</span>
-                  <span>Use CLEP Psychology, Sociology, or History if the school accepts those exams.</span>
+                <div class="audit-row" data-note="Major Core">
+                  <b>Principles of Marketing</b>
+                  <span class="pill">3 cr</span>
+                  <span>Business majors should check CLEP Principles of Marketing first.</span>
                 </div>
                 <div class="audit-row" data-note="Locked">
-                  <b>Capstone</b>
+                  <b>Capstone Seminar</b>
                   <span class="pill">3 cr</span>
-                  <span>Usually must be taken at the degree-granting school. Do not try to replace it.</span>
+                  <span>Usually must be taken at the degree-granting school. Do not replace it.</span>
                 </div>
               </div>
             </article>
           </div>
 
           <div class="callout">
-            John's rule: if a credit does not map to a requirement, it is not progress yet. It might still be useful as an elective, but you do not count it until you know exactly where it lands.
+            Your next action: open Google, search <strong>site:yourschool.edu academic catalog [your major]</strong>, save the requirement page, and highlight every general education, major core, major elective, and free elective line.
           </div>
         </section>
 
@@ -920,93 +1011,95 @@
           <div class="section-head">
             <div class="step-num">02</div>
             <div>
-              <div class="kicker">Know Your Options</div>
-              <h2>Every requirement has a <em>credit source.</em></h2>
-              <p class="section-intro">Credit stacking works because college credit can come from more than one place. Your job is to choose the cheapest valid source for each requirement without creating transfer problems later.</p>
+              <div class="kicker">The Credit Stacking Menu</div>
+              <h2>Step 2: Know Your <em>Options.</em></h2>
+              <p class="section-intro">You do not just have CLEP. There is a whole menu of ways to earn college credit without taking college classes. Here are the options, ranked by bang-for-your-buck and usefulness.</p>
             </div>
           </div>
 
-          <div class="grid-3">
-            <article class="panel gold">
-              <h3>CLEP</h3>
-              <p>Best first stop for general education: psychology, sociology, history, composition, college math, business, and language credits. Modern States may cover the exam fee if you complete the free course.</p>
-              <div class="official-links">
-                <a href="https://clep.collegeboard.org/clep-exams" target="_blank" rel="noopener">CLEP Exam List <span>&rarr;</span></a>
-                <a href="https://modernstates.org" target="_blank" rel="noopener">Modern States <span>&rarr;</span></a>
-              </div>
-            </article>
-
-            <article class="panel">
-              <h3>DSST</h3>
-              <p>Useful when CLEP does not cover the exact slot. DSST is especially helpful for business, technology, social science, and upper-elective style gaps depending on the school.</p>
-              <div class="official-links">
-                <a href="https://getcollegecredit.com/exam_fact_sheets/" target="_blank" rel="noopener">DSST Fact Sheets <span>&rarr;</span></a>
-              </div>
-            </article>
-
-            <article class="panel">
-              <h3>ACE / NCCRS Providers</h3>
-              <p>Sophia, Study.com, StraighterLine, and similar providers can fill courses that exams miss. They are powerful, but transfer acceptance is school-specific.</p>
-              <div class="official-links">
-                <a href="https://www.acenet.edu/National-Guide/Pages/default.aspx" target="_blank" rel="noopener">ACE National Guide <span>&rarr;</span></a>
-                <a href="https://www.nationalccrs.org/course-credit-directory" target="_blank" rel="noopener">NCCRS Directory <span>&rarr;</span></a>
-              </div>
-            </article>
-          </div>
-
-          <div class="table-wrap" style="margin-top:18px">
+          <div class="table-wrap stack-table">
             <table>
               <thead>
                 <tr>
-                  <th>Credit source</th>
+                  <th>Method</th>
+                  <th>Cost per exam/course</th>
+                  <th>Credits</th>
+                  <th>Available</th>
                   <th>Best for</th>
-                  <th>Typical use</th>
-                  <th>Watch-out</th>
-                  <th>Verify at</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>CLEP</strong></td>
-                  <td>General education and introductory subjects</td>
-                  <td>3-6 credits per exam, sometimes more for languages</td>
-                  <td>Some schools cap CLEP credits or require minimum scores above the standard recommendation.</td>
-                  <td>School CLEP policy + College Board score recipient process</td>
+                  <td data-label="Method"><strong>CLEP</strong></td>
+                  <td data-label="Cost">$93 exam fee</td>
+                  <td data-label="Credits">3-12 per exam</td>
+                  <td data-label="Available">34 exams</td>
+                  <td data-label="Best for">Gen Ed and business courses. Highest ROI. Accepted at 2,900+ schools.</td>
                 </tr>
                 <tr>
-                  <td><strong>DSST</strong></td>
-                  <td>Business, technology, social science, and elective gaps</td>
-                  <td>Usually 3 credits per exam</td>
-                  <td>Acceptance varies more by school than CLEP. Verify the exact DSST exam title.</td>
-                  <td>School DSST policy + DSST institution search</td>
+                  <td data-label="Method"><strong>AP</strong></td>
+                  <td data-label="Cost">About $98 per exam</td>
+                  <td data-label="Credits">3-8 per exam</td>
+                  <td data-label="Available">38 exams</td>
+                  <td data-label="Best for">High school students. Harder than CLEP, but widely recognized.</td>
                 </tr>
                 <tr>
-                  <td><strong>AP</strong></td>
-                  <td>High school students or students who already have scores</td>
-                  <td>3-8 credits depending on subject and score</td>
-                  <td>Many schools require a 4 or 5 for useful credit. Do not assume a 3 transfers.</td>
-                  <td>School AP equivalency chart</td>
+                  <td data-label="Method"><strong>DSST (DANTES)</strong></td>
+                  <td data-label="Cost">About $100 per exam</td>
+                  <td data-label="Credits">Usually 3</td>
+                  <td data-label="Available">30+ exams</td>
+                  <td data-label="Best for">Niche subjects CLEP does not cover, like ethics, computing, and organizational behavior.</td>
                 </tr>
                 <tr>
-                  <td><strong>ACE / NCCRS courses</strong></td>
-                  <td>Course-like gaps where an exam does not fit</td>
-                  <td>Self-paced online courses, often 3 credits</td>
-                  <td>Some schools accept ACE broadly; others accept only partner-specific lists.</td>
-                  <td>School transfer guide + ACE/NCCRS recommendation</td>
+                  <td data-label="Method"><strong>PSEO / Dual Enrollment</strong></td>
+                  <td data-label="Cost">Often free if state-funded</td>
+                  <td data-label="Credits">3-4 per class</td>
+                  <td data-label="Available">Varies by state</td>
+                  <td data-label="Best for">High school juniors and seniors who can take real college courses before graduation.</td>
                 </tr>
                 <tr>
-                  <td><strong>Community college</strong></td>
-                  <td>Labs, writing sequences, foreign language, or state-specific gen ed</td>
-                  <td>Traditional transfer course</td>
-                  <td>Slower and more expensive than exams, but sometimes necessary.</td>
-                  <td>Transfer equivalency database or registrar email</td>
+                  <td data-label="Method"><strong>StraighterLine</strong></td>
+                  <td data-label="Cost">About $59/month plus course fee</td>
+                  <td data-label="Credits">Usually 3</td>
+                  <td data-label="Available">60+ courses</td>
+                  <td data-label="Best for">Courses CLEP does not cover. Strongest when your target school is a partner.</td>
+                </tr>
+                <tr>
+                  <td data-label="Method"><strong>Sophia.org</strong></td>
+                  <td data-label="Cost">$99/month unlimited</td>
+                  <td data-label="Credits">Usually 3</td>
+                  <td data-label="Available">60+ courses</td>
+                  <td data-label="Best for">Fast self-paced ACE credit when your school accepts Sophia transfer credit.</td>
+                </tr>
+                <tr>
+                  <td data-label="Method"><strong>Modern States</strong></td>
+                  <td data-label="Cost">Free</td>
+                  <td data-label="Credits">Prep only</td>
+                  <td data-label="Available">33+ CLEP prep courses</td>
+                  <td data-label="Best for">Free CLEP prep plus exam voucher. Use before every CLEP attempt.</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <div class="callout">
-            John's example: use CLEP for broad general education first, DSST for leftover business or social science slots, and ACE/NCCRS courses only after the target school confirms they land where you need them.
+          <div class="grid-2" style="margin-top:18px">
+            <article class="panel gold">
+              <h3>The $93 vs. $1,200 math</h3>
+              <p>A single 3-credit college course can cost $400 to $1,500 depending on the school. A CLEP exam covering the same 3 credits costs about $93. If you complete Modern States first and receive a voucher, the exam fee may be covered.</p>
+              <p><strong>5 CLEP exams = 15 credits = one full semester you may be able to skip.</strong></p>
+            </article>
+
+            <article class="panel">
+              <h3>Official starting URLs</h3>
+              <div class="official-links">
+                <a href="https://clep.collegeboard.org/clep-exams" target="_blank" rel="noopener">CLEP Exam List <span>&rarr;</span></a>
+                <a href="https://apstudents.collegeboard.org/courses" target="_blank" rel="noopener">AP Course and Exam List <span>&rarr;</span></a>
+                <a href="https://getcollegecredit.com/exam-catalog/" target="_blank" rel="noopener">DSST Exam Catalog <span>&rarr;</span></a>
+                <a href="https://www.sophia.org/" target="_blank" rel="noopener">Sophia.org <span>&rarr;</span></a>
+                <a href="https://www.straighterline.com/" target="_blank" rel="noopener">StraighterLine <span>&rarr;</span></a>
+                <a href="https://modernstates.org/" target="_blank" rel="noopener">Modern States <span>&rarr;</span></a>
+              </div>
+            </article>
           </div>
         </section>
 
