@@ -74,6 +74,12 @@ h2 { font-family: var(--serif); font-size: clamp(34px, 5vw, 62px); font-weight: 
 .layer-body ul { color: var(--ink-dim); padding-left: 20px; }
 .layer-body li { margin: 7px 0; }
 .insight { margin-top: 16px; border-left: 3px solid var(--gold); padding: 12px 16px; background: rgba(196,169,125,0.08); color: var(--ink); }
+.table-wrap { margin-top: 18px; overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; min-width: 720px; background: rgba(255,255,255,0.025); }
+th, td { padding: 13px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-dim); }
+th { color: var(--ink); background: rgba(255,255,255,0.055); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+tr:last-child td { border-bottom: 0; }
+td strong { color: var(--ink); }
 footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
 @media (max-width: 820px) {
   .hero-grid { grid-template-columns: 1fr; }
@@ -140,6 +146,22 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
             <h3>General Education</h3>
             <p>Courses required of all students regardless of major: writing, math, science, social science, humanities, history, government, arts, and sometimes language or diversity requirements.</p>
             <div class="insight">This layer alone is roughly a full year of college. If you only attack one layer, attack this one.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Category</th><th>Example courses</th><th>Credits</th><th>CLEP exam match</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>English / Writing</strong></td><td>English Composition I and II</td><td>6</td><td>College Composition, College Composition Modular</td></tr>
+                  <tr><td><strong>Mathematics</strong></td><td>College Algebra, Statistics</td><td>3-6</td><td>College Algebra, College Mathematics</td></tr>
+                  <tr><td><strong>Natural Science</strong></td><td>Intro Biology + Lab, Intro Chemistry</td><td>6-8</td><td>Biology, Chemistry, Natural Sciences</td></tr>
+                  <tr><td><strong>Social Science</strong></td><td>Intro Psychology, Intro Sociology</td><td>6</td><td>Introductory Psychology, Introductory Sociology</td></tr>
+                  <tr><td><strong>History / Government</strong></td><td>U.S. History I and II, American Government</td><td>6-9</td><td>History of the U.S. I and II, American Government</td></tr>
+                  <tr><td><strong>Humanities</strong></td><td>Intro Philosophy, World Literature</td><td>6</td><td>Humanities, Analyzing and Interpreting Literature</td></tr>
+                  <tr><td><strong>Arts / Fine Arts</strong></td><td>Art Appreciation, Music Appreciation</td><td>3</td><td>No direct CLEP. Check Sophia.org or take in class.</td></tr>
+                  <tr><td><strong>Foreign Language</strong></td><td>Spanish I and II</td><td>6-8</td><td>Spanish Language Levels 1 and 2, French Language</td></tr>
+                  <tr><td><strong>Diversity / Global</strong></td><td>Varies by school</td><td>3</td><td>Usually school-specific. Check policy.</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </article>
 
@@ -153,6 +175,25 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
             <h3>College or School Core</h3>
             <p>Courses required by the broader college inside the university. Business majors share business core classes. Engineering majors share engineering core classes. Education majors share education core classes.</p>
             <div class="insight">Exams often exist for the content, but some schools require these courses in-house. Verify first.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Business-core example</th><th>Credits</th><th>CLEP / DSST match?</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Financial Accounting</strong></td><td>3</td><td>CLEP Financial Accounting</td></tr>
+                  <tr><td><strong>Managerial Accounting</strong></td><td>3</td><td>No exam. Usually take in class.</td></tr>
+                  <tr><td><strong>Microeconomics</strong></td><td>3</td><td>CLEP Principles of Microeconomics</td></tr>
+                  <tr><td><strong>Macroeconomics</strong></td><td>3</td><td>CLEP Principles of Macroeconomics</td></tr>
+                  <tr><td><strong>Business Statistics</strong></td><td>3</td><td>No exact match. Check whether College Mathematics applies.</td></tr>
+                  <tr><td><strong>Business Law</strong></td><td>3</td><td>CLEP Introductory Business Law</td></tr>
+                  <tr><td><strong>Principles of Management</strong></td><td>3</td><td>CLEP Principles of Management</td></tr>
+                  <tr><td><strong>Principles of Marketing</strong></td><td>3</td><td>CLEP Principles of Marketing</td></tr>
+                  <tr><td><strong>Corporate Finance</strong></td><td>3</td><td>No CLEP. Usually upper division.</td></tr>
+                  <tr><td><strong>Management Information Systems</strong></td><td>3</td><td>DSST Management Information Systems or CLEP Information Systems</td></tr>
+                  <tr><td><strong>Business Communication</strong></td><td>3</td><td>Usually in-house.</td></tr>
+                  <tr><td><strong>Strategic Management / Capstone</strong></td><td>3</td><td>Always verify. Often university-only.</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </article>
 
@@ -166,6 +207,19 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
             <h3>Major Core</h3>
             <p>The courses specific to your declared major. These are usually upper-division, department-owned, and taught by the faculty who control your major.</p>
             <div class="insight">Plan to take these at the university. Credit stacking works because you clear everything around them.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Marketing-major example</th><th>Typical level</th><th>Exam strategy</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Consumer Behavior</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
+                  <tr><td><strong>Marketing Research</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
+                  <tr><td><strong>Digital Marketing</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
+                  <tr><td><strong>Marketing Strategy / Capstone</strong></td><td>4000</td><td>University-only in most programs.</td></tr>
+                  <tr><td><strong>Sales Management</strong></td><td>3000-4000</td><td>Check DSST or ACE only if the department allows substitutions.</td></tr>
+                  <tr><td><strong>Advertising and Promotion</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </article>
 
@@ -179,6 +233,17 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
             <h3>Major Electives</h3>
             <p>Flexible courses inside your department: "pick 3-5 from this list." Some intro-level or adjacent subjects can map to DSST, CLEP, or ACE-recommended credit.</p>
             <div class="insight">Treat these case by case. The course title matters less than the official equivalency.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Possible elective</th><th>Possible exam / source</th><th>Verification rule</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Business Ethics</strong></td><td>DSST Ethics in America</td><td>Only if the department accepts it for the elective list.</td></tr>
+                  <tr><td><strong>Organizational Behavior</strong></td><td>DSST Organizational Behavior</td><td>Good candidate, but confirm exact course equivalency.</td></tr>
+                  <tr><td><strong>Information Systems</strong></td><td>CLEP Information Systems or DSST MIS</td><td>Useful for business or technology-adjacent electives.</td></tr>
+                  <tr><td><strong>Intro Psychology</strong></td><td>CLEP Introductory Psychology</td><td>May fit social science, major elective, or free elective depending on program.</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </article>
 
@@ -192,6 +257,17 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
             <h3>Free Electives</h3>
             <p>The wildcard bucket. Any college-level credit can fill these slots: leftover CLEP credits, AP scores, Sophia courses, Study.com courses, community-college transfer credits, or military credit.</p>
             <div class="insight">This is the overflow bucket. If a credit does not satisfy Gen Ed, it may still count toward your 120 here.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Credit source</th><th>How it usually lands</th><th>Watch for</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Extra CLEP exams</strong></td><td>Free elective credit after Gen Ed is full.</td><td>School caps on exam credit.</td></tr>
+                  <tr><td><strong>Sophia or Study.com</strong></td><td>Lower-division elective credit.</td><td>ACE acceptance and transcript process.</td></tr>
+                  <tr><td><strong>Community-college transfer</strong></td><td>Direct course equivalency or elective transfer.</td><td>Residency limits and duplicate-credit rules.</td></tr>
+                  <tr><td><strong>Military / professional credit</strong></td><td>Elective or technical credit.</td><td>Official transcript and program fit.</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </article>
 
@@ -205,6 +281,18 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
             <h3>University-Specific Requirements</h3>
             <p>Requirements unique to your school: first-year seminar, senior capstone, writing-intensive designations, diversity rules, internship requirements, or experiential learning.</p>
             <div class="insight">These are usually weird, local, and non-replaceable. Ask your advisor which ones transfer students can waive.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Requirement</th><th>Can exams replace it?</th><th>What to ask</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>First-Year Experience</strong></td><td>Usually no.</td><td>Is it waived for transfer students with 30+ credits?</td></tr>
+                  <tr><td><strong>Senior Capstone / Thesis</strong></td><td>No.</td><td>When is it offered, and what prerequisites block it?</td></tr>
+                  <tr><td><strong>Writing-Intensive Designation</strong></td><td>Usually no.</td><td>Can transfer courses carry the designation?</td></tr>
+                  <tr><td><strong>Diversity / Multicultural</strong></td><td>Sometimes.</td><td>Does an accepted Gen Ed course also satisfy this flag?</td></tr>
+                  <tr><td><strong>Internship / Experiential Learning</strong></td><td>Usually no.</td><td>Can prior work or PLA satisfy the requirement?</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </article>
       </div>
