@@ -127,6 +127,12 @@ function sanitizeTracking(body) {
   return tracking;
 }
 
+function checkoutOption(body) {
+  return body.plan === 'payment_plan' || body.checkout_option === 'payment_plan'
+    ? 'payment_plan'
+    : 'one_time';
+}
+
 export default async function handler(req, res) {
   const corsAllowed = applyCors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -150,9 +156,12 @@ export default async function handler(req, res) {
     const body = readBody(req);
     const email = cleanString(body.email, 254);
     const tracking = sanitizeTracking(body);
+    const option = checkoutOption(body);
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fastgradacademy.com';
     const secretKey = process.env.STRIPE_SECRET_KEY;
-    const priceId = process.env.STRIPE_PRICE_ID;
+    const priceId = option === 'payment_plan'
+      ? process.env.STRIPE_PRICE_ID_PLAN
+      : process.env.STRIPE_PRICE_ID;
 
     if (email && !EMAIL_RE.test(email)) {
       return send(res, 400, { error: 'Enter a valid email address.' });
@@ -163,7 +172,8 @@ export default async function handler(req, res) {
     }
 
     const metadata = {
-      product: 'fast_grad_academy_guide',
+      product: option === 'payment_plan' ? 'fga-course-plan' : 'fga-course',
+      checkout_option: option,
       ...tracking,
     };
 
@@ -172,7 +182,7 @@ export default async function handler(req, res) {
     if (tracking.gclid) successParams.set('gclid', tracking.gclid);
 
     const sessionParams = {
-      mode: 'payment',
+      mode: option === 'payment_plan' ? 'subscription' : 'payment',
       allow_promotion_codes: true,
       payment_method_types: ['card'],
       line_items: [

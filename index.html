@@ -665,35 +665,60 @@
 
   /* ——— pricing ——— */
   .pricing { padding: 120px 0; background: #fff; text-align: center; }
+  .pricing-options {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: 18px;
+    align-items: stretch;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  @media (max-width: 860px) { .pricing-options { grid-template-columns: 1fr; } }
   .pricing-card {
-    max-width: 580px; margin: 0 auto;
+    margin: 0 auto;
     background: #0a0a0a; color: #fff;
     border: 1px solid #0a0a0a;
     border-radius: 8px;
     padding: 52px 42px;
     text-align: left;
     position: relative;
+    width: 100%;
+  }
+  .pricing-card.primary { min-height: 100%; transform: translateY(-6px); box-shadow: 0 24px 70px rgba(0,0,0,0.16); }
+  .pricing-card.plan {
+    background: #fff;
+    color: #0a0a0a;
+    border: 1px solid var(--line);
+    padding: 44px 36px;
   }
   .pricing-card .top {
     display: flex; justify-content: space-between; align-items: center;
     padding-bottom: 24px; border-bottom: 1px solid var(--dark-line);
   }
+  .pricing-card.plan .top { border-bottom-color: var(--line); }
   .pricing-card .top .eyebrow { color: rgba(255,255,255,0.55); }
+  .pricing-card.plan .top .eyebrow { color: var(--ink-mute); }
   .pricing-card .top .tag {
     font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
     padding: 5px 10px; border-radius: 999px;
     background: rgba(34,197,94,0.18); color: #4ade80; border: 1px solid rgba(34,197,94,0.4);
     font-weight: 600;
   }
+  .pricing-card.plan .top .tag { background: var(--bg-soft); color: var(--ink-dim); border-color: var(--line); }
   .pricing-card h3 { font-family: var(--serif); font-weight: 400; font-size: 40px; letter-spacing: -0.018em; margin-top: 24px; }
   .pricing-card .p-sub { margin-top: 10px; color: var(--dark-dim); font-size: 15px; max-width: 48ch; line-height: 1.55; }
+  .pricing-card.plan .p-sub { color: var(--ink-dim); }
   .price { display: flex; align-items: flex-start; gap: 6px; margin-top: 30px; }
   .price .c { font-family: var(--serif); font-size: 32px; margin-top: 18px; }
   .price .a { font-family: var(--serif); font-weight: 400; font-size: 120px; line-height: 1; letter-spacing: -0.04em; }
   .price .per { align-self: flex-end; font-size: 12px; color: var(--dark-mute); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; margin-left: 10px; font-weight: 600; }
+  .pricing-card.plan .price .a { font-size: 88px; }
+  .pricing-card.plan .price .per { color: var(--ink-mute); }
   .included { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-top: 28px; border-top: 1px solid var(--dark-line); }
   @media (max-width: 600px) { .included { grid-template-columns: 1fr; } }
+  .pricing-card.plan .included { grid-template-columns: 1fr; border-top-color: var(--line); }
   .included .it { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--dark-dim); line-height: 1.5; }
+  .pricing-card.plan .included .it { color: var(--ink-dim); }
   .included .chk {
     flex-shrink: 0;
     width: 18px; height: 18px; border-radius: 50%;
@@ -703,7 +728,9 @@
   }
   .pricing-card .buy-row { margin-top: 36px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   .pricing-card .buy-row .btn-primary { background: #fff; color: #0a0a0a; }
+  .pricing-card.plan .buy-row .btn-primary { background: #0a0a0a; color: #fff; }
   .pricing-card .meta { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dark-mute); font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .pricing-card.plan .meta { color: var(--ink-mute); }
   .pricing-card .meta .d { width: 5px; height: 5px; background: #22c55e; border-radius: 50%; }
 
   /* ——— faq ——— */
@@ -1532,34 +1559,61 @@
   <div class="wrap">
     <div class="section-head center reveal" style="margin:0 auto 48px">
       <span class="eyebrow">The offer</span>
-      <h2 style="margin-top:14px">One price. <em>One time</em>. Yours forever.</h2>
+      <h2 style="margin-top:14px">One-time is best. <em>Payment plan</em> if you need it.</h2>
     </div>
-    <div class="pricing-card reveal">
-      <div class="top">
-        <span class="eyebrow">Fast Grad Academy · Guide v2026</span>
-        <span class="tag">● Updated 2026</span>
+    <div class="pricing-options reveal">
+      <div class="pricing-card primary">
+        <div class="top">
+          <span class="eyebrow">One-Time · Best Value</span>
+          <span class="tag">Best Value</span>
+        </div>
+        <h3>The Complete Guide</h3>
+        <p class="p-sub">Everything you need to finish your degree in a year, in 186 pages. Every exam, every strategy, every shortcut.</p>
+        <div class="price">
+          <span class="c">$</span>
+          <span class="a">197</span>
+          <span class="per">one-time</span>
+        </div>
+        <div class="included">
+          <div class="it"><span class="chk">✓</span>12-chapter interactive course (186 pages)</div>
+          <div class="it"><span class="chk">✓</span>12 editable planning spreadsheets</div>
+          <div class="it"><span class="chk">✓</span>3 interactive tools (calculator, explorer, timeline)</div>
+          <div class="it"><span class="chk">✓</span>School comparison matrix (WGU, TESU, UMPI, Excelsior)</div>
+          <div class="it"><span class="chk">✓</span>Registrar email &amp; script library (6 templates)</div>
+          <div class="it"><span class="chk">✓</span>52-week roadmap calendar</div>
+          <div class="it"><span class="chk">✓</span>AI study-prompt pack (8 core prompts + bonuses)</div>
+          <div class="it"><span class="chk">✓</span>Lifetime updates, every year</div>
+          <div class="it"><span class="chk">✓</span>Our guarantee: Go through the guide and take one CLEP exam. If it didn't save you money or move you forward, email hello@fastgradacademy.com within 30 days for a full refund, no forms, no hoops.</div>
+        </div>
+        <div class="buy-row">
+          <a href="#" onclick="startCheckout(event, 'one_time')" class="btn-primary" id="checkout-btn">Get All 12 Chapters for $197 <span>→</span></a>
+          <span class="meta"><span class="d"></span>Instant · 30-day guarantee</span>
+        </div>
       </div>
-      <h3>The Complete Guide</h3>
-      <p class="p-sub">Everything you need to finish your degree in a year, in 186 pages. Every exam, every strategy, every shortcut.</p>
-      <div class="price">
-        <span class="c">$</span>
-        <span class="a">197</span>
-        <span class="per">one-time</span>
-      </div>
-      <div class="included">
-        <div class="it"><span class="chk">✓</span>12-chapter interactive course (186 pages)</div>
-        <div class="it"><span class="chk">✓</span>12 editable planning spreadsheets</div>
-        <div class="it"><span class="chk">✓</span>3 interactive tools (calculator, explorer, timeline)</div>
-        <div class="it"><span class="chk">✓</span>School comparison matrix (WGU, TESU, UMPI, Excelsior)</div>
-        <div class="it"><span class="chk">✓</span>Registrar email &amp; script library (6 templates)</div>
-        <div class="it"><span class="chk">✓</span>52-week roadmap calendar</div>
-        <div class="it"><span class="chk">✓</span>AI study-prompt pack (8 core prompts + bonuses)</div>
-        <div class="it"><span class="chk">✓</span>Lifetime updates, every year</div>
-        <div class="it"><span class="chk">✓</span>Our guarantee: Go through the guide and take one CLEP exam. If it didn't save you money or move you forward, email hello@fastgradacademy.com within 30 days for a full refund, no forms, no hoops.</div>
-      </div>
-      <div class="buy-row">
-        <a href="#" onclick="startCheckout(event)" class="btn-primary" id="checkout-btn">Get All 12 Chapters for $197 <span>→</span></a>
-        <span class="meta"><span class="d"></span>Instant · 30-day guarantee</span>
+
+      <div class="pricing-card plan">
+        <div class="top">
+          <span class="eyebrow">3-Month Plan</span>
+          <span class="tag">Flexible</span>
+        </div>
+        <h3>Start Today</h3>
+        <p class="p-sub">Same complete course access now, split across three monthly payments.</p>
+        <div class="price">
+          <span class="c">$</span>
+          <span class="a">69</span>
+          <span class="per">/mo × 3</span>
+        </div>
+        <p class="p-sub" style="margin-top:8px">($207 total)</p>
+        <div class="included">
+          <div class="it"><span class="chk">✓</span>Full instant access to all 12 chapters</div>
+          <div class="it"><span class="chk">✓</span>All tools, spreadsheets, and templates</div>
+          <div class="it"><span class="chk">✓</span>Lifetime updates</div>
+          <div class="it"><span class="chk">✓</span>30-day guarantee</div>
+        </div>
+        <div class="buy-row">
+          <a href="#" onclick="startCheckout(event, 'payment_plan')" class="btn-primary" id="checkout-plan-btn">Start Plan <span>→</span></a>
+          <span class="meta"><span class="d"></span>$69 today · 3 payments</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1775,9 +1829,10 @@
   });
 
   // ═══════════════════════ STRIPE CHECKOUT ═══════════════════════
-  function startCheckout(e) {
+  function startCheckout(e, checkoutOption) {
     if (e) e.preventDefault();
-    var btn = document.getElementById('checkout-btn');
+    var btn = e && e.currentTarget ? e.currentTarget : document.getElementById('checkout-btn');
+    checkoutOption = checkoutOption || 'one_time';
     var orig = btn.textContent;
     btn.textContent = 'Redirecting to checkout...';
     btn.style.pointerEvents = 'none';
@@ -1795,7 +1850,7 @@
     fetch('/api/checkout', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ tracking: tracking })
+      body: JSON.stringify({ tracking: tracking, checkout_option: checkoutOption })
     })
     .then(function(r) { return r.json(); })
     .then(function(data) {
