@@ -2,7 +2,7 @@
   "_meta": {
     "description": "FGA Single Source of Truth \u2014 every fact that repeats across the site lives here. Run 'node fga-build.js' to propagate changes to all HTML files.",
     "usage": "Tag any HTML element with data-fga=\"key\" to bind it. The build script replaces inner text with the value from this file.",
-    "last_updated": "2026-04-17"
+    "last_updated": "2026-06-26"
   },
   "brand": {
     "name": "Fast Grad Academy",
