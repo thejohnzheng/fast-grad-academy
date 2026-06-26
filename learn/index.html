@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Learn | Fast Grad Academy</title>
+<meta name="description" content="Free guides on CLEP exams, credit stacking, accelerated degree planning, and the real cost of graduating college early."/>
+<link rel="canonical" href="https://fastgradacademy.com/learn"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/course.css?v=18"/>
+<style>
+body{background:var(--bg);color:var(--ink)}
+.learn-hero{max-width:920px;margin:0 auto;padding:118px 24px 56px;text-align:center}
+.learn-eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:14px}
+.learn-hero h1{font-family:var(--serif);font-size:clamp(52px,8vw,96px);line-height:.92;font-weight:400;margin:0;color:var(--ink)}
+.learn-hero h1 em{color:#c4a97d}
+.learn-hero p{max-width:680px;margin:22px auto 0;color:var(--ink-dim);font-size:17px;line-height:1.75}
+.learn-wrap{max-width:1120px;margin:0 auto;padding:0 24px 88px}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 34px}
+.filter-btn{border:1px solid var(--line);background:var(--bg-soft);color:var(--ink-dim);border-radius:999px;padding:9px 16px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.filter-btn.active,.filter-btn:hover{border-color:#c4a97d;color:#c4a97d;background:rgba(196,169,125,.08)}
+.article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.article-card{display:flex;flex-direction:column;min-height:100%;border:1px solid var(--line);border-radius:10px;background:var(--bg-soft);overflow:hidden;transition:transform .2s,border-color .2s}
+.article-card:hover{transform:translateY(-3px);border-color:#c4a97d}
+.thumb{min-height:150px;padding:22px;background:linear-gradient(135deg,rgba(196,169,125,.18),rgba(255,255,255,.04));display:flex;align-items:flex-end}
+.thumb span{font-family:var(--serif);font-size:32px;line-height:1.02;color:var(--ink)}
+.card-body{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1}
+.meta{display:flex;gap:8px;flex-wrap:wrap;color:var(--ink-mute);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.cat{color:#c4a97d}
+.article-card h2{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.05;margin:0;color:var(--ink)}
+.article-card p{color:var(--ink-dim);font-size:14px;line-height:1.65;margin:0}
+.read-link{margin-top:auto;color:#c4a97d;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.hub-cta{margin-top:46px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,rgba(196,169,125,.14),rgba(255,255,255,.03));padding:30px;text-align:center}
+.hub-cta h2{font-family:var(--serif);font-weight:400;font-size:36px;margin:0 0 10px}
+.hub-cta p{color:var(--ink-dim);line-height:1.7;margin:0 auto 18px;max-width:620px}
+.btn-gold{display:inline-flex;align-items:center;justify-content:center;border:1px solid #c4a97d;background:#c4a97d;color:#0a0a0a;border-radius:999px;padding:13px 22px;font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:900px){.article-grid{grid-template-columns:1fr 1fr}.learn-hero{padding-top:96px}}
+@media(max-width:640px){.article-grid{grid-template-columns:1fr}.learn-wrap{padding-inline:16px}.filter-bar{justify-content:flex-start}.learn-hero{text-align:left;padding-inline:16px}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/learn" class="active">Learn</a>
+      <a href="/resources">Resources</a>
+      <a href="/guide">Course</a>
+      <a href="/tracker">Tracker</a>
+    </div>
+    <a href="/guide" class="btn-outline">Dashboard <span>&rarr;</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</nav>
+
+<header class="learn-hero">
+  <div class="learn-eyebrow">Free college acceleration guides</div>
+  <h1>Learn the <em>what</em> and <em>why</em>.</h1>
+  <p>Helpful, citable guides for students and parents comparing CLEP, credit stacking, early graduation, and the real cost of taking the default four-year path.</p>
+</header>
+
+<main class="learn-wrap">
+  <div class="filter-bar" aria-label="Filter articles">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="clep">CLEP</button>
+    <button class="filter-btn" data-filter="credit-stacking">Credit Stacking</button>
+    <button class="filter-btn" data-filter="accelerated-programs">Accelerated Programs</button>
+    <button class="filter-btn" data-filter="savings">Savings</button>
+  </div>
+
+  <section class="article-grid" id="articleGrid">
+    <a class="article-card" data-category="clep credit-stacking" href="/learn/how-to-use-clep-exams">
+      <div class="thumb"><span>CLEP exams, without the guesswork.</span></div>
+      <div class="card-body">
+        <div class="meta"><span class="cat">CLEP</span><span>9 min read</span></div>
+        <h2>How to Use CLEP Exams to Skip College Courses (2026 Guide)</h2>
+        <p>What CLEP is, which exams to consider first, how to study with Modern States, how to register, and how to send scores.</p>
+        <span class="read-link">Read guide &rarr;</span>
+      </div>
+    </a>
+
+    <a class="article-card" data-category="credit-stacking accelerated-programs" href="/learn/what-is-credit-stacking">
+      <div class="thumb"><span>The strategy behind fast degrees.</span></div>
+      <div class="card-body">
+        <div class="meta"><span class="cat">Credit Stacking</span><span>8 min read</span></div>
+        <h2>What Is Credit Stacking? The Strategy Most College Advisors Won't Tell You</h2>
+        <p>How CLEP, AP, dual enrollment, transfer credit, and accelerated programs combine into one practical degree plan.</p>
+        <span class="read-link">Read guide &rarr;</span>
+      </div>
+    </a>
+
+    <a class="article-card" data-category="savings accelerated-programs" href="/learn/cost-to-graduate-college-early">
+      <div class="thumb"><span>The money math of finishing early.</span></div>
+      <div class="card-body">
+        <div class="meta"><span class="cat">Savings</span><span>10 min read</span></div>
+        <h2>How Much Does It Actually Cost to Graduate College Early?</h2>
+        <p>Exam fees, transfer costs, room and board, opportunity cost, and why one skipped year can matter more than it looks.</p>
+        <span class="read-link">Read guide &rarr;</span>
+      </div>
+    </a>
+  </section>
+
+  <section class="hub-cta">
+    <h2>Want the full system?</h2>
+    <p>The free guides explain the what and why. Fast Grad Academy gives you the 12-chapter operating system, worksheets, scripts, and sequence to build your plan.</p>
+    <a class="btn-gold" href="/#pricing">Check out Fast Grad Academy &rarr;</a>
+  </section>
+</main>
+
+<footer>
+  <div class="f-brand">Fast Grad <em>Academy</em></div>
+  <div class="f-tagline">Graduate faster. Save more. Get ahead.</div>
+  <div class="f-links">
+    <a href="/learn">Learn</a>
+    <a href="/resources">Exam Resources</a>
+    <a href="/guide">Course Dashboard</a>
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+  </div>
+</footer>
+<script src="/learn/js/learn.js" defer></script>
+</body>
+</html>
