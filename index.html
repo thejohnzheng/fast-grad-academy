@@ -1784,8 +1784,12 @@
     btn.style.opacity = '0.7';
     // Capture UTM params + gclid for Google Ads attribution
     var params = new URLSearchParams(window.location.search);
-    var tracking = {};
-    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid'].forEach(function(k) {
+    var tracking = {
+      utm_source: params.get('utm_source') || 'direct',
+      utm_medium: params.get('utm_medium') || '',
+      utm_campaign: params.get('utm_campaign') || ''
+    };
+    ['utm_term','utm_content','gclid'].forEach(function(k) {
       if (params.get(k)) tracking[k] = params.get(k);
     });
     fetch('/api/checkout', {

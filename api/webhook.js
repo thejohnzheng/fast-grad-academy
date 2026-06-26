@@ -231,6 +231,34 @@ async function sendSaleNotification(email, accessCode) {
   }
 }
 
+function cleanTrackingValue(value, fallback = null) {
+  return typeof value === 'string' && value.trim() ? value.trim().slice(0, 180) : fallback;
+}
+
+async function logPurchase(supabase, session, email) {
+  const metadata = session.metadata || {};
+  const explicitSource = cleanTrackingValue(metadata.utm_source);
+  const hasGoogleClickId = Boolean(metadata.gclid || metadata.gbraid || metadata.wbraid);
+  const source = explicitSource && explicitSource !== 'direct'
+    ? explicitSource
+    : (hasGoogleClickId ? 'google-ads' : (explicitSource || 'direct'));
+  const utmSource = cleanTrackingValue(metadata.utm_source, source);
+  const utmMedium = cleanTrackingValue(metadata.utm_medium);
+  const utmCampaign = cleanTrackingValue(metadata.utm_campaign);
+
+  await supabase.from('purchase_log').insert({
+    stripe_session_id: session.id,
+    customer_email: email,
+    amount_cents: Number.isInteger(session.amount_total) ? session.amount_total : 0,
+    currency: cleanTrackingValue(session.currency, 'usd'),
+    product: 'fga-course',
+    source,
+    utm_source: utmSource,
+    utm_medium: utmMedium,
+    utm_campaign: utmCampaign,
+  });
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -326,6 +354,12 @@ export default async function handler(req, res) {
 
     if (existing) {
       console.log(`${LOG} Access code already exists for payment ${paymentId}: ${existing.access_code}`);
+      try {
+        await logPurchase(supabase, session, email);
+        console.log(`${LOG} Purchase logged: ${session.id}`);
+      } catch (logErr) {
+        console.warn(`${LOG} Purchase log failed (non-blocking):`, logErr.message);
+      }
       return res.status(200).json({ received: true, code: existing.access_code });
     }
 
@@ -396,6 +430,15 @@ export default async function handler(req, res) {
 
     // Send the sale notification to John. Also non-critical.
     await sendSaleNotification(email, accessCode);
+
+    // Purchase logging is for John's dashboard only. It must never block
+    // fulfillment, email delivery, or the webhook 200 response.
+    try {
+      await logPurchase(supabase, session, email);
+      console.log(`${LOG} Purchase logged: ${session.id}`);
+    } catch (logErr) {
+      console.warn(`${LOG} Purchase log failed (non-blocking):`, logErr.message);
+    }
 
     return res.status(200).json({ received: true });
   } catch (err) {
