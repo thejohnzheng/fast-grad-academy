@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Google Ads Global Site Tag - replace AW-CONVERSION_ID with your real ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-CONVERSION_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-CONVERSION_ID');
+</script>
+<title>Free College Savings Calculator | Fast Grad Academy</title>
+<meta name="description" content="Calculate how much you could save by graduating college early. Free tool - no signup required to see results.">
+<meta property="og:title" content="Free College Savings Calculator | Fast Grad Academy">
+<meta property="og:description" content="Calculate how much you could save by graduating college early. Free tool - no signup required to see results.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fastgradacademy.com/free">
+<meta property="og:image" content="https://fastgradacademy.com/img/og-share.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free College Savings Calculator">
+<meta name="twitter:description" content="See how credit-by-exam could reduce your college cost and timeline.">
+<meta name="twitter:image" content="https://fastgradacademy.com/img/og-share.png">
+<link rel="canonical" href="https://fastgradacademy.com/free">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="course.css?v=18">
+<style>
+  .free-hero { padding: 86px 28px 54px; text-align: center; }
+  .free-wrap { max-width: 720px; margin: 0 auto; }
+  .free-kicker {
+    color: var(--ink-mute); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 18px;
+  }
+  .free-hero h1 {
+    font-family: var(--serif); font-size: clamp(48px, 9vw, 82px);
+    line-height: 0.95; letter-spacing: -0.025em; font-weight: 400;
+    max-width: 760px; margin: 0 auto;
+  }
+  .free-hero h1 em { font-style: italic; color: var(--ink-dim); }
+  .free-sub {
+    color: var(--ink-dim); font-size: clamp(17px, 2vw, 20px);
+    line-height: 1.65; max-width: 620px; margin: 24px auto 0;
+  }
+  .calculator-panel {
+    max-width: 720px; margin: 0 auto 72px; padding: 32px;
+    background: var(--bg-soft); border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .calc-grid { display: grid; gap: 18px; }
+  .calc-field label {
+    display: block; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-mute);
+    font-weight: 700; margin-bottom: 8px;
+  }
+  .calc-field input,
+  .calc-field select {
+    width: 100%; min-height: 48px; border: 1px solid var(--line-2);
+    border-radius: 6px; background: var(--bg); color: var(--ink);
+    padding: 12px 14px; font-family: var(--sans); font-size: 16px;
+  }
+  .calc-field input:focus,
+  .calc-field select:focus {
+    outline: 2px solid rgba(10,10,10,0.16); outline-offset: 2px;
+  }
+  .calc-note {
+    color: var(--ink-mute); font-size: 12.5px; line-height: 1.6;
+    margin-top: 8px;
+  }
+  .calc-result {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px; margin-top: 28px;
+  }
+  .result-card {
+    background: var(--bg); border: 1px solid var(--line);
+    border-radius: 8px; padding: 22px;
+  }
+  .result-card.primary { background: var(--ink); color: #fff; }
+  .result-label {
+    color: var(--ink-mute); font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 700; margin-bottom: 8px;
+  }
+  .result-card.primary .result-label { color: rgba(255,255,255,0.62); }
+  .result-value {
+    font-family: var(--serif); font-size: clamp(36px, 6vw, 58px);
+    line-height: 0.95; letter-spacing: -0.03em;
+  }
+  .result-caption {
+    color: var(--ink-dim); font-size: 13px; line-height: 1.55; margin-top: 10px;
+  }
+  .result-card.primary .result-caption { color: rgba(255,255,255,0.68); }
+  .comparison {
+    margin-top: 18px; border: 1px solid var(--line); border-radius: 8px;
+    overflow: hidden; background: var(--bg);
+  }
+  .comparison-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 14px;
+    padding: 16px 18px; border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .comparison-row:last-child { border-bottom: none; }
+  .comparison-row strong { color: var(--ink); }
+  .comparison-row span { color: var(--ink-dim); font-size: 13px; }
+  .comparison-row b { font-family: var(--mono); font-size: 14px; }
+  .lead-form {
+    margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line);
+  }
+  .lead-form h2 {
+    font-family: var(--serif); font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400; line-height: 1.05; letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .lead-form p { color: var(--ink-dim); font-size: 15px; line-height: 1.65; }
+  .lead-form-row {
+    display: grid; grid-template-columns: 1fr 1.3fr; gap: 12px; margin-top: 18px;
+  }
+  .lead-form button {
+    width: 100%; min-height: 52px; justify-content: center; margin-top: 12px;
+  }
+  .social-proof {
+    text-align: center; color: var(--ink-dim); font-size: 14px;
+    margin: 24px 0 0;
+  }
+  .free-footer-space { margin-top: 70px; }
+  @media (max-width: 720px) {
+    .free-hero { padding-top: 64px; }
+    .calculator-panel { padding: 22px; margin-bottom: 48px; }
+    .calc-result, .lead-form-row { grid-template-columns: 1fr; }
+    .comparison-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+    <div class="nav-links" id="navLinks">
+      <a href="/#inside">What's Inside</a>
+      <a href="/#parents">For Parents</a>
+      <a href="/#math">The Math</a>
+      <a href="/free" class="active">Free Calculator</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <a href="/guide" class="btn-outline" style="margin-right:8px;border-color:rgba(10,10,10,0.2);color:#0a0a0a;">Student Login</a>
+    <a href="/#pricing" class="btn-outline">Get The Guide <span>&rarr;</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <section class="free-hero">
+    <div class="free-wrap">
+      <div class="free-kicker">Free calculator</div>
+      <h1>How Much Could You Save by <em>Graduating Early?</em></h1>
+      <p class="free-sub">Find out in 30 seconds. Enter your school costs, credits remaining, and how many CLEP exams you would actually take.</p>
+    </div>
+  </section>
+
+  <section class="calculator-panel" aria-labelledby="calculator-title">
+    <div class="calc-grid">
+      <div class="calc-field">
+        <label for="school-type">School cost profile</label>
+        <select id="school-type">
+          <option value="400">Average public university - $400 per credit</option>
+          <option value="1200">Private or out-of-state path - $1,200 per credit</option>
+          <option value="custom">I'll enter my own cost</option>
+        </select>
+      </div>
+
+      <div class="calc-field" id="custom-credit-wrap" hidden>
+        <label for="credit-cost">Tuition per credit hour</label>
+        <input id="credit-cost" type="number" min="50" max="2500" step="10" value="400" inputmode="decimal">
+      </div>
+
+      <div class="calc-field">
+        <label for="credits-remaining">Credits remaining</label>
+        <input id="credits-remaining" type="number" min="3" max="150" step="3" value="60" inputmode="numeric">
+        <div class="calc-note">Use your best estimate. A bachelor's degree is usually 120 credits total.</div>
+      </div>
+
+      <div class="calc-field">
+        <label for="clep-exams">CLEP exams you would take</label>
+        <input id="clep-exams" type="range" min="0" max="20" value="6">
+        <div class="calc-note"><span id="clep-exam-label">6</span> exams, up to <span id="clep-credit-label">18</span> credits. Estimate assumes 3 credits per exam and $97 per CLEP exam.</div>
+      </div>
+    </div>
+
+    <div class="calc-result" aria-live="polite">
+      <div class="result-card primary">
+        <div class="result-label">Estimated savings</div>
+        <div class="result-value" id="savings-output">$6,618</div>
+        <div class="result-caption">Savings before any Modern States reimbursement or school-specific fees.</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Time saved</div>
+        <div class="result-value" id="time-output">1.2</div>
+        <div class="result-caption">Semesters of coursework potentially replaced by verified exam credit.</div>
+      </div>
+    </div>
+
+    <div class="comparison">
+      <div class="comparison-row">
+        <span><strong>Traditional path</strong><br>Pay your school for all remaining credits.</span>
+        <b id="traditional-output">$24,000</b>
+      </div>
+      <div class="comparison-row">
+        <span><strong>Accelerated path</strong><br>Replace verified credits with CLEP exams first.</span>
+        <b id="accelerated-output">$17,382</b>
+      </div>
+    </div>
+
+    <form class="lead-form" action="{{RESEND_FORM_ENDPOINT}}" method="POST">
+      <h2 id="calculator-title">Get the full playbook.</h2>
+      <p>Send yourself the 12-chapter roadmap behind this calculator: what to verify first, which credits to target, and how to avoid wasting money on exams that will not transfer.</p>
+      <div class="lead-form-row">
+        <div class="calc-field">
+          <label for="first-name">First name <span style="font-weight:400;color:var(--ink-mute);letter-spacing:0;text-transform:none">(optional)</span></label>
+          <input id="first-name" name="first_name" type="text" autocomplete="given-name">
+        </div>
+        <div class="calc-field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+      </div>
+      <input type="hidden" name="lead_source" value="free_savings_calculator">
+      <input type="hidden" name="estimated_savings" id="estimated-savings-field" value="">
+      <input type="hidden" name="estimated_semesters_saved" id="estimated-semesters-field" value="">
+      <button type="submit" class="btn-primary">Send Me the Guide <span>&rarr;</span></button>
+      <p class="calc-note" style="text-align:center;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+    </form>
+
+    <p class="social-proof">1,900+ students have used these strategies to plan a faster, cheaper degree path.</p>
+  </section>
+</main>
+
+<footer class="free-footer-space">
+  <div class="wrap">
+    <div class="foot-top">
+      <a href="/" class="logo">Fast Grad <em>Academy</em></a>
+      <div class="foot-links">
+        <a href="/#inside">What's Inside</a>
+        <a href="/#parents">For Parents</a>
+        <a href="/#math">The Math</a>
+        <a href="/free">Free Calculator</a>
+        <a href="/credit-stacking">Credit Stacking</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/guide">Student Login</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>&copy; 2026 Executive Strategy Consulting LLC d.b.a. Fast Grad Academy. All rights reserved.</span>
+      <span><a href="/terms">Terms</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/refund">Refund Policy</a> &middot; <a href="/contact">Contact</a></span>
+      <span>Made for students who mean it.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/lead-magnet.js" defer></script>
+<script>
+document.getElementById('menuBtn')?.addEventListener('click', function() {
+  document.getElementById('navLinks')?.classList.toggle('open');
+});
+</script>
+</body>
+</html>
