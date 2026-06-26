@@ -9,7 +9,7 @@
 
 ## 1. What Is Fast Grad Academy?
 
-Fast Grad Academy is a $197 digital course that teaches students how to graduate college in ~1 year using credit-by-exam (CLEP, DSST), online providers (Sophia, Study.com, StraighterLine, Saylor), PSEO/dual enrollment, and strategic degree planning. The founder, John Zheng, used this system himself — he graduated at 20, saved $85,000+, and got a 3-year career head start.
+Fast Grad Academy is a $197 digital course that teaches students how to graduate college in ~1 year using credit-by-exam (CLEP, DSST), online providers (Sophia, Study.com, StraighterLine, Saylor), PSEO/dual enrollment, and strategic degree planning. The founder, John Zheng, used this system himself — he graduated at 20, saved ,000+, and got a 3-year career head start.
 
 **Product:** 12-chapter online guide + 12 downloadable Excel tools + interactive tracker + calculators
 **Price:** $197 one-time payment

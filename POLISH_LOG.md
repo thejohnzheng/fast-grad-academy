@@ -124,7 +124,7 @@ There are no empty/stray testimonial cards to remove. Removing the `#wall1`/`#wa
 File: index.html, pricing/offer card (`<p class="p-sub">`).
 
 **Before:**
-> The exact 186-page system John used to finish his bachelor's in one year, saving $85,000+ in
+> The exact 186-page system John used to finish his bachelor's in one year, saving ,000+ in
 > tuition, and graduate Harvard with his Master's at 21. Every exam, every strategy, every shortcut.
 
 **After:**
@@ -132,7 +132,7 @@ File: index.html, pricing/offer card (`<p class="p-sub">`).
 > every shortcut.
 
 The third-person founder framing in the pricing card was switched to second person. Founder-specific
-figures ($85,000+ saved, Harvard Master's at 21) were not reframed as reader promises (that would
+figures (,000+ saved, Harvard Master's at 21) were not reframed as reader promises (that would
 over-promise); they remain present in the hero and the stats bar. The "186 pages" and "a year"
 figures are retained; no new numbers introduced. The rule-of-three tail ("Every exam, every
 strategy, every shortcut.") was left untouched — rule-of-three padding is explicitly a separate pass.
