@@ -29,6 +29,22 @@
       "destination": "/guide.html"
     },
     {
+      "source": "/learn",
+      "destination": "/learn/index.html"
+    },
+    {
+      "source": "/learn/how-to-use-clep-exams",
+      "destination": "/learn/how-to-use-clep-exams.html"
+    },
+    {
+      "source": "/learn/what-is-credit-stacking",
+      "destination": "/learn/what-is-credit-stacking.html"
+    },
+    {
+      "source": "/learn/cost-to-graduate-college-early",
+      "destination": "/learn/cost-to-graduate-college-early.html"
+    },
+    {
       "source": "/free",
       "destination": "/free.html"
     },
