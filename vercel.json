@@ -29,6 +29,10 @@
       "destination": "/guide.html"
     },
     {
+      "source": "/free",
+      "destination": "/free.html"
+    },
+    {
       "source": "/credit-stacking",
       "destination": "/credit-stacking.html"
     },
