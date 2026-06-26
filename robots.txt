@@ -1,8 +1,16 @@
+# Fast Grad Academy robots.txt
+# Public pages (incl. free educational content) are open to all crawlers,
+# including AI bots, to maximize AI-answer citation. Admin, API, paid/gated
+# content, and post-purchase utility routes are blocked.
+
 User-agent: *
 Allow: /
+Disallow: /admin/
 Disallow: /api/
 Disallow: /guide
 Disallow: /ch*
 Disallow: /tracker
+Disallow: /confirmation
+Disallow: /recover
 
 Sitemap: https://fastgradacademy.com/sitemap.xml
