@@ -80,7 +80,7 @@ async function readRawBody(req) {
   return Buffer.alloc(0);
 }
 
-export async function sendAccessEmail(email, accessCode, providedName) {
+export async function sendAccessEmail(email, accessCode, providedName, product = 'fga-course') {
   if (!process.env.RESEND_API_KEY) {
     throw new Error('Missing RESEND_API_KEY');
   }
@@ -89,6 +89,9 @@ export async function sendAccessEmail(email, accessCode, providedName) {
   const firstName = (providedName && providedName.trim())
     || email.split('@')[0].replace(/[+._\d]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).trim()
     || 'there';
+  const planNote = product === 'fga-course-plan'
+    ? `<p style="margin:0 0 16px;">Your first payment of $69 has been processed. You'll be charged $69/month for the next 2 months ($207 total). You have full access to all 12 chapters starting now.</p>`
+    : '';
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -119,6 +122,7 @@ export async function sendAccessEmail(email, accessCode, providedName) {
       <p style="margin:0 0 16px;">You're in. Here's your access code and everything you need to get started.</p>
       <p style="margin:0 0 16px;">I built this guide because I graduated college at 19 and saved $84K doing it. Not because I'm some genius. I just figured out how the system works and used it.</p>
       <p style="margin:0 0 16px;">You've got the same playbook.</p>
+      ${planNote}
       <p style="margin:0 0 16px;">Start here: open the course dashboard and hit Chapter 1. If you want the fast track, check out the First 7 Days checklist.</p>
     </div>
 
@@ -251,7 +255,7 @@ async function logPurchase(supabase, session, email) {
     customer_email: email,
     amount_cents: Number.isInteger(session.amount_total) ? session.amount_total : 0,
     currency: cleanTrackingValue(session.currency, 'usd'),
-    product: 'fga-course',
+    product: metadata.product === 'fga-course-plan' ? 'fga-course-plan' : 'fga-course',
     source,
     utm_source: utmSource,
     utm_medium: utmMedium,
@@ -322,6 +326,7 @@ export default async function handler(req, res) {
     // Stripe Checkout collects the buyer's name; use it for a personal greeting + storage.
     const customerName = (session.customer_details?.name || '').trim();
     const firstName = customerName.split(' ')[0] || (email ? email.split('@')[0] : '');
+    const product = session.metadata?.product === 'fga-course-plan' ? 'fga-course-plan' : 'fga-course';
 
     if (!email) {
       console.error(`${LOG} No email found in checkout session ${session.id}`);
@@ -422,7 +427,7 @@ export default async function handler(req, res) {
 
     // Send the branded welcome email. Non-critical: the code is already stored.
     try {
-      await sendAccessEmail(email, accessCode, firstName);
+      await sendAccessEmail(email, accessCode, firstName, product);
       console.log(`${LOG} Access code ${accessCode} sent to ${email}`);
     } catch (emailErr) {
       console.error(`${LOG} Email send failed (code still stored, code=${accessCode}, email=${email}):`, emailErr.message);
