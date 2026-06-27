@@ -538,8 +538,8 @@
   .signoff .sig { font-family: var(--serif); font-style: italic; font-size: 40px; color: #0a0a0a; }
   .signoff .who { margin-top: 4px; font-size: 11px; color: var(--ink-mute); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
 
-  /* ——— wall of proof (dark, marquee of cards) ——— */
-  .wall { padding: 110px 0; }
+  /* ——— wall of proof (verified source cards) ——— */
+  .wall { padding: 96px 0; }
   .wall-counter {
     display: grid; grid-template-columns: repeat(3, 1fr);
     margin-top: 48px;
@@ -558,53 +558,86 @@
   .wall-counter .v { font-family: var(--serif); font-size: 52px; letter-spacing: -0.02em; line-height: 1; color: #fff; }
   .wall-counter .k { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dark-mute); font-weight: 600; }
 
-  .wall-marquee-wrap {
-    margin-top: 64px;
-    overflow: hidden;
-    padding-inline: max(20px, calc((100vw - 1240px) / 2 + 28px));
-    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  .proof-source-rail {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 44px 0 28px;
   }
-  .wall-marquee { display: flex; gap: 16px; animation: scroll 90s linear infinite; width: max-content; padding: 4px 0; }
-  .wall-marquee.reverse { animation: scroll-reverse 95s linear infinite; margin-top: 16px; }
-  .wall-marquee:hover { animation-play-state: paused; }
-  @keyframes scroll-reverse { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-  .proof-card {
-    flex: 0 0 340px;
-    background: var(--dark-1);
+  .proof-source-rail span {
     border: 1px solid var(--dark-line);
-    border-radius: 6px;
-    padding: 22px 22px 20px;
-    margin-inline: 2px;
+    border-radius: 999px;
+    color: var(--dark-dim);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    padding: 9px 12px;
+    text-transform: uppercase;
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  @media (max-width: 980px) {
+    .proof-grid {
+      display: flex;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      padding: 2px 20px 18px;
+      margin-inline: -20px;
+    }
+  }
+  .proof-card {
+    background: #fff;
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+    color: #0a0a0a;
     display: flex; flex-direction: column; gap: 14px;
-    min-height: 230px;
+    min-height: 282px;
+    padding: 22px;
+  }
+  @media (max-width: 980px) {
+    .proof-card { flex: 0 0 min(86vw, 360px); scroll-snap-align: start; }
   }
   .proof-card .tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .proof-card .txt { font-family: var(--serif); font-size: 19px; line-height: 1.32; color: #fff; letter-spacing: -0.005em; flex: 1; }
-  .proof-card .row { display: flex; align-items: center; gap: 10px; padding-top: 12px; border-top: 1px solid var(--dark-line); }
-  .proof-card .av {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--dark-2); border: 1px solid var(--dark-line-2);
-    display: grid; place-items: center;
-    font-family: var(--serif); font-size: 15px; color: #fff;
+  .proof-card .tag {
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    padding: 6px 9px;
+    text-transform: uppercase;
   }
-  .proof-card .nm { font-size: 12.5px; color: #fff; font-weight: 500; }
-  .proof-card .sc { font-size: 11px; color: var(--dark-mute); }
-  .proof-card .outcome {
-    margin-left: auto; font-family: var(--serif); font-style: italic;
-    font-size: 15px; color: #fff;
+  .proof-card[data-kind="student"] .tag { background: rgba(255,69,0,0.11); color: #c73900; }
+  .proof-card[data-kind="article"] .tag { background: rgba(10,10,10,0.08); color: #333; }
+  .proof-card[data-kind="stat"] .tag { background: rgba(227,199,122,0.22); color: #6c5312; }
+  .proof-card .proof-number {
+    font-family: var(--serif);
+    font-size: clamp(44px, 5vw, 56px);
+    letter-spacing: -0.025em;
+    line-height: 0.95;
   }
-  .proof-card .source-link {
+  .proof-card .txt { font-family: var(--serif); font-size: 21px; line-height: 1.24; color: #0a0a0a; flex: 1; }
+  .proof-card .meta { border-top: 1px solid var(--line); padding-top: 12px; }
+  .proof-card .nm { font-size: 12px; color: #0a0a0a; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+  .proof-card .sc { font-size: 12.5px; color: var(--ink-mute); line-height: 1.45; margin-top: 4px; }
+  .proof-card .source-btn {
     align-self: flex-start;
     display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 8px;
-    color: #e3c77a;
-    font-size: 10.5px; font-weight: 700;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    border-bottom: 1px solid rgba(227,199,122,0.45);
-    padding-bottom: 2px;
+    border: 1px solid #0a0a0a;
+    border-radius: 999px;
+    color: #0a0a0a;
+    font-size: 10px; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 10px 13px;
+    transition: background .2s, color .2s, transform .2s;
   }
-  .proof-card .source-link:hover { color: #fff; border-bottom-color: #fff; }
+  .proof-card .source-btn:hover { background: #0a0a0a; color: #fff; transform: translateY(-1px); }
 
   /* ——— bento (what's inside) ——— */
   .bento {
@@ -1348,29 +1381,99 @@
   </div>
 </section>
 
-<!-- WALL OF PROOF (DARK, DOUBLE MARQUEE) -->
+<!-- WALL OF PROOF (VERIFIED SOURCES) -->
 <section class="wall dark" id="proof">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">The wall of proof</span>
-      <h2 style="margin-top:14px">800,000 learners. $750 million <em>saved</em>.</h2>
-      <p class="lead">The methods in this guide (credit-by-examination, competency-based transfer, degree-completion stacking) have been quietly used for decades. This is the first time they've been written down in one place.</p>
+      <span class="eyebrow">Wall of Proof</span>
+      <h2 style="margin-top:14px">Don't take our word <em>for it.</em></h2>
+      <p class="lead">The fast-grad path is not a theory. It shows up in named student stories, official credit-by-exam policy, and university models built around proving mastery instead of paying for extra seat time.</p>
     </div>
     <div class="wall-counter">
       <div class="cell reveal"><div class="v" data-count="800" data-prefix="" data-suffix="K+">800K+</div><div class="k">Learners using credit-by-exam (industry-wide)</div></div>
-      <div class="cell reveal"><div class="v" data-count="750" data-prefix="$" data-suffix="M+">$750M+</div><div class="k">Collectively saved, 2024 (industry-wide)</div></div>
+      <div class="cell reveal"><div class="v" data-count="25000" data-prefix="" data-suffix="+" data-format="true">25,000+</div><div class="k">Free years of college credit reported by Fortune</div></div>
       <div class="cell reveal"><div class="v" data-count="2900" data-prefix="" data-suffix="+" data-format="true">2,900+</div><div class="k">Colleges that accept these credits</div></div>
     </div>
-  </div>
-  <div class="wrap" style="margin-top:64px;margin-bottom:20px">
-    <p style="font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--dark-mute);text-align:center">Independent examples and official program sources</p>
-  </div>
-  <div class="wall-marquee-wrap">
-    <div class="wall-marquee" id="wall1"></div>
-    <div class="wall-marquee reverse" id="wall2"></div>
-  </div>
-  <div class="wrap" style="margin-top:48px">
-    <p style="font-size:11px;color:var(--dark-mute);max-width:760px;line-height:1.6">These are independent examples and official program references showing that credit-by-exam, dual enrollment, transfer credit, and competency-based completion are real paths outside FGA. They are not Fast Grad Academy customer testimonials. Individual outcomes vary based on school policy, prior credits, effort, timing, and transfer approval.</p>
+    <div class="proof-source-rail" aria-label="Proof categories">
+      <span>Real Students, Real Pathways</span>
+      <span>In The News</span>
+      <span>The Numbers</span>
+    </div>
+    <div class="proof-grid">
+      <article class="proof-card reveal" data-kind="student">
+        <div class="tags"><span class="tag">Real Student</span><span class="tag">The 74</span></div>
+        <div class="txt">"I think having the CLEP exams on my resume showed that I had initiative."</div>
+        <div class="meta"><div class="nm">Santana Cruz</div><div class="sc">Harvard-bound student profiled by The 74 after using CLEP in high school.</div></div>
+        <a class="source-btn" href="https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
+      </article>
+      <article class="proof-card reveal" data-kind="article">
+        <div class="tags"><span class="tag">In The News</span><span class="tag">Fortune</span></div>
+        <div class="proof-number">800,000</div>
+        <div class="txt">"ModernStates.org...has quietly reached 800,000 people."</div>
+        <div class="meta"><div class="nm">Fortune</div><div class="sc">Coverage of Modern States and CLEP-based college credit.</div></div>
+        <a class="source-btn" href="https://fortune.com/2026/03/31/finance-steve-klinsky-new-mountain-capital-modern-states-free-college/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
+      </article>
+      <article class="proof-card reveal" data-kind="stat">
+        <div class="tags"><span class="tag">The Numbers</span><span class="tag">College Board</span></div>
+        <div class="proof-number">2,900</div>
+        <div class="txt">"Register to take a CLEP exam and receive college credit at 2,900 colleges."</div>
+        <div class="meta"><div class="nm">College Board</div><div class="sc">Official CLEP program page.</div></div>
+        <a class="source-btn" href="https://clep.collegeboard.org/" target="_blank" rel="noopener noreferrer">View Data</a>
+      </article>
+      <article class="proof-card reveal" data-kind="article">
+        <div class="tags"><span class="tag">In The News</span><span class="tag">The 74</span></div>
+        <div class="txt">"CLEP provides a highly-accessible pathway toward gaining college credits and reducing the time and cost of earning a degree."</div>
+        <div class="meta"><div class="nm">The 74</div><div class="sc">June 2026 article on CLEP as a college-credit pathway beyond AP.</div></div>
+        <a class="source-btn" href="https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
+      </article>
+      <article class="proof-card reveal" data-kind="stat">
+        <div class="tags"><span class="tag">The Numbers</span><span class="tag">College Board</span></div>
+        <div class="proof-number">90-120</div>
+        <div class="txt">"CLEP exams take about 90-120 minutes to complete, depending on the exam subject."</div>
+        <div class="meta"><div class="nm">College Board</div><div class="sc">Official CLEP key facts.</div></div>
+        <a class="source-btn" href="https://clep.collegeboard.org/" target="_blank" rel="noopener noreferrer">View Data</a>
+      </article>
+      <article class="proof-card reveal" data-kind="article">
+        <div class="tags"><span class="tag">In The News</span><span class="tag">Fortune</span></div>
+        <div class="proof-number">25,000</div>
+        <div class="txt">"Given away the equivalent of 25,000 free years of college credit."</div>
+        <div class="meta"><div class="nm">Fortune</div><div class="sc">Reported impact of Modern States' free CLEP-aligned courses.</div></div>
+        <a class="source-btn" href="https://fortune.com/2026/03/31/finance-steve-klinsky-new-mountain-capital-modern-states-free-college/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
+      </article>
+      <article class="proof-card reveal" data-kind="stat">
+        <div class="tags"><span class="tag">The Numbers</span><span class="tag">WGU</span></div>
+        <div class="proof-number">8 or 20</div>
+        <div class="txt">"Whether you complete 8 courses in a term or 20, your tuition won't change."</div>
+        <div class="meta"><div class="nm">Western Governors University</div><div class="sc">Official flat-rate tuition explanation.</div></div>
+        <a class="source-btn" href="https://www.wgu.edu/financial-aid-tuition.html" target="_blank" rel="noopener noreferrer">View Data</a>
+      </article>
+      <article class="proof-card reveal" data-kind="student">
+        <div class="tags"><span class="tag">Real Student</span><span class="tag">The 74</span></div>
+        <div class="txt">"She estimates that about one-third of her college credits came through CLEP."</div>
+        <div class="meta"><div class="nm">Santana Cruz</div><div class="sc">The 74 reported Cruz used CLEP before starting at Harvard.</div></div>
+        <a class="source-btn" href="https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
+      </article>
+      <article class="proof-card reveal" data-kind="stat">
+        <div class="tags"><span class="tag">The Numbers</span><span class="tag">NCES</span></div>
+        <div class="proof-number">64%</div>
+        <div class="txt">"The overall 6-year graduation rate...was 64 percent."</div>
+        <div class="meta"><div class="nm">National Center for Education Statistics</div><div class="sc">Fast Facts on undergraduate graduation rates.</div></div>
+        <a class="source-btn" href="https://nces.ed.gov/fastfacts/display.asp?id=40" target="_blank" rel="noopener noreferrer">View Data</a>
+      </article>
+      <article class="proof-card reveal" data-kind="stat">
+        <div class="tags"><span class="tag">The Numbers</span><span class="tag">WGU</span></div>
+        <div class="txt">"By accelerating through courses in which they are already proficient, students can graduate faster with less costs."</div>
+        <div class="meta"><div class="nm">Western Governors University</div><div class="sc">Official competency-based education model page.</div></div>
+        <a class="source-btn" href="https://www.wgu.edu/student-experience/learning.html" target="_blank" rel="noopener noreferrer">View Data</a>
+      </article>
+      <article class="proof-card reveal" data-kind="stat">
+        <div class="tags"><span class="tag">The Numbers</span><span class="tag">College Board</span></div>
+        <div class="txt">"CLEP exams let you test out of introductory courses and move to more advanced courses sooner."</div>
+        <div class="meta"><div class="nm">College Board</div><div class="sc">Official CLEP benefits page.</div></div>
+        <a class="source-btn" href="https://clep.collegeboard.org/" target="_blank" rel="noopener noreferrer">View Data</a>
+      </article>
+    </div>
+    <p style="font-size:11px;color:var(--dark-mute);max-width:800px;line-height:1.6;margin-top:36px">These are independent news references and official program pages showing that credit-by-exam, accelerated credit, and competency-based completion are real paths outside FGA. They are not Fast Grad Academy customer testimonials. Individual outcomes vary based on school policy, prior credits, effort, timing, and transfer approval.</p>
   </div>
 </section>
 
@@ -1827,37 +1930,6 @@
       <a href="${h.url}" target="_blank" rel="noopener" style="font-family:var(--serif);font-size:17px;color:#0a0a0a;line-height:1.3;text-decoration:none;">${h.title}</a>
       <span style="font-size:13px;color:var(--ink-mute);line-height:1.5;">&ldquo;${h.quote}&rdquo;</span>
     </div>`).join('');
-
-  // Wall of proof marquees
-  const proof = [
-    { tags:[["dual","Dual Enrollment"]], txt:"The Washington Post reported that 2.8 million high school students took dual-enrollment courses in 2023-24.", nm:"Dual enrollment students", sc:"Washington Post", out:"2.8M students", url:"https://www.washingtonpost.com/education/2026/02/23/dual-enrollment-high-school/" },
-    { tags:[["sophia","Online Credit"],["wgu","CBE"]], txt:"Christie Williams finished a bachelor's and master's through UMPI YourPace after stacking online credits.", nm:"Christie Williams", sc:"Washington Post", out:"2 degrees", url:"https://www.washingtonpost.com/education/2026/04/19/accelerated-college-degree-hacking/" },
-    { tags:[["sophia","Online Credit"],["wgu","WGU"]], txt:"Serenity James used online learning credits, then finished remaining WGU coursework and an MBA on an accelerated path.", nm:"Serenity James", sc:"Washington Post", out:"WGU + MBA", url:"https://www.washingtonpost.com/education/2026/04/19/accelerated-college-degree-hacking/" },
-    { tags:[["clep","CLEP"]], txt:"College Board's CLEP policy search lets students verify whether their target school awards credit before testing.", nm:"College Board", sc:"Official CLEP policy search", out:"Verify first", url:"https://clep.collegeboard.org/clep-college-credit-policy-search" },
-    { tags:[["clep","CLEP"]], txt:"Modern States says its free freshman-level courses can lead to CLEP exams recognized for credit by nearly 3,000 colleges.", nm:"Modern States", sc:"Official program page", out:"Free prep", url:"https://modernstates.org/" },
-    { tags:[["clep","CLEP"]], txt:"Modern States has helped hundreds of thousands of learners use free courses toward CLEP exam credit.", nm:"Modern States learners", sc:"Official program page", out:"Free pathway", url:"https://modernstates.org/" },
-    { tags:[["wgu","WGU"]], txt:"WGU publishes a competency-based model built around proving mastery instead of sitting through fixed class time.", nm:"WGU students", sc:"WGU official", out:"Mastery model", url:"https://www.wgu.edu/" },
-    { tags:[["wgu","WGU"]], txt:"WGU's flat-rate term model lets motivated students move faster once they complete their required term load.", nm:"WGU term model", sc:"WGU official", out:"Flexible pace", url:"https://www.wgu.edu/" },
-    { tags:[["wgu","CBE"]], txt:"UMPI YourPace describes a competency-based model where progress is based on what students can prove, not seat time.", nm:"UMPI YourPace", sc:"University of Maine at Presque Isle", out:"Progress, not time", url:"https://www.umpi.edu/yourpace/" },
-    { tags:[["wgu","CBE"]], txt:"UMPI YourPace advertises 100% online coursework, flat-rate tuition, and flexible pacing for motivated adult learners.", nm:"UMPI YourPace", sc:"Official program page", out:"Flexible pacing", url:"https://www.umpi.edu/yourpace/" },
-    { tags:[["clep","CLEP"]], txt:"The 74 covered CLEP as a little-known college-credit pathway beyond AP for students trying to lower college costs.", nm:"CLEP pathway", sc:"The 74", out:"Beyond AP", url:"https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/" },
-    { tags:[["clep","CLEP"]], txt:"The same pattern keeps showing up: verify policy first, earn lower-cost credits, then transfer them into the degree plan.", nm:"The Fast Grad method", sc:"Official + news sources", out:"Real path", url:"https://clep.collegeboard.org/clep-college-credit-policy-search" },
-  ];
-  const renderP = (list) => list.map(p => `
-    <div class="proof-card">
-      <div class="tags">${p.tags.map(([c,l]) => `<span class="pill ${c}">${l}</span>`).join('')}</div>
-      <div class="txt">"${p.txt}"</div>
-      <div class="row">
-        <div class="av">${p.nm[0]}</div>
-        <div><div class="nm">${p.nm}</div><div class="sc">${p.sc}</div></div>
-        <div class="outcome">${p.out}</div>
-      </div>
-      <a href="${p.url}" target="_blank" rel="noopener" class="source-link">View source →</a>
-    </div>`).join('');
-  const half1 = proof.slice(0, 6);
-  const half2 = proof.slice(6);
-  document.getElementById('wall1').innerHTML = renderP(half1) + renderP(half1);
-  document.getElementById('wall2').innerHTML = renderP(half2) + renderP(half2);
 
   document.querySelectorAll('#faqlist .faq-item').forEach(it => {
     const btn = it.querySelector('.faq-q');
