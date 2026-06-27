@@ -380,6 +380,115 @@ function unlockAccess(){
   </div>
 
   <div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 48px">
+    <h3 class="reveal" style="font-family:var(--serif);font-size:1.6rem;margin-bottom:24px">What the AI Outputs Should Actually Look Like</h3>
+    <p class="reveal" style="color:var(--ink-dim);margin-bottom:28px">Prompts are only useful if you know what a good answer looks like. Use these examples as your quality bar. If your AI gives you vague summaries, ask it to get more specific, add exam-style questions, and explain why wrong answers are wrong.</p>
+
+    <div class="prompt-box reveal">
+      <div class="prompt-label">Example 1 — ChatGPT as CLEP Tutor</div>
+      <div class="prompt-text">I'm studying for the CLEP Introductory Psychology exam. I have 10 days. Create a study plan covering the most heavily tested topics. For each topic, give me: (1) a 2-sentence summary, (2) one common exam question, (3) the answer with explanation.</div>
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+
+    <div class="callout reveal" style="border-color:var(--line);background:var(--bg-soft)">
+      <div class="callout-icon">🧠</div>
+      <div class="callout-body">
+        <div class="callout-title">Sample Tutor Output</div>
+        <div class="callout-text">
+          <strong>Learning and memory:</strong> Know classical conditioning, operant conditioning, reinforcement, punishment, encoding, storage, and retrieval. CLEP questions often ask you to identify the process from a scenario, not simply define the term.<br/><br/>
+          <strong>Question:</strong> A student studies in the same room where she later takes a test and remembers more material. Which memory principle is this?<br/>
+          <strong>Answer:</strong> Context-dependent memory. Retrieval improves when the testing environment resembles the learning environment.<br/><br/>
+          <strong>Developmental psychology:</strong> Focus on Piaget, Erikson, Kohlberg, attachment, and lifespan development. Expect questions that connect a child's age to a developmental stage.<br/><br/>
+          <strong>Question:</strong> A child understands that water poured from a short wide glass into a tall thin glass is still the same amount. Which Piagetian concept is this?<br/>
+          <strong>Answer:</strong> Conservation, which appears in the concrete operational stage.<br/><br/>
+          <strong>Biological bases of behavior:</strong> Know the neuron, neurotransmitters, major brain regions, and endocrine system basics. CLEP tends to test function: what the hippocampus, amygdala, frontal lobe, dopamine, or serotonin does.<br/><br/>
+          <strong>Question:</strong> Which brain structure is most associated with forming new explicit memories?<br/>
+          <strong>Answer:</strong> The hippocampus. Damage here disrupts creation of new declarative memories.
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-box reveal">
+      <div class="prompt-label">Example 2 — ChatGPT as Practice Exam Generator</div>
+      <div class="prompt-text">Generate 10 multiple-choice questions that would appear on the CLEP Introductory Sociology exam. Make them exam-difficulty level. Include answer explanations after each question.</div>
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+
+    <div class="callout reveal" style="border-color:var(--line);background:var(--bg-soft)">
+      <div class="callout-icon">📝</div>
+      <div class="callout-body">
+        <div class="callout-title">Sample Practice Questions</div>
+        <div class="callout-text">
+          <strong>1. Which theoretical perspective emphasizes how social institutions work together to maintain stability?</strong><br/>
+          A) Conflict theory &nbsp; B) Symbolic interactionism &nbsp; C) Functionalism &nbsp; D) Labeling theory<br/>
+          <em>Answer: C. Functionalism views society as a system whose parts serve functions that support social order.</em><br/><br/>
+          <strong>2. A student is called "troublemaker" by teachers and eventually begins acting that way. Which concept best explains this?</strong><br/>
+          A) Role strain &nbsp; B) Labeling theory &nbsp; C) Cultural capital &nbsp; D) Mechanical solidarity<br/>
+          <em>Answer: B. Labeling theory studies how labels can shape identity and behavior.</em><br/><br/>
+          <strong>3. Which term describes movement from one social class to another?</strong><br/>
+          A) Social mobility &nbsp; B) Socialization &nbsp; C) Assimilation &nbsp; D) Bureaucratization<br/>
+          <em>Answer: A. Social mobility is movement within a stratification system, either upward or downward.</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal" style="border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.04)">
+      <div class="callout-icon">🎧</div>
+      <div class="callout-body">
+        <div class="callout-title">Example 3 — NotebookLM Workflow</div>
+        <div class="callout-text">
+          <strong>Step 1:</strong> Upload your Modern States notes, College Board exam description, saved textbook chapters, or study guide PDF to <a href="https://notebooklm.google.com" target="_blank" rel="noopener">NotebookLM</a>.<br/>
+          <strong>Step 2:</strong> Ask: "What are the 10 most important concepts for an exam on this material? Rank them by likely test importance and cite which source section supports each one."<br/>
+          <strong>Step 3:</strong> Ask: "Create a 15-question practice quiz on [topic]. Hide the answer until after each question."<br/>
+          <strong>Step 4:</strong> Use Audio Overview to create a podcast-style review. Listen while commuting, walking, or doing chores.<br/><br/>
+          <strong>What good output looks like:</strong> NotebookLM should reference your uploaded material, not generic internet knowledge. If it cannot point back to the PDF or notes you uploaded, ask it to cite the exact source section before trusting the summary.
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-box reveal">
+      <div class="prompt-label">Example 4 — Anki Flashcard Creation</div>
+      <div class="prompt-text">I'm studying Introductory Psychology for a CLEP exam. Create 20 Anki-formatted flashcards (Front: question | Back: answer) covering the most testable concepts.</div>
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+
+    <div class="callout reveal" style="border-color:var(--line);background:var(--bg-soft)">
+      <div class="callout-icon">🔁</div>
+      <div class="callout-body">
+        <div class="callout-title">Sample Anki Cards</div>
+        <div class="callout-text">
+          Front: What is negative reinforcement? | Back: Increasing a behavior by removing an unpleasant stimulus, such as buckling a seatbelt to stop the alarm.<br/>
+          Front: Which brain structure is most associated with emotion and fear? | Back: The amygdala.<br/>
+          Front: What is the difference between encoding and retrieval? | Back: Encoding is getting information into memory; retrieval is pulling stored information back out.<br/>
+          Front: In Piaget's theory, what is object permanence? | Back: Understanding that objects continue to exist even when they cannot be seen.<br/>
+          Front: What does an independent variable do in an experiment? | Back: It is manipulated by the researcher to test its effect on the dependent variable.<br/><br/>
+          <strong>Import path:</strong> copy the cards into a spreadsheet, split Front and Back into two columns, export CSV, then import into Anki as the Basic card type. Study daily; do not wait until the deck is "complete" to begin reviews.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal" style="border-color:rgba(196,169,125,0.28);background:rgba(196,169,125,0.04)">
+      <div class="callout-icon">🧩</div>
+      <div class="callout-body">
+        <div class="callout-title">Example 5 — Combining All Three</div>
+        <div class="callout-text">
+          <strong>Week 1:</strong> ChatGPT generates your study plan, explains confusing concepts, and creates first-pass practice questions.<br/>
+          <strong>Week 1-2:</strong> NotebookLM processes your actual study materials, creates source-grounded summaries, and gives you audio review for dead time.<br/>
+          <strong>Week 1-2:</strong> Anki turns the highest-yield facts, terms, and missed questions into daily spaced repetition.<br/>
+          <strong>Exam week:</strong> ChatGPT drills weak areas, NotebookLM refreshes source-specific material, and Anki keeps recall sharp. You have reviewed the same material through reading, questioning, audio, and retrieval practice instead of just staring at notes.
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal" style="border-color:rgba(220,60,60,0.35);background:rgba(220,60,60,0.04)">
+      <div class="callout-icon">🔒</div>
+      <div class="callout-body">
+        <div class="callout-title">Academic Integrity Line</div>
+        <div class="callout-text">Use AI to <strong>learn</strong> the material, not to fake knowing it. CLEP and DSST exams are proctored and closed-book. AI is your tutor, quiz writer, and flashcard assistant. It is not your test-taker, and it cannot replace the recall you need on exam day.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 48px">
     <h3 class="reveal" style="font-family:var(--serif);font-size:1.6rem;margin-bottom:24px">AI Study Workflow — Connecting Ch. 8 &amp; Ch. 9</h3>
     <p class="reveal" style="color:var(--ink-dim);margin-bottom:32px;max-width:var(--max-w)">Here's how to combine the study techniques from Chapter 8 with the AI prompts from this chapter into a 4-week exam prep system. Each phase builds on the last.</p>
 
