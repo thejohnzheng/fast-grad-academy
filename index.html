@@ -984,6 +984,9 @@
     body { padding-bottom: 70px; }
   }
 </style>
+<!-- Stripe.js: loads Stripe Radar fraud-detection signals on the page. Checkout itself
+     uses a server-created Checkout Session URL (see startCheckout -> /api/checkout). -->
+<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -1006,7 +1009,7 @@
       <a href="#math">The Math</a>
     </div>
     <a href="/guide" class="btn-outline" style="margin-right:8px;border-color:rgba(10,10,10,0.2);color:#0a0a0a;">Student Login</a>
-    <a href="#pricing" class="btn-outline">Get All 12 Chapters for $197 <span>→</span></a>
+    <a href="#" onclick="startCheckout(event)" class="btn-outline">Get All 12 Chapters for $197 <span>→</span></a>
     <button class="menu-btn" id="menuBtn" aria-label="Menu">
       <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -1029,7 +1032,7 @@
     <a href="/free">Free Calculator</a>
     <a href="#faq">FAQ</a>
     <a href="/guide">Student Login</a>
-    <a href="#pricing" class="mobile-nav-cta">Get All 12 Chapters for $197</a>
+    <a href="#" onclick="startCheckout(event)" class="mobile-nav-cta">Get All 12 Chapters for $197</a>
   </div>
 </div>
 
@@ -1751,7 +1754,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:36px" class="reveal">
-      <a href="#pricing" onclick="sessionStorage.setItem('fga_sprint_interest','summer-2026')" class="btn-primary">Get All 12 Chapters for $197 <span>→</span></a>
+      <a href="#" onclick="sessionStorage.setItem('fga_sprint_interest','summer-2026');startCheckout(event)" class="btn-primary">Get All 12 Chapters for $197 <span>→</span></a>
       <p style="color:var(--ink-mute);font-size:13px;margin-top:12px">Includes the Chapter 10 sprint plan, CLEP verification flow, and AI study prompts.</p>
     </div>
   </div>
@@ -1761,7 +1764,7 @@
 <section class="final-cta dark">
   <div class="wrap">
     <h2 class="reveal">Stop paying for <em>time</em> you don't need.</h2>
-    <a href="#pricing" class="btn-primary reveal">Get All 12 Chapters for $197 <span>→</span></a>
+    <a href="#" onclick="startCheckout(event)" class="btn-primary reveal">Get All 12 Chapters for $197 <span>→</span></a>
     <div class="sub reveal">Instant access · 30-day guarantee · Lifetime updates</div>
   </div>
 </section>
