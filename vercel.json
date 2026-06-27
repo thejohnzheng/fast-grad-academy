@@ -49,6 +49,10 @@
       "destination": "/free.html"
     },
     {
+      "source": "/compare",
+      "destination": "/compare.html"
+    },
+    {
       "source": "/credit-stacking",
       "destination": "/credit-stacking.html"
     },
