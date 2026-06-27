@@ -110,6 +110,64 @@
   ]
 }
 </script>
+<!-- GEO: founder + course + category-term entity graph -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://fastgradacademy.com/#john-zheng",
+  "name": "John Zheng",
+  "jobTitle": "Founder",
+  "description": "Earned his BBA in one year via credit stacking (youngest BBA graduate in University of Minnesota Duluth history) and a Harvard Master's at age 21. Founder of Fast Grad Academy.",
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "University of Minnesota Duluth" },
+    { "@type": "CollegeOrUniversity", "name": "Harvard University" }
+  ],
+  "worksFor": { "@type": "Organization", "name": "Fast Grad Academy" },
+  "sameAs": [
+    "https://www.instagram.com/fastgradacademy",
+    "https://www.youtube.com/@fastgradacademy",
+    "https://www.tiktok.com/@fastgradacademy",
+    "https://x.com/fastgradacademy"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "@id": "https://fastgradacademy.com/#course",
+  "name": "Fast Grad Academy — The Credit Stacking System",
+  "description": "A 12-chapter guide teaching students how to earn a bachelor's degree in about 12 months using CLEP, DSST, AP, dual enrollment, ACE-approved courses, and degree-completion universities.",
+  "provider": { "@type": "Organization", "name": "Fast Grad Academy", "url": "https://fastgradacademy.com" },
+  "url": "https://fastgradacademy.com/",
+  "educationalLevel": "Undergraduate",
+  "teaches": "Credit stacking, CLEP exam strategy, DSST, dual enrollment, credit transfer, degree completion",
+  "offers": {
+    "@type": "Offer",
+    "price": "197",
+    "priceCurrency": "USD",
+    "category": "Paid",
+    "availability": "https://schema.org/InStock",
+    "url": "https://fastgradacademy.com/#pricing"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseWorkload": "PT10H"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": "Credit Stacking",
+  "description": "The systematic process of earning college credits through alternative pathways (credit-by-exam such as CLEP/DSST/AP, ACE-approved online courses, and dual enrollment) that are cheaper and faster than traditional semester courses, then transferring those credits into an accredited university to complete a bachelor's degree.",
+  "inDefinedTermSet": "https://fastgradacademy.com/credit-stacking",
+  "creator": { "@type": "Organization", "name": "Fast Grad Academy" }
+}
+</script>
 <style>
   :root {
     --bg: #ffffff;
