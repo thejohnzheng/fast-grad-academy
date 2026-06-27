@@ -250,7 +250,7 @@ async function logPurchase(supabase, session, email) {
   const utmMedium = cleanTrackingValue(metadata.utm_medium);
   const utmCampaign = cleanTrackingValue(metadata.utm_campaign);
 
-  await supabase.from('purchase_log').insert({
+  const { error } = await supabase.from('purchase_log').insert({
     stripe_session_id: session.id,
     customer_email: email,
     amount_cents: Number.isInteger(session.amount_total) ? session.amount_total : 0,
@@ -261,6 +261,20 @@ async function logPurchase(supabase, session, email) {
     utm_medium: utmMedium,
     utm_campaign: utmCampaign,
   });
+
+  if (error) {
+    const duplicate = error.code === '23505'
+      || /duplicate/i.test(error.message || '')
+      || /unique/i.test(error.message || '');
+
+    if (duplicate) {
+      return { logged: false, duplicate: true };
+    }
+
+    throw new Error(error.message || 'purchase_log insert failed');
+  }
+
+  return { logged: true, duplicate: false };
 }
 
 export default async function handler(req, res) {
@@ -360,8 +374,12 @@ export default async function handler(req, res) {
     if (existing) {
       console.log(`${LOG} Access code already exists for payment ${paymentId}: ${existing.access_code}`);
       try {
-        await logPurchase(supabase, session, email);
-        console.log(`${LOG} Purchase logged: ${session.id}`);
+        const purchase = await logPurchase(supabase, session, email);
+        if (purchase.duplicate) {
+          console.log(`${LOG} Purchase already logged: ${session.id}`);
+        } else {
+          console.log(`${LOG} Purchase logged: ${session.id}`);
+        }
       } catch (logErr) {
         console.warn(`${LOG} Purchase log failed (non-blocking):`, logErr.message);
       }
@@ -439,8 +457,12 @@ export default async function handler(req, res) {
     // Purchase logging is for John's dashboard only. It must never block
     // fulfillment, email delivery, or the webhook 200 response.
     try {
-      await logPurchase(supabase, session, email);
-      console.log(`${LOG} Purchase logged: ${session.id}`);
+      const purchase = await logPurchase(supabase, session, email);
+      if (purchase.duplicate) {
+        console.log(`${LOG} Purchase already logged: ${session.id}`);
+      } else {
+        console.log(`${LOG} Purchase logged: ${session.id}`);
+      }
     } catch (logErr) {
       console.warn(`${LOG} Purchase log failed (non-blocking):`, logErr.message);
     }
