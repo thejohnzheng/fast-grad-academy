@@ -1508,7 +1508,8 @@ footer .f-disclaimer a { text-decoration: underline; text-underline-offset: 2px;
 /* ── DO-THIS-NOW EXERCISE BLOCKS ── */
 .exercise-block {
   background: #fffdf5; border: 2px solid #eab308;
-  border-radius: 14px; padding: 24px 28px; margin: 32px 0;
+  border-radius: 14px; padding: 24px 28px; margin: 32px auto;
+  max-width: var(--max-w);
   position: relative;
 }
 .exercise-label {
