@@ -154,8 +154,8 @@ tr:hover td{background:var(--bg-soft)}
 .milestone-credit-tag{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:6px;background:var(--bg-panel);color:var(--ink-mute)}
 
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.62);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
-.modal-overlay.active{display:flex;opacity:1}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,visibility .3s}
+.modal-overlay.active{opacity:1;visibility:visible;pointer-events:auto}
 .modal{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:36px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;transform:scale(.95);transition:transform .3s;box-shadow:0 25px 60px rgba(0,0,0,0.25)}
 .modal-overlay.active .modal{transform:scale(1)}
 .modal-title{font-family:var(--serif);font-size:28px;margin-bottom:24px;color:var(--ink)}
@@ -205,7 +205,8 @@ tr:hover td{background:var(--bg-soft)}
 /* PRINT */
 @media print{
   @page{size:letter;margin:.45in}
-  .nav,.action-bar,.modal-overlay,.toast-container,.btn,.row-actions,.table-controls,.gened-edit-btn{display:none!important}
+  .nav,.action-bar,.toast-container,.btn,.row-actions,.table-controls,.gened-edit-btn{display:none!important}
+  .modal-overlay{visibility:hidden!important;opacity:0!important;pointer-events:none!important}
   body{background:#fff;color:#000}
   .glass{background:#f5f5f5;border:1px solid #ddd}
   .section{padding:20px 0}
@@ -247,7 +248,7 @@ tr:hover td{background:var(--bg-soft)}
       <a href="/guide">Course</a>
       <a href="/tracker">Tracker</a>
     </div>
-    <a href="/guide" class="btn-outline">Dashboard <span>&rarr;</span></a>
+    <a href="/tracker" class="btn-outline">Dashboard <span>&rarr;</span></a>
     <button class="menu-btn" id="menuBtn" aria-label="Menu">
       <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -619,7 +620,8 @@ tr:hover td{background:var(--bg-soft)}
     var earnedList = credits.filter(isEarnedCredit);
     var earned = earnedList.reduce(function(s,c){ return s + Number(c.credits || 0); },0);
     var actual = credits.reduce(function(s,c){ return s + Number(c.cost || 0); },0);
-    var traditional = earned * COST_PER_CREDIT_TRADITIONAL;
+    var totalCredits = credits.reduce(function(s,c){ return s + Number(c.credits || 0); },0);
+    var traditional = totalCredits * COST_PER_CREDIT_TRADITIONAL;
     var pathwayTotals = {};
     pathwayDefs.forEach(function(p){ pathwayTotals[p.key] = 0; });
     earnedList.forEach(function(c){
@@ -1110,25 +1112,28 @@ tr:hover td{background:var(--bg-soft)}
   }
 
   window.printProgressReport = function(){
+    if(typeof html2pdf === 'undefined'){
+      toast('PDF library still loading. Try again in a moment.');
+      return;
+    }
     renderReport();
-    var originalTitle = document.title;
-    var cleaned = false;
-    document.title = 'Fast-Grad-Progress-Report_'+todayStamp();
-    document.body.classList.add('print-report');
-    function cleanup(){
-      if(cleaned) return;
-      cleaned = true;
-      document.body.classList.remove('print-report');
-      document.title = originalTitle;
-      window.removeEventListener('afterprint',cleanup);
-      window.removeEventListener('focus',focusCleanup);
-    }
-    function focusCleanup(){
-      setTimeout(cleanup,250);
-    }
-    window.addEventListener('afterprint',cleanup);
-    window.addEventListener('focus',focusCleanup);
-    setTimeout(function(){ window.print(); },50);
+    var report = document.getElementById('progressReport');
+    report.style.display = 'block';
+    var opt = {
+      margin:       0.5,
+      filename:     'Fast-Grad-Progress-Report_'+todayStamp()+'.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(report).save().then(function(){
+      report.style.display = 'none';
+      toast('PDF downloaded.');
+    }).catch(function(err){
+      report.style.display = 'none';
+      toast('PDF generation failed. Try again.');
+      console.error('PDF error:', err);
+    });
   };
 
   window.importJSON = function(){
@@ -1256,5 +1261,6 @@ if (menuBtn) {
   });
 }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </body>
 </html>
