@@ -616,6 +616,8 @@
   .proof-card[data-kind="student"] .tag { background: rgba(255,69,0,0.11); color: #c73900; }
   .proof-card[data-kind="article"] .tag { background: rgba(10,10,10,0.08); color: #333; }
   .proof-card[data-kind="stat"] .tag { background: rgba(227,199,122,0.22); color: #6c5312; }
+  .proof-card[data-kind="document"] .tag { background: rgba(63,94,251,0.12); color: #3047a8; }
+  .proof-card[data-kind="photo"] .tag { background: rgba(109,184,138,0.14); color: #2f6b47; }
   .proof-card .proof-number {
     font-family: var(--serif);
     font-size: clamp(44px, 5vw, 56px);
@@ -623,6 +625,30 @@
     line-height: 0.95;
   }
   .proof-card .txt { font-family: var(--serif); font-size: 21px; line-height: 1.24; color: #0a0a0a; flex: 1; }
+  .proof-card .proof-media {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(10,10,10,0.08);
+    background: #f5f2eb;
+  }
+  .proof-card .proof-media img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .proof-card .proof-caption {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink-mute);
+    margin-top: -4px;
+  }
+  .proof-card[data-kind="photo"] .txt,
+  .proof-card[data-kind="document"] .txt {
+    font-size: 18px;
+    line-height: 1.28;
+  }
   .proof-card .meta { border-top: 1px solid var(--line); padding-top: 12px; }
   .proof-card .nm { font-size: 12px; color: #0a0a0a; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
   .proof-card .sc { font-size: 12.5px; color: var(--ink-mute); line-height: 1.45; margin-top: 4px; }
@@ -1398,6 +1424,8 @@
       <span>Real Students, Real Pathways</span>
       <span>In The News</span>
       <span>The Numbers</span>
+      <span>Proof Documents</span>
+      <span>Graduation Photos</span>
     </div>
     <div class="proof-grid">
       <article class="proof-card reveal" data-kind="student">
@@ -1492,6 +1520,118 @@
         <div class="txt">"More than 100 high school students earned up to 16 college credits each. Overall more than 1,600 credits were earned during these CLEP-A-Thon sessions."</div>
         <div class="meta"><div class="nm">CLEP-A-Thon students</div><div class="sc">Rio Salado College reported more than 1,600 credits earned across spring group testing sessions.</div></div>
         <a class="source-btn" href="https://www.riosalado.edu/news/2025/clep-exams-game-changer-high-school-students" target="_blank" rel="noopener noreferrer">Read Full Article</a>
+      </article>
+      <article class="proof-card reveal" data-kind="photo">
+        <div class="tags"><span class="tag">Graduation Photo</span><span class="tag">Harvard</span></div>
+        <div class="proof-media">
+          <img src="proof/harvard_statue.jpg" alt="John Zheng at the John Harvard statue in Cambridge during Harvard graduation season" width="1280" height="1600" loading="lazy">
+        </div>
+        <div class="txt">The John Harvard Statue</div>
+        <div class="proof-caption">John Harvard statue, Cambridge — Class of 2022.</div>
+        <div class="meta"><div class="nm">Visual Proof</div><div class="sc">The most credibility-dense image on the page. It quietly says Harvard without needing extra explanation.</div></div>
+        <a class="source-btn" href="proof/harvard_statue.jpg" target="_blank" rel="noopener noreferrer">Open Full Image</a>
+      </article>
+      <article class="proof-card reveal" data-kind="photo">
+        <div class="tags"><span class="tag">Graduation Photo</span><span class="tag">Diploma</span></div>
+        <div class="proof-media">
+          <img src="proof/harvard_diploma_steps.jpg" alt="John Zheng holding his Harvard Extension School diploma in graduation regalia on campus steps" width="1280" height="1600" loading="lazy">
+        </div>
+        <div class="txt">Diploma in Hand</div>
+        <div class="proof-caption">Bachelor of Liberal Arts, Harvard Extension School.</div>
+        <div class="meta"><div class="nm">Visual Proof</div><div class="sc">Diploma, hands, and regalia. Pair this with the PDF proof and the argument is over.</div></div>
+        <a class="source-btn" href="proof/harvard_diploma_steps.jpg" target="_blank" rel="noopener noreferrer">Open Full Image</a>
+      </article>
+      <article class="proof-card reveal" data-kind="document">
+        <div class="tags"><span class="tag">Proof Document</span><span class="tag">Diploma</span></div>
+        <div class="txt">Harvard Extension Diploma</div>
+        <div class="meta"><div class="nm">Harvard Extension School</div><div class="sc">Bachelor's degree from Harvard Extension School — earned through credit stacking, not four years on campus.</div></div>
+        <a class="source-btn" href="proof/Harvard_Diploma.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+      <article class="proof-card reveal" data-kind="document">
+        <div class="tags"><span class="tag">Proof Document</span><span class="tag">Diploma</span></div>
+        <div class="txt">University of Minnesota Diploma</div>
+        <div class="meta"><div class="nm">University of Minnesota</div><div class="sc">Second bachelor's degree from UMN — stacked alongside Harvard using transfer credits.</div></div>
+        <a class="source-btn" href="proof/UMN_Diploma.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+      <article class="proof-card reveal" data-kind="document">
+        <div class="tags"><span class="tag">Proof Document</span><span class="tag">Transcript</span></div>
+        <div class="txt">Official UMN Transcript</div>
+        <div class="meta"><div class="nm">University Record</div><div class="sc">Academic transcript showing transferred CLEP, DSST, and AP credits accepted by the university.</div></div>
+        <a class="source-btn" href="proof/UMN_Transcript.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+      <article class="proof-card reveal" data-kind="document">
+        <div class="tags"><span class="tag">Proof Document</span><span class="tag">AP</span></div>
+        <div class="txt">AP Exam Scores</div>
+        <div class="meta"><div class="nm">College Board</div><div class="sc">Four passing AP exams: Statistics, Microeconomics, Psychology, and US History — all taken in high school for real credit.</div></div>
+        <a class="source-btn" href="proof/AP_Scores_REDACTED.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+      <article class="proof-card reveal" data-kind="document">
+        <div class="tags"><span class="tag">Proof Document</span><span class="tag">CLEP</span></div>
+        <div class="txt">CLEP Exam Scores</div>
+        <div class="meta"><div class="nm">College-Level Examination Program</div><div class="sc">Five CLEP exams passed — each one replacing a full semester course at a fraction of traditional tuition.</div></div>
+        <a class="source-btn" href="proof/CLEP_Scores_REDACTED.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+      <article class="proof-card reveal" data-kind="document">
+        <div class="tags"><span class="tag">Proof Document</span><span class="tag">DSST</span></div>
+        <div class="txt">DSST Exam Scores</div>
+        <div class="meta"><div class="nm">DANTES / DSST</div><div class="sc">Three DSST exams passed — HR Management, Business Ethics, and Money and Banking — scored 417 to 445 against a 400 minimum.</div></div>
+        <a class="source-btn" href="proof/DSST_Scores_REDACTED.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+      <article class="proof-card reveal" data-kind="document">
+        <div class="tags"><span class="tag">Proof Document</span><span class="tag">Articulated</span></div>
+        <div class="txt">MN Articulated College Credit</div>
+        <div class="meta"><div class="nm">Champlin Park / Minnesota</div><div class="sc">High school coursework at Champlin Park that qualified for college credit at seven or more institutions.</div></div>
+        <a class="source-btn" href="proof/MN_Articulated_Credit_REDACTED.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+      <article class="proof-card reveal" data-kind="photo">
+        <div class="tags"><span class="tag">Graduation Photo</span><span class="tag">Commencement</span></div>
+        <div class="proof-media">
+          <img src="proof/harvard_commencement_yard.jpg" alt="John Zheng in Harvard Yard on commencement day during the 371st Harvard Commencement" width="1200" height="1600" loading="lazy">
+        </div>
+        <div class="txt">Commencement Day</div>
+        <div class="proof-caption">371st Commencement, Harvard Yard — May 2022.</div>
+        <div class="meta"><div class="nm">Visual Proof</div><div class="sc">Ceremony context matters. This shows the degree story in a real place, on a real day, not as a floating claim.</div></div>
+        <a class="source-btn" href="proof/harvard_commencement_yard.jpg" target="_blank" rel="noopener noreferrer">Open Full Image</a>
+      </article>
+      <article class="proof-card reveal" data-kind="photo">
+        <div class="tags"><span class="tag">Graduation Photo</span><span class="tag">Collage</span></div>
+        <div class="proof-media">
+          <img src="proof/harvard_commencement_collage.jpg" alt="Collage of Harvard commencement scenes including ceremony, program, and crowd" width="739" height="1600" loading="lazy">
+        </div>
+        <div class="txt">The 371st Commencement</div>
+        <div class="proof-caption">Commencement day — the ceremony, the program, the people.</div>
+        <div class="meta"><div class="nm">Visual Proof</div><div class="sc">A multi-scene view that makes the graduation story feel documented instead of abstract.</div></div>
+        <a class="source-btn" href="proof/harvard_commencement_collage.jpg" target="_blank" rel="noopener noreferrer">Open Full Image</a>
+      </article>
+      <article class="proof-card reveal" data-kind="photo">
+        <div class="tags"><span class="tag">Graduation Photo</span><span class="tag">Founder</span></div>
+        <div class="proof-media">
+          <img src="proof/harvard_steps_casual.jpg" alt="John Zheng standing on the steps near Widener Library in Harvard Yard" width="1280" height="1600" loading="lazy">
+        </div>
+        <div class="txt">On the Steps of Widener</div>
+        <div class="proof-caption">Widener Library, Harvard Yard.</div>
+        <div class="meta"><div class="nm">Founder Story</div><div class="sc">Less formal, more human. This works as secondary proof because it feels real without trying too hard.</div></div>
+        <a class="source-btn" href="proof/harvard_steps_casual.jpg" target="_blank" rel="noopener noreferrer">Open Full Image</a>
+      </article>
+      <article class="proof-card reveal" data-kind="photo">
+        <div class="tags"><span class="tag">Graduation Photo</span><span class="tag">Campus</span></div>
+        <div class="proof-media">
+          <img src="proof/harvard_yard_tree.jpg" alt="John Zheng in Harvard Yard with trees and campus buildings in the background" width="1280" height="1600" loading="lazy">
+        </div>
+        <div class="txt">Harvard Yard</div>
+        <div class="proof-caption">Harvard Yard, Cambridge, MA.</div>
+        <div class="meta"><div class="nm">Visual Proof</div><div class="sc">Confident and natural. Good supporting proof because it reads as lived-in, not staged.</div></div>
+        <a class="source-btn" href="proof/harvard_yard_tree.jpg" target="_blank" rel="noopener noreferrer">Open Full Image</a>
+      </article>
+      <article class="proof-card reveal" data-kind="photo">
+        <div class="tags"><span class="tag">Graduation Photo</span><span class="tag">Family</span></div>
+        <div class="proof-media">
+          <img src="proof/harvard_family.jpg" alt="John Zheng with his mother on Harvard graduation day" width="1600" height="1142" loading="lazy">
+        </div>
+        <div class="txt">Family &amp; Graduation</div>
+        <div class="proof-caption">Graduation day with Mom.</div>
+        <div class="meta"><div class="nm">Parent Converter</div><div class="sc">For parent buyers, this lands harder than almost any abstract claim because it shows who the win was for.</div></div>
+        <a class="source-btn" href="proof/harvard_family.jpg" target="_blank" rel="noopener noreferrer">Open Full Image</a>
       </article>
     </div>
     <p style="font-size:11px;color:var(--dark-mute);max-width:800px;line-height:1.6;margin-top:36px">These are independent news references and official program pages showing that credit-by-exam, accelerated credit, and competency-based completion are real paths outside FGA. They are not Fast Grad Academy customer testimonials. Individual outcomes vary based on school policy, prior credits, effort, timing, and transfer approval.</p>
