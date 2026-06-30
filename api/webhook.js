@@ -102,6 +102,7 @@ export async function sendAccessEmail(email, accessCode, providedName, product =
     body: JSON.stringify({
       from: process.env.FROM_EMAIL || 'Fast Grad Academy <noreply@fastgradacademy.com>',
       to: [email],
+      bcc: [process.env.BCC_EMAIL || 'john@executivestrategy.consulting'],
       reply_to: 'hello@fastgradacademy.com',
       subject: "You just made the smartest investment in your education",
       html: `
