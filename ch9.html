@@ -207,7 +207,7 @@ function unlockAccess(){
     <div class="ch-label reveal">Chapter 09</div>
   <h2 class="ch-title reveal">The AI <em>Study Stack</em></h2>
     <div class="ch-meta">
-      <div class="ch-meta-item"><span class="meta-icon">📖</span> 10 min read</div>
+      <div class="ch-meta-item"><span class="meta-icon">📖</span> 17 min read</div>
       <div class="ch-meta-sep"></div>
       <div class="ch-meta-item"><span class="meta-icon">🎯</span> Execution</div>
     </div>
@@ -263,6 +263,59 @@ function unlockAccess(){
         <div class="callout-text">Use a three-layer system: <strong>NotebookLM</strong> for source-grounded notes from your own materials, <strong><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a>/<a href="https://claude.ai" target="_blank" rel="noopener">Claude</a>/Gemini/Grok</strong> for tutoring, quizzes, and Feynman-style explanations, then <strong><a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a> or Quizlet</strong> for spaced repetition. Never let AI be the source of truth. Make it cite or point back to your official exam outline, Modern States module, textbook, or professor notes before you trust a fact.</div>
       </div>
     </div>
+
+    <div class="reveal in" style="max-width:var(--max-w);margin:28px auto;padding:0">
+      <table class="compare-table reveal" style="font-size:13px">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Use It For</th>
+            <th>CLEP Workflow</th>
+            <th>Cost Check</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="highlight-cell"><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></td>
+            <td>Practice questions, Socratic tutoring, quick concept explanation, memory aids.</td>
+            <td>Paste the College Board exam outline, ask for a topic-weighted quiz, answer one question at a time, then ask for wrong-answer explanations.</td>
+            <td>Free tier plus paid plans; verify current limits at <a href="https://openai.com/chatgpt/pricing/" target="_blank" rel="noopener">OpenAI pricing</a>.</td>
+          </tr>
+          <tr>
+            <td class="highlight-cell"><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></td>
+            <td>Long explanations, Feynman feedback, nuanced essay feedback, study-plan refinement.</td>
+            <td>Explain a concept in your own words and ask Claude to find gaps, then turn those gaps into an Anki card list.</td>
+            <td>Free tier plus paid plans; verify current limits in-app because model availability changes.</td>
+          </tr>
+          <tr>
+            <td class="highlight-cell"><a href="https://notebooklm.google.com" target="_blank" rel="noopener">NotebookLM</a></td>
+            <td>Source-grounded summaries, study guides, audio overviews, quizzes, flashcards from your uploaded materials.</td>
+            <td>Upload Modern States notes, textbook PDFs, and the CLEP description. Ask for the ten highest-yield ideas with citations to your sources.</td>
+            <td>Google account required; feature availability changes by region/account. Verify inside NotebookLM before relying on a specific feature.</td>
+          </tr>
+          <tr>
+            <td class="highlight-cell"><a href="https://www.quizlet.com" target="_blank" rel="noopener">Quizlet</a></td>
+            <td>Fast flashcard creation, pre-made community sets, AI-assisted practice modes.</td>
+            <td>Search the exact exam, copy only high-quality cards into your own set, then use Learn/Test modes for retrieval.</td>
+            <td>Free tier plus Quizlet Plus. Verify AI feature access at <a href="https://quizlet.com/features" target="_blank" rel="noopener">Quizlet features</a>.</td>
+          </tr>
+          <tr>
+            <td class="highlight-cell"><a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a></td>
+            <td>Cited research, source-finding, fact-checking AI claims against current web pages.</td>
+            <td>Ask it to find official sources for exam costs, transfer policy, or a disputed history/economics fact, then open the cited pages yourself.</td>
+            <td>Free tier plus Pro. Treat it as a research assistant, not the final authority.</td>
+          </tr>
+          <tr>
+            <td class="highlight-cell"><a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a></td>
+            <td>Spaced repetition and durable recall.</td>
+            <td>Import cleaned AI-generated cards, then study every day. Cards you miss become tomorrow's priority.</td>
+            <td>Desktop and web are free; AnkiMobile for iPhone/iPad is paid. Verify current platform pricing at Anki's official site.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="reveal">The order matters. NotebookLM is for grounding because it works from sources you provide. ChatGPT or Claude is for interaction because it can push you, quiz you, and re-explain. Anki or Quizlet is for repetition because you need the material to survive until exam day. Perplexity is for verification because AI can hallucinate with confidence. If you use one tool for all four jobs, you will either move slowly or trust things you should have checked.</p>
 
     <h3>8 AI Prompts for Exam Domination</h3>
     <p>Copy these prompts into <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a> or <a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a>. Replace the bracketed text with your specific exam.</p>
@@ -376,6 +429,58 @@ function unlockAccess(){
       <div class="prompt-label">🤖 Prompt 8 — Weak Area Diagnosis</div>
       <div class="prompt-text">I just took a practice exam for [<a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> Principles of Marketing] and scored 58/80. Here are the topics I got wrong: [list topics]. For each weak area: (1) explain the core concept I'm missing, (2) give me 3 practice questions targeting that specific weakness, and (3) suggest a mnemonic or memory trick to lock it in. Prioritize the topics with the most exam weight.</div>
       <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+
+    <div class="prompt-box reveal">
+      <div class="prompt-label">🤖 Prompt 9 — Explain Like I'm 12, Then Raise the Difficulty</div>
+      <div class="prompt-text">Explain [topic] as if I am 12 years old, using one concrete example. Then explain the same topic at college-exam level with the nuance I need for [CLEP/DSST exam name]. Finally, ask me 5 questions that move from easy recall to hard application.</div>
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+
+    <div class="prompt-box reveal">
+      <div class="prompt-label">🤖 Prompt 10 — Source-to-Practice Exam Workflow</div>
+      <div class="prompt-text">Using only the source material I paste below, create a 25-question practice quiz at [CLEP exam] difficulty. Do not use outside knowledge. After each question, cite the section of the pasted material that supports the answer. If the source material does not support a question, do not include it. Source material: [paste notes, outline, or study guide].</div>
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+  </div>
+
+  <div style="max-width:var(--max-w);margin:0 auto;padding:0 24px 48px">
+    <h3 class="reveal" style="font-family:var(--serif);font-size:1.6rem;margin-bottom:24px">Four AI Workflows That Actually Save Time</h3>
+    <p class="reveal" style="color:var(--ink-dim);margin-bottom:28px">Do not bounce randomly between tools. Run workflows. A workflow has an input, an output, and a decision. If the AI output does not tell you what to study next, it was entertainment, not studying.</p>
+
+    <div class="tool-grid reveal">
+      <div class="glass-card">
+        <div class="gc-icon">📚</div>
+        <div class="gc-title">Source-to-Practice Exam</div>
+        <div class="gc-body">Upload or paste official notes into NotebookLM or ChatGPT. Ask for a cited quiz using only those sources. Take it closed-book. Every missed question becomes an Anki card or a 20-minute review block.</div>
+        <div class="gc-tag">Best for Accuracy</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-icon">🪜</div>
+        <div class="gc-title">Explain Like 12 → Exam Nuance</div>
+        <div class="gc-body">Start simple so you can see the shape of the idea. Then ask for the college-level version, edge cases, and common distractors. This prevents shallow "I kind of get it" understanding.</div>
+        <div class="gc-tag">Best for Confusing Concepts</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-icon">🧭</div>
+        <div class="gc-title">Knowledge Gap Loop</div>
+        <div class="gc-body">Take a diagnostic quiz. Paste only the missed topics into AI. Ask for the smallest study plan that would fix those gaps in 72 hours. Then retest on the same categories with new questions.</div>
+        <div class="gc-tag">Best for Final Week</div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-icon">🧠</div>
+        <div class="gc-title">Mnemonic Builder</div>
+        <div class="gc-body">Ask AI for three memory aids, then pick the one you can actually remember. The best mnemonic is not clever; it is sticky. Turn it into an Anki card immediately.</div>
+        <div class="gc-tag">Best for Lists</div>
+      </div>
+    </div>
+
+    <div class="callout reveal" style="border-color:rgba(220,60,60,0.35);background:rgba(220,60,60,0.04);margin-top:28px">
+      <div class="callout-icon">🧯</div>
+      <div class="callout-body">
+        <div class="callout-title">The AI Integrity Line Is Simple</div>
+        <div class="callout-text">Use AI before the exam to explain, quiz, summarize, and diagnose. Do not use AI during proctored exams, do not submit AI-generated writing as your own, and do not let AI replace your own recall. CLEP and DSST success still comes down to what you can retrieve in a closed-book testing environment. If the tool helps you learn, use it. If the tool helps you pretend you learned, drop it.</div>
+      </div>
     </div>
   </div>
 
@@ -577,8 +682,8 @@ function unlockAccess(){
       <div class="tool-card">
         <div class="tool-name"><a href="https://www.quizlet.com" target="_blank" rel="noopener">Quizlet</a></div>
         <div class="tool-url"><a href="https://www.quizlet.com" target="_blank" rel="noopener">quizlet.com</a></div>
-        <div class="tool-desc">Pre-made flashcard sets for most <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> and DSST exams. Search for your specific exam to find community-created study sets. Good supplement to your <a href="https://apps.ankiweb.net" target="_blank" rel="noopener">Anki</a> cards.</div>
-        <div class="tool-badge">Pre-Made Sets</div>
+        <div class="tool-desc">Pre-made flashcard sets for most <a href="https://clep.collegeboard.org" target="_blank" rel="noopener">CLEP</a> and DSST exams, plus AI-assisted study modes depending on your plan. Search your exact exam, but verify card quality before trusting community sets.</div>
+        <div class="tool-badge">Flashcards + AI</div>
       </div>
       <div class="tool-card">
         <div class="tool-name">InstantCert</div>
@@ -603,6 +708,27 @@ function unlockAccess(){
         <div class="tool-url"><a href="https://notebooklm.google.com" target="_blank" style="color:var(--silver)">notebooklm.google.com</a></div>
         <div class="tool-desc">Upload your study materials and textbooks. Google's AI creates summaries, flashcards, and study guides from YOUR specific content. Generates podcast-style audio summaries you can listen to while commuting.</div>
         <div class="tool-badge">AI Study Partner</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name"><a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a></div>
+        <div class="tool-url"><a href="https://www.perplexity.ai" target="_blank" style="color:var(--silver)">perplexity.ai</a></div>
+        <div class="tool-desc">Use it for cited research and fact-checking, especially when AI gives you a claim about exam costs, transfer rules, history, economics, or current policy. Always open the cited source before adding it to your notes.</div>
+        <div class="tool-badge">Fact-Check Layer</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name"><a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a></div>
+        <div class="tool-url"><a href="https://gemini.google.com" target="_blank" style="color:var(--silver)">gemini.google.com</a></div>
+        <div class="tool-desc">Useful if you already live in Google Docs, Drive, and NotebookLM. Strong as a second opinion when ChatGPT or Claude gives an explanation that still feels fuzzy.</div>
+        <div class="tool-badge">Google Ecosystem</div>
+      </div>
+    </div>
+
+    <div style="max-width:var(--max-w);margin:40px auto 0;padding:0 24px">
+      <div class="ch-body">
+        <h3 class="reveal">John's Angle: AI Study Skills Become Career Skills</h3>
+        <p class="reveal">Here is the part most students miss: learning with AI is not just a school hack. It is a professional advantage. The same skill that helps you turn a CLEP outline into a practice exam helps you turn a messy work problem into a plan. The same habit of asking for counterexamples, checking sources, and drilling weak spots helps you learn a new software tool, onboard into a new job, or build a business process from scratch.</p>
+        <p class="reveal">The students who win over the next decade will not be the ones who ask AI to do their thinking. They will be the ones who use AI to pressure-test their thinking. They will ask better questions, verify faster, build reusable prompts, and convert confusion into a learning loop. That is what you are practicing here. CLEP prep is the training ground. The real prize is becoming an AI-native learner: someone who can enter a new domain, map the terrain, identify the highest-leverage material, test themselves, and become useful fast.</p>
+        <p class="reveal">That is also how you should talk about this in interviews. Do not say, "I used AI to study." Say, "I built a repeatable learning system: official source materials, AI-generated retrieval practice, spaced repetition, and practice-test analytics. I used it to master college-level material independently and prove competency quickly." That sounds like a worker who can be trusted with ambiguous problems.</p>
       </div>
     </div>
 
