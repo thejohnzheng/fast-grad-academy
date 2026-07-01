@@ -321,15 +321,22 @@ function unlockAccess(){
         </thead>
         <tbody>
           <tr>
-            <td>College Composition Modular</td>
+            <td>College Composition</td>
             <td>6</td>
+            <td><span class="diff-badge medium">Medium</span></td>
+            <td>20–30 hr</td>
+            <td><span class="dir-yes">Yes</span></td>
+          </tr>
+          <tr>
+            <td>College Composition Modular</td>
+            <td>3</td>
             <td><span class="diff-badge easy">Easy</span></td>
             <td>15–25 hr</td>
             <td><span class="dir-yes">Yes</span></td>
           </tr>
           <tr>
             <td>American Literature</td>
-            <td>6</td>
+            <td>3</td>
             <td><span class="diff-badge medium">Medium</span></td>
             <td>30–40 hr</td>
             <td><span class="dir-yes">Yes</span></td>
@@ -343,14 +350,14 @@ function unlockAccess(){
           </tr>
           <tr>
             <td>Analyzing &amp; Interpreting Literature</td>
-            <td>6</td>
+            <td>3</td>
             <td><span class="diff-badge easy">Easy</span></td>
             <td>15–20 hr</td>
             <td><span class="dir-yes">Yes</span></td>
           </tr>
           <tr>
             <td>Humanities</td>
-            <td>6</td>
+            <td>3</td>
             <td><span class="diff-badge medium">Medium</span></td>
             <td>25–35 hr</td>
             <td><span class="dir-yes">Yes</span></td>
@@ -470,7 +477,7 @@ function unlockAccess(){
           </tr>
           <tr>
             <td>College Mathematics</td>
-            <td>6</td>
+            <td>3</td>
             <td><span class="diff-badge easy">Easy–Med</span></td>
             <td>20–30 hr</td>
             <td><span class="dir-yes">Yes</span></td>
@@ -597,22 +604,29 @@ function unlockAccess(){
         <tbody>
           <tr>
             <td>Spanish Language</td>
-            <td>6–12</td>
+            <td>6–9</td>
             <td><span class="diff-badge medium">Varies</span></td>
             <td>Varies</td>
             <td><span class="dir-yes">Yes</span></td>
           </tr>
           <tr>
             <td>French Language</td>
-            <td>6–12</td>
+            <td>6–9</td>
             <td><span class="diff-badge medium">Varies</span></td>
             <td>Varies</td>
             <td><span class="dir-yes">Yes</span></td>
           </tr>
           <tr>
             <td>German Language</td>
-            <td>6–12</td>
+            <td>6–9</td>
             <td><span class="diff-badge medium">Varies</span></td>
+            <td>Varies</td>
+            <td><span class="dir-yes">Yes</span></td>
+          </tr>
+          <tr>
+            <td>Spanish with Writing</td>
+            <td>6–12</td>
+            <td><span class="diff-badge hard">Hard</span></td>
             <td>Varies</td>
             <td><span class="dir-yes">Yes</span></td>
           </tr>
@@ -853,16 +867,16 @@ function unlockAccess(){
     {name:"Financial Accounting",credits:3,diff:"Medium",cat:"business"},
     {name:"Info Systems & Computer Apps",credits:3,diff:"Easy-Med",cat:"business"},
     {name:"Introductory Business Law",credits:3,diff:"Medium",cat:"business"},
-    {name:"College Composition",credits:3,diff:"Medium",cat:"composition"},
+    {name:"College Composition",credits:6,diff:"Medium",cat:"composition"},
     {name:"College Composition Modular",credits:3,diff:"Medium",cat:"composition"},
     {name:"American Literature",credits:3,diff:"Medium",cat:"humanities"},
-    {name:"English Literature",credits:3,diff:"Medium",cat:"humanities"},
-    {name:"Analyzing & Interpreting Literature",credits:6,diff:"Easy",cat:"humanities"},
+    {name:"English Literature",credits:6,diff:"Medium",cat:"humanities"},
+    {name:"Analyzing & Interpreting Literature",credits:3,diff:"Easy",cat:"humanities"},
     {name:"Humanities",credits:3,diff:"Easy-Med",cat:"humanities"},
-    {name:"Spanish Language (Levels 1&2)",credits:6,diff:"Med-Hard",cat:"languages"},
-    {name:"French Language (Levels 1&2)",credits:6,diff:"Med-Hard",cat:"languages"},
-    {name:"German Language (Levels 1&2)",credits:6,diff:"Med-Hard",cat:"languages"},
-    {name:"Spanish with Writing (Levels 1&2)",credits:6,diff:"Hard",cat:"languages"}
+    {name:"Spanish Language (Levels 1&2)",credits:6,creditsLabel:"6–9",diff:"Med-Hard",cat:"languages"},
+    {name:"French Language (Levels 1&2)",credits:6,creditsLabel:"6–9",diff:"Med-Hard",cat:"languages"},
+    {name:"German Language (Levels 1&2)",credits:6,creditsLabel:"6–9",diff:"Med-Hard",cat:"languages"},
+    {name:"Spanish with Writing (Levels 1&2)",credits:6,creditsLabel:"6–12",diff:"Hard",cat:"languages"}
   ];
   var selected = {};
   var list = document.getElementById('ce-list');
@@ -884,7 +898,7 @@ function unlockAccess(){
       var sel = selected[idx];
       return '<div class="fga-credit-row'+(sel?' selected':'')+'" data-idx="'+idx+'">'+
         '<span class="fga-credit-name">'+e.name+'</span>'+
-        '<span>'+e.credits+'</span>'+
+        '<span>'+(e.creditsLabel || e.credits)+'</span>'+
         '<span><span class="diff-badge" style="'+diffColor(e.diff)+'">'+e.diff+'</span></span>'+
         '<span class="fga-credit-check">'+(sel?'✓':'')+'</span>'+
       '</div>';
