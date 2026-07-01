@@ -278,6 +278,64 @@ async function logPurchase(supabase, session, email) {
   return { logged: true, duplicate: false };
 }
 
+async function capPaymentPlanSubscription(stripe, session, email) {
+  const metadata = session.metadata || {};
+  const isPaymentPlan = session.mode === 'subscription'
+    || metadata.checkout_option === 'payment_plan'
+    || metadata.product === 'fga-course-plan';
+
+  if (!isPaymentPlan) {
+    return { needed: false };
+  }
+
+  const subscriptionId = typeof session.subscription === 'string' ? session.subscription : null;
+  const planPriceId = process.env.STRIPE_PRICE_ID_PLAN;
+
+  if (!subscriptionId) {
+    console.error(`${LOG} PAYMENT PLAN MANUAL REVIEW: missing session.subscription for session=${session.id} email=${email}`);
+    return { needed: true, capped: false, error: 'missing_subscription' };
+  }
+
+  if (!planPriceId) {
+    console.error(`${LOG} PAYMENT PLAN MANUAL REVIEW: STRIPE_PRICE_ID_PLAN missing; subscription=${subscriptionId} session=${session.id} email=${email}`);
+    return { needed: true, capped: false, error: 'missing_plan_price' };
+  }
+
+  try {
+    const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+    let scheduleId = typeof subscription.schedule === 'string' ? subscription.schedule : null;
+
+    if (!scheduleId) {
+      const schedule = await stripe.subscriptionSchedules.create({
+        from_subscription: subscriptionId,
+      });
+      scheduleId = schedule.id;
+    }
+
+    await stripe.subscriptionSchedules.update(scheduleId, {
+      end_behavior: 'cancel',
+      proration_behavior: 'none',
+      phases: [
+        {
+          start_date: subscription.current_period_start || 'now',
+          items: [{ price: planPriceId, quantity: 1 }],
+          duration: { interval: 'month', interval_count: 3 },
+        },
+      ],
+    });
+
+    console.log(`${LOG} Payment plan capped at 3 billing cycles schedule=${scheduleId} subscription=${subscriptionId} session=${session.id}`);
+    return { needed: true, capped: true, scheduleId };
+  } catch (err) {
+    console.error(
+      `${LOG} PAYMENT PLAN MANUAL REVIEW: failed to cap subscription at 3 payments ` +
+        `subscription=${subscriptionId} session=${session.id} email=${email}:`,
+      err
+    );
+    return { needed: true, capped: false, error: err.message || 'schedule_cap_failed' };
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -303,13 +361,14 @@ export default async function handler(req, res) {
 
   // Verify Stripe webhook signature against the RAW request body.
   let event;
+  let stripe;
   try {
     const rawBody = await readRawBody(req);
     if (!rawBody || rawBody.length === 0) {
       console.error(`${LOG} Empty request body; cannot verify signature (is bodyParser disabled for this function?)`);
       return res.status(400).json({ error: 'Empty webhook payload' });
     }
-    const stripe = new Stripe(secretKey);
+    stripe = new Stripe(secretKey);
     event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret);
   } catch (err) {
     console.error(`${LOG} Webhook signature verification failed:`, err.message);
@@ -349,6 +408,14 @@ export default async function handler(req, res) {
     }
 
     console.log(`${LOG} Fulfilling session=${session.id} payment=${paymentId} email=${email}`);
+
+    const planCap = await capPaymentPlanSubscription(stripe, session, email);
+    if (planCap.needed && !planCap.capped) {
+      console.error(
+        `${LOG} PAYMENT PLAN MANUAL REVIEW REQUIRED: access will still be granted, ` +
+          `but subscription cap was not confirmed session=${session.id} payment=${paymentId} email=${email} reason=${planCap.error}`
+      );
+    }
 
     if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
       console.error(`${LOG} Webhook configuration missing Supabase credentials`);
