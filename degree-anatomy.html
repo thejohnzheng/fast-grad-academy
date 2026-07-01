@@ -102,6 +102,20 @@ th, td { padding: 13px 14px; text-align: left; vertical-align: top; border-botto
 th { color: var(--ink); background: rgba(255,255,255,0.055); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
 tr:last-child td { border-bottom: 0; }
 td strong { color: var(--ink); }
+.freemium-note { margin-top: 14px; color: var(--ink-muted); font-size: 13px; }
+.preview-table-wrap { position: relative; max-height: 342px; overflow: hidden; }
+.preview-table-wrap:after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 122px; background: linear-gradient(180deg, rgba(16,16,16,0), rgba(16,16,16,0.94)); pointer-events: none; }
+.preview-table .locked-row { filter: blur(3px); opacity: 0.42; user-select: none; pointer-events: none; }
+.ghost-row td { color: var(--gold); font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; background: rgba(196,169,125,0.08); }
+.table-unlock { position: absolute; right: 18px; bottom: 18px; z-index: 3; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(196,169,125,0.42); border-radius: 999px; padding: 9px 14px; background: rgba(7,7,7,0.86); color: var(--gold); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.gate-shell { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; margin-top: 14px; background: rgba(255,255,255,0.025); }
+.gated-content { filter: blur(4px); opacity: 0.6; user-select: none; pointer-events: none; padding: 2px; }
+.gate-overlay { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; padding: 24px; background: linear-gradient(180deg, rgba(16,16,16,0.18), rgba(7,7,7,0.92)); text-align: center; }
+.unlock-link { display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(196,169,125,0.42); border-radius: 999px; padding: 10px 15px; background: rgba(7,7,7,0.78); color: var(--gold); font-family: var(--mono); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.upsell-card { margin: 12px 0; }
+.upsell-card h2 { font-size: clamp(34px, 4.8vw, 58px); }
+.upsell-list { display: grid; gap: 11px; color: var(--ink-dim); font-size: 15px; }
+.upsell-list span { display: block; }
 .bridge { padding: 76px 0; background: #0d0d0d; border-bottom: 1px solid var(--line); }
 .bridge-card { border: 1px solid var(--line-2); border-radius: 10px; background: linear-gradient(135deg, rgba(196,169,125,0.14), rgba(255,255,255,0.035)); padding: clamp(28px, 5vw, 52px); display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.65fr); gap: 34px; align-items: center; }
 .bridge-card h2 { margin-bottom: 14px; }
@@ -207,6 +221,7 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
                 </tbody>
               </table>
             </div>
+            <p class="freemium-note">This is Layer 1 of 6. The full course walks you through all six layers with exam-by-exam replacement strategies.</p>
           </div>
         </article>
 
@@ -220,27 +235,47 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
             <h3>College or School Core</h3>
             <p>Courses required by the broader college inside the university. Business majors share business core classes. Engineering majors share engineering core classes. Education majors share education core classes.</p>
             <div class="insight">Exams often exist for the content, but some schools require these courses in-house. Verify first.</div>
-            <div class="table-wrap">
-              <table>
+            <div class="table-wrap preview-table-wrap">
+              <table class="preview-table">
                 <thead><tr><th>Business-core example</th><th>Credits</th><th>CLEP / DSST match?</th></tr></thead>
                 <tbody>
                   <tr><td><strong>Financial Accounting</strong></td><td>3</td><td>CLEP Financial Accounting</td></tr>
                   <tr><td><strong>Managerial Accounting</strong></td><td>3</td><td>No exam. Usually take in class.</td></tr>
-                  <tr><td><strong>Microeconomics</strong></td><td>3</td><td>CLEP Principles of Microeconomics</td></tr>
-                  <tr><td><strong>Macroeconomics</strong></td><td>3</td><td>CLEP Principles of Macroeconomics</td></tr>
-                  <tr><td><strong>Business Statistics</strong></td><td>3</td><td>No exact match. Check whether College Mathematics applies.</td></tr>
-                  <tr><td><strong>Business Law</strong></td><td>3</td><td>CLEP Introductory Business Law</td></tr>
-                  <tr><td><strong>Principles of Management</strong></td><td>3</td><td>CLEP Principles of Management</td></tr>
-                  <tr><td><strong>Principles of Marketing</strong></td><td>3</td><td>CLEP Principles of Marketing</td></tr>
-                  <tr><td><strong>Corporate Finance</strong></td><td>3</td><td>No CLEP. Usually upper division.</td></tr>
-                  <tr><td><strong>Management Information Systems</strong></td><td>3</td><td>DSST Management Information Systems or CLEP Information Systems</td></tr>
-                  <tr><td><strong>Business Communication</strong></td><td>3</td><td>Usually in-house.</td></tr>
-                  <tr><td><strong>Strategic Management / Capstone</strong></td><td>3</td><td>Always verify. Often university-only.</td></tr>
+                  <tr class="ghost-row"><td colspan="3">+ 10 more courses with exam matches...</td></tr>
+                  <tr class="locked-row"><td><strong>Microeconomics</strong></td><td>3</td><td>CLEP Principles of Microeconomics</td></tr>
+                  <tr class="locked-row"><td><strong>Macroeconomics</strong></td><td>3</td><td>CLEP Principles of Macroeconomics</td></tr>
+                  <tr class="locked-row"><td><strong>Business Statistics</strong></td><td>3</td><td>No exact match. Check whether College Mathematics applies.</td></tr>
+                  <tr class="locked-row"><td><strong>Business Law</strong></td><td>3</td><td>CLEP Introductory Business Law</td></tr>
+                  <tr class="locked-row"><td><strong>Principles of Management</strong></td><td>3</td><td>CLEP Principles of Management</td></tr>
+                  <tr class="locked-row"><td><strong>Principles of Marketing</strong></td><td>3</td><td>CLEP Principles of Marketing</td></tr>
+                  <tr class="locked-row"><td><strong>Corporate Finance</strong></td><td>3</td><td>No CLEP. Usually upper division.</td></tr>
+                  <tr class="locked-row"><td><strong>Management Information Systems</strong></td><td>3</td><td>DSST Management Information Systems or CLEP Information Systems</td></tr>
+                  <tr class="locked-row"><td><strong>Business Communication</strong></td><td>3</td><td>Usually in-house.</td></tr>
+                  <tr class="locked-row"><td><strong>Strategic Management / Capstone</strong></td><td>3</td><td>Always verify. Often university-only.</td></tr>
                 </tbody>
               </table>
+              <a class="table-unlock" href="/#pricing">See all 12 courses →</a>
             </div>
           </div>
         </article>
+
+        <aside class="bridge-card upsell-card" aria-label="Full course unlock">
+          <div>
+            <div class="section-kicker">Unlock the Map</div>
+            <h2>You just mapped 60-80 credits. The full course maps all 120.</h2>
+            <p>Inside Fast Grad Academy, you get the complete replacement strategy instead of a preview.</p>
+            <div class="bridge-actions">
+              <a class="btn primary" href="/#pricing">Get the Full Course — $197</a>
+            </div>
+          </div>
+          <div class="upsell-list">
+            <span>✓ All 6 layers broken down with exam matches</span>
+            <span>✓ The 4-quadrant degree mapping worksheet</span>
+            <span>✓ CLEP, DSST, AP, &amp; Sophia comparison tools</span>
+            <span>✓ 12 chapters of step-by-step playbooks</span>
+            <span>✓ Interactive credit tracker &amp; financial calculator</span>
+          </div>
+        </aside>
 
         <article class="layer-card">
           <div class="layer-meta">
@@ -250,20 +285,25 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
           </div>
           <div class="layer-body">
             <h3>Major Core</h3>
-            <p>The courses specific to your declared major. These are usually upper-division, department-owned, and taught by the faculty who control your major.</p>
-            <div class="insight">Plan to take these at the university. Credit stacking works because you clear everything around them.</div>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Marketing-major example</th><th>Typical level</th><th>Exam strategy</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>Consumer Behavior</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
-                  <tr><td><strong>Marketing Research</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
-                  <tr><td><strong>Digital Marketing</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
-                  <tr><td><strong>Marketing Strategy / Capstone</strong></td><td>4000</td><td>University-only in most programs.</td></tr>
-                  <tr><td><strong>Sales Management</strong></td><td>3000-4000</td><td>Check DSST or ACE only if the department allows substitutions.</td></tr>
-                  <tr><td><strong>Advertising and Promotion</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
-                </tbody>
-              </table>
+            <div class="gate-shell">
+              <div class="gated-content">
+                <p>The courses specific to your declared major. These are usually upper-division, department-owned, and taught by the faculty who control your major.</p>
+                <div class="insight">Plan to take these at the university. Credit stacking works because you clear everything around them.</div>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Marketing-major example</th><th>Typical level</th><th>Exam strategy</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Consumer Behavior</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
+                      <tr><td><strong>Marketing Research</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
+                      <tr><td><strong>Digital Marketing</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
+                      <tr><td><strong>Marketing Strategy / Capstone</strong></td><td>4000</td><td>University-only in most programs.</td></tr>
+                      <tr><td><strong>Sales Management</strong></td><td>3000-4000</td><td>Check DSST or ACE only if the department allows substitutions.</td></tr>
+                      <tr><td><strong>Advertising and Promotion</strong></td><td>3000-4000</td><td>Usually take at university.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="gate-overlay"><a class="unlock-link" href="/#pricing">Unlock in the full course →</a></div>
             </div>
           </div>
         </article>
@@ -276,18 +316,23 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
           </div>
           <div class="layer-body">
             <h3>Major Electives</h3>
-            <p>Flexible courses inside your department: "pick 3-5 from this list." Some intro-level or adjacent subjects can map to DSST, CLEP, or ACE-recommended credit.</p>
-            <div class="insight">Treat these case by case. The course title matters less than the official equivalency.</div>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Possible elective</th><th>Possible exam / source</th><th>Verification rule</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>Business Ethics</strong></td><td>DSST Ethics in America</td><td>Only if the department accepts it for the elective list.</td></tr>
-                  <tr><td><strong>Organizational Behavior</strong></td><td>DSST Organizational Behavior</td><td>Good candidate, but confirm exact course equivalency.</td></tr>
-                  <tr><td><strong>Information Systems</strong></td><td>CLEP Information Systems or DSST MIS</td><td>Useful for business or technology-adjacent electives.</td></tr>
-                  <tr><td><strong>Intro Psychology</strong></td><td>CLEP Introductory Psychology</td><td>May fit social science, major elective, or free elective depending on program.</td></tr>
-                </tbody>
-              </table>
+            <div class="gate-shell">
+              <div class="gated-content">
+                <p>Flexible courses inside your department: "pick 3-5 from this list." Some intro-level or adjacent subjects can map to DSST, CLEP, or ACE-recommended credit.</p>
+                <div class="insight">Treat these case by case. The course title matters less than the official equivalency.</div>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Possible elective</th><th>Possible exam / source</th><th>Verification rule</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Business Ethics</strong></td><td>DSST Ethics in America</td><td>Only if the department accepts it for the elective list.</td></tr>
+                      <tr><td><strong>Organizational Behavior</strong></td><td>DSST Organizational Behavior</td><td>Good candidate, but confirm exact course equivalency.</td></tr>
+                      <tr><td><strong>Information Systems</strong></td><td>CLEP Information Systems or DSST MIS</td><td>Useful for business or technology-adjacent electives.</td></tr>
+                      <tr><td><strong>Intro Psychology</strong></td><td>CLEP Introductory Psychology</td><td>May fit social science, major elective, or free elective depending on program.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="gate-overlay"><a class="unlock-link" href="/#pricing">Unlock in the full course →</a></div>
             </div>
           </div>
         </article>
@@ -300,18 +345,23 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
           </div>
           <div class="layer-body">
             <h3>Free Electives</h3>
-            <p>The wildcard bucket. Any college-level credit can fill these slots: leftover CLEP credits, AP scores, Sophia courses, Study.com courses, community-college transfer credits, or military credit.</p>
-            <div class="insight">This is the overflow bucket. If a credit does not satisfy Gen Ed, it may still count toward your 120 here.</div>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Credit source</th><th>How it usually lands</th><th>Watch for</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>Extra CLEP exams</strong></td><td>Free elective credit after Gen Ed is full.</td><td>School caps on exam credit.</td></tr>
-                  <tr><td><strong>Sophia or Study.com</strong></td><td>Lower-division elective credit.</td><td>ACE acceptance and transcript process.</td></tr>
-                  <tr><td><strong>Community-college transfer</strong></td><td>Direct course equivalency or elective transfer.</td><td>Residency limits and duplicate-credit rules.</td></tr>
-                  <tr><td><strong>Military / professional credit</strong></td><td>Elective or technical credit.</td><td>Official transcript and program fit.</td></tr>
-                </tbody>
-              </table>
+            <div class="gate-shell">
+              <div class="gated-content">
+                <p>The wildcard bucket. Any college-level credit can fill these slots: leftover CLEP credits, AP scores, Sophia courses, Study.com courses, community-college transfer credits, or military credit.</p>
+                <div class="insight">This is the overflow bucket. If a credit does not satisfy Gen Ed, it may still count toward your 120 here.</div>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Credit source</th><th>How it usually lands</th><th>Watch for</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Extra CLEP exams</strong></td><td>Free elective credit after Gen Ed is full.</td><td>School caps on exam credit.</td></tr>
+                      <tr><td><strong>Sophia or Study.com</strong></td><td>Lower-division elective credit.</td><td>ACE acceptance and transcript process.</td></tr>
+                      <tr><td><strong>Community-college transfer</strong></td><td>Direct course equivalency or elective transfer.</td><td>Residency limits and duplicate-credit rules.</td></tr>
+                      <tr><td><strong>Military / professional credit</strong></td><td>Elective or technical credit.</td><td>Official transcript and program fit.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="gate-overlay"><a class="unlock-link" href="/#pricing">Unlock in the full course →</a></div>
             </div>
           </div>
         </article>
@@ -324,19 +374,24 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
           </div>
           <div class="layer-body">
             <h3>University-Specific Requirements</h3>
-            <p>Requirements unique to your school: first-year seminar, senior capstone, writing-intensive designations, diversity rules, internship requirements, or experiential learning.</p>
-            <div class="insight">These are usually weird, local, and non-replaceable. Ask your advisor which ones transfer students can waive.</div>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Requirement</th><th>Can exams replace it?</th><th>What to ask</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>First-Year Experience</strong></td><td>Usually no.</td><td>Is it waived for transfer students with 30+ credits?</td></tr>
-                  <tr><td><strong>Senior Capstone / Thesis</strong></td><td>No.</td><td>When is it offered, and what prerequisites block it?</td></tr>
-                  <tr><td><strong>Writing-Intensive Designation</strong></td><td>Usually no.</td><td>Can transfer courses carry the designation?</td></tr>
-                  <tr><td><strong>Diversity / Multicultural</strong></td><td>Sometimes.</td><td>Does an accepted Gen Ed course also satisfy this flag?</td></tr>
-                  <tr><td><strong>Internship / Experiential Learning</strong></td><td>Usually no.</td><td>Can prior work or PLA satisfy the requirement?</td></tr>
-                </tbody>
-              </table>
+            <div class="gate-shell">
+              <div class="gated-content">
+                <p>Requirements unique to your school: first-year seminar, senior capstone, writing-intensive designations, diversity rules, internship requirements, or experiential learning.</p>
+                <div class="insight">These are usually weird, local, and non-replaceable. Ask your advisor which ones transfer students can waive.</div>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Requirement</th><th>Can exams replace it?</th><th>What to ask</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>First-Year Experience</strong></td><td>Usually no.</td><td>Is it waived for transfer students with 30+ credits?</td></tr>
+                      <tr><td><strong>Senior Capstone / Thesis</strong></td><td>No.</td><td>When is it offered, and what prerequisites block it?</td></tr>
+                      <tr><td><strong>Writing-Intensive Designation</strong></td><td>Usually no.</td><td>Can transfer courses carry the designation?</td></tr>
+                      <tr><td><strong>Diversity / Multicultural</strong></td><td>Sometimes.</td><td>Does an accepted Gen Ed course also satisfy this flag?</td></tr>
+                      <tr><td><strong>Internship / Experiential Learning</strong></td><td>Usually no.</td><td>Can prior work or PLA satisfy the requirement?</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="gate-overlay"><a class="unlock-link" href="/#pricing">Unlock in the full course →</a></div>
             </div>
           </div>
         </article>
@@ -349,11 +404,11 @@ footer { padding: 40px 0 60px; color: var(--ink-muted); font-size: 13px; }
       <div class="bridge-card">
         <div>
           <div class="section-kicker">Next Step</div>
-          <h2>Now find your degree map.</h2>
-          <p>Degree Anatomy is the foundation. Credit mapping is the action. Your next move is to pull the official academic catalog or degree audit, list every course, and match each replaceable requirement to an accepted exam or transfer source.</p>
+          <h2>Now map the full degree.</h2>
+          <p>Degree Anatomy is the foundation. The full course shows you how to pull the official catalog, build the 4-quadrant worksheet, and match every replaceable requirement to an accepted exam or transfer source.</p>
           <div class="bridge-actions">
-            <a class="btn primary" href="/ch7">Go to the Credit Stacking Playbook</a>
-            <a class="btn secondary" href="/guide">Back to Course Dashboard</a>
+            <a class="btn primary" href="/#pricing">Get the Full Course — $197</a>
+            <a class="btn secondary" href="/">Back to Home</a>
           </div>
         </div>
         <div class="bridge-steps" aria-label="Degree mapping steps">
