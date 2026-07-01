@@ -520,11 +520,20 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   gap: 14px; margin: 40px 0;
 }
 .tool-card {
+  position: relative;
   background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: 6px; padding: 28px 24px;
   transition: all 0.25s;
+  cursor: pointer;
 }
+.tool-name > a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.tool-card a { position: relative; z-index: 2; }
 .tool-card:hover {
   background: var(--bg-panel);
   border-color: var(--line-2);
