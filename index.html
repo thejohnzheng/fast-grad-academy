@@ -804,10 +804,10 @@
   .pricing { padding: 120px 0; background: #fff; text-align: center; }
   .pricing-options {
     display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    grid-template-columns: 1fr;
     gap: 18px;
     align-items: stretch;
-    max-width: 980px;
+    max-width: 560px;
     margin: 0 auto;
   }
   @media (max-width: 860px) { .pricing-options { grid-template-columns: 1fr; } }
@@ -1839,7 +1839,7 @@
   <div class="wrap">
     <div class="section-head center reveal" style="margin:0 auto 48px">
       <span class="eyebrow">The offer</span>
-      <h2 style="margin-top:14px">One-time is best. <em>Payment plan</em> if you need it.</h2>
+      <h2 style="margin-top:14px">One price. <em>Everything</em> included.</h2>
     </div>
     <div class="pricing-options reveal">
       <div class="pricing-card primary">
@@ -1868,31 +1868,6 @@
         <div class="buy-row">
           <a href="#" onclick="startCheckout(event, 'one_time')" class="btn-primary" id="checkout-btn">Get All 12 Chapters for $197 <span>→</span></a>
           <span class="meta"><span class="d"></span>Instant · 30-day guarantee</span>
-        </div>
-      </div>
-
-      <div class="pricing-card plan">
-        <div class="top">
-          <span class="eyebrow">3-Month Plan</span>
-          <span class="tag">Flexible</span>
-        </div>
-        <h3>Start Today</h3>
-        <p class="p-sub">Same complete course access now, split across three monthly payments.</p>
-        <div class="price">
-          <span class="c">$</span>
-          <span class="a">69</span>
-          <span class="per">/mo × 3</span>
-        </div>
-        <p class="p-sub" style="margin-top:8px">($207 total)</p>
-        <div class="included">
-          <div class="it"><span class="chk">✓</span>Full instant access to all 12 chapters</div>
-          <div class="it"><span class="chk">✓</span>All tools, spreadsheets, and templates</div>
-          <div class="it"><span class="chk">✓</span>Lifetime updates</div>
-          <div class="it"><span class="chk">✓</span>30-day guarantee</div>
-        </div>
-        <div class="buy-row">
-          <a href="#" onclick="startCheckout(event, 'payment_plan')" class="btn-primary" id="checkout-plan-btn">Start Plan <span>→</span></a>
-          <span class="meta"><span class="d"></span>$69 today · 3 payments</span>
         </div>
       </div>
     </div>
