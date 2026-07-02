@@ -1423,155 +1423,85 @@
     <div class="section-head reveal">
       <span class="eyebrow">Wall of Proof</span>
       <h2 style="margin-top:14px">Don't take our word <em>for it.</em></h2>
-      <p class="lead">The fast-grad path is not a theory. It shows up in named student stories, official credit-by-exam policy, and university models built around proving mastery instead of paying for extra seat time.</p>
+      <p class="lead">The fast-grad path is not a theory. National outlets have covered it for a decade &mdash; students earning accredited degrees faster, for a fraction of the sticker price. These are their headlines.</p>
     </div>
     <div class="wall-counter">
       <div class="cell reveal"><div class="v" data-count="800" data-prefix="" data-suffix="K+">800K+</div><div class="k">Learners using credit-by-exam (industry-wide)</div></div>
       <div class="cell reveal"><div class="v" data-count="25000" data-prefix="" data-suffix="+" data-format="true">25,000+</div><div class="k">Free years of college credit reported by Fortune</div></div>
       <div class="cell reveal"><div class="v" data-count="2900" data-prefix="" data-suffix="+" data-format="true">2,900+</div><div class="k">Colleges that accept these credits</div></div>
     </div>
-    <div class="proof-source-rail" aria-label="Proof categories">
-      <span>Real Students, Real Pathways</span>
-      <span>In The News</span>
-      <span>The Numbers</span>
-      <span>Proof Documents</span>
+    <!-- PRESS LINE: auto-scrolling verified headlines (replaced 21-card proof grid, 2026-07-02). All headlines verified in VERIFIED_PRESS.md -->
+    <style>
+      .pressline { position: relative; margin-top: 56px; overflow: hidden; }
+      .pressline::before, .pressline::after {
+        content: ""; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+      }
+      .pressline::before { left: 0; background: linear-gradient(90deg, #0a0a0a, transparent); }
+      .pressline::after { right: 0; background: linear-gradient(270deg, #0a0a0a, transparent); }
+      .pressline-track {
+        display: flex; align-items: baseline; gap: 0; width: max-content;
+        animation: pressScroll 70s linear infinite;
+      }
+      .pressline-track.rev { animation: pressScrollRev 85s linear infinite; }
+      .pressline:hover .pressline-track { animation-play-state: paused; }
+      @keyframes pressScroll { to { transform: translateX(-50%); } }
+      @keyframes pressScrollRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+      .pressline-item {
+        display: inline-flex; align-items: baseline; gap: 14px; padding: 18px 44px 18px 0; margin-right: 44px;
+        border-right: 1px solid var(--dark-line); text-decoration: none; white-space: nowrap;
+      }
+      .pressline-item .outlet {
+        font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: #c4a97d;
+      }
+      .pressline-item .headline {
+        font-family: var(--serif); font-size: clamp(18px, 2vw, 24px); color: #f2f0eb; font-weight: 400; letter-spacing: -0.01em;
+        transition: color .25s ease;
+      }
+      .pressline-item:hover .headline { color: #c4a97d; }
+      .pressline-item .yr { font-size: 11px; color: var(--dark-mute); font-weight: 600; }
+      .pressline + .pressline { margin-top: 0; border-top: 1px solid var(--dark-line); }
+      @media (prefers-reduced-motion: reduce) {
+        .pressline-track, .pressline-track.rev { animation: none; }
+        .pressline { overflow-x: auto; }
+      }
+      .receipt-rail { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--dark-line); display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 22px; }
+      .receipt-rail .receipt-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--dark-mute); }
+      .receipt-rail a { font-size: 12.5px; color: #d9d4c9; text-decoration: none; border-bottom: 1px solid var(--dark-line); padding-bottom: 2px; transition: color .2s, border-color .2s; }
+      .receipt-rail a:hover { color: #c4a97d; border-color: #c4a97d; }
+    </style>
+    <div class="pressline" aria-label="Verified press headlines">
+      <div class="pressline-track">
+        <a class="pressline-item" href="https://www.washingtonpost.com/education/2026/04/19/accelerated-college-degree-hacking/" target="_blank" rel="noopener noreferrer"><span class="outlet">The Washington Post</span><span class="headline">Students are speeding through their online degrees in weeks, alarming educators</span><span class="yr">2026</span></a>
+        <a class="pressline-item" href="https://fortune.com/2026/03/31/finance-steve-klinsky-new-mountain-capital-modern-states-free-college/" target="_blank" rel="noopener noreferrer"><span class="outlet">Fortune</span><span class="headline">This billionaire is quietly giving away free college to 800,000 people</span><span class="yr">2026</span></a>
+        <a class="pressline-item" href="https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/" target="_blank" rel="noopener noreferrer"><span class="outlet">The 74</span><span class="headline">Beyond AP: The College Credit Opportunity Few People Know About</span><span class="yr">2026</span></a>
+        <a class="pressline-item" href="https://www.wsj.com/articles/free-freshman-year-is-latest-path-to-free-college-credits-1502392112" target="_blank" rel="noopener noreferrer"><span class="outlet">The Wall Street Journal</span><span class="headline">&lsquo;Free Freshman Year&rsquo; Is Latest Path to Free College Credits</span><span class="yr">2017</span></a>
+        <a class="pressline-item" href="https://www.washingtonpost.com/education/2026/04/19/accelerated-college-degree-hacking/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><span class="outlet">The Washington Post</span><span class="headline">Students are speeding through their online degrees in weeks, alarming educators</span><span class="yr">2026</span></a>
+        <a class="pressline-item" href="https://fortune.com/2026/03/31/finance-steve-klinsky-new-mountain-capital-modern-states-free-college/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><span class="outlet">Fortune</span><span class="headline">This billionaire is quietly giving away free college to 800,000 people</span><span class="yr">2026</span></a>
+        <a class="pressline-item" href="https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><span class="outlet">The 74</span><span class="headline">Beyond AP: The College Credit Opportunity Few People Know About</span><span class="yr">2026</span></a>
+        <a class="pressline-item" href="https://www.wsj.com/articles/free-freshman-year-is-latest-path-to-free-college-credits-1502392112" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><span class="outlet">The Wall Street Journal</span><span class="headline">&lsquo;Free Freshman Year&rsquo; Is Latest Path to Free College Credits</span><span class="yr">2017</span></a>
+      </div>
     </div>
-    <div class="proof-grid">
-      <article class="proof-card reveal" data-kind="student">
-        <div class="tags"><span class="tag">Real Student</span><span class="tag">The 74</span></div>
-        <div class="txt">"I think having the CLEP exams on my resume showed that I had initiative."</div>
-        <div class="meta"><div class="nm">Santana Cruz</div><div class="sc">Harvard-bound student profiled by The 74 after using CLEP in high school.</div></div>
-        <a class="source-btn" href="https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
-      </article>
-      <article class="proof-card reveal" data-kind="article">
-        <div class="tags"><span class="tag">In The News</span><span class="tag">Fortune</span></div>
-        <div class="proof-number">800,000</div>
-        <div class="txt">"ModernStates.org...has quietly reached 800,000 people."</div>
-        <div class="meta"><div class="nm">Fortune</div><div class="sc">Coverage of Modern States and CLEP-based college credit.</div></div>
-        <a class="source-btn" href="https://fortune.com/2026/03/31/finance-steve-klinsky-new-mountain-capital-modern-states-free-college/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
-      </article>
-      <article class="proof-card reveal" data-kind="stat">
-        <div class="tags"><span class="tag">The Numbers</span><span class="tag">College Board</span></div>
-        <div class="proof-number">2,900</div>
-        <div class="txt">"Register to take a CLEP exam and receive college credit at 2,900 colleges."</div>
-        <div class="meta"><div class="nm">College Board</div><div class="sc">Official CLEP program page.</div></div>
-        <a class="source-btn" href="https://clep.collegeboard.org/" target="_blank" rel="noopener noreferrer">View Data</a>
-      </article>
-      <article class="proof-card reveal" data-kind="article">
-        <div class="tags"><span class="tag">In The News</span><span class="tag">The 74</span></div>
-        <div class="txt">"CLEP provides a highly-accessible pathway toward gaining college credits and reducing the time and cost of earning a degree."</div>
-        <div class="meta"><div class="nm">The 74</div><div class="sc">June 2026 article on CLEP as a college-credit pathway beyond AP.</div></div>
-        <a class="source-btn" href="https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
-      </article>
-      <article class="proof-card reveal" data-kind="stat">
-        <div class="tags"><span class="tag">The Numbers</span><span class="tag">College Board</span></div>
-        <div class="proof-number">90-120</div>
-        <div class="txt">"CLEP exams take about 90-120 minutes to complete, depending on the exam subject."</div>
-        <div class="meta"><div class="nm">College Board</div><div class="sc">Official CLEP key facts.</div></div>
-        <a class="source-btn" href="https://clep.collegeboard.org/" target="_blank" rel="noopener noreferrer">View Data</a>
-      </article>
-      <article class="proof-card reveal" data-kind="article">
-        <div class="tags"><span class="tag">In The News</span><span class="tag">Fortune</span></div>
-        <div class="proof-number">25,000</div>
-        <div class="txt">"Given away the equivalent of 25,000 free years of college credit."</div>
-        <div class="meta"><div class="nm">Fortune</div><div class="sc">Reported impact of Modern States' free CLEP-aligned courses.</div></div>
-        <a class="source-btn" href="https://fortune.com/2026/03/31/finance-steve-klinsky-new-mountain-capital-modern-states-free-college/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
-      </article>
-      <article class="proof-card reveal" data-kind="stat">
-        <div class="tags"><span class="tag">The Numbers</span><span class="tag">WGU</span></div>
-        <div class="proof-number">8 or 20</div>
-        <div class="txt">"Whether you complete 8 courses in a term or 20, your tuition won't change."</div>
-        <div class="meta"><div class="nm">Western Governors University</div><div class="sc">Official flat-rate tuition explanation.</div></div>
-        <a class="source-btn" href="https://www.wgu.edu/financial-aid-tuition.html" target="_blank" rel="noopener noreferrer">View Data</a>
-      </article>
-      <article class="proof-card reveal" data-kind="student">
-        <div class="tags"><span class="tag">Real Student</span><span class="tag">The 74</span></div>
-        <div class="txt">"She estimates that about one-third of her college credits came through CLEP."</div>
-        <div class="meta"><div class="nm">Santana Cruz</div><div class="sc">The 74 reported Cruz used CLEP before starting at Harvard.</div></div>
-        <a class="source-btn" href="https://www.the74million.org/article/beyond-ap-the-college-credit-opportunity-few-people-know-about/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
-      </article>
-      <article class="proof-card reveal" data-kind="stat">
-        <div class="tags"><span class="tag">The Numbers</span><span class="tag">NCES</span></div>
-        <div class="proof-number">64%</div>
-        <div class="txt">"The overall 6-year graduation rate...was 64 percent."</div>
-        <div class="meta"><div class="nm">National Center for Education Statistics</div><div class="sc">Fast Facts on undergraduate graduation rates.</div></div>
-        <a class="source-btn" href="https://nces.ed.gov/fastfacts/display.asp?id=40" target="_blank" rel="noopener noreferrer">View Data</a>
-      </article>
-      <article class="proof-card reveal" data-kind="stat">
-        <div class="tags"><span class="tag">The Numbers</span><span class="tag">WGU</span></div>
-        <div class="txt">"By accelerating through courses in which they are already proficient, students can graduate faster with less costs."</div>
-        <div class="meta"><div class="nm">Western Governors University</div><div class="sc">Official competency-based education model page.</div></div>
-        <a class="source-btn" href="https://www.wgu.edu/student-experience/learning.html" target="_blank" rel="noopener noreferrer">View Data</a>
-      </article>
-      <article class="proof-card reveal" data-kind="stat">
-        <div class="tags"><span class="tag">The Numbers</span><span class="tag">College Board</span></div>
-        <div class="txt">"CLEP exams let you test out of introductory courses and move to more advanced courses sooner."</div>
-        <div class="meta"><div class="nm">College Board</div><div class="sc">Official CLEP benefits page.</div></div>
-        <a class="source-btn" href="https://clep.collegeboard.org/" target="_blank" rel="noopener noreferrer">View Data</a>
-      </article>
-      <article class="proof-card reveal" data-kind="student">
-        <div class="tags"><span class="tag">Student Story</span><span class="tag">Daily Wildcat</span></div>
-        <div class="proof-number">$400 vs $6,500</div>
-        <div class="txt">"I took four of these CLEP exams over the summer. The credit earned via these exams equated to 12 credit hours...the costs of these exams was around $400. If I had taken summer classes with the UA it would have been around $6,500."</div>
-        <div class="meta"><div class="nm">Kirsten Thomas</div><div class="sc">University of Arizona student who compared four CLEP exams against 12 UA summer credits.</div></div>
-        <a class="source-btn" href="https://wildcat.arizona.edu/157484/opinions/o-save-money-take-clep-exams/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
-      </article>
-      <article class="proof-card reveal" data-kind="student">
-        <div class="tags"><span class="tag">Student Story</span><span class="tag">Peterson's</span></div>
-        <div class="proof-number">52 credits</div>
-        <div class="txt">"One of Peterson's subscribers earned 52 college credits and saved thousands of dollars by prepping for tests and testing out of subjects."</div>
-        <div class="meta"><div class="nm">Tayah</div><div class="sc">CLEP + DSST test-prep story referenced by Peterson's.</div></div>
-        <a class="source-btn" href="https://www.petersons.com/blog/your-guide-to-clep-and-dsst-exams/" target="_blank" rel="noopener noreferrer">Read Full Article</a>
-      </article>
-      <article class="proof-card reveal" data-kind="student">
-        <div class="tags"><span class="tag">Program Result</span><span class="tag">Rio Salado</span></div>
-        <div class="proof-number">1,600+</div>
-        <div class="txt">"More than 100 high school students earned up to 16 college credits each. Overall more than 1,600 credits were earned during these CLEP-A-Thon sessions."</div>
-        <div class="meta"><div class="nm">CLEP-A-Thon students</div><div class="sc">Rio Salado College reported more than 1,600 credits earned across spring group testing sessions.</div></div>
-        <a class="source-btn" href="https://www.riosalado.edu/news/2025/clep-exams-game-changer-high-school-students" target="_blank" rel="noopener noreferrer">Read Full Article</a>
-      </article>
-      <article class="proof-card reveal" data-kind="document">
-        <div class="tags"><span class="tag">Proof Document</span><span class="tag">Diploma</span></div>
-        <div class="txt">Harvard Extension Diploma</div>
-        <div class="meta"><div class="nm">Harvard Extension School</div><div class="sc">Bachelor's degree from Harvard Extension School — earned through credit stacking, not four years on campus.</div></div>
-        <a class="source-btn" href="proof/Harvard_Diploma.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
-      </article>
-      <article class="proof-card reveal" data-kind="document">
-        <div class="tags"><span class="tag">Proof Document</span><span class="tag">Diploma</span></div>
-        <div class="txt">University of Minnesota Diploma</div>
-        <div class="meta"><div class="nm">University of Minnesota</div><div class="sc">Second bachelor's degree from UMN — stacked alongside Harvard using transfer credits.</div></div>
-        <a class="source-btn" href="proof/UMN_Diploma.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
-      </article>
-      <article class="proof-card reveal" data-kind="document">
-        <div class="tags"><span class="tag">Proof Document</span><span class="tag">Transcript</span></div>
-        <div class="txt">Official UMN Transcript</div>
-        <div class="meta"><div class="nm">University Record</div><div class="sc">Academic transcript showing transferred CLEP, DSST, and AP credits accepted by the university.</div></div>
-        <a class="source-btn" href="proof/UMN_Transcript.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
-      </article>
-      <article class="proof-card reveal" data-kind="document">
-        <div class="tags"><span class="tag">Proof Document</span><span class="tag">AP</span></div>
-        <div class="txt">AP Exam Scores</div>
-        <div class="meta"><div class="nm">College Board</div><div class="sc">Four passing AP exams: Statistics, Microeconomics, Psychology, and US History — all taken in high school for real credit.</div></div>
-        <a class="source-btn" href="proof/AP_Scores_REDACTED.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
-      </article>
-      <article class="proof-card reveal" data-kind="document">
-        <div class="tags"><span class="tag">Proof Document</span><span class="tag">CLEP</span></div>
-        <div class="txt">CLEP Exam Scores</div>
-        <div class="meta"><div class="nm">College-Level Examination Program</div><div class="sc">Five CLEP exams passed — each one replacing a full semester course at a fraction of traditional tuition.</div></div>
-        <a class="source-btn" href="proof/CLEP_Scores_REDACTED.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
-      </article>
-      <article class="proof-card reveal" data-kind="document">
-        <div class="tags"><span class="tag">Proof Document</span><span class="tag">DSST</span></div>
-        <div class="txt">DSST Exam Scores</div>
-        <div class="meta"><div class="nm">DANTES / DSST</div><div class="sc">Three DSST exams passed — HR Management, Business Ethics, and Money and Banking — scored 417 to 445 against a 400 minimum.</div></div>
-        <a class="source-btn" href="proof/DSST_Scores_REDACTED.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
-      </article>
-      <article class="proof-card reveal" data-kind="document">
-        <div class="tags"><span class="tag">Proof Document</span><span class="tag">Articulated</span></div>
-        <div class="txt">MN Articulated College Credit</div>
-        <div class="meta"><div class="nm">Champlin Park / Minnesota</div><div class="sc">High school coursework at Champlin Park that qualified for college credit at seven or more institutions.</div></div>
-        <a class="source-btn" href="proof/MN_Articulated_Credit_REDACTED.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
-      </article>
+    <div class="pressline" aria-label="More verified press headlines">
+      <div class="pressline-track rev">
+        <a class="pressline-item" href="https://www.washingtonpost.com/news/get-there/wp/2017/08/24/making-a-dent-in-student-debt-with-freshman-year-for-free/" target="_blank" rel="noopener noreferrer"><span class="outlet">The Washington Post</span><span class="headline">Making a dent in student debt with &lsquo;Freshman Year for Free&rsquo;</span><span class="yr">2017</span></a>
+        <a class="pressline-item" href="https://www.wired.com/2015/01/freshman-year-for-free/" target="_blank" rel="noopener noreferrer"><span class="outlet">WIRED</span><span class="headline">The Grand Plan to Give Everyone a Free Year of Online College</span><span class="yr">2015</span></a>
+        <a class="pressline-item" href="https://www.cnbc.com/video/2018/06/07/jeb-bush-college-costs-freshman-year-free-program.html" target="_blank" rel="noopener noreferrer"><span class="outlet">CNBC</span><span class="headline">Jeb Bush on tackling college costs with &lsquo;Freshman Year for Free&rsquo;</span><span class="yr">2018</span></a>
+        <a class="pressline-item" href="https://www.hercampus.com/school/fsu/guide-to-cleping-out-of-your-geneds/" target="_blank" rel="noopener noreferrer"><span class="outlet">Her Campus</span><span class="headline">Your Guide To CLEPing Out of Gen Eds</span><span class="yr">2024</span></a>
+        <a class="pressline-item" href="https://www.washingtonpost.com/news/get-there/wp/2017/08/24/making-a-dent-in-student-debt-with-freshman-year-for-free/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><span class="outlet">The Washington Post</span><span class="headline">Making a dent in student debt with &lsquo;Freshman Year for Free&rsquo;</span><span class="yr">2017</span></a>
+        <a class="pressline-item" href="https://www.wired.com/2015/01/freshman-year-for-free/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><span class="outlet">WIRED</span><span class="headline">The Grand Plan to Give Everyone a Free Year of Online College</span><span class="yr">2015</span></a>
+        <a class="pressline-item" href="https://www.cnbc.com/video/2018/06/07/jeb-bush-college-costs-freshman-year-free-program.html" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><span class="outlet">CNBC</span><span class="headline">Jeb Bush on tackling college costs with &lsquo;Freshman Year for Free&rsquo;</span><span class="yr">2018</span></a>
+        <a class="pressline-item" href="https://www.hercampus.com/school/fsu/guide-to-cleping-out-of-your-geneds/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><span class="outlet">Her Campus</span><span class="headline">Your Guide To CLEPing Out of Gen Eds</span><span class="yr">2024</span></a>
+      </div>
+    </div>
+    <div class="receipt-rail" aria-label="John's proof documents">
+      <span class="receipt-label">John's paper trail &mdash;</span>
+      <a href="proof/Harvard_Diploma.pdf" target="_blank" rel="noopener noreferrer">Harvard Diploma</a>
+      <a href="proof/UMN_Diploma.pdf" target="_blank" rel="noopener noreferrer">UMN Diploma</a>
+      <a href="proof/UMN_Transcript.pdf" target="_blank" rel="noopener noreferrer">Official Transcript</a>
+      <a href="proof/AP_Scores_REDACTED.pdf" target="_blank" rel="noopener noreferrer">AP Scores</a>
+      <a href="proof/CLEP_Scores_REDACTED.pdf" target="_blank" rel="noopener noreferrer">CLEP Scores</a>
+      <a href="proof/DSST_Scores_REDACTED.pdf" target="_blank" rel="noopener noreferrer">DSST Scores</a>
+      <a href="proof/MN_Articulated_Credit_REDACTED.pdf" target="_blank" rel="noopener noreferrer">MN Articulated Credit</a>
     </div>
     <p style="font-size:11px;color:var(--dark-mute);max-width:800px;line-height:1.6;margin-top:36px">These are independent news references and official program pages showing that credit-by-exam, accelerated credit, and competency-based completion are real paths outside FGA. They are not Fast Grad Academy customer testimonials. Individual outcomes vary based on school policy, prior credits, effort, timing, and transfer approval.</p>
   </div>
